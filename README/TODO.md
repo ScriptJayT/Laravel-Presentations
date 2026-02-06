@@ -1,0 +1,4 @@
+- [ ] Brainstorm
+- [ ] Checklist
+- [ ] Design
+- [ ] Setup
