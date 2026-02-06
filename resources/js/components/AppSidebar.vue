@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, House } from 'lucide-vue-next';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
@@ -13,26 +13,36 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
+import { home, dashboard } from '@/routes';
+import AppLogo from '@/components/AppLogo.vue';
+
 import { type NavItem } from '@/types';
-import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
+    {
+        title: 'Home',
+        href: home(),
+        icon: House,
+    },
     {
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
     },
 ];
-
 const footerNavItems: NavItem[] = [
     {
         title: 'Github Repo',
+        href: 'https://github.com/ScriptJayT/Laravel-Presentations',
+        icon: Folder,
+    },
+    {
+        title: 'Github Repo Laravel-Vue',
         href: 'https://github.com/laravel/vue-starter-kit',
         icon: Folder,
     },
     {
-        title: 'Documentation',
+        title: 'Documentation Laravel',
         href: 'https://laravel.com/docs/starter-kits#vue',
         icon: BookOpen,
     },
