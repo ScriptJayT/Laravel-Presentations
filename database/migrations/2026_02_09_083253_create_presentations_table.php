@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use League\Flysystem\Visibility;
 
 return new class extends Migration
 {
@@ -20,10 +19,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("title");
-            $table->foreignIdFor(User::class, "creator");
+            $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(PresentationScript::class)->nullable();
-            $table->foreignIdFor(PresentationVisibility::class, "visibility");
-            $table->foreignIdFor(PresentationTheme::class, "default_theme");
+            $table->foreignIdFor(PresentationVisibility::class)->constrained();
+            $table->foreignIdFor(PresentationTheme::class)->constrained();
         });
     }
 

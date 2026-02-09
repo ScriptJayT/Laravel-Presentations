@@ -35,9 +35,9 @@ class DatabaseSeeder extends Seeder
 
         Presentation::factory()->create([
             'title' => "Welcome",
-            'creator' => $botUser->id,
-            'visibility' => $visibilityRule->id,
-            'default_theme' => $defaultTheme->id,
+            'user_id' => $botUser->id,
+            'presentation_visibility_id' => $visibilityRule->id,
+            'presentation_theme_id' => $defaultTheme->id,
         ]);
     }
 }

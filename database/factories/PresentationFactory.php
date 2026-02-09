@@ -18,9 +18,8 @@ class PresentationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
             'title' => fake()->text(10),
-            // 'creator' => null,
+            'user_id' => User::factory(),
         ];
     }
 }
