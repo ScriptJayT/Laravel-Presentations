@@ -49,10 +49,10 @@ Goal: build a backend interface to create a presentation using markdown
     - default_theme             INT FOREIGN Key `presentation_themes`
 - presentation_slides
     - id, timestamps
-    - title                     VARCHAR
     - presentation              INT FOREIGN Key `presentations`
-    - order                     INT
+    - title                     VARCHAR                                         NULLABLE
     - content                   LONGTEXT
+    - order                     INT
     - theme                     INT FOREIGN Key `presentation_scripts`          NULLABLE
 - presentation_scripts
     - id, timestamps
