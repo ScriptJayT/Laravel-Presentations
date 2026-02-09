@@ -28,11 +28,12 @@ const showAvatar = computed(
             {{ getInitials(user.name) }}
         </AvatarFallback>
     </Avatar>
-
     <div class="grid flex-1 text-left text-sm leading-tight">
-        <span class="truncate font-medium">{{ user.name }}</span>
-        <span v-if="showEmail" class="truncate text-xs text-muted-foreground">{{
-            user.email
-        }}</span>
+        <span class="truncate font-medium">
+            {{ user.name }}
+        </span>
+        <span v-if="showEmail" class="truncate text-xs text-muted-foreground">
+            {{ user.email }}
+        </span>
     </div>
 </template>
