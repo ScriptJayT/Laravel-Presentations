@@ -4,23 +4,19 @@ import {
     type BreadcrumbItem, 
 } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import { dashboard } from '@/routes';
+import { dashboard, presentations } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import PlaceholderPattern from '../components/PlaceholderPattern.vue';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard().url,
-    },
-];
+const breadcrumbs: BreadcrumbItem[] = [{
+    title: 'Dashboard',
+    href: dashboard().url,
+}];
 
 defineProps<{
-    presentations: Presentation[];
+    allPresentations: Presentation[];
 }>();
-
-
 </script>
 
 <template>
@@ -30,11 +26,8 @@ defineProps<{
         <div class="h-full space-y-4 rounded-xl p-4" >
             <h2>Presentation Overview</h2>
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                <template v-for="_presentation in presentations">
-                    <div class="
-                        relative aspect-video 
-                        p-4 | border rounded-xl 
-                    ">
+                <template v-for="_presentation in allPresentations">
+                    <div class="relative | aspect-video | p-4 | border rounded-xl">
                         <h3> {{ _presentation.title }} </h3>
 
                         <span class="creator | block">
@@ -46,6 +39,10 @@ defineProps<{
                         <span class="last_edit | block">
                             last edit: {{ _presentation.updated_at }}
                         </span>
+
+                        <a :href="presentations(_presentation.id).url">
+                            {{ _presentation.id }} 
+                        </a>
 
                         <div class="pointer-events-none" role="presentation">
                             <PlaceholderPattern />

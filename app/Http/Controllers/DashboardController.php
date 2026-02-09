@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         $presentations = Presentation::all();
         return Inertia::render('Dashboard', [
-            'presentations' => $presentations,
+            'allPresentations' => $presentations,
         ]);
     }
 }
