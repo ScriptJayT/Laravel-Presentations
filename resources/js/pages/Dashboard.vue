@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { 
-    type User,
     type Presentation,
     type BreadcrumbItem, 
 } from '@/types';
@@ -20,20 +19,21 @@ const breadcrumbs: BreadcrumbItem[] = [
 defineProps<{
     presentations: Presentation[];
 }>();
+
+
 </script>
 
 <template>
     <Head title="Dashboard" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4" >
+        <div class="h-full space-y-4 rounded-xl p-4" >
             <h2>Presentation Overview</h2>
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                 <template v-for="_presentation in presentations">
                     <div class="
                         relative aspect-video 
-                        p-4
-                        border rounded-xl 
+                        p-4 | border rounded-xl 
                     ">
                         <h3> {{ _presentation.title }} </h3>
 

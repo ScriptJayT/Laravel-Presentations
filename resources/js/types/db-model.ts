@@ -1,3 +1,5 @@
+import { Fn } from "@vueuse/core";
+
 export type Model = Id & Timestamps;
 
 export type Id = {
