@@ -37,3 +37,30 @@ Goal: build a backend interface to create a presentation using markdown
 - ? JSON API Presentation
     - both markdown as html
     - fullscript, slides or both
+
+## DB structure
+
+- presentations
+    - id, timestamps
+    - title                     VARCHAR
+    - creator                   INT FOREIGN Key `users`
+    - full_script               INT FOREIGN Key `presentation_scripts`          NULLABLE
+    - visibility                INT FOREIGN Key `presentation_visibility`
+    - default_theme             INT FOREIGN Key `presentation_themes`
+- presentation_slides
+    - id, timestamps
+    - title                     VARCHAR
+    - presentation              INT FOREIGN Key `presentations`
+    - order                     INT
+    - content                   LONGTEXT
+    - theme                     INT FOREIGN Key `presentation_scripts`          NULLABLE
+- presentation_scripts
+    - id, timestamps
+    - title                     VARCHAR
+    - content                   LONGTEXT                                        NULLABLE
+- presentation_themes
+    - id
+    - title                     VARCHAR
+- presentation_visibility
+    - id, timestamps
+    - title                     VARCHAR
