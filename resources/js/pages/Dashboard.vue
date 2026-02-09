@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import { 
+    type User,
+    type Presentation,
+    type BreadcrumbItem, 
+} from '@/types';
 import { Head } from '@inertiajs/vue3';
-import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
-import { type BreadcrumbItem } from '@/types';
+
+import AppLayout from '@/layouts/AppLayout.vue';
 import PlaceholderPattern from '../components/PlaceholderPattern.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -12,14 +17,6 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-type User = {
-    id: number,
-    name: string,
-}
-type Presentation = {
-    title: string,
-    creator: User,
-}
 defineProps<{
     presentations: Presentation[];
 }>();
@@ -39,9 +36,17 @@ defineProps<{
                         border rounded-xl 
                     ">
                         <h3> {{ _presentation.title }} </h3>
-                        <span>
-                            by:
+
+                        <span class="creator | block">
+                            by: {{ _presentation.user.name }}
                         </span>
+                        <span class="created_on | block">
+                            on: {{ _presentation.created_at }}
+                        </span>
+                        <span class="last_edit | block">
+                            last edit: {{ _presentation.updated_at }}
+                        </span>
+
                         <div class="pointer-events-none" role="presentation">
                             <PlaceholderPattern />
                         </div>
