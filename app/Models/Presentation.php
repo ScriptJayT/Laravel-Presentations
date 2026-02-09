@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Presentation extends Model
 {
-    /** @use HasFactory<\Database\Factories\PresentationFactory> */
     use HasFactory;
 }

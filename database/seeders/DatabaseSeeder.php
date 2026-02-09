@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Presentation;
 use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,16 +16,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $botUser = User::factory()->create([
+            'name' => 'Bot',
+            'email' => 'bot@example.com',
+            'password' => Hash::make(uniqid()),
+        ]);
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
 
-        PresentationVisibility::factory()->create([ 'title' => "public"  ]); 
-        PresentationVisibility::factory()->create([ 'title' => "login"   ]); 
+        PresentationVisibility::factory()->create([ 'title' => "public" ]); 
+        $visibilityRule = PresentationVisibility::factory()->create([ 'title' => "login" ]); 
         PresentationVisibility::factory()->create([ 'title' => "creator" ]);
 
-        PresentationTheme::factory()->create([ 'title' => "base" ]);
+        $defaultTheme = PresentationTheme::factory()->create([ 'title' => "base" ]);
         PresentationTheme::factory()->create([ 'title' => "light" ]);
+
+        Presentation::factory()->create([
+            'title' => "Welcome",
+            'creator' => $botUser->id,
+            'visibility' => $visibilityRule->id,
+            'default_theme' => $defaultTheme->id,
+        ]);
     }
 }
