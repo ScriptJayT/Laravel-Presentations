@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        PresentationVisibility::factory()->create(['title' => 'public']);
-        $visibilityRule = PresentationVisibility::factory()->create(['title' => 'login']);
+        $publicVisibilityRule = PresentationVisibility::factory()->create(['title' => 'public']);
+        $loginVisibilityRule = PresentationVisibility::factory()->create(['title' => 'login']);
         PresentationVisibility::factory()->create(['title' => 'creator']);
 
         $defaultTheme = PresentationTheme::factory()->create(['title' => 'base']);
@@ -39,12 +39,23 @@ class DatabaseSeeder extends Seeder
             'title' => 'Welcome',
             'slug' => Str::of('Welcome')->slug(),
             'user_id' => $botUser->id,
-            'presentation_visibility_id' => $visibilityRule->id,
+            'presentation_visibility_id' => $loginVisibilityRule->id,
+            'presentation_theme_id' => $defaultTheme->id,
+        ]);
+        PresentationSlide::factory(3)->create([
+            'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
         ]);
 
+        $entryPresentation = Presentation::factory()->create([
+            'title' => 'Hello world',
+            'slug' => Str::of('Hello world')->slug(),
+            'user_id' => $botUser->id,
+            'presentation_visibility_id' => $publicVisibilityRule->id,
+            'presentation_theme_id' => $defaultTheme->id,
+        ]);
         PresentationSlide::factory(3)->create([
-            'presentation_id' => $examplePresentation->id,
+            'presentation_id' => $entryPresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
         ]);
     }
