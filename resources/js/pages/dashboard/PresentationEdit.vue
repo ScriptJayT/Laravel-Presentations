@@ -4,8 +4,9 @@ import {
     type BreadcrumbItem, 
 } from '@/types';
 
-import { Head } from '@inertiajs/vue3';
 import { dashboard, presentations } from '@/routes';
+
+import { Head } from '@inertiajs/vue3';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
@@ -27,7 +28,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `/${props.presentation.slug} #${props.presentation.id}`,
     }
 ];
-
 </script>
 
 <template>

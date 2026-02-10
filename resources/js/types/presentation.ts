@@ -13,6 +13,7 @@ export type PresentationScript = {
     title: string,
     content: string,
 } & Model;
+export type PresentationSlide = {} & Model;
 export type Presentation = {
     user: User,
     title: string,
@@ -20,4 +21,5 @@ export type Presentation = {
     presentation_visibility: PresentationVisibility,
     presentation_theme: PresentationTheme,
     presentation_script: PresentationScript,
+    slides?: Array<PresentationSlide>,
 } & Model;

@@ -8,10 +8,10 @@ import AppContent from '@/components/AppContent.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
 const props = defineProps<{
-    presentation: Presentation;
+    presentation: Required<Presentation>;
 }>();
 
-console.log(props.presentation);
+console.log(props.presentation.slides);
 
 </script>
 
@@ -32,11 +32,14 @@ console.log(props.presentation);
                     <PlaceholderPattern />
                 </div>
             </slide>
-            <slide class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip">
-                <div class="pointer-events-none" role="presentation">
-                    <PlaceholderPattern />
-                </div>
-            </slide>
+
+            <template v-for="_slide in presentation.slides">
+                <slide class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip">
+                    <div class="pointer-events-none" role="presentation">
+                        <PlaceholderPattern />
+                    </div>
+                </slide>
+            </template>
         </slide-show>
     </AppContent>
 </template>

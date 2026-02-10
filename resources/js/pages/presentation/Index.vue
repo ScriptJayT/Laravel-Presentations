@@ -28,7 +28,6 @@ console.log(
             </template>
         </div>
     </div>
-
     <template v-if="isLoggedIn">
         <div class="space-y-4 p-4" >
             <h2>Private Presentations</h2>
@@ -38,7 +37,6 @@ console.log(
                 </template>
             </div>
         </div>
-    
         <div class="space-y-4 p-4" >
             <h2>Your Presentations</h2>
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
@@ -48,5 +46,4 @@ console.log(
             </div>
         </div>
     </template>
-
 </template>
