@@ -15,12 +15,6 @@ const props = defineProps<{
     isLoggedIn: boolean;
 }>();
 
-// console.log(
-//     props.allCreatorPresentations.length,
-//     props.allPrivatePresentations.length,
-//     props.allPublicPresentations.length,
-//     props.isLoggedIn
-// );
 </script>
 
 <template>
