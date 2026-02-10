@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Presentation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -13,14 +14,28 @@ class PresentationController extends Controller
     {
         return Inertia::render('Welcome');
     }
-    public function show(Presentation $_pres): Response
+
+    public function show(string $_presId): Response
     {
-        return Inertia::render('Welcome');
+        $presentation = Presentation::where('slug', $_presId)->first();
+        $isAllowedFurter = match ($presentation->presentationVisibility->title) {
+            'login' => auth()->check(),
+            'public' => true,
+            'creator' => auth()->check() && (auth()->user()->id === $presentation->user->id),
+            default => false,
+        };
+        if (! $isAllowedFurter) {
+            Redirect::route('home');
+            exit();
+        }
+
+        return Inertia::render('presentation/Show', ['presentation' => $presentation]);
     }
 
-    public function edit(Presentation $_pres): Response
+    public function edit(string $_presId): Response
     {
-        dd($_pres);
-        return Inertia::render('Welcome');
+        $presentation = Presentation::find($_presId);
+
+        return Inertia::render('dashboard/PresentationEdit', ['presentation' => $presentation]);
     }
 }

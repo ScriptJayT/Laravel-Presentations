@@ -7,7 +7,7 @@ import { Head } from '@inertiajs/vue3';
 import { dashboard, admin_presentations } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import PlaceholderPattern from '../components/PlaceholderPattern.vue';
+import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [{
     title: 'Dashboard',
@@ -34,7 +34,7 @@ defineProps<{
                             by: {{ _presentation.user.name }}
                         </span>
                         <span class="created_on | block">
-                            on: {{ _presentation.created_at }}
+                            created on: {{ _presentation.created_at }}
                         </span>
                         <span class="last_edit | block">
                             last edit: {{ _presentation.updated_at }}

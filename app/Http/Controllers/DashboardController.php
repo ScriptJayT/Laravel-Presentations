@@ -12,7 +12,7 @@ class DashboardController extends Controller
     public function show(Request $_): Response
     {
         $presentations = Presentation::all();
-        return Inertia::render('Dashboard', [
+        return Inertia::render('dashboard/Index', [
             'allPresentations' => $presentations,
         ]);
     }
