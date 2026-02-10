@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e121cfec4f9e137f13f96f56fef7523",
+    "content-hash": "17390d90a37b39c874c2b68c38131cee",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6314,6 +6314,56 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.4.0"
             },
             "time": "2025-12-02T11:56:42+00:00"
+        },
+        {
+            "name": "tuchsoft/commonmark-ext-heading-shifter",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TuchSoft/commonmark-ext-heading-shifter.git",
+                "reference": "74ffbec958e1b5dc2c23d1ad4cbbec9508f30c69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TuchSoft/commonmark-ext-heading-shifter/zipball/74ffbec958e1b5dc2c23d1ad4cbbec9508f30c69",
+                "reference": "74ffbec958e1b5dc2c23d1ad4cbbec9508f30c69",
+                "shasum": ""
+            },
+            "require": {
+                "league/commonmark": "^2.0",
+                "php": "^8.0"
+            },
+            "type": "commonmark-extension",
+            "autoload": {
+                "psr-4": {
+                    "TuchSoft\\CommonMarkHeadingShifter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mattia Bonzi",
+                    "email": "mattia@tuchsoft.com",
+                    "homepage": "https://tuchsoft.com"
+                }
+            ],
+            "description": "A CommonMark extension to adjust (decrease) heading levels by a custom amount.",
+            "keywords": [
+                "commonmark",
+                "extension",
+                "headings",
+                "level",
+                "markdown",
+                "shifter"
+            ],
+            "support": {
+                "issues": "https://github.com/tuchsoft/commonmark-ext-heading-shifter/issues",
+                "source": "https://github.com/tuchsoft/commonmark-ext-heading-shifter"
+            },
+            "time": "2025-07-17T11:42:39+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

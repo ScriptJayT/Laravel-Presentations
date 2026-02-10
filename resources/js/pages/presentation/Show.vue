@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { 
+import {
     type Presentation,
 } from '@/types';
 import { Head } from '@inertiajs/vue3';
@@ -10,9 +10,6 @@ import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 const props = defineProps<{
     presentation: Required<Presentation>;
 }>();
-
-console.log(props.presentation.slides);
-
 </script>
 
 <template>
@@ -24,7 +21,7 @@ console.log(props.presentation.slides);
                 :data-theme="presentation.presentation_theme.title"
                 class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip"
             >
-                <h2> {{ presentation.title }} </h2>
+                <h1> {{ presentation.title }} </h1>
                 <span class="created_on | block">
                     created on: {{ presentation.created_at }}
                 </span>
@@ -37,8 +34,8 @@ console.log(props.presentation.slides);
             </slide>
 
             <template v-for="_slide in presentation.slides">
-                <slide 
-                    :data-theme="_slide.presentation_theme.title + ' ' + presentation.presentation_theme.title" 
+                <slide
+                    :data-theme="_slide.presentation_theme.title + ' ' + presentation.presentation_theme.title"
                     class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip"
                 >
                     <h2> {{ _slide.title }} </h2>
@@ -51,3 +48,12 @@ console.log(props.presentation.slides);
         </slide-show>
     </AppContent>
 </template>
+
+<style is="scoped">
+    slide-show {
+        scroll-snap-type: y mandatory;
+    }
+    slide {
+        scroll-snap-align: center;
+    }
+</style>

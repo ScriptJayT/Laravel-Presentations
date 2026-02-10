@@ -54,7 +54,12 @@ class DatabaseSeeder extends Seeder
             'presentation_visibility_id' => $publicVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
         ]);
-        PresentationSlide::factory(3)->create([
+        PresentationSlide::factory()->create([
+            'presentation_id' => $entryPresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
+            'content' => "# h1 \n ## h2 \n ### h3 \n #### h4 \n ##### h5 \n ###### h6",
+        ]);
+        PresentationSlide::factory(2)->create([
             'presentation_id' => $entryPresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
         ]);
