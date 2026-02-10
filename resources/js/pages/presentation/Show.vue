@@ -18,7 +18,7 @@ const props = defineProps<{
     <AppContent>
         <slide-show class="relative | h-screen space-y-10 | pi-8 overflow-x-clip overflow-y-scroll">
             <slide
-                :data-theme="presentation.presentation_theme.title"
+                :data-theme="presentation.presentation_theme.title + ' intro'"
                 class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip"
             >
                 <h1> {{ presentation.title }} </h1>
@@ -28,9 +28,7 @@ const props = defineProps<{
                 <span class="creator | block">
                     by: {{ presentation.user.name }}
                 </span>
-                <div class="pointer-events-none" role="presentation">
-                    <PlaceholderPattern />
-                </div>
+                <PlaceholderPattern :interactable="false"/>
             </slide>
 
             <template v-for="_slide in presentation.slides">
@@ -40,9 +38,7 @@ const props = defineProps<{
                 >
                     <h2> {{ _slide.title }} </h2>
                     <div v-html="_slide.content" />
-                    <div class="pointer-events-none" role="presentation">
-                        <PlaceholderPattern />
-                    </div>
+                    <PlaceholderPattern :interactable="false" />
                 </slide>
             </template>
         </slide-show>
