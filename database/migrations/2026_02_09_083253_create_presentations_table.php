@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("title");
+            $table->string("slug")->unique();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(PresentationScript::class)->nullable();
             $table->foreignIdFor(PresentationVisibility::class)->constrained();

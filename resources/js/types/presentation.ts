@@ -16,6 +16,7 @@ export type PresentationScript = {
 export type Presentation = {
     user: User,
     title: string,
+    slug: string,
     presentation_visibility: PresentationVisibility,
     presentation_theme: PresentationTheme,
     presentation_script: PresentationScript,

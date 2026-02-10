@@ -4,7 +4,7 @@ import {
     type BreadcrumbItem, 
 } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import { dashboard, presentations } from '@/routes';
+import { dashboard, admin_presentations } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import PlaceholderPattern from '../components/PlaceholderPattern.vue';
@@ -40,8 +40,8 @@ defineProps<{
                             last edit: {{ _presentation.updated_at }}
                         </span>
 
-                        <a :href="presentations(_presentation.id).url">
-                            {{ _presentation.id }} 
+                        <a :href="admin_presentations(_presentation.id).url">
+                            /{{ _presentation.slug }} 
                         </a>
 
                         <div class="pointer-events-none" role="presentation">

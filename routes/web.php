@@ -17,9 +17,22 @@ Route::get('dashboard', [DashboardController::class, "show"])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::get('/presentation/{id}', [PresentationController::class, "edit"])
-    ->middleware(['auth', 'verified'])
-    ->name('presentations')
-    ->missing(fn (Request $request) => Redirect::route('dashboard'));
+Route::redirect('dashboard/presentations', 'dashboard');
+Route::redirect('presentations', '/');
+
+Route::controller(PresentationController::class)->group(function() {
+    Route::get('/', 'index')
+        ->name('home');
+    Route::get('presentations/{slug}', "show")
+        ->whereAlpha('slug')
+        ->name('presentations');
+
+    Route::get('dashboard/presentations/{id}', "edit")
+        ->whereNumber('id')
+        ->middleware(['auth', 'verified'])
+        ->name('admin_presentations')
+        ->missing(fn (Request $_) => Redirect::route('dashboard'));
+});
+
 
 require __DIR__.'/settings.php';

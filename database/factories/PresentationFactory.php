@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Presentation>
@@ -20,6 +21,7 @@ class PresentationFactory extends Factory
         return [
             'title' => fake()->text(10),
             'user_id' => User::factory(),
+            'slug' => Str::of(fake()->text(10))->slug(),
         ];
     }
 }

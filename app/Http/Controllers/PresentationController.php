@@ -9,6 +9,15 @@ use Inertia\Response;
 
 class PresentationController extends Controller
 {
+    public function index(Request $_): Response
+    {
+        return Inertia::render('Welcome');
+    }
+    public function show(Presentation $_pres): Response
+    {
+        return Inertia::render('Welcome');
+    }
+
     public function edit(Presentation $_pres): Response
     {
         dd($_pres);
