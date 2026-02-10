@@ -20,7 +20,7 @@ const props = defineProps<{
             by: {{ presentation.user.name }}
         </span>
         
-        <a :href="presentations(presentation.slug).url">
+        <a :href="presentations(presentation.slug).url" target="_blank">
             /{{ presentation.slug }} 
         </a>
 

@@ -21,6 +21,9 @@ export default defineConfig({
                     base: null,
                     includeAbsolute: false,
                 },
+                compilerOptions: {
+                    isCustomElement: (tag) => ['slide-show', 'slide'].includes(tag),
+                }
             },
         }),
     ],

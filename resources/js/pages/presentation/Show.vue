@@ -4,32 +4,39 @@ import {
 } from '@/types';
 import { Head } from '@inertiajs/vue3';
 
+import AppContent from '@/components/AppContent.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
-defineProps<{
+const props = defineProps<{
     presentation: Presentation;
 }>();
+
+console.log(props.presentation);
+
 </script>
 
 <template>
     <Head :title="presentation.title" />
 
-    <div class="h-full space-y-4 rounded-xl p-4" >
-        <h2> {{ presentation.title }} </h2>
-        <div class="p-4 | border rounded-xl">
-            <span class="created_on | block">
-                created on: {{ presentation.created_at }}
-            </span>
-            <span class="creator | block">
-                by: {{ presentation.user.name }}
-            </span>
-        </div>
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div class="relative | aspect-video | p-4 | border rounded-xl">
+    <AppContent>
+        <slide-show class="relative | h-screen space-y-10 | pi-8 overflow-x-clip overflow-y-scroll">
+            <slide class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip">
+                <h2> {{ presentation.title }} </h2>
+                <span class="created_on | block">
+                    created on: {{ presentation.created_at }}
+                </span>
+                <span class="creator | block">
+                    by: {{ presentation.user.name }}
+                </span>
                 <div class="pointer-events-none" role="presentation">
                     <PlaceholderPattern />
                 </div>
-            </div>
-        </div>
-    </div>
+            </slide>
+            <slide class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip">
+                <div class="pointer-events-none" role="presentation">
+                    <PlaceholderPattern />
+                </div>
+            </slide>
+        </slide-show>
+    </AppContent>
 </template>
