@@ -33,13 +33,7 @@ console.log(
                     <span class="creator | block">
                         by: {{ _presentation.user.name }}
                     </span>
-                    <span class="created_on | block">
-                        created on: {{ _presentation.created_at }}
-                    </span>
-                    <span class="last_edit | block">
-                        last edit: {{ _presentation.updated_at }}
-                    </span>
-
+                   
                     <a :href="presentations(_presentation.slug).url">
                         /{{ _presentation.slug }} 
                     </a>

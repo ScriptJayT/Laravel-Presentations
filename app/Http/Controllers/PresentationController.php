@@ -4,19 +4,46 @@ namespace App\Http\Controllers;
 
 use App\Models\Presentation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response as IResponse;
 
 class PresentationController extends Controller
 {
+    private function isLoggedIn(): bool
+    {
+        return auth()->check();
+    }
+
+    private function loggedinIsCreator(Presentation $_presentation): bool
+    {
+        if (! $this->isLoggedIn()) {
+            return false;
+        }
+
+        return $_presentation->user->id === auth()->user()->id;
+    }
+
     public function index(Request $_): IResponse
     {
+
+        $all = Presentation::all()->collect();
+        $public = $all->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'public');
+        $private = $all->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'login');
+        $creator = $this->isLoggedIn()
+            ? $all->filter(function ($_presentation) {
+                return
+                    $_presentation->presentationVisibility->title === 'creator'
+                    && $this->loggedinIsCreator($_presentation);
+            })
+            : new Collection([]);
+
         return Inertia::render('presentation/Index', [
-            'allPublicPresentations' => [],
-            'allPrivatePresentations' => [],
-            'allCreatorPresentations' => [],
-            'isLoggedIn' => auth()->check(),
+            'allPublicPresentations' => $public->all(),
+            'allPrivatePresentations' => $private->all(),
+            'allCreatorPresentations' => $creator->all(),
+            'isLoggedIn' => $this->isLoggedIn(),
         ]);
     }
 
@@ -24,16 +51,15 @@ class PresentationController extends Controller
     {
         $presentation = Presentation::where('slug', $_presId)->first();
         $isAllowedFurter = match ($presentation->presentationVisibility->title) {
-            'login' => auth()->check(),
             'public' => true,
-            'creator' => auth()->check() && (auth()->user()->id === $presentation->user->id),
+            'login' => $this->isLoggedIn(),
+            'creator' => $this->loggedinIsCreator($presentation),
             default => false,
         };
-        if (! $isAllowedFurter) {
-            return Redirect::route('home');
-        }
 
-        return Inertia::render('presentation/Show', ['presentation' => $presentation]);
+        return $isAllowedFurter
+            ? Inertia::render('presentation/Show', ['presentation' => $presentation])
+            : Redirect::route('home');
     }
 
     public function edit(string $_presId): IResponse
