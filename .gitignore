@@ -27,4 +27,6 @@ yarn-error.log
 /.vscode
 /.zed
 
+composer.lock
+
 .editorconfig
