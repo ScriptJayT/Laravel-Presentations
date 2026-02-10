@@ -4,6 +4,7 @@ import { Head, Link } from '@inertiajs/vue3';
 
 import { dashboard, login } from '@/routes';
 
+import PresentationList from '@/components/app/PresentationList.vue';
 import PresentationLink from '@/components/app/PresentationLink.vue';
 import AppContent from '@/components/AppContent.vue';
 
@@ -15,69 +16,41 @@ const props = defineProps<{
     isLoggedIn: boolean;
 }>();
 
-console.log(
-    props.allCreatorPresentations, props.allPrivatePresentations, 
-    props.allPublicPresentations, props.isLoggedIn
-);
+// console.log(
+//     props.allCreatorPresentations.length,
+//     props.allPrivatePresentations.length,
+//     props.allPublicPresentations.length,
+//     props.isLoggedIn
+// );
 </script>
 
 <template>
     <Head title="Home" />
 
-    <AppContent>
-        <header>
-            <nav class="flex items-center justify-end gap-4">
-                <Link v-if="$page.props.auth.user"
-                    :href="dashboard()"
-                    class="rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+    <header>
+        <nav class="flex items-center justify-end gap-4">
+            <Link v-if="$page.props.auth.user"
+                :href="dashboard()"
+                class="rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+            >
+                Dashboard
+            </Link>
+            <template v-else>
+                <Link
+                    :href="login()"
+                    class="rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
                 >
-                    Dashboard
+                    Log in
                 </Link>
-                <template v-else>
-                    <Link
-                        :href="login()"
-                        class="rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
-                    >
-                        Log in
-                    </Link>
-                </template>
-            </nav>
-        </header>
-        <div class="space-y-4 p-4" >
-            <h2>Public Presentations</h2>
-            <template v-if="allPublicPresentations.length < 1">
-                <p>No found</p>
             </template>
+        </nav>
+    </header>
 
-            <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                <template v-for="_presentation in allPublicPresentations">
-                    <PresentationLink :presentation="_presentation" />
-                </template>
-            </div>
-        </div>
+    <AppContent>
         <template v-if="isLoggedIn">
-            <div class="space-y-4 p-4" >
-                <h2>Private Presentations</h2>
-                <template v-if="allPrivatePresentations.length < 1">
-                    <p>No found</p>
-                </template>
-                <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <template v-for="_presentation in allPrivatePresentations">
-                        <PresentationLink :presentation="_presentation" />
-                    </template>
-                </div>
-            </div>
-            <div class="space-y-4 p-4" >
-                <h2>Your Presentations</h2>
-                <template v-if="allCreatorPresentations.length < 1">
-                    <p>No found</p>
-                </template>
-                <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <template v-for="_presentation in allCreatorPresentations">
-                        <PresentationLink :presentation="_presentation" />
-                    </template>
-                </div>
-            </div>
+            <PresentationList title="Your Slideshows" :presentations="allCreatorPresentations"/>
+            <PresentationList title="Private Slideshows" :presentations="allPrivatePresentations"/>
         </template>
+        <PresentationList title="Public Slideshows" :presentations="allPublicPresentations"/>
     </AppContent>
 </template>

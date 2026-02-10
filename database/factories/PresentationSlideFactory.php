@@ -19,7 +19,7 @@ class PresentationSlideFactory extends Factory
     {
         return [
             'title' => fake()->text(10),
-            'content' => fake()->text(),
+            'content' => fake()->sentence(100),
             'order' => 0,
             'presentation_id' => Presentation::factory(),
         ];

@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'presentation_theme_id' => $defaultTheme->id,
         ]);
 
-        PresentationSlide::factory(2)->create([
+        PresentationSlide::factory(3)->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
         ]);
