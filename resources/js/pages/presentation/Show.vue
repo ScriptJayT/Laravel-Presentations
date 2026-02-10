@@ -35,6 +35,12 @@ console.log(props.presentation.slides);
 
             <template v-for="_slide in presentation.slides">
                 <slide class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip">
+                    <h2> {{ _slide.title }} </h2>
+
+                    <div>
+                        {{ _slide.content }}
+                    </div>
+
                     <div class="pointer-events-none" role="presentation">
                         <PlaceholderPattern />
                     </div>

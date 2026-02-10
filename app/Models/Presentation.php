@@ -13,7 +13,11 @@ class Presentation extends Model
 {
     use HasFactory;
 
-    protected $with = ['user', 'presentationVisibility'];
+    protected $with = [
+        'user',
+        'presentationVisibility',
+        'presentationTheme',
+    ];
 
     /**
      * Get the attributes that should be cast.

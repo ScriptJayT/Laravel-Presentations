@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignIdFor(Presentation::class)->constrained();
-            $table->string("title");
-            $table->longText("content");
-            $table->integer("order");
+            $table->string('title');
+            $table->longText('content')->nullable();
+            $table->integer('order');
             $table->foreignIdFor(PresentationTheme::class)->constrained();
         });
     }

@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Presentation;
+use App\Models\PresentationSlide;
 use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
 use App\Models\User;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -28,18 +28,23 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        PresentationVisibility::factory()->create([ 'title' => "public" ]); 
-        $visibilityRule = PresentationVisibility::factory()->create([ 'title' => "login" ]); 
-        PresentationVisibility::factory()->create([ 'title' => "creator" ]);
+        PresentationVisibility::factory()->create(['title' => 'public']);
+        $visibilityRule = PresentationVisibility::factory()->create(['title' => 'login']);
+        PresentationVisibility::factory()->create(['title' => 'creator']);
 
-        $defaultTheme = PresentationTheme::factory()->create([ 'title' => "base" ]);
-        PresentationTheme::factory()->create([ 'title' => "light" ]);
+        $defaultTheme = PresentationTheme::factory()->create(['title' => 'base']);
+        PresentationTheme::factory()->create(['title' => 'light']);
 
-        Presentation::factory()->create([
-            'title' => "Welcome",
-            'slug' => Str::of("Welcome")->slug(),
+        $examplePresentation = Presentation::factory()->create([
+            'title' => 'Welcome',
+            'slug' => Str::of('Welcome')->slug(),
             'user_id' => $botUser->id,
             'presentation_visibility_id' => $visibilityRule->id,
+            'presentation_theme_id' => $defaultTheme->id,
+        ]);
+
+        PresentationSlide::factory(2)->create([
+            'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
         ]);
     }

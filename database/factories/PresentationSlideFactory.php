@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Presentation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class PresentationSlideFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->text(10),
+            'content' => fake()->text(),
+            'order' => 0,
+            'presentation_id' => Presentation::factory(),
         ];
     }
 }

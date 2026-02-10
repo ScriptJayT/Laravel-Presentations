@@ -13,7 +13,10 @@ export type PresentationScript = {
     title: string,
     content: string,
 } & Model;
-export type PresentationSlide = {} & Model;
+export type PresentationSlide = {
+    title: string,
+    content: string,
+} & Model;
 export type Presentation = {
     user: User,
     title: string,
