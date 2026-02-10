@@ -20,7 +20,10 @@ console.log(props.presentation.slides);
 
     <AppContent>
         <slide-show class="relative | h-screen space-y-10 | pi-8 overflow-x-clip overflow-y-scroll">
-            <slide class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip">
+            <slide
+                :data-theme="presentation.presentation_theme.title"
+                class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip"
+            >
                 <h2> {{ presentation.title }} </h2>
                 <span class="created_on | block">
                     created on: {{ presentation.created_at }}
@@ -34,13 +37,12 @@ console.log(props.presentation.slides);
             </slide>
 
             <template v-for="_slide in presentation.slides">
-                <slide class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip">
+                <slide 
+                    :data-theme="_slide.presentation_theme.title + ' ' + presentation.presentation_theme.title" 
+                    class="relative | block h-full | p-8 border rounded-4xl | bg-amber-200 | overflow-clip"
+                >
                     <h2> {{ _slide.title }} </h2>
-
-                    <div>
-                        {{ _slide.content }}
-                    </div>
-
+                    <div v-html="_slide.content" />
                     <div class="pointer-events-none" role="presentation">
                         <PlaceholderPattern />
                     </div>

@@ -48,6 +48,11 @@ class Presentation extends Model
         return $this->belongsTo(PresentationVisibility::class);
     }
 
+    public function presentationTheme(): BelongsTo
+    {
+        return $this->belongsTo(PresentationTheme::class);
+    }
+
     public function slides(): HasMany
     {
         return $this->hasMany(PresentationSlide::class);
