@@ -27,7 +27,6 @@ class PresentationController extends Controller
 
     public function index(Request $_): IResponse
     {
-
         $all = Presentation::all()->collect();
         $public = $all->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'public');
         $private = $all->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'login');
