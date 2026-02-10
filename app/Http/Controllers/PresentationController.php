@@ -6,16 +6,16 @@ use App\Models\Presentation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use Inertia\Response;
+use Inertia\Response as IResponse;
 
 class PresentationController extends Controller
 {
-    public function index(Request $_): Response
+    public function index(Request $_): IResponse
     {
         return Inertia::render('Welcome');
     }
 
-    public function show(string $_presId): Response
+    public function show(string $_presId): mixed
     {
         $presentation = Presentation::where('slug', $_presId)->first();
         $isAllowedFurter = match ($presentation->presentationVisibility->title) {
@@ -25,14 +25,13 @@ class PresentationController extends Controller
             default => false,
         };
         if (! $isAllowedFurter) {
-            Redirect::route('home');
-            exit();
+            return Redirect::route('home');
         }
 
         return Inertia::render('presentation/Show', ['presentation' => $presentation]);
     }
 
-    public function edit(string $_presId): Response
+    public function edit(string $_presId): IResponse
     {
         $presentation = Presentation::find($_presId);
 

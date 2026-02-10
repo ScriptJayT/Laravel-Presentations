@@ -12,7 +12,7 @@ defineProps<{
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head :title="presentation.title" />
 
     <div class="h-full space-y-4 rounded-xl p-4" >
         <h2> {{ presentation.title }} </h2>
