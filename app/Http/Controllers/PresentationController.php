@@ -12,7 +12,12 @@ class PresentationController extends Controller
 {
     public function index(Request $_): IResponse
     {
-        return Inertia::render('Welcome');
+        return Inertia::render('presentation/Index', [
+            'allPublicPresentations' => [],
+            'allPrivatePresentations' => [],
+            'allCreatorPresentations' => [],
+            'isLoggedIn' => auth()->check(),
+        ]);
     }
 
     public function show(string $_presId): mixed
