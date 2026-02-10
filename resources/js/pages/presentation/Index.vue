@@ -5,7 +5,6 @@ import { Head, Link } from '@inertiajs/vue3';
 import { dashboard, login } from '@/routes';
 
 import PresentationList from '@/components/app/PresentationList.vue';
-import PresentationLink from '@/components/app/PresentationLink.vue';
 import AppContent from '@/components/AppContent.vue';
 
 
