@@ -1,8 +1,21 @@
 <script setup lang="ts">
 
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { dashboard, login } from '@/routes';
 import { RouteDefinition } from '@/wayfinder';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+
+import UserMenuContent from '@/components/UserMenuContent.vue';
+
+const page = usePage();
+const user = page.props.auth.user;
+
+console.log(user);
 
 type NavItem = {
     title: string;
@@ -29,30 +42,54 @@ const links: NavItem[] = [
         <div class="max-w-5xl mx-auto flex items-center justify-between gap-6 flex-wrap">
             <div class="mr-auto"></div>
             <nav class="block min-w-fit w-fit py-3">
-                <ul class="flex items-center justify-end gap-4 flex-wrap">
+                <ul class="flex items-center justify-end gap-4 flex-wrap text-sm leading-normal">
                     <template v-for="_link in links">
                         <template v-if="
-                            (_link.show == 'guest' && !$page.props.auth.user)
-                            || (_link.show == 'login' && $page.props.auth.user)
+                            (_link.show == 'guest' && !user)
+                            || (_link.show == 'login' && user)
                             || _link.show == 'always'
                             "
                         >
                             <li class="min-w-fit">
                                 <Link :href="_link.href"
                                     class="
-                                        px-5 py-1.5
+                                        block px-5 py-1.5
                                         bg-gray-50 dark:bg-gray-700
                                         rounded-sm border
                                         border-[#19140035] dark:border-[#3E3E3A]
                                         hover:border-[#1915014a] dark:hover:border-[#62605b]
                                         text-[#1b1b18] dark:text-[#EDEDEC]
-                                        text-sm leading-normal
                                         "
                                 >
                                     {{ _link.title }}
                                 </Link>
                             </li>
                         </template>
+                    </template>
+
+                    <template v-if="user">
+                        <li class="user">
+                            <DropdownMenu>
+                                <DropdownMenuTrigger :as-child="true">
+                                    <button class="
+                                        cursor-pointer
+                                        relative
+                                        block w-fit px-5 py-1.5
+                                        rounded-sm border
+                                        border-[#19140035] dark:border-[#3E3E3A]
+                                        hover:border-[#1915014a] dark:hover:border-[#62605b]
+                                        text-[#1b1b18] dark:text-[#EDEDEC]
+                                        bg-gray-50 dark:bg-gray-700"
+                                    >
+
+                                        {{ user.name }}
+                                    </button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end" class="w-56">
+                                    <UserMenuContent :user="user" />
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </li>
                     </template>
                 </ul>
             </nav>

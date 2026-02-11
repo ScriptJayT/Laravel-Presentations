@@ -12,15 +12,13 @@ import { logout } from '@/routes';
 import { edit } from '@/routes/profile';
 import type { User } from '@/types';
 
-type Props = {
-    user: User;
-};
-
 const handleLogout = () => {
     router.flushAll();
 };
 
-defineProps<Props>();
+defineProps<{
+    user: User;
+}>();
 </script>
 
 <template>
