@@ -8,7 +8,7 @@ import PresentationList from '@/components/app/PresentationList.vue';
 import AppContent from '@/components/AppContent.vue';
 
 
-const props = defineProps<{
+defineProps<{
     allPublicPresentations: Array<Presentation>;
     allPrivatePresentations: Array<Presentation>;
     allCreatorPresentations: Array<Presentation>;
