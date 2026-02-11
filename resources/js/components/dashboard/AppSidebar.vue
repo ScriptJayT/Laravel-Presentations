@@ -14,7 +14,7 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { home, dashboard } from '@/routes';
-import AppLogo from '@/components/AppLogo.vue';
+import AppLogo from '@/components/global/AppLogo.vue';
 
 import { type NavItem } from '@/types';
 
