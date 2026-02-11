@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {
-    type Presentation,
-} from '@/types';
+import { type Presentation } from '@/types';
 import { presentations } from '@/routes';
+
+import { PropType } from 'vue';
 
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
@@ -19,7 +19,7 @@ const props = defineProps<{
             by: {{ presentation.user.name }}
         </span>
         <a :href="presentations(presentation.slug).url" target="_blank">
-            /{{ presentation.slug }} 
+            /{{ presentation.slug }}
         </a>
         <div class="pointer-events-none" role="presentation">
             <PlaceholderPattern />

@@ -9,9 +9,9 @@ import AppContent from '@/components/AppContent.vue';
 
 
 const props = defineProps<{
-    allPublicPresentations: Presentation[];
-    allPrivatePresentations: Presentation[];
-    allCreatorPresentations: Presentation[];
+    allPublicPresentations: Array<Presentation>;
+    allPrivatePresentations: Array<Presentation>;
+    allCreatorPresentations: Array<Presentation>;
     isLoggedIn: boolean;
 }>();
 

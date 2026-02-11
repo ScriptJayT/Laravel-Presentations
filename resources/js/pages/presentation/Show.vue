@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import {
-    type Presentation,
-} from '@/types';
-import { Head } from '@inertiajs/vue3';
+import { type Presentation } from '@/types';
 
-import { ref, onMounted } from 'vue';
+import { Head } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
 
 import AppContent from '@/components/AppContent.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
@@ -28,8 +26,6 @@ onMounted(()=>{
         presentation_theme: props.presentation.presentation_theme,
     });
 });
-
-console.log(props.presentation.slides);
 </script>
 
 <template>

@@ -5,7 +5,7 @@ import PresentationLink from '@/components/app/PresentationLink.vue';
 
 const props = defineProps<{
     title: string;
-    presentations: Presentation[];
+    presentations: Array<Presentation>;
 }>();
 </script>
 

@@ -38,12 +38,14 @@ class PresentationController extends Controller
             })
             : new Collection([]);
 
-        return Inertia::render('presentation/Index', [
-            'allPublicPresentations' => $public->all(),
-            'allPrivatePresentations' => $private->all(),
-            'allCreatorPresentations' => $creator->all(),
+        $props = [
+            'allPublicPresentations' => (array) $public->all(),
+            'allPrivatePresentations' => (array) $private->all(),
+            'allCreatorPresentations' => (array) $creator->all(),
             'isLoggedIn' => $this->isLoggedIn(),
-        ]);
+        ];
+
+        return Inertia::render('presentation/Index', $props);
     }
 
     public function show(string $_presId): mixed
