@@ -7,12 +7,17 @@ const props = defineProps<{
     title: string;
     presentations: Array<Presentation>;
 }>();
+
+// for some reason, vue's proxy transforms array's to objects; causing issues when trying to get length
+const totalPresentations = Array.isArray(props.presentations)
+    ? props.presentations.length
+    : Object.keys(props.presentations).length
 </script>
 
 <template>
-    <div class="space-y-4 p-4">
+    <div data-component="PresentationList" class="space-y-4">
         <h2> {{ title }} </h2>
-        <template v-if="presentations.length < 1">
+        <template v-if="totalPresentations < 1">
             <p>None found</p>
         </template>
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
@@ -20,9 +25,9 @@ const props = defineProps<{
                 <PresentationLink :presentation="_presentation" />
             </template>
         </div>
-        <template v-if="presentations.length > 0">
+        <template v-if="totalPresentations > 0">
             <span>
-                Showing: {{ presentations.length }} presentation(s)
+                Showing: {{ totalPresentations }} presentation(s)
             </span>
         </template>
     </div>

@@ -4,8 +4,12 @@ import { type Presentation } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
 
-import AppContent from '@/components/AppContent.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+
+import AppWrapper from '@/components/app/AppWrapper.vue';
+import AppHeader from '@/components/app/AppHeader.vue';
+import AppContent from '@/components/app/AppContent.vue';
+import AppFooter from '@/components/app/AppFooter.vue';
 
 const props = defineProps<{
     presentation: Required<Presentation>;
@@ -31,31 +35,41 @@ onMounted(()=>{
 <template>
     <Head :title="presentation.title" />
 
-    <AppContent>
-        <slide-show class="relative | h-screen space-y-10 pi-8 | text-2xl | overflow-x-clip overflow-y-scroll">
-            <template v-for="(_slide, _index) in presentation.slides">
-                <slide
-                    :data-theme="_slide.presentation_theme.title + ' ' + presentation.presentation_theme.title"
-                    class="relative | block h-full | border rounded-4xl | bg-amber-200 | overflow-clip"
-                >
-                    <div class="slide-wrapper | grid gap-y-8 | max-h-full h-min p-8">
-                        <template v-if="_index === 0">
-                            <h1 class="text-center text-5xl"> {{ _slide.title }} </h1>
-                        </template>
-                        <template v-else>
-                            <h2> {{ _slide.title }} </h2>
-                        </template>
+    <AppWrapper>
+        <AppContent>
+            <slide-show class="relative | block h-[80vh] mt-[7.5vh] space-y-10 px-8 | text-2xl | overflow-x-clip overflow-y-scroll">
+                <template v-for="(_slide, _index) in presentation.slides">
+                    <slide
+                        :data-theme="_slide.presentation_theme.title + ' ' + presentation.presentation_theme.title"
+                        class="relative isolate | block h-full | border rounded-4xl | bg-amber-200 | overflow-clip"
+                    >
+                        <div class="slide-wrapper | grid gap-y-8 | max-h-full h-min p-8">
+                            <template v-if="_index === 0">
+                                <h1 class="text-center text-5xl"> {{ _slide.title }} </h1>
+                            </template>
+                            <template v-else>
+                                <h2> {{ _slide.title }} </h2>
+                            </template>
 
-                        <div
-                            class="content-wrapper | space-y-5 pl-6 overflow-y-auto overflow-x-clip"
-                            v-html="_slide.content"
-                        />
-                    </div>
-                    <PlaceholderPattern :interactable="false" />
-                </slide>
-            </template>
-        </slide-show>
-    </AppContent>
+                            <div class="flow-root pl-6 | overflow-y-auto overflow-x-clip">
+                                <template v-if="true">
+                                    <figure class="float-end block max-w-md w-fit bg-amber-50">
+                                        <img class="block w-full" src="https://picsum.photos/200/300" alt="">
+                                        <caption class="block px-2 py-1 text-sm text-left italic">Image placeholder for now</caption>
+                                    </figure>
+                                </template>
+                                <div
+                                    class="contents space-y-5"
+                                    v-html="_slide.content"
+                                />
+                            </div>
+                        </div>
+                        <PlaceholderPattern :interactable="false" />
+                    </slide>
+                </template>
+            </slide-show>
+        </AppContent>
+    </AppWrapper>
 </template>
 
 <style is="scoped">

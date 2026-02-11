@@ -16,7 +16,7 @@ const patternId = computed(
         role="presentation"
     >
         <svg
-            class="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20"
+            class="absolute inset-0 -z-10 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20"
             fill="none"
         >
             <defs>
