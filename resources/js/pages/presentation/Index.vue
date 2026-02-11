@@ -25,8 +25,8 @@ defineProps<{
     <AppWrapper>
         <AppHeader/>
 
-        <AppContent class="mt-15">
-            <Container>
+        <AppContent class="mt-15 mb-25">
+            <Container class="space-10">
                 <template v-if="isLoggedIn">
                     <PresentationList title="Your Slideshows" :presentations="Object.values(allCreatorPresentations)"/>
                     <PresentationList title="Private Slideshows" :presentations="Object.values(allPrivatePresentations)"/>

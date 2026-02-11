@@ -8,14 +8,11 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
 
 import UserMenuContent from '@/components/UserMenuContent.vue';
 
 const page = usePage();
 const user = page.props.auth.user;
-
-console.log(user);
 
 type NavItem = {
     title: string;
@@ -81,11 +78,10 @@ const links: NavItem[] = [
                                         text-[#1b1b18] dark:text-[#EDEDEC]
                                         bg-gray-50 dark:bg-gray-700"
                                     >
-
                                         {{ user.name }}
                                     </button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" class="w-56">
+                                <DropdownMenuContent align="end" class="w-fit">
                                     <UserMenuContent :user="user" />
                                 </DropdownMenuContent>
                             </DropdownMenu>
