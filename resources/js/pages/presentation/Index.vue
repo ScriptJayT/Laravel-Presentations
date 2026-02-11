@@ -26,12 +26,21 @@ defineProps<{
         <AppHeader/>
 
         <AppContent class="mt-15 mb-25">
-            <Container class="space-10">
+            <Container class="space-y-15">
                 <template v-if="isLoggedIn">
-                    <PresentationList title="Your Slideshows" :presentations="Object.values(allCreatorPresentations)"/>
-                    <PresentationList title="Private Slideshows" :presentations="Object.values(allPrivatePresentations)"/>
+                    <PresentationList
+                        title="Your Private Slideshows"
+                        :presentations="Object.values(allCreatorPresentations)"
+                    />
+                    <PresentationList
+                        title="Semi-Private slideshows from everyone"
+                        :presentations="Object.values(allPrivatePresentations)"
+                    />
                 </template>
-                <PresentationList title="Public Slideshows" :presentations="Object.values(allPublicPresentations)"/>
+                <PresentationList
+                    title="Public Slideshows"
+                    :presentations="Object.values(allPublicPresentations)"
+                />
             </Container>
         </AppContent>
 

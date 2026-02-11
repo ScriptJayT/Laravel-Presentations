@@ -5,7 +5,7 @@ import { computed } from 'vue';
 const props = defineProps<{
     class?: string
 }>();
-const classList = computed(() => props.class + " max-w-5xl mx-auto px-4");
+const classList = computed(() => props.class + " relative isolate max-w-5xl mx-auto px-4");
 </script>
 
 <template>
@@ -17,7 +17,5 @@ const classList = computed(() => props.class + " max-w-5xl mx-auto px-4");
 <style scoped>
     div {
         container-type: inline-size;
-        position: relative;
-        isolation: isolate;
     }
 </style>

@@ -3,6 +3,8 @@ import { type Presentation } from '@/types';
 
 import PresentationLink from '@/components/app/PresentationLink.vue';
 
+import Heading from '@/components/Heading.vue';
+
 const props = defineProps<{
     title: string;
     presentations: Array<Presentation>;
@@ -15,20 +17,20 @@ const totalPresentations = Array.isArray(props.presentations)
 </script>
 
 <template>
-    <div data-component="PresentationList" class="space-y-4">
-        <h2> {{ title }} </h2>
+    <div data-component="PresentationList" class="p-6 rounded border space-y-4">
+        <Heading :title="title" />
         <template v-if="totalPresentations < 1">
-            <p>None found</p>
+            <p class="m-0">None found</p>
+        </template>
+        <template v-else>
+            <span class="block w-fit ml-auto my-0 | italic">
+                Showing: {{ totalPresentations }} presentation(s)
+            </span>
         </template>
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
             <template v-for="_presentation in presentations">
                 <PresentationLink :presentation="_presentation" />
             </template>
         </div>
-        <template v-if="totalPresentations > 0">
-            <span>
-                Showing: {{ totalPresentations }} presentation(s)
-            </span>
-        </template>
     </div>
 </template>
