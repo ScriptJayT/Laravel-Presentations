@@ -8,6 +8,7 @@ import Heading from '@/components/Heading.vue';
 const props = defineProps<{
     title: string;
     presentations: Array<Presentation>;
+    showGuard?: boolean;
 }>();
 
 // for some reason, vue's proxy transforms array's to objects; causing issues when trying to get length
@@ -29,7 +30,7 @@ const totalPresentations = Array.isArray(props.presentations)
         </template>
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
             <template v-for="_presentation in presentations">
-                <PresentationLink :presentation="_presentation" />
+                <PresentationLink :presentation="_presentation" :show-guard="showGuard ?? false" />
             </template>
         </div>
     </div>

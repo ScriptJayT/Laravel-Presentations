@@ -29,7 +29,8 @@ defineProps<{
             <Container class="space-y-15">
                 <template v-if="isLoggedIn">
                     <PresentationList
-                        title="Your Private Slideshows"
+                        title="Your Slideshows:"
+                        :show-guard="true"
                         :presentations="Object.values(allCreatorPresentations)"
                     />
                     <PresentationList
@@ -38,7 +39,7 @@ defineProps<{
                     />
                 </template>
                 <PresentationList
-                    title="Public Slideshows"
+                    title="Public Slideshows from everyone"
                     :presentations="Object.values(allPublicPresentations)"
                 />
             </Container>

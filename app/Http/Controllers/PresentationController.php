@@ -31,11 +31,7 @@ class PresentationController extends Controller
         $public = $all->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'public');
         $private = $all->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'login');
         $creator = $this->isLoggedIn()
-            ? $all->filter(function ($_presentation) {
-                return
-                    $_presentation->presentationVisibility->title === 'creator'
-                    && $this->loggedinIsCreator($_presentation);
-            })
+            ? $all->filter(fn ($_presentation) => $this->loggedinIsCreator($_presentation))
             : new Collection([]);
 
         $props = [
