@@ -9,10 +9,9 @@ import { dashboard, admin_presentations } from '@/routes';
 import AppLayout from '@/layouts/AppLayout.vue';
 import Container from '@/components/dashboard/Container.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
-import Heading from '@/components/Heading.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [{
-    title: 'Dashboard',
+    title: 'Presentations',
     href: dashboard().url,
 }];
 

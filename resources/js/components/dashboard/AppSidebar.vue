@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, House } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, Presentation, House, Scroll, Users } from 'lucide-vue-next';
 import NavFooter from '@/components/dashboard/NavFooter.vue';
 import NavMain from '@/components/dashboard/NavMain.vue';
 import NavUser from '@/components/dashboard/NavUser.vue';
@@ -20,25 +20,32 @@ import { type NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Home',
+        title: 'Front',
         href: home(),
-        icon: House,
+        icon: LayoutGrid,
+    },
+];
+const dashboardNavItems: NavItem[] = [
+    {
+        title: 'Presentations',
+        href: dashboard(),
+        icon: Presentation,
     },
     {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
+        title: 'Scripts',
+        href: home(),
+        icon: Scroll,
+    },
+    {
+        title: 'Users',
+        href: home(),
+        icon: Users,
     },
 ];
 const footerNavItems: NavItem[] = [
     {
         title: 'Github Repo',
         href: 'https://github.com/ScriptJayT/Laravel-Presentations',
-        icon: Folder,
-    },
-    {
-        title: 'Github Repo Laravel-Vue',
-        href: 'https://github.com/laravel/vue-starter-kit',
         icon: Folder,
     },
     {
@@ -64,7 +71,8 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" />
+            <NavMain :items="mainNavItems" label="Platform" />
+            <NavMain :items="dashboardNavItems" label="Dashboard"/>
         </SidebarContent>
 
         <SidebarFooter>
