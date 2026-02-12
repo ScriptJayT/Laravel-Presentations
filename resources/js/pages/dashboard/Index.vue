@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { 
+import {
     type Presentation,
-    type BreadcrumbItem, 
+    type BreadcrumbItem,
 } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import { dashboard, admin_presentations } from '@/routes';
@@ -27,8 +27,10 @@ defineProps<{
             <h2>Presentation Overview</h2>
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                 <template v-for="_presentation in allPresentations">
-                    <div class="relative | aspect-video | p-4 | border rounded-xl">
+                    <div class="relative isolate | aspect-video | p-4 | border rounded-xl">
                         <h3> {{ _presentation.title }} </h3>
+
+                        <span> {{ _presentation.presentation_visibility.name }} </span>
 
                         <span class="creator | block">
                             by: {{ _presentation.user.name }}
@@ -41,12 +43,10 @@ defineProps<{
                         </span>
 
                         <a :href="admin_presentations(_presentation.id).url">
-                            /{{ _presentation.slug }} 
+                            /{{ _presentation.slug }}
                         </a>
 
-                        <div class="pointer-events-none" role="presentation">
-                            <PlaceholderPattern />
-                        </div>
+                        <PlaceholderPattern :interactable="false"/>
                     </div>
                 </template>
             </div>

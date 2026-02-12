@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('presentation_visibilities', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("title");
+            $table->string('title')->unique();
+            $table->string('name');
         });
     }
 

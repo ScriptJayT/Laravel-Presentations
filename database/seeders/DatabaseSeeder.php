@@ -28,9 +28,21 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        $publicVisibilityRule = PresentationVisibility::factory()->create(['title' => 'public']);
-        $loginVisibilityRule = PresentationVisibility::factory()->create(['title' => 'login']);
-        PresentationVisibility::factory()->create(['title' => 'creator']);
+        $publicVisibilityRule = PresentationVisibility::factory()
+            ->create([
+                'title' => 'public',
+                'name' => 'Public',
+            ]);
+        $loginVisibilityRule = PresentationVisibility::factory()
+            ->create([
+                'title' => 'login',
+                'name' => 'Protected',
+            ]);
+        PresentationVisibility::factory()
+            ->create([
+                'title' => 'creator',
+                'name' => 'Limited to Creator',
+            ]);
 
         $defaultTheme = PresentationTheme::factory()->create(['title' => 'base']);
         PresentationTheme::factory()->create(['title' => 'light']);

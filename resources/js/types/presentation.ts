@@ -3,6 +3,7 @@ import { type User, type Model } from "@/types";
 export type PresentationVisibility = {
     id: number,
     title: string,
+    name: string,
 } & Model;
 export type PresentationTheme = {
     id: number,

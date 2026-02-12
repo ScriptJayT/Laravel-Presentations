@@ -17,7 +17,7 @@ class PresentationVisibilityFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->text(10),
+            'name' => fake()->word(),
         ];
     }
 }

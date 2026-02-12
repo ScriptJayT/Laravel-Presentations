@@ -14,8 +14,11 @@ const props = defineProps<{
 <template>
     <div  data-component="PresentationLink" class="relative | aspect-video | p-4 | border rounded-xl">
         <template v-if="showGuard">
-            <span class="absolute top-0 right-4 | block px-2 py-1 border | -translate-y-1/2 bg-white">
-                {{ presentation.presentation_visibility.title }}
+            <span
+                :data-guard="presentation.presentation_visibility.title"
+                class="absolute top-0 right-4 | block px-2 py-1 border | -translate-y-1/2 bg-white"
+            >
+                {{ presentation.presentation_visibility.name }}
             </span>
         </template>
         <h3>
