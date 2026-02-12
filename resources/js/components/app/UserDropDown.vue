@@ -9,7 +9,6 @@ import UserMenuContent from '@/components/UserMenuContent.vue';
 
 const page = usePage();
 const user = page.props.auth.user;
-
 </script>
 
 <template v-if="user">

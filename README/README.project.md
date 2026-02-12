@@ -59,7 +59,7 @@ Goal: build a backend interface to create a presentation using markdown
     - title                     VARCHAR
     - content                   LONGTEXT                                        NULLABLE
 - presentation_themes
-    - id
+    - id, timestamps
     - title                     VARCHAR
 - presentation_visibility
     - id, timestamps

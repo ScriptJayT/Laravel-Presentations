@@ -1,4 +1,16 @@
-- [ ] Brainstorm
-- [ ] Checklist
+- [x] Brainstorm
+- [x] Setup
 - [ ] Design
-- [ ] Setup
+- [ ] Name
+- CRUD operations
+    - [ ] Presentations R
+    - [ ] Slides R
+    - [ ] Scripts
+    - ? Themes
+- ? Script injecting
+- ? Styles
+- ? Atom Lock edit operations
+- ? Read API
+    - json
+    - md | html content
+    - script | slides | both
