@@ -1,0 +1,20 @@
+* {
+    transition-behavior: allow-discrete !important;
+}
+
+select,
+::picker(select) {
+    appearance: base-select;
+
+    &:open::picker-icon {
+        rotate: 180deg;
+    }
+
+    & selectedcontent {
+    }
+
+    & option {
+        width: 100%;
+    }
+
+}

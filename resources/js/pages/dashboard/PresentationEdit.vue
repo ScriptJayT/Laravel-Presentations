@@ -1,28 +1,24 @@
 <script setup lang="ts">
 import {
     type Presentation,
+    type PresentationVisibility,
     type BreadcrumbItem,
 } from '@/types';
 
 import { dashboard, presentations } from '@/routes';
 
-import { ExternalLink, Trash } from 'lucide-vue-next';
+import { ExternalLink, Trash, OctagonAlert } from 'lucide-vue-next';
 import { Head } from '@inertiajs/vue3';
 
 import Container from '@/components/dashboard/Container.vue';
-import Heading from '@/components/Heading.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
 const props = defineProps<{
     presentation: Presentation;
+    rules: PresentationVisibility[];
 }>();
-
 const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard().url,
-    },
     {
         title: 'Presentations',
         href: dashboard().url,
@@ -42,13 +38,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             class="info-field grid gap-6"
         >
             <div class="order-2 flex flex-col gap-10">
-                <div class="sticky space-y-3 p-4 border rounded-xl">
-                    <button class="cursor-pointer select-none w-full flex justify-between gap-1">
-                        <span> Save </span>
-                    </button>
-                </div>
-
-                <div class="space-y-3 p-4 border rounded-xl">
+                <div class="max-w-full w-xs space-y-3 p-4 border rounded-xl">
                     <h3 class="sr-only"> Info </h3>
                     <a
                         class="cursor-pointer select-none | flex justify-between gap-1"
@@ -69,16 +59,43 @@ const breadcrumbs: BreadcrumbItem[] = [
                         Last edit: {{ presentation.updated_at }}
                     </span>
                     <hr>
-                    <span class="block">
-                        Visibility: {{ presentation.presentation_visibility.name }}
+                    <span class="flex gap-2">
+                        <label class="cursor-pointer" for="visibility-rule"> Visibility: </label>
+                        <select
+                            name="visibility" id="visibility-rule"
+                            :value="presentation.presentation_visibility.title"
+                            class="
+                                hidden-input
+                                grow cursor-pointer
+                                px-2 border
+                                "
+                        >
+                            <button> <selectedcontent></selectedcontent> </button>
+                            <template v-for="_rule in rules">
+                                <option
+                                    :value="_rule.title"
+                                    class="px-2"
+                                >
+                                    {{ _rule.name }}
+                                </option>
+                            </template>
+                        </select>
                     </span>
-                    <span class="block">
-                        Slug: /{{ presentation.slug }}
+                    <span class="flex gap-2">
+                        <label class="cursor-pointer" for="presentation-slug"> Slug: </label>
+                        <input
+                            name="slug" id="presentation-slug"
+                            type="text" :value="presentation.slug"
+                            class="hidden-input grow px-2 border"
+                        >
                     </span>
                 </div>
                 <div class="space-y-3 p-4 border rounded-xl border-red-900">
-                    <h3 class="text-lg font-semibold"> Danger zone </h3>
-                    <button class="cursor-pointer select-none w-full flex justify-between gap-1">
+                    <h3 class="flex items-center gap-3 text-lg font-semibold text-red-900">
+                        <OctagonAlert class="size-5"/>
+                        <span> Danger zone </span>
+                    </h3>
+                    <button class="cursor-pointer select-none w-full flex items-center justify-between gap-1">
                         <span> Delete </span>
                         <Trash class="size-4"/>
                     </button>
@@ -87,17 +104,28 @@ const breadcrumbs: BreadcrumbItem[] = [
             <div class="order-1 space-y-20">
                 <div class="space-y-5">
                     <h3 class="text-lg font-semibold"> Script </h3>
-                    <span class="block">
-                        Title: {{ presentation.presentation_script?.title }}
-                    </span>
-                    <a> Go to script </a>
+                    <template v-if="presentation.presentation_script">
+                        <span class="block">
+                            {{ presentation.presentation_script.title }}
+                        </span>
+                        <a> Go to script </a>
+                    </template>
+                    <template v-else>
+                        <a> Add script </a>
+                    </template>
                 </div>
                 <div class="space-y-5">
-                    <h3 class="text-lg font-semibold"> Slides </h3>
+                    <div class="flex justify-between">
+                        <h3 class="text-lg font-semibold"> Slides </h3>
+                        <button> Add Slide </button>
+                    </div>
                     <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                        <div class="relative isolate | aspect-video | p-4 | border rounded-xl">
-                            <PlaceholderPattern :interactable="false" />
-                        </div>
+                        <template v-for="_slide in presentation.slides">
+                            <div class="relative isolate | aspect-video | p-4 | border rounded-xl">
+                                <h4> {{ _slide.id }} </h4>
+                                <PlaceholderPattern :interactable="false" />
+                            </div>
+                        </template>
                     </div>
                 </div>
             </div>
@@ -108,5 +136,25 @@ const breadcrumbs: BreadcrumbItem[] = [
 <style>
     .info-field {
         grid-template-columns: 1fr auto;
+    }
+</style>
+
+<style scoped>
+    .hidden-input {
+        transition: 200ms;
+        transition-property: border-color;
+
+        &:is(select)::picker-icon {
+            transition: 200ms;
+            transition-property: color;
+        }
+
+        &:not(:hover, :focus-visible) {
+            border-color: transparent;
+
+            &:is(select)::picker-icon {
+                color: transparent;
+            }
+        }
     }
 </style>

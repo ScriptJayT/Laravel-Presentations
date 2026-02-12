@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Presentation;
+use App\Models\PresentationVisibility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redirect;
@@ -65,8 +66,12 @@ class PresentationController extends Controller
 
     public function edit(string $_presId): IResponse
     {
-        $presentation = Presentation::find($_presId);
+        $presentation = Presentation::where('id', $_presId)->with('slides')->first();
+        $rules = PresentationVisibility::all(['title', 'name'])->all();
 
-        return Inertia::render('dashboard/PresentationEdit', ['presentation' => $presentation]);
+        return Inertia::render('dashboard/PresentationEdit', [
+            'presentation' => $presentation,
+            'rules' => $rules,
+        ]);
     }
 }

@@ -22,7 +22,10 @@ export default defineConfig({
                     includeAbsolute: false,
                 },
                 compilerOptions: {
-                    isCustomElement: (tag) => ['slide-show', 'slide'].includes(tag),
+                    isCustomElement: (tag) => [
+                        'slide-show', 'slide',
+                        'selectedcontent'
+                    ].includes(tag),
                 }
             },
         }),
