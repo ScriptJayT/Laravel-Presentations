@@ -27,7 +27,11 @@ class PresentationController extends Controller
 
     public function index(Request $_): IResponse
     {
-        $all = Presentation::all()->collect();
+        $all = Presentation::all()
+            ->sortBy(
+                callback: fn ($_presentation) => $_presentation->presentationVisibility->id,
+                descending: true
+            );
         $public = $all->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'public');
         $private = $all->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'login');
         $creator = $this->isLoggedIn()
