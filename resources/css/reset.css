@@ -6,6 +6,9 @@ select,
 ::picker(select) {
     appearance: base-select;
 
+    &::picker-icon {
+        height: fit-content;
+    }
     &:open::picker-icon {
         rotate: 180deg;
     }
