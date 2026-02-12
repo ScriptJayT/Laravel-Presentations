@@ -34,7 +34,7 @@ defineProps<{
                         :presentations="Object.values(allCreatorPresentations)"
                     />
                     <PresentationList
-                        title="Semi-Private slideshows from everyone"
+                        title="Protected slideshows from everyone"
                         :presentations="Object.values(allPrivatePresentations)"
                     />
                 </template>
