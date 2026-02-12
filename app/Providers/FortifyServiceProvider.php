@@ -30,6 +30,9 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        /**
+         * https://laracasts.com/discuss/channels/laravel/fortify-redirect
+         */
         $this->app->singleton(LoginResponseContract::class, CustomResponse::class);
 
         $this->configureActions();
@@ -51,6 +54,10 @@ class FortifyServiceProvider extends ServiceProvider
      */
     private function configureViews(): void
     {
+        /**
+         * https://laravel.com/docs/12.x/session
+         * https://reniki.com/blog/redirect-back-previous-page-after-login-laravel-fortify
+         */
         Fortify::loginView(function (Request $request) {
             if (! session()->has('redirectLinkOnLogin')) {
                 session()->put('redirectLinkOnLogin', url()->previous());
