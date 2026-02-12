@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         PresentationVisibility::factory()
             ->create([
                 'title' => 'creator',
-                'name' => 'Limited to Creator',
+                'name' => 'Private',
             ]);
 
         $defaultTheme = PresentationTheme::factory()->create(['title' => 'base']);
