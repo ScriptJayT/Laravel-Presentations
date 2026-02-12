@@ -8,6 +8,7 @@ import { dashboard, admin_presentations } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+import Heading from '@/components/Heading.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [{
     title: 'Dashboard',
@@ -24,7 +25,7 @@ defineProps<{
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="h-full space-y-4 rounded-xl p-4" >
-            <h2>Presentation Overview</h2>
+            <Heading title="Presentation Overview"/>
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                 <template v-for="_presentation in allPresentations">
                     <div class="relative isolate | aspect-video | p-4 | border rounded-xl">
@@ -34,9 +35,6 @@ defineProps<{
 
                         <span class="creator | block">
                             by: {{ _presentation.user.name }}
-                        </span>
-                        <span class="created_on | block">
-                            created on: {{ _presentation.created_at }}
                         </span>
                         <span class="last_edit | block">
                             last edit: {{ _presentation.updated_at }}
