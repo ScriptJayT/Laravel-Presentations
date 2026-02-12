@@ -55,7 +55,7 @@ onMounted(()=>{
                                 <template v-if="true">
                                     <figure class="float-end block max-w-md w-fit bg-amber-50">
                                         <img class="block w-full" src="https://picsum.photos/200/300" alt="">
-                                        <caption class="block px-2 py-1 text-sm text-left italic">Image placeholder for now</caption>
+                                        <figcaption class="block px-2 py-1 text-sm text-left italic">Image placeholder for now</figcaption>
                                     </figure>
                                 </template>
                                 <div

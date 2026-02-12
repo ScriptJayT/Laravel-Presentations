@@ -9,11 +9,9 @@ Status: in development
 ```bash
 npm install
 npm run build
-php artisan migrate:fresh
-php artisan db:seed
+php artisan migrate:fresh --seed
 ```
 
-
 ```bash
-composer dev
+composer run dev
 ```
