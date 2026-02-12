@@ -41,7 +41,12 @@ onMounted(()=>{
                 <template v-for="(_slide, _index) in presentation.slides">
                     <slide
                         :data-theme="_slide.presentation_theme.title + ' ' + presentation.presentation_theme.title"
-                        class="relative isolate | block h-full | border rounded-4xl | bg-amber-200 | overflow-clip"
+                        class="
+                            relative isolate | block h-full
+                            border rounded-4xl
+                            bg-amber-200 dark:bg-amber-800
+                             overflow-clip
+                            "
                     >
                         <div class="slide-wrapper | grid gap-y-8 | max-h-full h-min p-8">
                             <template v-if="_index === 0">
@@ -53,9 +58,16 @@ onMounted(()=>{
 
                             <div class="flow-root pl-6 | overflow-y-auto overflow-x-clip">
                                 <template v-if="true">
-                                    <figure class="float-end block max-w-md w-fit bg-amber-50">
+                                    <figure class="
+                                        float-end
+                                        block max-w-md w-fit
+                                        bg-amber-50 dark:bg-amber-950
+                                        "
+                                    >
                                         <img class="block w-full" src="https://picsum.photos/200/300" alt="">
-                                        <figcaption class="block px-2 py-1 text-sm text-left italic">Image placeholder for now</figcaption>
+                                        <figcaption class="block px-2 py-1 | text-sm text-left italic" >
+                                            Image placeholder for now
+                                        </figcaption>
                                     </figure>
                                 </template>
                                 <div
