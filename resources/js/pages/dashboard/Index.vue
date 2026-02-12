@@ -2,6 +2,7 @@
 import { type Presentation, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import { dashboard, admin_presentations } from '@/routes';
+import { Plus } from 'lucide-vue-next';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import Container from '@/components/dashboard/Container.vue';
@@ -24,13 +25,39 @@ const breadcrumbs: BreadcrumbItem[] = [{
             title="Presentation Overview"
             class="grid auto-rows-min gap-4 md:grid-cols-3"
         >
-            <template v-for="_presentation in allPresentations">
-                <div class="
+
+            <div
+                class="
+                    ct-inline-size
                     relative isolate
                     flex flex-col
                     aspect-video
                     p-4 border border-transparent rounded-xl
                     "
+            >
+                <span class="text-lg font-semibold" aria-hidden="true"> New Presentation </span>
+                <button
+                    class="
+                        cursor-pointer
+                        absolute inset-0
+                        border rounded-xl
+                        grid place-content-center
+                        "
+                    title="Create a New Presentation"
+                >
+                    <Plus class="size-[15cqw] opacity-15"/>
+                </button>
+                <PlaceholderPattern :interactable="false"/>
+            </div>
+
+            <template v-for="_presentation in allPresentations">
+                <div
+                    class="
+                        relative isolate
+                        flex flex-col
+                        aspect-video
+                        p-4 border border-transparent rounded-xl
+                        "
                 >
                     <h3 class="text-lg font-semibold"> {{ _presentation.title }} </h3>
                     <span

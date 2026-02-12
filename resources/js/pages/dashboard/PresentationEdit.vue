@@ -7,7 +7,7 @@ import {
 
 import { dashboard, presentations } from '@/routes';
 
-import { ExternalLink, Trash, OctagonAlert } from 'lucide-vue-next';
+import { ExternalLink, Trash, OctagonAlert, Plus } from 'lucide-vue-next';
 import { Head } from '@inertiajs/vue3';
 
 import Container from '@/components/dashboard/Container.vue';
@@ -38,7 +38,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             class="info-field grid gap-6"
         >
             <div class="order-2 flex flex-col gap-10">
-                <div class="max-w-full w-xs space-y-3 p-4 border rounded-xl">
+                <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
                     <h3 class="sr-only"> Info </h3>
                     <a
                         class="cursor-pointer select-none | flex justify-between gap-1"
@@ -115,14 +115,34 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </template>
                 </div>
                 <div class="space-y-5">
-                    <div class="flex justify-between">
-                        <h3 class="text-lg font-semibold"> Slides </h3>
-                        <button> Add Slide </button>
-                    </div>
+                    <h3 class="text-lg font-semibold"> Slides </h3>
                     <div class="grid auto-rows-min gap-4 md:grid-cols-3">
+                        <div
+                            class="
+                                ct-inline-size
+                                relative isolate
+                                flex flex-col
+                                aspect-video
+                                p-4 border border-transparent rounded-xl
+                                "
+                        >
+                            <span class="font-semibold" aria-hidden="true"> New Slide </span>
+                            <button
+                                class="
+                                    cursor-pointer
+                                    absolute inset-0
+                                    border rounded-xl
+                                    grid place-content-center
+                                    "
+                                title="Create a New Presentation"
+                            >
+                                <Plus class="size-[15cqw] opacity-15"/>
+                            </button>
+                            <PlaceholderPattern :interactable="false"/>
+                        </div>
                         <template v-for="_slide in presentation.slides">
                             <div class="relative isolate | aspect-video | p-4 | border rounded-xl">
-                                <h4> {{ _slide.id }} </h4>
+                                <h4 class="font-semibold"> {{ _slide.id }} </h4>
                                 <PlaceholderPattern :interactable="false" />
                             </div>
                         </template>
