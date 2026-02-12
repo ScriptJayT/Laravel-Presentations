@@ -1,12 +1,13 @@
 - [x] Brainstorm
 - [x] Setup
 - [ ] Design
-- [ ] Name
+- [ ] Name App
 - CRUD operations
     - [ ] Presentations R
     - [ ] Slides R
     - [ ] Scripts
     - ? Themes
+- ? Users Dashboard
 - ? Script injecting
 - ? Styles
 - ? Atom Lock edit operations
