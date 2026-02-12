@@ -2,6 +2,10 @@
     transition-behavior: allow-discrete !important;
 }
 
+input {
+    min-width: 0px;
+}
+
 select,
 ::picker(select) {
     appearance: base-select;
