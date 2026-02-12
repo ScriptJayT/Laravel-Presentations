@@ -2,6 +2,10 @@
 
 Goal: build a backend interface to create a presentation using markdown
 
+## Quicklinks
+
+- icons: https://lucide.dev/icons/
+
 ## Framework Requirements
 
 - Laravel (Backend app + SSR frontend)

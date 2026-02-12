@@ -26,8 +26,7 @@ const breadcrumbs: BreadcrumbItem[] = [{
             class="grid auto-rows-min gap-4 md:grid-cols-3"
         >
 
-            <div
-                class="
+            <div class="
                     ct-inline-size
                     relative isolate
                     flex flex-col
@@ -40,8 +39,9 @@ const breadcrumbs: BreadcrumbItem[] = [{
                     class="
                         cursor-pointer
                         absolute inset-0
-                        border rounded-xl
                         grid place-content-center
+                        border-2 rounded-xl hover:border-green-700 focus-visible:border-green-700
+                        outline-offset-8
                         "
                     title="Create a New Presentation"
                 >
@@ -56,7 +56,8 @@ const breadcrumbs: BreadcrumbItem[] = [{
                         relative isolate
                         flex flex-col
                         aspect-video
-                        p-4 border border-transparent rounded-xl
+                        p-4
+                        border border-transparent rounded-xl
                         "
                 >
                     <h3 class="text-lg font-semibold"> {{ _presentation.title }} </h3>
@@ -82,7 +83,11 @@ const breadcrumbs: BreadcrumbItem[] = [{
                     </span>
 
                     <a
-                        class="absolute inset-0 border rounded-xl"
+                        class="
+                            absolute inset-0
+                            border-2 rounded-xl hover:border-cyan-700 focus-visible:border-cyan-700
+                            outline-offset-8
+                            "
                         :href="admin_presentations(_presentation.id).url"
                         :title="'Open this presentation by ' + _presentation.user.name"
                     ></a>
