@@ -5,7 +5,6 @@ import type { BreadcrumbItem } from '@/types';
 type Props = {
     breadcrumbs?: BreadcrumbItem[];
 };
-
 withDefaults(defineProps<Props>(), {
     breadcrumbs: () => [],
 });

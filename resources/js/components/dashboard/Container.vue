@@ -12,10 +12,11 @@ const classList = props.class ?? "";
     <div
         data-component="dashboard/Container"
         class="
+            ct-inline-size |
             space-y-4
-            rounded-xl
             px-6 md:px-4 dark:px-8 dark:md:px-6
             py-6
+            rounded-xl
             "
     >
         <template v-if="title">
@@ -26,9 +27,3 @@ const classList = props.class ?? "";
         </div>
     </div>
 </template>
-
-<style scoped>
-    div {
-        container-type: inline-size;
-    }
-</style>

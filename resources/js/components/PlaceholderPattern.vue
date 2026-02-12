@@ -12,11 +12,12 @@ const patternId = computed(
 
 <template>
     <div
+        class="absolute inset-0 -z-10 rounded-[inherit] overflow-clip"
         :class="interactable ? '' : 'pointer-events-none'"
         role="presentation"
     >
         <svg
-            class="absolute inset-0 -z-10 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20"
+            class="size-full stroke-neutral-900/20 dark:stroke-neutral-100/20"
             fill="none"
         >
             <defs>

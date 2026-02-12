@@ -18,3 +18,7 @@ select,
     }
 
 }
+
+.ct-inline-size {
+    container-type: inline-size;
+}
