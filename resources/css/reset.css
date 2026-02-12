@@ -9,9 +9,9 @@ select,
     &:open::picker-icon {
         rotate: 180deg;
     }
-
+    /*
     & selectedcontent {
-    }
+    } */
 
     & option {
         width: 100%;
