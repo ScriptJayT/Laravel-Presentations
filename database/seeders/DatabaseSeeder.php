@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Presentation;
+use App\Models\PresentationScript;
 use App\Models\PresentationSlide;
 use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
@@ -76,12 +77,14 @@ class DatabaseSeeder extends Seeder
             'presentation_theme_id' => $defaultTheme->id,
         ]);
 
+        $script = PresentationScript::factory()->create();
         $scaffoldingPresentation = Presentation::factory()->create([
             'title' => 'My personal project',
             'slug' => Str::of('My personal project')->slug(),
             'user_id' => $testUser->id,
             'presentation_visibility_id' => $creatorVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
+            'presentation_script_id' => $script->id,
         ]);
         PresentationSlide::factory(2)->create([
             'presentation_id' => $scaffoldingPresentation->id,
