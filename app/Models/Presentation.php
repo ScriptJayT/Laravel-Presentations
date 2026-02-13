@@ -43,6 +43,11 @@ class Presentation extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function presentationScript(): BelongsTo
+    {
+        return $this->belongsTo(PresentationScript::class);
+    }
+
     public function presentationVisibility(): BelongsTo
     {
         return $this->belongsTo(PresentationVisibility::class);
