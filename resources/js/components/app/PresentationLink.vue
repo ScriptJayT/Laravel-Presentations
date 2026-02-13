@@ -25,6 +25,7 @@ const props = defineProps<{
             <span
                 :data-guard="presentation.presentation_visibility.title"
                 class="
+                    pointer-events-none select-none
                     absolute top-0 right-4
                     block px-2
                     border rounded-sm
@@ -43,12 +44,33 @@ const props = defineProps<{
             by: {{ presentation.user.name }}
         </span>
 
-        <div class="mt-auto">
-            <a :href="presentations(presentation.slug).url" target="_blank">
+        <div class="mt-auto grid grid-cols-2 gap-x-2">
+            <a
+                :href="presentations(presentation.slug).url" target="_blank"
+                :title="`Open presentation: ${presentation.title}`"
+                class="
+                    grid place-content-center
+                    px-2
+                    text-center
+                    bg-gray-100
+                "
+            >
                 Present
             </a>
             <template v-if="presentation.presentation_script">
-                Script
+                <a
+                    :href="presentations(presentation.slug).url" target="_blank"
+                    :title="`Open script: ${presentation.presentation_script.title}`"
+                    class="
+                        cursor-pointer
+                        grid place-content-center
+                        px-2
+                        text-center
+                        bg-gray-100
+                    "
+                >
+                    Read
+                </a>
             </template>
         </div>
 
