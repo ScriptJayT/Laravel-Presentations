@@ -11,9 +11,9 @@ import Container from '@/components/app/Container.vue';
 import PresentationList from '@/components/app/PresentationList.vue';
 
 defineProps<{
-    allPublicPresentations: Array<Presentation>;
-    allPrivatePresentations: Array<Presentation>;
-    allCreatorPresentations: Array<Presentation>;
+    allPublicPresentations: Presentation[];
+    allPrivatePresentations: Presentation[];
+    allCreatorPresentations: Presentation[];
     isLoggedIn: boolean;
 }>();
 
@@ -31,16 +31,16 @@ defineProps<{
                     <PresentationList
                         title="Your Slideshows:"
                         :show-guard="true"
-                        :presentations="Object.values(allCreatorPresentations)"
+                        :presentations="allCreatorPresentations"
                     />
                     <PresentationList
                         title="Protected slideshows from everyone"
-                        :presentations="Object.values(allPrivatePresentations)"
+                        :presentations="allPrivatePresentations"
                     />
                 </template>
                 <PresentationList
                     title="Public Slideshows from everyone"
-                    :presentations="Object.values(allPublicPresentations)"
+                    :presentations="allPublicPresentations"
                 />
             </Container>
         </AppContent>

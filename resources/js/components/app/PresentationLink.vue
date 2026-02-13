@@ -4,11 +4,10 @@ import { presentations } from '@/routes';
 
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
-const props = defineProps<{
+defineProps<{
     presentation: Presentation;
     showGuard: boolean;
 }>();
-
 </script>
 
 <template>
