@@ -35,10 +35,13 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <Container
-            title="Hi"
+            :title="script.title"
             class="info-field grid gap-6"
         >
             <div class="order-2 flex flex-col gap-10">
+                <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
+                    <button>Save</button>
+                </div>
                 <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
                     <h3 class="sr-only"> Info </h3>
                     <span class="block">
@@ -57,7 +60,19 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </div>
             </div>
             <div class="order-1 space-y-20">
-                hi
+                <textarea
+                    name="content"
+                    id=""
+                    class="
+                        max-w-[90ch]
+                        mx-auto
+                        resize-none
+                        min-h-full p-4
+                        rounded-md
+                        border-2
+                        "
+                    :value="script.content.trim()"
+                />
             </div>
         </Container>
     </AppLayout>

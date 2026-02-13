@@ -2,8 +2,16 @@
     transition-behavior: allow-discrete !important;
 }
 
+textarea,
 input {
     min-width: 0px;
+}
+
+textarea {
+    display: block;
+    height: fit-content;
+    field-sizing: content;
+    width: 100%;
 }
 
 select,

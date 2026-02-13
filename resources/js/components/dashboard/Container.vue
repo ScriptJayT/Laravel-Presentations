@@ -14,8 +14,8 @@ const classList = props.class ?? "";
         data-component="dashboard/Container"
         :data-id="id"
         class="
+            grow flex flex-col
             ct-inline-size |
-            space-y-4
             px-6 md:px-4 dark:px-8 dark:md:px-6
             py-6
             rounded-xl
@@ -24,7 +24,7 @@ const classList = props.class ?? "";
         <template v-if="title">
             <Heading :title/>
         </template>
-        <div :class="classList">
+        <div :class="classList" class="grow">
             <slot />
         </div>
     </div>
