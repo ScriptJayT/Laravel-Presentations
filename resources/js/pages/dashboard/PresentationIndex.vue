@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type Presentation, type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import { admin_presentation_index, admin_presentations } from '@/routes';
+import { admin_presentations } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import Container from '@/components/dashboard/Container.vue';
@@ -13,7 +13,6 @@ defineProps<{
 }>();
 const breadcrumbs: BreadcrumbItem[] = [{
     title: 'Presentations',
-    href: admin_presentation_index().url,
 }];
 </script>
 
