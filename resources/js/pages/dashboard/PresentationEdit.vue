@@ -5,7 +5,7 @@ import {
     type BreadcrumbItem,
 } from '@/types';
 
-import { dashboard, presentations } from '@/routes';
+import { dashboard, presentations, admin_scripts } from '@/routes';
 
 import { ExternalLink, Trash, OctagonAlert, Plus } from 'lucide-vue-next';
 import { Head } from '@inertiajs/vue3';
@@ -103,15 +103,19 @@ const breadcrumbs: BreadcrumbItem[] = [
             </div>
             <div class="order-1 space-y-20">
                 <div class="space-y-5">
-                    <h3 class="text-lg font-semibold"> Script </h3>
                     <template v-if="presentation.presentation_script">
-                        <span class="block">
-                            {{ presentation.presentation_script.title }}
-                        </span>
-                        <a> Go to script </a>
+                        <h3 class="text-lg font-semibold">
+                            Script: {{ presentation.presentation_script.title }}
+                        </h3>
+                        <a :href="admin_scripts(presentation.presentation_script.id).url">
+                            Go to script
+                        </a>
                     </template>
                     <template v-else>
-                        <a> Add script </a>
+                        <h3 class="text-lg font-semibold">
+                            Script
+                        </h3>
+                        <a> Add a script </a>
                     </template>
                 </div>
                 <div class="space-y-5">
