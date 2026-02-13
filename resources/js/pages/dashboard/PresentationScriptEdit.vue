@@ -25,7 +25,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: admin_script_index().url,
     },
     {
-        title: `Script: `,
+        title: `Script: #${props.script.id}`,
     }
 ];
 </script>
