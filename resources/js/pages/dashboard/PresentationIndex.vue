@@ -22,7 +22,7 @@ const breadcrumbs: BreadcrumbItem[] = [{
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <Container
-            title="Presentation Overview"
+            title="Full Overview"
             class="grid auto-rows-min gap-4 md:grid-cols-3"
         >
             <NewLink title="Presentation"/>

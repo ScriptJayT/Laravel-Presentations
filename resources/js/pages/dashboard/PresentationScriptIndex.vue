@@ -32,7 +32,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <Container
-            title="Hi"
+            title="Scripting stuff"
             id="script-index"
             class="grid auto-rows-min gap-4 md:grid-cols-3"
         >
