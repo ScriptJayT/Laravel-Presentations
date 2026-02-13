@@ -5,7 +5,6 @@ use App\Http\Controllers\AdminPresentationScriptController;
 use App\Http\Controllers\PresentationController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 // use Laravel\Fortify\Features;
 // Features::enabled(Features::registration())
@@ -31,7 +30,7 @@ Route::prefix('dashboard')
                 Route::get('/presentations/{id}', 'edit')
                     ->whereNumber('id')
                     ->name('admin_presentations')
-                    ->missing(fn (Request $_) => Redirect::route('admin_presentation_index'));
+                    ->missing(fn () => Redirect::route('admin_presentation_index'));
             });
 
         Route::controller(AdminPresentationScriptController::class)
@@ -41,7 +40,7 @@ Route::prefix('dashboard')
                 Route::get('/scripts/{id}', 'edit')
                     ->whereNumber('id')
                     ->name('admin_scripts')
-                    ->missing(fn (Request $_) => Redirect::route('admin_presentation_index'));
+                    ->missing(fn () => Redirect::route('admin_presentation_index'));
             });
     });
 
