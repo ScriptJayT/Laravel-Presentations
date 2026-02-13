@@ -21,7 +21,6 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
     {
         title: 'Scripts',
-        href: dashboard().url,
     },
 ];
 </script>

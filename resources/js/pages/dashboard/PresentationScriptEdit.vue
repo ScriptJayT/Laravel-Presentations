@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import {
-    type Presentation,
-    type PresentationVisibility,
+    type PresentationScript,
     type BreadcrumbItem,
 } from '@/types';
 
-import { dashboard } from '@/routes';
+import { dashboard, admin_script_index } from '@/routes';
 
 import { Trash, OctagonAlert } from 'lucide-vue-next';
 import { Head } from '@inertiajs/vue3';
@@ -14,6 +13,7 @@ import Container from '@/components/dashboard/Container.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 
 const props = defineProps<{
+    script: PresentationScript;
 }>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -22,7 +22,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
     {
         title: 'Scripts',
-        href: dashboard().url,
+        href: admin_script_index().url,
     },
     {
         title: `Script: `,
