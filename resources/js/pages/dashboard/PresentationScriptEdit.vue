@@ -42,9 +42,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
                     <h3 class="sr-only"> Info </h3>
                     <span class="block">
-                        on:
-                    </span>
-                    <span class="block">
                         Last edit:
                     </span>
                 </div>
