@@ -12,26 +12,46 @@ const props = defineProps<{
 </script>
 
 <template>
-    <div  data-component="PresentationLink" class="relative | aspect-video | p-4 | border rounded-xl">
+    <div
+        data-component="PresentationLink"
+        class="
+            relative
+            flex flex-col
+            aspect-video p-4
+            border rounded-xl
+            "
+    >
         <template v-if="showGuard">
             <span
                 :data-guard="presentation.presentation_visibility.title"
-                class="absolute top-0 right-4 | block px-2 py-1 border | -translate-y-1/2 bg-white"
+                class="
+                    absolute top-0 right-4
+                    block px-2
+                    border rounded-sm
+                    -translate-y-1/2
+                    italic text-sm
+                    bg-white
+                    "
             >
                 {{ presentation.presentation_visibility.name }}
             </span>
         </template>
-        <h3>
+        <h3 class="font-semibold">
             {{ presentation.title }}
         </h3>
         <span class="creator | block">
             by: {{ presentation.user.name }}
         </span>
-        <a :href="presentations(presentation.slug).url" target="_blank">
-            /{{ presentation.slug }}
-        </a>
-        <div class="pointer-events-none" role="presentation">
-            <PlaceholderPattern />
+
+        <div class="mt-auto">
+            <a :href="presentations(presentation.slug).url" target="_blank">
+                Present
+            </a>
+            <template v-if="presentation.presentation_script">
+                Script
+            </template>
         </div>
+
+        <PlaceholderPattern :interactable="false" />
     </div>
 </template>
