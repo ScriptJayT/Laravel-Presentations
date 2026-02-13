@@ -6,7 +6,7 @@ import {
 
 import { dashboard, admin_script_index } from '@/routes';
 
-import { Trash, OctagonAlert } from 'lucide-vue-next';
+import { Trash, OctagonAlert, Save } from 'lucide-vue-next';
 import { Head } from '@inertiajs/vue3';
 
 import Container from '@/components/dashboard/Container.vue';
@@ -40,7 +40,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         >
             <div class="order-2 flex flex-col gap-10">
                 <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
-                    <button>Save</button>
+                    <button class="cursor-pointer select-none w-full flex items-center justify-between gap-1">
+                        <span> Save </span>
+                        <Save class="size-4"/>
+                    </button>
                 </div>
                 <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
                     <h3 class="sr-only"> Info </h3>
