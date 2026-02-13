@@ -24,14 +24,25 @@ select,
     &:open::picker-icon {
         rotate: 180deg;
     }
-    /*
-    & selectedcontent {
-    } */
 
+    & selectedcontent,
     & option {
+        display: flex;
+        gap: 0 1ch;
         width: 100%;
     }
 
+    & selectedcontent {
+        & a {
+            display: none !important;
+        }
+    }
+
+}
+
+field {
+    display: block;
+    display: flow-root;
 }
 
 .ct-inline-size {

@@ -2,10 +2,14 @@
 import {
     type Presentation,
     type PresentationVisibility,
+    type PresentationScript,
     type BreadcrumbItem,
 } from '@/types';
 
-import { dashboard, presentations, admin_scripts } from '@/routes';
+import {
+    dashboard, presentations,
+    admin_scripts, admin_script_index
+} from '@/routes';
 
 import { ExternalLink, Trash, OctagonAlert, Plus } from 'lucide-vue-next';
 import { Head } from '@inertiajs/vue3';
@@ -17,6 +21,7 @@ import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 const props = defineProps<{
     presentation: Presentation;
     rules: PresentationVisibility[];
+    scripts: PresentationScript[];
 }>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -107,7 +112,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <h3 class="text-lg font-semibold">
                             Script: {{ presentation.presentation_script.title }}
                         </h3>
-                        <a :href="admin_scripts(presentation.presentation_script.id).url">
+                        <a class="block" :href="admin_scripts(presentation.presentation_script.id).url">
                             Go to script
                         </a>
                     </template>
@@ -115,8 +120,37 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <h3 class="text-lg font-semibold">
                             Script
                         </h3>
-                        <a> Add a script </a>
                     </template>
+
+                    <fieldset class="grid grid-cols-2">
+                        <field class="space-y-2">
+                            <label class="block" for="select-script"> Choose one from existing: </label>
+                            <select
+                                name="script" id="select-script"
+                                class="
+                                    cursor-pointer
+                                    block w-full max-w-50
+                                    px-2 border
+                                    "
+                            >
+                                <button> <selectedcontent></selectedcontent> </button>
+                                <template v-for="_script in scripts">
+                                    <option class="px-2" :value="_script.id">
+                                        <span>
+                                            {{ _script.title }}
+                                        </span>
+                                        <span>
+                                            {{ _script.id }}
+                                        </span>
+                                    </option>
+                                </template>
+                            </select>
+                        </field>
+                        <a class="flex gap-1" target="_blank" :href="admin_script_index().url">
+                            <span> Go create a new one </span>
+                            <ExternalLink class="size-4"/>
+                        </a>
+                    </fieldset>
                 </div>
                 <div class="space-y-5">
                     <h3 class="text-lg font-semibold"> Slides </h3>

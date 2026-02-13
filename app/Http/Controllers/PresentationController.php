@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Presentation;
+use App\Models\PresentationScript;
 use App\Models\PresentationVisibility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -68,10 +69,12 @@ class PresentationController extends Controller
     {
         $presentation = Presentation::where('id', $_presId)->with('slides')->first();
         $rules = PresentationVisibility::all(['title', 'name'])->all();
+        $scripts = PresentationScript::all(['id', 'title'])->all();
 
         return Inertia::render('dashboard/PresentationEdit', [
             'presentation' => $presentation,
             'rules' => $rules,
+            'scripts' => $scripts,
         ]);
     }
 }
