@@ -8,8 +8,10 @@ import { dashboard, admin_scripts } from '@/routes';
 
 import { Head } from '@inertiajs/vue3';
 
-import Container from '@/components/dashboard/Container.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
+import Container from '@/components/dashboard/Container.vue';
+import IndexLink from '@/components/dashboard/models/IndexLink.vue';
+import NewLink from '@/components/dashboard/models/NewLink.vue';
 
 const props = defineProps<{
     allScripts: PresentationScript[];
@@ -31,43 +33,23 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <Container
             title="Hi"
-            class="grid auto-rows-min gap-4 md:grid-cols-3"
+            class="script-index | grid auto-rows-min gap-4 md:grid-cols-3"
         >
-
-        <template v-for="_script in allScripts">
-                <div
-                    class="
-                        relative isolate
-                        flex flex-col
-                        aspect-video
-                        p-4
-                        border border-transparent rounded-xl
-                        "
-                >
-                    <h3 class="text-lg font-semibold"> {{ _script.title }} </h3>
-
-                    <span class="block text-sm">
-                        last edit: {{ _script.updated_at }}
-                    </span>
-
-                    <a
-                        class="
-                            absolute inset-0
-                            border-2 rounded-xl hover:border-cyan-700 focus-visible:border-cyan-700
-                            outline-offset-8
-                            "
-                        :href="admin_scripts(_script.id).url"
-                        title="Open this script"
-                    ></a>
-
-                    <PlaceholderPattern :interactable="false"/>
-                </div>
+            <NewLink title="Script"/>
+            <template v-for="_script in allScripts">
+                <IndexLink
+                    :title="_script.title"
+                    :semantic-title="true"
+                    :link="admin_scripts(_script.id)"
+                    :last-edit="_script.updated_at"
+                />
             </template>
-
         </Container>
     </AppLayout>
 </template>
 
-<style scoped>
-
+<style>
+    .script-index .model-entry--last-edit {
+        margin-top: auto;
+    }
 </style>
