@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'bot@example.com',
             'password' => Hash::make(uniqid()),
         ]);
-        User::factory()->create([
+        $testUser = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'login',
                 'name' => 'Protected',
             ]);
-        PresentationVisibility::factory()
+        $creatorVisibilityRule = PresentationVisibility::factory()
             ->create([
                 'title' => 'creator',
                 'name' => 'Private',
@@ -73,6 +73,18 @@ class DatabaseSeeder extends Seeder
         ]);
         PresentationSlide::factory(2)->create([
             'presentation_id' => $entryPresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
+        ]);
+
+        $scaffoldingPresentation = Presentation::factory()->create([
+            'title' => 'My personal project',
+            'slug' => Str::of('My personal project')->slug(),
+            'user_id' => $testUser->id,
+            'presentation_visibility_id' => $creatorVisibilityRule->id,
+            'presentation_theme_id' => $defaultTheme->id,
+        ]);
+        PresentationSlide::factory(2)->create([
+            'presentation_id' => $scaffoldingPresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
         ]);
     }
