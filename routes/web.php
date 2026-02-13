@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PresentationController;
+use App\Http\Controllers\PresentationSlideController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,10 +34,11 @@ Route::controller(PresentationController::class)->group(function () {
         ->missing(fn (Request $_) => Redirect::route('dashboard'));
 });
 
-Route::controller(PresentationController::class)
+Route::controller(PresentationSlideController::class)
     ->middleware(['auth', 'verified'])
     ->group(function () {
-        Route::get('dashboard/scripts/', 'show');
+        Route::get('dashboard/scripts/', 'index')
+            ->name('admin_script_index');
         Route::get('dashboard/scripts/{id}', 'edit')
             ->whereNumber('id')
             ->name('admin_scripts')

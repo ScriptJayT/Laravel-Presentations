@@ -13,7 +13,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { home, dashboard } from '@/routes';
+import { home, dashboard, admin_script_index } from '@/routes';
 import AppLogo from '@/components/global/AppLogo.vue';
 
 import { type NavItem } from '@/types';
@@ -33,7 +33,7 @@ const dashboardNavItems: NavItem[] = [
     },
     {
         title: 'Scripts',
-        href: home(),
+        href: admin_script_index(),
         icon: Scroll,
     },
     {
