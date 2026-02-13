@@ -17,6 +17,7 @@ class Presentation extends Model
         'user',
         'presentationVisibility',
         'presentationTheme',
+        'presentationScript',
     ];
 
     /**
