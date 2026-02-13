@@ -59,10 +59,18 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </button>
                 </div>
             </div>
-            <div class="order-1 space-y-20"></div>
+            <div class="order-1 space-y-20">
+                hi
+            </div>
         </Container>
     </AppLayout>
 </template>
+
+<style>
+    .info-field {
+        grid-template-columns: 1fr auto;
+    }
+</style>
 
 <style scoped>
     .hidden-input {
