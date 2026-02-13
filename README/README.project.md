@@ -4,9 +4,26 @@ Goal: build a backend interface to create a presentation using markdown
 
 ## Quicklinks
 
-- icons: https://lucide.dev/icons/
+- repo: https://github.com/ScriptJayT/Laravel-Presentations
 
-## Framework Requirements
+### Docs
+
+- Vue JS: https://vuejs.org/guide/introduction.html
+    - icons: https://lucide.dev/icons/
+- Laravel: https://laravel.com/docs/12.x
+    - md parser: https://commonmark.thephpleague.com/2.x/basic-usage/
+    - testing: https://docs.phpunit.de/en/
+
+### Help-out
+
+- "new" CSS:
+    - stylable select: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select
+- redirect "back" on login
+    - https://laravel.com/docs/12.x/session
+    - https://reniki.com/blog/redirect-back-previous-page-after-login-laravel-fortify
+    - https://laracasts.com/discuss/channels/laravel/fortify-redirect
+
+## Project Requirements
 
 - Laravel (Backend app + SSR frontend)
     - User Auth
@@ -14,7 +31,7 @@ Goal: build a backend interface to create a presentation using markdown
 - Vue JS (Frontend slides)
 - ? Three JS (3D Animations)
 
-## Project structure
+### App structure
 
 - Admin panel
     - Login/Logout
@@ -42,7 +59,7 @@ Goal: build a backend interface to create a presentation using markdown
     - both markdown as html
     - fullscript, slides or both
 
-## DB structure
+### DB structure
 
 - presentations
     - id, timestamps

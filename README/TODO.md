@@ -2,6 +2,7 @@
 - [x] Setup
 - [ ] Design
 - [ ] Name App
+- [ ] Check health route
 - CRUD operations
     - [ ] Presentations R
     - [ ] Slides R
