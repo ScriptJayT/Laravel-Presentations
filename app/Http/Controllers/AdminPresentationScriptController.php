@@ -7,15 +7,13 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response as IResponse;
 
-class PresentationScriptController extends Controller
+class AdminPresentationScriptController extends Controller
 {
     public function index(Request $_): IResponse
     {
-        $props = [
+        return Inertia::render('dashboard/PresentationScriptIndex', [
             'allScripts' => PresentationScript::all(),
-        ];
-
-        return Inertia::render('dashboard/PresentationScriptIndex', $props);
+        ]);
     }
 
     public function edit(string $_presId): IResponse

@@ -4,7 +4,7 @@ import {
     type BreadcrumbItem,
 } from '@/types';
 
-import { dashboard, admin_script_index } from '@/routes';
+import { admin_presentation_index, admin_script_index } from '@/routes';
 
 import { Trash, OctagonAlert, Save } from 'lucide-vue-next';
 import { Head } from '@inertiajs/vue3';
@@ -18,7 +18,7 @@ const props = defineProps<{
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Presentations',
-        href: dashboard().url,
+        href: admin_presentation_index().url,
     },
     {
         title: 'Scripts',

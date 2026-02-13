@@ -13,7 +13,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { home, dashboard, admin_script_index } from '@/routes';
+import { home, admin_presentation_index, admin_script_index } from '@/routes';
 import AppLogo from '@/components/global/AppLogo.vue';
 
 import { type NavItem } from '@/types';
@@ -28,7 +28,7 @@ const mainNavItems: NavItem[] = [
 const dashboardNavItems: NavItem[] = [
     {
         title: 'Presentations',
-        href: dashboard(),
+        href: admin_presentation_index(),
         icon: Presentation,
     },
     {
@@ -62,7 +62,7 @@ const footerNavItems: NavItem[] = [
             <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
-                        <Link :href="dashboard()">
+                        <Link :href="admin_presentation_index()">
                             <AppLogo />
                         </Link>
                     </SidebarMenuButton>

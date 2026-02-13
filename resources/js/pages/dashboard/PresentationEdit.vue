@@ -7,8 +7,9 @@ import {
 } from '@/types';
 
 import {
-    dashboard, presentations,
-    admin_scripts, admin_script_index
+    admin_presentation_index,
+    admin_script_index, admin_scripts,
+    presentations,
 } from '@/routes';
 
 import { ExternalLink, Trash, OctagonAlert, Plus } from 'lucide-vue-next';
@@ -26,7 +27,7 @@ const props = defineProps<{
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Presentations',
-        href: dashboard().url,
+        href: admin_presentation_index().url,
     },
     {
         title: `Presentation: #${props.presentation.id}`,

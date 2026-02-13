@@ -4,7 +4,7 @@ import {
     type BreadcrumbItem,
 } from '@/types';
 
-import { dashboard, admin_scripts } from '@/routes';
+import { admin_presentation_index, admin_scripts } from '@/routes';
 
 import { Head } from '@inertiajs/vue3';
 
@@ -19,7 +19,7 @@ const props = defineProps<{
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Presentations',
-        href: dashboard().url,
+        href: admin_presentation_index().url,
     },
     {
         title: 'Scripts',

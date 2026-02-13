@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { Link, usePage } from '@inertiajs/vue3';
-import { dashboard, login } from '@/routes';
+import { admin_presentation_index, login } from '@/routes';
 import { RouteDefinition } from '@/wayfinder';
 
 import UserDropDown from '@/components/app/UserDropDown.vue';
@@ -18,7 +18,7 @@ type NavItem = {
 const links: NavItem[] = [
     {
         title: "Dashboard",
-        href: dashboard(),
+        href: admin_presentation_index(),
         show: "login",
     },
     {
