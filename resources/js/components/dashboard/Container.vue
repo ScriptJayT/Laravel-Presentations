@@ -2,6 +2,7 @@
 import Heading from '@/components/Heading.vue';
 
 const props = defineProps<{
+    id?: string;
     class?: string;
     title?: string;
 }>();
@@ -11,6 +12,7 @@ const classList = props.class ?? "";
 <template>
     <div
         data-component="dashboard/Container"
+        :data-id="id"
         class="
             ct-inline-size |
             space-y-4

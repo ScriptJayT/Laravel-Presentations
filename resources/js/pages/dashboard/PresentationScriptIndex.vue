@@ -33,7 +33,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <Container
             title="Hi"
-            class="script-index | grid auto-rows-min gap-4 md:grid-cols-3"
+            id="script-index"
+            class="grid auto-rows-min gap-4 md:grid-cols-3"
         >
             <NewLink title="Script"/>
             <template v-for="_script in allScripts">
@@ -49,7 +50,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 </template>
 
 <style>
-    .script-index .model-entry--last-edit {
+    [data-id=script-index] .model-entry--last-edit {
         margin-top: auto;
     }
 </style>
