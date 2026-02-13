@@ -33,4 +33,14 @@ Route::controller(PresentationController::class)->group(function () {
         ->missing(fn (Request $_) => Redirect::route('dashboard'));
 });
 
+Route::controller(PresentationController::class)
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::get('dashboard/scripts/', 'show');
+        Route::get('dashboard/scripts/{id}', 'edit')
+            ->whereNumber('id')
+            ->name('admin_scripts')
+            ->missing(fn (Request $_) => Redirect::route('dashboard'));
+    });
+
 require __DIR__.'/settings.php';

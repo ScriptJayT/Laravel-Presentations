@@ -1,0 +1,85 @@
+<script setup lang="ts">
+import {
+    type Presentation,
+    type PresentationVisibility,
+    type BreadcrumbItem,
+} from '@/types';
+
+import { dashboard } from '@/routes';
+
+import { Trash, OctagonAlert } from 'lucide-vue-next';
+import { Head } from '@inertiajs/vue3';
+
+import Container from '@/components/dashboard/Container.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+
+const props = defineProps<{
+}>();
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'Presentations',
+        href: dashboard().url,
+    },
+    {
+        title: 'Scripts',
+        href: dashboard().url,
+    },
+    {
+        title: `Script: `,
+    }
+];
+</script>
+
+<template>
+    <Head title="Dashboard" />
+
+    <AppLayout :breadcrumbs="breadcrumbs">
+        <Container
+            title="Hi"
+            class="info-field grid gap-6"
+        >
+            <div class="order-2 flex flex-col gap-10">
+                <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
+                    <h3 class="sr-only"> Info </h3>
+                    <span class="block">
+                        on:
+                    </span>
+                    <span class="block">
+                        Last edit:
+                    </span>
+                </div>
+                <div class="space-y-3 p-4 border rounded-xl border-red-900">
+                    <h3 class="flex items-center gap-3 text-lg font-semibold text-red-900">
+                        <OctagonAlert class="size-5"/>
+                        <span> Danger zone </span>
+                    </h3>
+                    <button class="cursor-pointer select-none w-full flex items-center justify-between gap-1">
+                        <span> Delete </span>
+                        <Trash class="size-4"/>
+                    </button>
+                </div>
+            </div>
+            <div class="order-1 space-y-20"></div>
+        </Container>
+    </AppLayout>
+</template>
+
+<style scoped>
+    .hidden-input {
+        transition: 200ms;
+        transition-property: border-color;
+
+        &:is(select)::picker-icon {
+            transition: 200ms;
+            transition-property: color;
+        }
+
+        &:not(:hover, :focus-visible) {
+            border-color: transparent;
+
+            &:is(select)::picker-icon {
+                color: transparent;
+            }
+        }
+    }
+</style>
