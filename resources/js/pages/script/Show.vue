@@ -7,6 +7,7 @@ import Container from '@/components/app/Container.vue';
 import AppWrapper from '@/components/app/AppWrapper.vue';
 import AppHeader from '@/components/app/AppHeader.vue';
 import AppContent from '@/components/app/AppContent.vue';
+import AppFooter from '@/components/app/AppFooter.vue';
 
 defineProps<{
     script: Required<PresentationScript>;
@@ -26,5 +27,7 @@ defineProps<{
                 <div> {{ script.content }} </div>
             </Container>
         </AppContent>
+
+        <AppFooter />
     </AppWrapper>
 </template>

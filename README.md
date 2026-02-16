@@ -7,21 +7,37 @@ Status: in development
 ## Setup
 
 ```bash
-npm install
-npm run build
-php artisan migrate:fresh --seed
+composer run setup
+php artisan db:seed
 ```
 
-or using `pnpm`:
-
+or manually:
 
 ```bash
+composer install
+php artisan key:generate
+php artisan migrate:fresh --seed
+npm install
+npm run build
+```
+
+or manually using `pnpm`:
+
+```bash
+composer install
+php artisan key:generate
+php artisan migrate:fresh --seed
 pnpm install
 pnpm build
-php artisan migrate:fresh --seed
 ```
 
 ## Running the app:
+
+```bash
+composer run dev
+```
+
+or without Inertia HMR
 
 ```bash
 composer run dev:ssr
