@@ -23,9 +23,7 @@ defineProps<{
         <AppContent>
             <Container>
                 <h1> {{ script.title }} </h1>
-                <div>
-                    {{ script.content }}
-                </div>
+                <div> {{ script.content }} </div>
             </Container>
         </AppContent>
     </AppWrapper>
