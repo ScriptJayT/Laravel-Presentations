@@ -14,10 +14,7 @@ class PresentationScript extends Model
 {
     use HasFactory;
 
-    public function presentation(): HasMany
-    {
-        return $this->hasMany(Presentation::class);
-    }
+    // ## Casting
 
     protected function content(): Attribute
     {
@@ -34,5 +31,12 @@ class PresentationScript extends Model
         return Attribute::make(
             get: fn (string $value) => Carbon::parse($value)->diffForHumans(),
         );
+    }
+
+    // ## Relations
+
+    public function presentation(): HasMany
+    {
+        return $this->hasMany(Presentation::class);
     }
 }

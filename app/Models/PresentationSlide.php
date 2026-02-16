@@ -15,7 +15,9 @@ class PresentationSlide extends Model
 
     protected $with = ['presentationTheme'];
 
-    public function content(): Attribute
+    // ## Casting
+
+    protected function content(): Attribute
     {
         return Attribute::make(
             get: fn (string $value) => Str::of($value)->markdown(
@@ -24,6 +26,8 @@ class PresentationSlide extends Model
             ),
         );
     }
+
+    // ## Relations
 
     public function presentationTheme(): BelongsTo
     {

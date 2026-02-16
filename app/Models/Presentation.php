@@ -20,6 +20,8 @@ class Presentation extends Model
         'presentationScript',
     ];
 
+    // ## Casting
+
     /**
      * Get the attributes that should be cast.
      *
@@ -38,6 +40,8 @@ class Presentation extends Model
             get: fn (string $value) => Carbon::parse($value)->diffForHumans(),
         );
     }
+
+    // ## Relations
 
     public function user(): BelongsTo
     {
