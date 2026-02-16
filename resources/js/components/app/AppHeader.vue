@@ -7,7 +7,7 @@ import { RouteDefinition } from '@/wayfinder';
 import UserDropDown from '@/components/app/UserDropDown.vue';
 
 const page = usePage();
-const user = page.props.auth.user;
+const user = page.props.auth?.user ?? null;
 
 type NavItem = {
     title: string;
