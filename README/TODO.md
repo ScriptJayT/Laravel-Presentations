@@ -9,10 +9,10 @@
     - [ ] Scripts
     - ? Themes
 - ? Users Dashboard
-- ? Script injecting
-- ? Styles
-- ? Atom Lock edit operations
-- ? Read API
+- ? Private Presentation Scripts
+- ? Js Script injecting (custom elements, iframes)
+- ? Atom Lock on CRUD operations
+- ? Read-only API
     - json
     - md | html content
     - script | slides | both
