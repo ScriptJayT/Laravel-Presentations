@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminPresentationController;
 use App\Http\Controllers\AdminPresentationScriptController;
 use App\Http\Controllers\PresentationController;
+use App\Http\Controllers\PresentationScriptController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -10,12 +11,15 @@ use Illuminate\Support\Facades\Route;
 // Features::enabled(Features::registration())
 
 Route::redirect('presentations', '/');
+Route::redirect('scripts', '/');
 Route::controller(PresentationController::class)->group(function () {
     Route::get('/', 'index')
         ->name('home');
     Route::get('presentations/{slug}', 'show')
         ->name('presentations');
 });
+Route::get('/scripts/{id}', [PresentationScriptController::class, 'show'])
+    ->name('scripts');
 
 Route::prefix('dashboard')
     ->middleware(['auth', 'verified'])

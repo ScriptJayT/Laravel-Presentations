@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
-import { presentations } from '@/routes';
+import { presentations, scripts } from '@/routes';
 
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
@@ -58,7 +58,7 @@ defineProps<{
             </a>
             <template v-if="presentation.presentation_script">
                 <a
-                    :href="presentations(presentation.slug).url" target="_blank"
+                    :href="scripts(presentation.presentation_script.id).url" target="_blank"
                     :title="`Open script: ${presentation.presentation_script.title}`"
                     class="
                         cursor-pointer
