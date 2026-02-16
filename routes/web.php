@@ -13,13 +13,15 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('presentations', '/');
 Route::redirect('scripts', '/');
 Route::controller(PresentationController::class)->group(function () {
-    Route::get('/', 'index')
-        ->name('home');
-    Route::get('presentations/{slug}', 'show')
-        ->name('presentations');
+    Route::get('/', 'index')->name('home');
+    Route::get('p/{slug}', 'show')->name('presentations');
+    Route::get('presentations/{slug}', 'show');
 });
-Route::get('/scripts/{id}', [PresentationScriptController::class, 'show'])
-    ->name('scripts');
+
+Route::controller(PresentationScriptController::class)->group(function () {
+    Route::get('/s/{id}', 'show')->name('scripts');
+    Route::get('/scripts/{id}', 'show');
+});
 
 Route::prefix('dashboard')
     ->middleware(['auth', 'verified'])
