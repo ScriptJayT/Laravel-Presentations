@@ -12,6 +12,17 @@ npm run build
 php artisan migrate:fresh --seed
 ```
 
+or using `pnpm`:
+
+
 ```bash
-composer run dev
+pnpm install
+pnpm build
+php artisan migrate:fresh --seed
+```
+
+## Running the app:
+
+```bash
+composer run dev:ssr
 ```
