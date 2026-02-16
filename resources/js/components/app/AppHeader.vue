@@ -1,13 +1,13 @@
 <script setup lang="ts">
-
+import { type Auth } from "@/types";
 import { Link, usePage } from '@inertiajs/vue3';
-import { admin_presentation_index, login } from '@/routes';
+import { admin_presentation_index, login, home } from '@/routes';
 import { RouteDefinition } from '@/wayfinder';
 
 import UserDropDown from '@/components/app/UserDropDown.vue';
 
 const page = usePage();
-const user = page.props.auth?.user ?? null;
+const user = (page.props.auth as Auth)?.user ?? null;
 
 type NavItem = {
     title: string;
@@ -16,6 +16,11 @@ type NavItem = {
 };
 
 const links: NavItem[] = [
+    {
+        title: "Home",
+        href: home(),
+        show: "always",
+    },
     {
         title: "Dashboard",
         href: admin_presentation_index(),
