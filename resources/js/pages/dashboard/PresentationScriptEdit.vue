@@ -12,6 +12,7 @@ import { destroy, update } from '@/routes/admin_script';
 
 import { Trash, OctagonAlert, Save } from 'lucide-vue-next';
 import { Head, Form } from '@inertiajs/vue3';
+
 import { Spinner } from '@/components/ui/spinner';
 
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -35,6 +36,13 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `Script: #${props.script.id}`,
     }
 ];
+
+const emit = defineEmits(['flash']);
+
+function flashMsg(_e: unknown) {
+    if(!_e || typeof _e !== 'object' ) return;
+    // emit('flash', _e.props.flash);
+}
 </script>
 
 <template>
@@ -51,7 +59,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         form="update-script-form"
                         class="cursor-pointer select-none w-full flex items-center justify-between gap-1"
                     >
-                        <span> Save </span>
+                        <span> Save & Quit </span>
                         <Save class="size-4"/>
                     </button>
                 </div>
@@ -84,17 +92,28 @@ const breadcrumbs: BreadcrumbItem[] = [
             <div class="order-1 space-y-20">
                 <Form
                     id="update-script-form"
-                    class="h-full grid gap-6 max-w-[90ch] mx-auto"
+                    class="
+                        grid gap-6
+                        max-w-[90ch] h-full
+                        mx-auto inert:opacity-50
+                        "
+                    @success="flashMsg"
                     v-bind="update.form(script.id)"
-                    v-slot="{ errors, processing }"
+                    :reset-on-error="false"
+                    :reset-on-success="false"
+                    disable-while-processing
+                    v-slot="{ errors, processing, isDirty }"
                 >
+                    <span v-show="isDirty">
+                        Unsaved changes
+                    </span>
                     <FormField
                         id="script-title" label="Title:"
                         :error="errors.title"
                     >
                         <input
-                            id="script-title" name="title"
-                            :value="script.title" type="text"
+                            id="script-title" name="title" type="text"
+                            v-model.lazy="script.title"
                             class="grow outline-none"
                         />
                     </FormField>

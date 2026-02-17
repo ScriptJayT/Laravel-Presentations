@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { AlertCircle } from 'lucide-vue-next';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
@@ -10,13 +10,15 @@ type Flash = {
     info?: string,
 }
 const flash = computed(() => usePage().props.flash).value as Flash;
-const anyMessage = flash.info || flash.error || flash.success;
+const anyMessage = !!(flash.info || flash.error || flash.success);
 const message = [flash.info, flash.error, flash.success].join("\n");
+
+console.log(flash, anyMessage, message);
 </script>
 
 <template>
     <Alert
-        v-if="anyMessage"
+        v-show="anyMessage"
         class="
             fixed z-100 right-0 top-5
             w-fit border-2

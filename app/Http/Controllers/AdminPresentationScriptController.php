@@ -56,9 +56,15 @@ class AdminPresentationScriptController extends Controller
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
             'content' => '',
-        ]);
-        dd($validated->validated());
-        dd($script);
+        ])->validated();
+
+        $script->title = e($validated['title']);
+        $script->content = e($validated['content']);
+        $script->save();
+
+        session()->flash('info', 'edits saved');
+
+        return Redirect::route('admin_script_index');
     }
 
     /**

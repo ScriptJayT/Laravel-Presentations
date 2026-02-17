@@ -12,7 +12,7 @@ withDefaults(defineProps<Props>(), {
 });
 </script>
 
-<template>
+<template >
     <AlertFlash />
     <AppLayout :breadcrumbs="breadcrumbs">
         <slot />

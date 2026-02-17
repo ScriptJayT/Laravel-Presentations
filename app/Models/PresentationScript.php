@@ -14,6 +14,8 @@ class PresentationScript extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'content'];
+
     // ## Casting
 
     // new attributes
@@ -22,7 +24,11 @@ class PresentationScript extends Model
     protected function getRenderedContentAttribute(): string
     {
         return Str::of($this->content)->markdown(
-            ['heading_shifter' => ['shift_by' => 1]],
+            [
+                'html_input' => 'strip',
+                'allow_unsafe_links' => false,
+                'heading_shifter' => ['shift_by' => 1],
+            ],
             [new HeadingShifterExtension]
         );
     }
