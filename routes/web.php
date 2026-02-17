@@ -46,6 +46,7 @@ Route::prefix('dashboard')
                 'edit' => 'admin_scripts',
                 'destroy' => 'admin_script.destroy',
                 'store' => 'admin_script.store',
+                'update' => 'admin_script.update',
             ])
             ->missing(fn () => Redirect::route('admin_script_index'));
     });

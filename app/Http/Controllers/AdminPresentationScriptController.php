@@ -51,9 +51,14 @@ class AdminPresentationScriptController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, PresentationScript $script)
     {
-        //
+        $validated = validator($request->all(), [
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+        dd($validated->validated());
+        dd($script);
     }
 
     /**

@@ -8,7 +8,7 @@ import {
     admin_presentation_index,
     admin_script_index,
 } from '@/routes';
-import { destroy } from '@/routes/admin_script';
+import { destroy, update } from '@/routes/admin_script';
 
 import { Trash, OctagonAlert, Save } from 'lucide-vue-next';
 import { Head, Form } from '@inertiajs/vue3';
@@ -17,6 +17,7 @@ import { Spinner } from '@/components/ui/spinner';
 import AppLayout from '@/layouts/AppLayout.vue';
 import Container from '@/components/dashboard/Container.vue';
 import ActionModal from '@/components/dashboard/ActionModal.vue';
+import FormField from '@/components/global/form/FormField.vue';
 
 const props = defineProps<{
     script: PresentationScript;
@@ -46,7 +47,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         >
             <div class="order-2 flex flex-col gap-10">
                 <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
-                    <button class="cursor-pointer select-none w-full flex items-center justify-between gap-1">
+                    <button
+                        form="update-script-form"
+                        class="cursor-pointer select-none w-full flex items-center justify-between gap-1"
+                    >
                         <span> Save </span>
                         <Save class="size-4"/>
                     </button>
@@ -78,19 +82,34 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </div>
             </div>
             <div class="order-1 space-y-20">
-                <textarea
-                    name="content"
-                    id=""
-                    class="
-                        max-w-[90ch]
-                        mx-auto
-                        resize-none
-                        min-h-full p-4
-                        rounded-md
-                        border-2
-                        "
-                    :value="script.content.trim()"
-                />
+                <Form
+                    id="update-script-form"
+                    class="h-full flex flex-col gap-6 max-w-[90ch] mx-auto"
+                    v-bind="update.form(script.id)"
+                >
+                    <FormField
+                        id="script-title" label="Title:"
+                        class="p-4 border-2 rounded-md"
+                    >
+                        <input
+                            id="script-title" name="title"
+                            :value="script.title" type="text"
+                            class="grow outline-none"
+                        />
+                    </FormField>
+
+                    <textarea
+                        name="content"
+                        class="
+                            grow
+                            resize-none
+                            p-4
+                            border-2 rounded-md
+                            outline-offset-4
+                            "
+                        :value="script.content.trim()"
+                    />
+                </Form>
             </div>
         </Container>
     </AppLayout>

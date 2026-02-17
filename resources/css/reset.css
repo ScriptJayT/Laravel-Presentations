@@ -1,17 +1,9 @@
 * {
     transition-behavior: allow-discrete !important;
 }
-
 textarea,
 input {
     min-width: 0px;
-}
-
-textarea {
-    display: block;
-    height: fit-content;
-    field-sizing: content;
-    width: 100%;
 }
 
 select,
@@ -40,11 +32,19 @@ select,
 
 }
 
-field {
-    display: block;
-    display: flow-root;
-}
-
 .ct-inline-size {
     container-type: inline-size;
+}
+
+@layer base {
+    textarea {
+        display: block;
+        height: fit-content;
+        field-sizing: content;
+        width: 100%;
+    }
+    field {
+        display: block;
+        display: flow-root;
+    }
 }
