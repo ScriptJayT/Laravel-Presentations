@@ -19,8 +19,8 @@ Route::controller(PresentationController::class)->group(function () {
 });
 
 Route::controller(PresentationScriptController::class)->group(function () {
-    Route::get('/s/{id}', 'show')->name('scripts');
-    Route::get('/scripts/{id}', 'show');
+    Route::get('/s/{script}', 'show')->name('scripts');
+    Route::get('/scripts/{script}', 'show');
 });
 
 Route::prefix('dashboard')
@@ -39,15 +39,13 @@ Route::prefix('dashboard')
                     ->missing(fn () => Redirect::route('admin_presentation_index'));
             });
 
-        Route::controller(AdminPresentationScriptController::class)
-            ->group(function () {
-                Route::get('/scripts', 'index')
-                    ->name('admin_script_index');
-                Route::get('/scripts/{id}', 'edit')
-                    ->whereNumber('id')
-                    ->name('admin_scripts')
-                    ->missing(fn () => Redirect::route('admin_presentation_index'));
-            });
+        Route::resource('scripts', AdminPresentationScriptController::class)
+            ->except(['show'])
+            ->names([
+                'index' => 'admin_script_index',
+                'edit' => 'admin_scripts',
+            ])
+            ->missing(fn () => Redirect::route('admin_script_index'));
     });
 
 require __DIR__.'/settings.php';

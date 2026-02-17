@@ -12,7 +12,6 @@ import AppFooter from '@/components/app/AppFooter.vue';
 defineProps<{
     script: Required<PresentationScript>;
 }>();
-
 </script>
 
 <template>
@@ -24,7 +23,7 @@ defineProps<{
         <AppContent class="mt-15 mb-25">
             <Container>
                 <h1 class="font-bold text-5xl mb-10"> {{ script.title }} </h1>
-                <div v-html="script.content" />
+                <div v-html="script.renderedContent" />
             </Container>
         </AppContent>
 

@@ -16,16 +16,18 @@ class PresentationScript extends Model
 
     // ## Casting
 
-    protected function content(): Attribute
+    // new attributes
+    protected $appends = ['renderedContent'];
+
+    protected function getRenderedContentAttribute(): string
     {
-        return Attribute::make(
-            get: fn (string $value) => Str::of($value)->markdown(
-                ['heading_shifter' => ['shift_by' => 1]],
-                [new HeadingShifterExtension]
-            ),
+        return Str::of($this->content)->markdown(
+            ['heading_shifter' => ['shift_by' => 1]],
+            [new HeadingShifterExtension]
         );
     }
 
+    // transform existing attributes
     protected function updatedAt(): Attribute
     {
         return Attribute::make(

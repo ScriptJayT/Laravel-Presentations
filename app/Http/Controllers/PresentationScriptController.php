@@ -7,11 +7,8 @@ use Inertia\Inertia;
 
 class PresentationScriptController extends Controller
 {
-    public function show(string $_presId): mixed
+    public function show(PresentationScript $script): mixed
     {
-        // *todo: add visibility rule to scripts
-        $script = PresentationScript::where('id', $_presId)->first();
-
         return Inertia::render('script/Show', ['script' => $script]);
     }
 }

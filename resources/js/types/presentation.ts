@@ -13,6 +13,7 @@ export type PresentationScript = {
     id: number,
     title: string,
     content: string,
+    renderedContent: string,
 } & Model;
 export type PresentationSlide = {
     title: string,

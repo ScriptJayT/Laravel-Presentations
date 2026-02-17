@@ -9,19 +9,60 @@ use Inertia\Response as IResponse;
 
 class AdminPresentationScriptController extends Controller
 {
-    public function index(Request $_): IResponse
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): IResponse
     {
         return Inertia::render('dashboard/PresentationScriptIndex', [
             'allScripts' => PresentationScript::all(),
         ]);
     }
 
-    public function edit(string $_presId): IResponse
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        $script = PresentationScript::where('id', $_presId)->first();
+        //
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    // public function show(string $id) { }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(PresentationScript $script)
+    {
         return Inertia::render('dashboard/PresentationScriptEdit', [
             'script' => $script,
         ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }
