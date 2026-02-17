@@ -14,8 +14,9 @@ import { Trash, OctagonAlert, Save } from 'lucide-vue-next';
 import { Head, Form } from '@inertiajs/vue3';
 import { Spinner } from '@/components/ui/spinner';
 
-import Container from '@/components/dashboard/Container.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
+import Container from '@/components/dashboard/Container.vue';
+import ActionModal from '@/components/dashboard/ActionModal.vue';
 
 const props = defineProps<{
     script: PresentationScript;
@@ -61,17 +62,19 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <OctagonAlert class="size-5"/>
                         <span> Danger zone </span>
                     </h3>
-                    <Form
-                        v-bind="destroy.form(script.id)"
-                        v-slot="{ processing }"
-                    >
-                        <button class="cursor-pointer select-none w-full flex items-center justify-between gap-1">
-                            <span> Delete </span>
-                            <Trash class="size-4"/>
-                        </button>
-                        <Spinner v-if="processing" />
-                    </Form>
 
+                    <button
+                        command="show-modal"
+                        commandfor="destroy-script-dialog"
+                        class="
+                            cursor-pointer select-none
+                            flex items-center justify-between gap-1
+                            w-full
+                            "
+                    >
+                        <span> Delete </span>
+                        <Trash class="size-4"/>
+                    </button>
                 </div>
             </div>
             <div class="order-1 space-y-20">
@@ -91,6 +94,33 @@ const breadcrumbs: BreadcrumbItem[] = [
             </div>
         </Container>
     </AppLayout>
+
+    <ActionModal id="destroy-script-dialog">
+        <p class="my-5">
+            Are you sure you want to delete this script? This is irreversible.
+            <br>
+            Any presentations using this script will lose that connection.
+        </p>
+        <Form
+            v-bind="destroy.form(script.id)"
+            v-slot="{ processing }"
+        >
+            <button
+                class="
+                    cursor-pointer select-none
+                    flex items-center gap-1
+                    w-fit
+                    px-2 py-1 mx-auto
+                    border border-red-900 rounded-md
+                    outline-offset-8
+                    "
+            >
+                <span> Yes, delete this script </span>
+                <Trash class="size-4"/>
+            </button>
+            <Spinner v-if="processing" />
+        </Form>
+    </ActionModal>
 </template>
 
 <style>
