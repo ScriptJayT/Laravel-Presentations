@@ -18,10 +18,13 @@ return new class extends Migration
         Schema::create('presentations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("title");
-            $table->string("slug")->unique();
+            $table->string('title');
+            $table->string('slug')->unique();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(PresentationScript::class)->nullable();
+            $table->foreignIdFor(PresentationScript::class)
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
             $table->foreignIdFor(PresentationVisibility::class)->constrained();
             $table->foreignIdFor(PresentationTheme::class)->constrained();
         });
