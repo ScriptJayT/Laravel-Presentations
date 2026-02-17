@@ -77,6 +77,8 @@ class DatabaseSeeder extends Seeder
             'presentation_theme_id' => $defaultTheme->id,
         ]);
 
+        PresentationScript::factory(3)->create();
+
         $script = PresentationScript::factory()->create();
         $scaffoldingPresentation = Presentation::factory()->create([
             'title' => 'My personal project',

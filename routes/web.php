@@ -44,6 +44,7 @@ Route::prefix('dashboard')
             ->names([
                 'index' => 'admin_script_index',
                 'edit' => 'admin_scripts',
+                'destroy' => 'admin_script.destroy',
             ])
             ->missing(fn () => Redirect::route('admin_script_index'));
     });

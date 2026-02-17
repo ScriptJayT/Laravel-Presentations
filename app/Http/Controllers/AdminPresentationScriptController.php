@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PresentationScript;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response as IResponse;
 
@@ -63,6 +64,12 @@ class AdminPresentationScriptController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (PresentationScript::whereId($id)->delete()) {
+            session()->flash('status', 'successfully deleted script');
+        } else {
+            session()->flash('status', 'something went wrong deleting script');
+        }
+
+        return Redirect::route('admin_script_index');
     }
 }

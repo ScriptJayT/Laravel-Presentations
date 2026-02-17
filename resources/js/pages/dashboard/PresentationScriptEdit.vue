@@ -4,10 +4,15 @@ import {
     type BreadcrumbItem,
 } from '@/types';
 
-import { admin_presentation_index, admin_script_index } from '@/routes';
+import {
+    admin_presentation_index,
+    admin_script_index,
+} from '@/routes';
+import { destroy } from '@/routes/admin_script';
 
 import { Trash, OctagonAlert, Save } from 'lucide-vue-next';
-import { Head } from '@inertiajs/vue3';
+import { Head, Form } from '@inertiajs/vue3';
+import { Spinner } from '@/components/ui/spinner';
 
 import Container from '@/components/dashboard/Container.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -56,10 +61,17 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <OctagonAlert class="size-5"/>
                         <span> Danger zone </span>
                     </h3>
-                    <button class="cursor-pointer select-none w-full flex items-center justify-between gap-1">
-                        <span> Delete </span>
-                        <Trash class="size-4"/>
-                    </button>
+                    <Form
+                        v-bind="destroy.form(script.id)"
+                        v-slot="{ processing }"
+                    >
+                        <button class="cursor-pointer select-none w-full flex items-center justify-between gap-1">
+                            <span> Delete </span>
+                            <Trash class="size-4"/>
+                        </button>
+                        <Spinner v-if="processing" />
+                    </Form>
+
                 </div>
             </div>
             <div class="order-1 space-y-20">
