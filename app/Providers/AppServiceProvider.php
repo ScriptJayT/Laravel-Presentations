@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
                 'success' => session('success'),
                 'error' => session('error'),
                 'info' => session('info'),
-                'raw' => session()->flash(),
+                'raw' => session(),
             ],
         ]);
     }

@@ -65,9 +65,9 @@ class AdminPresentationScriptController extends Controller
     public function destroy(string $id)
     {
         if (PresentationScript::whereId($id)->delete()) {
-            session()->flash('status', 'successfully deleted script');
+            session()->flash('info', 'successfully deleted the script');
         } else {
-            session()->flash('status', 'something went wrong deleting script');
+            session()->flash('error', 'something went wrong while deleting a script');
         }
 
         return Redirect::route('admin_script_index');

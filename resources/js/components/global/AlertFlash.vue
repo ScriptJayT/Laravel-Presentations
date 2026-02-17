@@ -4,17 +4,28 @@ import { computed } from 'vue';
 import { AlertCircle } from 'lucide-vue-next';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
-const flash = computed(() => usePage().props.flash);
-console.log(flash);
-console.log(flash.value);
+type Flash = {
+    success?: string,
+    error?: string,
+    info?: string,
+}
+const flash = computed(() => usePage().props.flash).value as Flash;
+const anyMessage = flash.info || flash.error || flash.success;
+const message = [flash.info, flash.error, flash.success].join("\n");
 </script>
 
 <template>
-    <Alert class="fixed z-100 right-0 top-5 w-fit border-2" v-if="flash">
+    <Alert
+        v-if="anyMessage"
+        class="
+            fixed z-100 right-0 top-5
+            w-fit border-2
+            "
+    >
         <AlertCircle class="size-4" />
         <AlertTitle class="min-w-[10ch]"> Hello </AlertTitle>
-        <AlertDescription>
-           Test
+        <AlertDescription class="capitalize">
+           {{message}}
         </AlertDescription>
     </Alert>
 </template>
