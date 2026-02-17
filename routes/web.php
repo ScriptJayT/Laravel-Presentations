@@ -40,11 +40,12 @@ Route::prefix('dashboard')
             });
 
         Route::resource('scripts', AdminPresentationScriptController::class)
-            ->except(['show'])
+            ->except(['show', 'create'])
             ->names([
                 'index' => 'admin_script_index',
                 'edit' => 'admin_scripts',
                 'destroy' => 'admin_script.destroy',
+                'store' => 'admin_script.store',
             ])
             ->missing(fn () => Redirect::route('admin_script_index'));
     });
