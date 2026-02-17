@@ -13,10 +13,12 @@ Goal: build a backend interface to create a presentation using markdown
 - Laravel: https://laravel.com/docs/12.x
     - md parser: https://commonmark.thephpleague.com/2.x/basic-usage/
     - testing: https://docs.phpunit.de/en/
-    - select columns in eager loaded models: https://stackoverflow.com/questions/32727060/select-specific-columns-from-eloquent-relations
 
 ### Help-out
 
+- Laravel:
+    - select columns in eager loaded models: https://stackoverflow.com/questions/32727060/select-specific-columns-from-eloquent-relations
+    - append attributes (readable by vue): https://5balloons.info/how-to-append-new-attributes-to-eloquent-model/
 - "new" CSS:
     - stylable select: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select
 - redirect "back" on login
