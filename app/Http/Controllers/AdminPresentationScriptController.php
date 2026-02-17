@@ -54,8 +54,8 @@ class AdminPresentationScriptController extends Controller
     public function update(Request $request, PresentationScript $script)
     {
         $validated = validator($request->all(), [
-            'title' => 'required',
-            'content' => 'required',
+            'title' => 'required|min:2',
+            'content' => '',
         ]);
         dd($validated->validated());
         dd($script);

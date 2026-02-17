@@ -84,12 +84,13 @@ const breadcrumbs: BreadcrumbItem[] = [
             <div class="order-1 space-y-20">
                 <Form
                     id="update-script-form"
-                    class="h-full flex flex-col gap-6 max-w-[90ch] mx-auto"
+                    class="h-full grid gap-6 max-w-[90ch] mx-auto"
                     v-bind="update.form(script.id)"
+                    v-slot="{ errors, processing }"
                 >
                     <FormField
                         id="script-title" label="Title:"
-                        class="p-4 border-2 rounded-md"
+                        :error="errors.title"
                     >
                         <input
                             id="script-title" name="title"
@@ -98,17 +99,18 @@ const breadcrumbs: BreadcrumbItem[] = [
                         />
                     </FormField>
 
-                    <textarea
-                        name="content"
-                        class="
-                            grow
-                            resize-none
-                            p-4
-                            border-2 rounded-md
-                            outline-offset-4
-                            "
-                        :value="script.content.trim()"
-                    />
+                    <FormField :error="errors.content">
+                        <textarea
+                            aria-label="Content"
+                            name="content"
+                            class="
+                                resize-none
+                                outline-none
+                                min-h-[10lh]
+                                "
+                            :value="script.content.trim()"
+                        />
+                    </FormField>
                 </Form>
             </div>
         </Container>
@@ -143,6 +145,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 </template>
 
 <style>
+    #update-script-form {
+        grid-template-rows: auto 1fr;
+    }
+
     .info-field {
         grid-template-columns: 1fr auto;
     }
