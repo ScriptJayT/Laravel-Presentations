@@ -21,7 +21,7 @@ defineProps<{
                 "
         >
             <template v-if="id && label">
-                <label class="cursor-pointer select-none" :for="id"> {{ label }} </label>
+                <label class="cursor-pointer select-none font-semibold italic" :for="id"> {{ label }} </label>
             </template>
             <slot/>
         </field>

@@ -30,7 +30,22 @@ class AdminPresentationScriptController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = validator($request->all(), [
+            'title' => 'required|min:5|unique:presentation_scripts,title',
+            'goto' => '',
+        ])->validated();
+        $script = PresentationScript::create([
+            'title' => e($validated['title']),
+            'content' => '',
+        ]);
+
+        if ($validated['goto'] === 'on') {
+            session()->flash('info', 'new script created');
+
+            return Redirect::route('admin_scripts', $script->id);
+        }
+
+        return Redirect::back();
     }
 
     /**

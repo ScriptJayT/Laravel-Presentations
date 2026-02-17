@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import IndexLink from '@/components/dashboard/models/IndexLink.vue';
 import { Plus } from 'lucide-vue-next';
+import ActionModal from '../ActionModal.vue';
 
 const props = defineProps<{
     title: string;
@@ -19,8 +20,13 @@ const props = defineProps<{
                 outline-offset-8
                 "
             :title="`Create a New ${title}`"
+            command="show-modal"
+            :commandfor="`newlink-modal-for-${title.toLowerCase()}`"
         >
             <Plus class="size-[15cqw] opacity-15"/>
         </button>
     </IndexLink>
+    <ActionModal :id="`newlink-modal-for-${title.toLowerCase()}`" class="min-w-[30vw] max-w-4xl">
+        <slot/>
+    </ActionModal>
 </template>
