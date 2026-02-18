@@ -19,6 +19,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import Container from '@/components/dashboard/Container.vue';
 import ActionModal from '@/components/dashboard/ActionModal.vue';
 import FormField from '@/components/global/form/FormField.vue';
+import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 
 const props = defineProps<{
     script: PresentationScript;
@@ -75,18 +76,7 @@ function flashMsg(_e: unknown) {
                         <span> Danger zone </span>
                     </h3>
 
-                    <button
-                        command="show-modal"
-                        commandfor="destroy-script-dialog"
-                        class="
-                            cursor-pointer select-none
-                            flex items-center justify-between gap-1
-                            w-full
-                            "
-                    >
-                        <span> Delete </span>
-                        <Trash class="size-4"/>
-                    </button>
+                    <DestroyFormModal id="presentation-script" :route="destroy.form(script.id)"/>
                 </div>
             </div>
             <div class="order-1 space-y-20">
@@ -134,33 +124,6 @@ function flashMsg(_e: unknown) {
             </div>
         </Container>
     </AppLayout>
-
-    <ActionModal id="destroy-script-dialog">
-        <p class="my-5">
-            Are you sure you want to delete this script? This is irreversible.
-            <br>
-            Any presentations using this script will lose that connection.
-        </p>
-        <Form
-            v-bind="destroy.form(script.id)"
-            v-slot="{ processing }"
-        >
-            <button
-                class="
-                    cursor-pointer select-none
-                    flex items-center gap-1
-                    w-fit
-                    px-2 py-1 mx-auto
-                    border border-red-900 rounded-md
-                    outline-offset-8
-                    "
-            >
-                <span> Yes, delete this script </span>
-                <Trash class="size-4"/>
-            </button>
-            <Spinner v-if="processing" />
-        </Form>
-    </ActionModal>
 </template>
 
 <style>
