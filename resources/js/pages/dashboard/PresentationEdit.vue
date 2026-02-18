@@ -7,8 +7,9 @@ import {
 } from '@/types';
 
 import { admin_presentation_index } from '@/routes';
+import { destroy, update } from '@/routes/admin_presentation';
 
-import { Trash, OctagonAlert } from 'lucide-vue-next';
+import { OctagonAlert, Save } from 'lucide-vue-next';
 import { Head, Form } from '@inertiajs/vue3';
 
 import Container from '@/components/dashboard/Container.vue';
@@ -18,6 +19,7 @@ import EditSlides from '@/components/dashboard/sections/EditSlides.vue';
 import PresentationInfo from '@/components/dashboard/sections/PresentationInfo.vue';
 import EditScript from '@/components/dashboard/sections/EditScript.vue';
 import FormField from '@/components/global/form/FormField.vue';
+import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 
 const props = defineProps<{
     presentation: Presentation;
@@ -45,6 +47,15 @@ const breadcrumbs: BreadcrumbItem[] = [
         >
             <div class="order-2 flex flex-col gap-10">
                 <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
+                    <button
+                        form="update-presentation-form"
+                        class="cursor-pointer select-none w-full flex items-center justify-between gap-1"
+                    >
+                        <span> Save </span>
+                        <Save class="size-4"/>
+                    </button>
+                </div>
+                <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
                     <h3 class="sr-only"> Info </h3>
                     <PresentationInfo :presentation />
                 </div>
@@ -53,14 +64,19 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <OctagonAlert class="size-5"/>
                         <span> Danger zone </span>
                     </h3>
-                    <button class="cursor-pointer select-none w-full flex items-center justify-between gap-1">
-                        <span> Delete </span>
-                        <Trash class="size-4"/>
-                    </button>
+                    <DestroyFormModal id="presentation" :route="destroy.form(presentation.id)" />
                 </div>
             </div>
             <div class="order-1 space-y-20">
-                <Form class="space-y-10">
+                <Form
+                    id="update-presentation-form"
+                    class="space-y-10"
+                    v-bind="update.form(presentation.id)"
+                    :reset-on-error="false"
+                    :reset-on-success="false"
+                    disable-while-processing
+                    v-slot="{ errors, processing, isDirty }"
+                >
                     <fieldset class="grid grid-cols-2 gap-x-15 gap-y-5">
                         <legend class="block font-semibold text-lg mb-5"> Meta </legend>
                         <FormField label="Title:" id="presentation-title">

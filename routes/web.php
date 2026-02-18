@@ -29,15 +29,16 @@ Route::prefix('dashboard')
         Route::get('/', fn () => Redirect::route('admin_presentation_index'))
             ->name('dashboard');
 
-        Route::controller(AdminPresentationController::class)
-            ->group(function () {
-                Route::get('/presentations', 'index')
-                    ->name('admin_presentation_index');
-                Route::get('/presentations/{id}', 'edit')
-                    ->whereNumber('id')
-                    ->name('admin_presentations')
-                    ->missing(fn () => Redirect::route('admin_presentation_index'));
-            });
+        Route::resource('presentations', AdminPresentationController::class)
+            ->except(['show', 'create'])
+            ->names([
+                'index' => 'admin_presentation_index',
+                'edit' => 'admin_presentations',
+                'destroy' => 'admin_presentation.destroy',
+                'store' => 'admin_presentation.store',
+                'update' => 'admin_presentation.update',
+            ])
+            ->missing(fn () => Redirect::route('admin_presentation_index'));
 
         Route::resource('scripts', AdminPresentationScriptController::class)
             ->except(['show', 'create'])
