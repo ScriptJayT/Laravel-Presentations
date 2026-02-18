@@ -20,6 +20,9 @@ import Container from '@/components/dashboard/Container.vue';
 import ActionModal from '@/components/dashboard/ActionModal.vue';
 import FormField from '@/components/global/form/FormField.vue';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
+import DangerZone from '@/components/dashboard/sections/DangerZone.vue';
+import SaveZone from '@/components/dashboard/sections/SaveZone.vue';
+import AsideZone from '@/components/dashboard/sections/AsideZone.vue';
 
 const props = defineProps<{
     script: PresentationScript;
@@ -37,13 +40,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `Script: #${props.script.id}`,
     }
 ];
-
-const emit = defineEmits(['flash']);
-
-function flashMsg(_e: unknown) {
-    if(!_e || typeof _e !== 'object' ) return;
-    // emit('flash', _e.props.flash);
-}
 </script>
 
 <template>
@@ -55,29 +51,15 @@ function flashMsg(_e: unknown) {
             class="info-field grid gap-6"
         >
             <div class="order-2 flex flex-col gap-10">
-                <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
-                    <button
-                        form="update-script-form"
-                        class="cursor-pointer select-none w-full flex items-center justify-between gap-1"
-                    >
-                        <span> Save & Quit </span>
-                        <Save class="size-4"/>
-                    </button>
-                </div>
-                <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
-                    <h3 class="sr-only"> Info </h3>
+                <SaveZone form-id="update-script-form"/>
+                <AsideZone title="Info" :hidden-title="true">
                     <span class="block">
                         Last edit: {{ script.updated_at }}
                     </span>
-                </div>
-                <div class="space-y-3 p-4 border rounded-xl border-red-900">
-                    <h3 class="flex items-center gap-3 text-lg font-semibold text-red-900">
-                        <OctagonAlert class="size-5"/>
-                        <span> Danger zone </span>
-                    </h3>
-
+                </AsideZone>
+                <DangerZone>
                     <DestroyFormModal id="presentation-script" :route="destroy.form(script.id)"/>
-                </div>
+                </DangerZone>
             </div>
             <div class="order-1 space-y-20">
                 <Form
@@ -87,7 +69,6 @@ function flashMsg(_e: unknown) {
                         max-w-[90ch] h-full
                         mx-auto inert:opacity-50
                         "
-                    @success="flashMsg"
                     v-bind="update.form(script.id)"
                     :reset-on-error="false"
                     :reset-on-success="false"
