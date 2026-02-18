@@ -9,7 +9,6 @@ import {
 import { admin_presentation_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_presentation';
 
-import { OctagonAlert, Save } from 'lucide-vue-next';
 import { Head, Form } from '@inertiajs/vue3';
 
 import Container from '@/components/dashboard/Container.vue';
@@ -20,6 +19,9 @@ import PresentationInfo from '@/components/dashboard/sections/PresentationInfo.v
 import EditScript from '@/components/dashboard/sections/EditScript.vue';
 import FormField from '@/components/global/form/FormField.vue';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
+import DangerZone from '@/components/dashboard/sections/DangerZone.vue';
+import SaveZone from '@/components/dashboard/sections/SaveZone.vue';
+import AsideZone from '@/components/dashboard/sections/AsideZone.vue';
 
 const props = defineProps<{
     presentation: Presentation;
@@ -46,40 +48,28 @@ const breadcrumbs: BreadcrumbItem[] = [
             class="info-field grid gap-6"
         >
             <div class="order-2 flex flex-col gap-10">
-                <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
-                    <button
-                        form="update-presentation-form"
-                        class="cursor-pointer select-none w-full flex items-center justify-between gap-1"
-                    >
-                        <span> Save </span>
-                        <Save class="size-4"/>
-                    </button>
-                </div>
-                <div class="max-w-full w-3xs space-y-3 p-4 border rounded-xl">
-                    <h3 class="sr-only"> Info </h3>
+                <SaveZone form-id="update-presentation-form" />
+                <AsideZone title="Info" :hidden-title="true">
                     <PresentationInfo :presentation />
-                </div>
-                <div class="space-y-3 p-4 border rounded-xl border-red-900">
-                    <h3 class="flex items-center gap-3 text-lg font-semibold text-red-900">
-                        <OctagonAlert class="size-5"/>
-                        <span> Danger zone </span>
-                    </h3>
+                </AsideZone>
+                <DangerZone>
                     <DestroyFormModal id="presentation" :route="destroy.form(presentation.id)" />
-                </div>
+                </DangerZone>
             </div>
             <div class="order-1 space-y-20">
+                <h3 class="sr-only"> Presentation </h3>
                 <Form
                     id="update-presentation-form"
-                    class="space-y-10"
+                    class="grid grid-cols-2 gap-x-10"
                     v-bind="update.form(presentation.id)"
                     :reset-on-error="false"
                     :reset-on-success="false"
                     disable-while-processing
                     v-slot="{ errors, processing, isDirty }"
                 >
-                    <fieldset class="grid grid-cols-2 gap-x-15 gap-y-5">
+                    <fieldset class="space-y-5">
                         <legend class="block font-semibold text-lg mb-5"> Meta </legend>
-                        <FormField label="Title:" id="presentation-title">
+                        <FormField :error="errors.title" label="Title:" id="presentation-title">
                             <input
                                 name="title" id="presentation-title"
                                 type="text" :value="presentation.title"
@@ -89,7 +79,17 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     "
                             >
                         </FormField>
-                        <FormField label="Visibility:" id="visibility-rule">
+                        <FormField :error="errors.slug" label="Slug:" id="presentation-slug">
+                            <input
+                                name="slug" id="presentation-slug"
+                                type="text" :value="presentation.slug"
+                                class="
+                                    grow px-2
+                                    border-transparent outline-none
+                                    "
+                            >
+                        </FormField>
+                        <FormField :error="errors.visibility" label="Visibility:" id="visibility-rule">
                             <select
                                 name="visibility" id="visibility-rule"
                                 :value="presentation.presentation_visibility.title"
@@ -109,18 +109,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </template>
                             </select>
                         </FormField>
-                        <FormField label="Slug:" id="presentation-slug">
-                            <input
-                                name="slug" id="presentation-slug"
-                                type="text" :value="presentation.slug"
-                                class="
-                                    grow px-2
-                                    border-transparent outline-none
-                                    "
-                            >
-                        </FormField>
                     </fieldset>
-                    <fieldset class="grid grid-cols-2 items-start gap-x-15">
+                    <fieldset class="space-y-5">
                         <legend class="block font-semibold text-lg mb-5"> Script </legend>
                         <EditScript :scripts :current-script="presentation.presentation_script"/>
                     </fieldset>
