@@ -4,7 +4,7 @@ import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
 const props = defineProps<{
     title: string;
-    semanticTitle?: boolean;
+    unsemanticTitle?: boolean;
     link?: RouteDefinition<'get'>;
     lastEdit?: string;
 }>();
@@ -20,7 +20,7 @@ const props = defineProps<{
             p-4 border border-transparent rounded-xl
             "
     >
-        <template v-if="semanticTitle">
+        <template v-if="unsemanticTitle">
             <span class="model-entry--title | text-lg font-semibold" aria-hidden="true">
                 {{ title }}
             </span>

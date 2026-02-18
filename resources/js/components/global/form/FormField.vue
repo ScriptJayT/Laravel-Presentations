@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-    <div :class>
+    <div :class data-component="global/form/FormField">
         <InputError :message="error" class="mb-2" />
         <field
             class="

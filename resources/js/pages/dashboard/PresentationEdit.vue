@@ -12,12 +12,14 @@ import {
     presentations,
 } from '@/routes';
 
-import { ExternalLink, Trash, OctagonAlert, Plus } from 'lucide-vue-next';
+import { ExternalLink, Trash, OctagonAlert } from 'lucide-vue-next';
 import { Head } from '@inertiajs/vue3';
 
 import Container from '@/components/dashboard/Container.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
-import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+import FormField from '@/components/global/form/FormField.vue';
+
+import EditSlides from '@/components/dashboard/sections/EditSlides.vue';
 
 const props = defineProps<{
     presentation: Presentation;
@@ -108,84 +110,49 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </div>
             </div>
             <div class="order-1 space-y-20">
-                <div class="space-y-5">
-                    <template v-if="presentation.presentation_script">
-                        <h3 class="text-lg font-semibold">
-                            Script: {{ presentation.presentation_script.title }}
-                        </h3>
-                        <a class="block" :href="admin_scripts(presentation.presentation_script.id).url">
-                            Go to script
-                        </a>
-                    </template>
-                    <template v-else>
-                        <h3 class="text-lg font-semibold">
-                            Script
-                        </h3>
-                    </template>
+                <fieldset class="grid grid-cols-2 items-start gap-x-15">
+                    <legend class="block font-semibold text-lg mb-5 ">Script</legend>
 
-                    <fieldset class="grid grid-cols-2">
-                        <field class="space-y-2">
-                            <label class="block" for="select-script"> Choose one from existing: </label>
-                            <select
-                                name="script" id="select-script"
-                                class="
-                                    cursor-pointer
-                                    block w-full max-w-50
-                                    px-2 border
-                                    "
-                            >
-                                <button> <selectedcontent></selectedcontent> </button>
-                                <template v-for="_script in scripts">
-                                    <option class="px-2" :value="_script.id">
-                                        <span>
-                                            {{ _script.title }}
-                                        </span>
-                                        <span>
-                                            {{ _script.id }}
-                                        </span>
-                                    </option>
-                                </template>
-                            </select>
-                        </field>
-                        <a class="flex gap-1" target="_blank" :href="admin_script_index().url">
-                            <span> Go create a new one </span>
-                            <ExternalLink class="size-4"/>
-                        </a>
-                    </fieldset>
-                </div>
-                <div class="space-y-5">
-                    <h3 class="text-lg font-semibold"> Slides </h3>
-                    <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                        <div
+                    <FormField label="Current Script:" id="select-script" >
+                        <select
+                            :value="presentation.presentation_script.id"
+                            name="script" id="select-script"
                             class="
-                                ct-inline-size
-                                relative isolate
-                                flex flex-col
-                                aspect-video
-                                p-4 border border-transparent rounded-xl
+                                cursor-pointer
+                                block grow
+                                px-2 border
                                 "
                         >
-                            <span class="font-semibold" aria-hidden="true"> New Slide </span>
-                            <button
-                                class="
-                                    cursor-pointer
-                                    absolute inset-0
-                                    border rounded-xl
-                                    grid place-content-center
-                                    "
-                                title="Create a New Presentation"
-                            >
-                                <Plus class="size-[15cqw] opacity-15"/>
-                            </button>
-                            <PlaceholderPattern :interactable="false"/>
-                        </div>
-                        <template v-for="_slide in presentation.slides">
-                            <div class="relative isolate | aspect-video | p-4 | border rounded-xl">
-                                <h4 class="font-semibold"> {{ _slide.id }} </h4>
-                                <PlaceholderPattern :interactable="false" />
-                            </div>
+                            <button> <selectedcontent></selectedcontent> </button>
+                            <option value="" class="italic"> * None linked * </option>
+                            <template v-for="_script in scripts">
+                                <option class="px-2" :value="_script.id">
+                                    <span>
+                                        {{ _script.title }}
+                                    </span>
+                                    <span>
+                                        #{{ _script.id }}
+                                    </span>
+                                </option>
+                            </template>
+                        </select>
+                    </FormField>
+                    <div class="space-y-3">
+                        <template v-if="presentation.presentation_script">
+                            <a class="flex gap-1" target="_blank" :href="admin_scripts(presentation.presentation_script.id).url">
+                                <span> Go to script: {{ presentation.presentation_script.title }} </span>
+                                <ExternalLink class="size-4"/>
+                            </a>
                         </template>
+                        <a class="flex gap-1" target="_blank" :href="admin_script_index().url">
+                            <span> Create a new script </span>
+                            <ExternalLink class="size-4"/>
+                        </a>
                     </div>
+                </fieldset>
+                <div class="space-y-5">
+                    <h3 class="text-lg font-semibold"> Slides </h3>
+                    <EditSlides :slides="presentation.slides"/>
                 </div>
             </div>
         </Container>
