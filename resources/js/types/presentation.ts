@@ -21,6 +21,7 @@ export type PresentationSlide = {
     presentation_theme: PresentationTheme,
 } & Model;
 export type Presentation = {
+    id: number,
     user: User,
     title: string,
     slug: string,
