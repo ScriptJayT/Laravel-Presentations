@@ -56,8 +56,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <DestroyFormModal id="presentation" :route="destroy.form(presentation.id)" />
                 </DangerZone>
             </div>
-            <div class="order-1 space-y-20">
+            <div class="order-1 relative isolate space-y-20">
                 <h3 class="sr-only"> Presentation </h3>
+
                 <Form
                     id="update-presentation-form"
                     class="grid grid-cols-2 gap-x-10"
@@ -67,6 +68,18 @@ const breadcrumbs: BreadcrumbItem[] = [
                     disable-while-processing
                     v-slot="{ errors, processing, isDirty }"
                 >
+                    <span
+                        v-show="isDirty" aria-live="polite"
+                        class="
+                            absolute right-0
+                            p-2
+                            border border-orange-400 rounded-md
+                            bg-background
+                            "
+                    >
+                        Unsaved Changes
+                    </span>
+
                     <fieldset class="space-y-5">
                         <legend class="block font-semibold text-lg mb-5"> Meta </legend>
                         <FormField :error="errors.title" label="Title:" id="presentation-title">
