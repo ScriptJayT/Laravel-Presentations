@@ -48,7 +48,5 @@ span {
     inset: unset;
     position-area: center left;
     margin-inline: 1ch;
-    /* bottom: anchor(top); */
-    /* left: anchor(right); */
 }
 </style>
