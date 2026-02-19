@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { OctagonAlert } from 'lucide-vue-next';
+
 defineProps<{
     hasUnsavedChanges: boolean;
     class?:string;
@@ -11,12 +13,13 @@ defineProps<{
         aria-live="polite"
         :class
         class="
-            block w-max p-2
+            flex gap-1 items-center w-max p-2
             border border-orange-400 rounded-md
             text-sm
-            bg-background
+            bg-background animate-pulse
             "
     >
-        Unsaved Changes
+        <OctagonAlert class="size-4 text-orange-400"/>
+        <span> Unsaved Changes </span>
     </span>
 </template>

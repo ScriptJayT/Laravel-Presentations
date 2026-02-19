@@ -77,9 +77,7 @@ class AdminPresentationScriptController extends Controller
         $script->content = e($validated['content']);
         $script->save();
 
-        session()->flash('info', 'edits saved');
-
-        return Redirect::route('admin_script_index');
+        return Redirect::back();
     }
 
     /**

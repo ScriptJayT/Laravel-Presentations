@@ -54,6 +54,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         max-w-[90ch] h-fit
                         mx-auto inert:opacity-50
                         "
+
                     :send-to="update.form(script.id)"
                     v-slot="{ errors }"
                 >
