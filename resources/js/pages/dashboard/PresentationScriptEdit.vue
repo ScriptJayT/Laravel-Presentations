@@ -10,7 +10,7 @@ import { FormField, UnsavedChanges, ProcessIndicator } from '@/components/global
 import { AsideZone, SaveZone, DangerZone } from '@/components/dashboard/sections';
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import Container from '@/components/dashboard/Container.vue';
+import SideZoneContainer from '@/components/dashboard/SideZoneContainer.vue';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 
 const props = defineProps<{
@@ -35,11 +35,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="Dashboard" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Container
-            :title="script.title"
-            class="info-field relative grid gap-6"
-        >
-            <div class="order-2 flex flex-col gap-10">
+        <SideZoneContainer :title="script.title" >
+            <template v-slot:sidezone>
                 <SaveZone form-id="update-script-form"/>
                 <AsideZone title="Info" :hidden-title="true">
                     <span class="block">
@@ -47,10 +44,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </span>
                 </AsideZone>
                 <DangerZone>
-                    <DestroyFormModal id="presentation-script" :route="destroy.form(script.id)"/>
+                    <DestroyFormModal
+                        id="presentation-script"
+                        :route="destroy.form(script.id)"
+                    />
                 </DangerZone>
-            </div>
-            <div class="order-1 space-y-20">
+            </template>
+            <template v-slot:mainzone>
                 <Form
                     id="update-script-form"
                     class="
@@ -92,16 +92,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                         />
                     </FormField>
                 </Form>
-            </div>
-        </Container>
+            </template>
+        </SideZoneContainer>
     </AppLayout>
 </template>
-
-<style>
-    .info-field {
-        grid-template-columns: 1fr auto;
-    }
-</style>
 
 <style scoped>
     .hidden-input {

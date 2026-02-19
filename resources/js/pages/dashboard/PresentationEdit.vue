@@ -21,6 +21,7 @@ import {
     EditScript, EditSlides
 } from '@/components/dashboard/sections';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
+import SideZoneContainer from '@/components/dashboard/SideZoneContainer.vue';
 
 const props = defineProps<{
     presentation: Presentation;
@@ -42,11 +43,11 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="Dashboard" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Container
+        <SideZoneContainer
             :title="presentation.title"
-            class="info-field relative grid gap-6"
+            main-class="space-y-20"
         >
-            <div class="order-2 flex flex-col gap-10">
+            <template v-slot:sidezone>
                 <SaveZone form-id="update-presentation-form" />
                 <AsideZone title="Info" :hidden-title="true">
                     <PresentationInfo :presentation />
@@ -54,10 +55,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <DangerZone>
                     <DestroyFormModal id="presentation" :route="destroy.form(presentation.id)" />
                 </DangerZone>
-            </div>
-            <div class="order-1 space-y-20">
+            </template>
+            <template v-slot:mainzone>
                 <h3 class="sr-only"> Presentation </h3>
-
                 <Form
                     id="update-presentation-form"
                     class="grid grid-cols-2 gap-x-10"
@@ -134,8 +134,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <h3 class="text-lg font-semibold"> Slides </h3>
                     <EditSlides :slides="presentation.slides"/>
                 </div>
-            </div>
-        </Container>
+            </template>
+        </SideZoneContainer>
     </AppLayout>
 </template>
 

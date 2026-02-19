@@ -14,8 +14,8 @@ const classList = props.class ?? "";
         data-component="dashboard/Container"
         :data-id="id"
         class="
+            ct-inline-size | relative isolate
             grow flex flex-col
-            ct-inline-size |
             px-6 md:px-4 dark:px-8 dark:md:px-6
             py-6
             rounded-xl
