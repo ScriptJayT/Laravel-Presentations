@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import InputError from '@/components/InputError.vue';
+import InputError from '@/components/global/form/InputError.vue';
+import FieldInfo from './FieldInfo.vue';
 
 defineProps<{
     id?: string;
@@ -25,5 +26,6 @@ defineProps<{
             </template>
             <slot/>
         </field>
+        <FieldInfo />
     </div>
 </template>
