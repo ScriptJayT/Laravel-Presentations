@@ -18,12 +18,14 @@ const message = [flash.info, flash.error, flash.success].join("\n");
     <Alert
         v-show="anyMessage"
         class="
-            fixed z-100 right-0 top-5
+            cursor-default
+            fixed z-100 right-0 top-6
             w-fit border-2
+            motion-safe:animate-flash hover:paused
             "
     >
         <AlertCircle class="size-4" />
-        <AlertTitle class="min-w-[10ch]"> Hello </AlertTitle>
+        <AlertTitle class="min-w-[10ch]"> Server Bot: </AlertTitle>
         <AlertDescription class="capitalize">
            {{message}}
         </AlertDescription>

@@ -7,9 +7,30 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+    --animate-slide-in: --slide-in 350ms ease-in-out forwards;
+    --animate-slide-out: --slide-out 200ms ease-in-out forwards;
+    --animate-flash:
+        --slide-in 350ms ease-in-out forwards,
+        --slide-out 200ms ease-in-out 7s forwards;
+
+    @keyframes --slide-in {
+        0% { translate: 100% 0; }
+        100% { translate: 0 0; }
+    }
+    @keyframes --slide-out {
+        0% { translate: 0 0; }
+        90% { translate: 100% 0; }
+        100% {
+            translate: 100% 0;
+            display: none;
+        }
+    }
+}
+
 @theme inline {
     --font-sans:
-        Instrument Sans, ui-sans-serif, system-ui, sans-serif,
+        ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
 
@@ -83,7 +104,7 @@
     body,
     html {
         --font-sans:
-            'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+            ui-sans-serif, system-ui, sans-serif,
             'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
             'Noto Color Emoji';
     }
