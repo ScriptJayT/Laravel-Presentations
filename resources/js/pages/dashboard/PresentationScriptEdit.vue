@@ -4,9 +4,9 @@ import { type PresentationScript, type BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_script_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
 
-import { Head, Form } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 
-import { FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
+import { Form, FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
 import { AsideZone, SaveZone, DangerZone } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
 
@@ -58,17 +58,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                         max-w-[90ch] h-fit
                         mx-auto inert:opacity-50
                         "
-                    v-bind="update.form(script.id)"
-                    :reset-on-error="false"
-                    :reset-on-success="false"
-                    disable-while-processing
-                    v-slot="{ errors, processing, isDirty }"
+                    :send-to="update.form(script.id)"
+                    v-slot="{ errors }"
                 >
-                    <div class="absolute bottom-full right-0 m-0">
-                        <ProcessIndicator :is-in-process="processing" />
-                        <UnsavedChanges :has-unsaved-changes="isDirty && !processing"/>
-                    </div>
-
                     <FormField
                         id="script-title" label="Title:"
                         :error="errors.title"

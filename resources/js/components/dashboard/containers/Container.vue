@@ -21,9 +21,7 @@ const classList = props.class ?? "";
             rounded-xl
             "
     >
-        <template v-if="title">
-            <Heading :title/>
-        </template>
+        <Heading :title="title ?? ''"/>
         <div :class="classList" class="grow">
             <slot />
         </div>

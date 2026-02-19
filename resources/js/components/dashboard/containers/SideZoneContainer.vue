@@ -11,7 +11,7 @@ defineProps<{
     <Container :title>
         <div
             data-component="dashboard/SideZoneContainer"
-            class="field | grid gap-12"
+            class="field | relative grid gap-12"
         >
             <div class="order-2 space-y-6" :class="sideClass">
                 <slot name="sidezone" />
