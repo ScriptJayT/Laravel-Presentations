@@ -8,11 +8,12 @@ import FormField from '@/components/global/form/FormField.vue';
 const props = defineProps<{
     scripts: PresentationScript[];
     currentScript?: PresentationScript;
+    error?: string;
 }>();
 </script>
 
 <template>
-    <FormField label="Current Script:" id="select-script" >
+    <FormField label="Current Script:" id="select-script" :error>
         <select
             :value="currentScript?.id"
             name="script" id="select-script"

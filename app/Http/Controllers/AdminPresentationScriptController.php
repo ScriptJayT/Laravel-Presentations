@@ -72,7 +72,6 @@ class AdminPresentationScriptController extends Controller
             'title' => 'required|min:2',
             'content' => '',
         ])->validated();
-
         $script->title = e($validated['title']);
         $script->content = e($validated['content']);
         $script->save();

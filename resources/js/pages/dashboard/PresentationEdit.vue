@@ -34,6 +34,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `Presentation: #${props.presentation.id}`,
     }
 ];
+console.log(props.rules[0]);
 </script>
 
 <template>
@@ -96,7 +97,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         >
                             <select
                                 name="visibility" id="visibility-rule"
-                                :value="presentation.presentation_visibility.title"
+                                :value="presentation.presentation_visibility.id"
                                 class="
                                     grow cursor-pointer
                                     px-2 border-transparent outline-none
@@ -105,7 +106,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <button> <selectedcontent></selectedcontent> </button>
                                 <template v-for="_rule in rules">
                                     <option
-                                        :value="_rule.title"
+                                        :value="_rule.id"
                                         class="px-2"
                                     >
                                         {{ _rule.name }}
@@ -116,7 +117,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </fieldset>
                     <fieldset class="space-y-5">
                         <legend class="block font-semibold text-lg mb-5"> Script </legend>
-                        <EditScript :scripts :current-script="presentation.presentation_script"/>
+                        <EditScript
+                            :scripts
+                            :current-script="presentation.presentation_script"
+                            :error="errors.script"
+                        />
                     </fieldset>
                 </Form>
                 <div class="space-y-5">

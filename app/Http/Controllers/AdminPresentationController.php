@@ -6,6 +6,8 @@ use App\Models\Presentation;
 use App\Models\PresentationScript;
 use App\Models\PresentationVisibility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response as IResponse;
 
@@ -27,7 +29,7 @@ class AdminPresentationController extends Controller
     public function edit(string $_presId): IResponse
     {
         $presentation = Presentation::where('id', $_presId)->with('slides')->first();
-        $rules = PresentationVisibility::all(['title', 'name'])->all();
+        $rules = PresentationVisibility::all(['id', 'name'])->all();
         $scripts = PresentationScript::all(['id', 'title'])->all();
 
         return Inertia::render('dashboard/PresentationEdit', [
@@ -57,7 +59,34 @@ class AdminPresentationController extends Controller
      */
     public function update(Request $request, Presentation $presentation)
     {
-        dd($presentation);
+        $validated = validator($request->all(), [
+            'title' => 'required|min:2',
+            'slug' => 'required|min:2',
+            'visibility' => 'required|exists:presentation_visibilities,id',
+            'script' => '',
+        ])->validated();
+
+        $slug = Str::slug($validated['slug']);
+        $validated['slug'] = $slug;
+        if ($presentation->slug !== $slug) {
+            validator(['slug' => $slug], [
+                'slug' => 'unique:presentations,slug',
+            ])->validated();
+        }
+        $script = $validated['script'];
+        if (! is_null($script)) {
+            validator(['script' => $script], [
+                'script' => 'exists:presentation_scripts,id',
+            ])->validated();
+        }
+
+        $presentation->title = e($validated['title']);
+        $presentation->slug = $validated['slug'];
+        $presentation->presentation_script_id = $validated['script'];
+        $presentation->presentation_visibility_id = $validated['visibility'];
+        $presentation->save();
+
+        return Redirect::back();
     }
 
     /**
