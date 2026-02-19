@@ -11,8 +11,9 @@ defineProps<{
         aria-live="polite"
         :class
         class="
-            w-max p-2
+            block w-max p-2
             border border-orange-400 rounded-md
+            text-sm
             bg-background
             "
     >

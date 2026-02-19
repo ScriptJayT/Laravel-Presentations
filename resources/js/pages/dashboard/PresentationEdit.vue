@@ -20,7 +20,6 @@ import {
     PresentationInfo,
     EditScript, EditSlides
 } from '@/components/dashboard/sections';
-
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 
 const props = defineProps<{
@@ -45,7 +44,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <Container
             :title="presentation.title"
-            class="info-field grid gap-6"
+            class="info-field relative grid gap-6"
         >
             <div class="order-2 flex flex-col gap-10">
                 <SaveZone form-id="update-presentation-form" />
@@ -56,7 +55,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <DestroyFormModal id="presentation" :route="destroy.form(presentation.id)" />
                 </DangerZone>
             </div>
-            <div class="order-1 relative isolate space-y-20">
+            <div class="order-1 space-y-20">
                 <h3 class="sr-only"> Presentation </h3>
 
                 <Form
@@ -68,7 +67,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     disable-while-processing
                     v-slot="{ errors, processing, isDirty }"
                 >
-                    <div class="absolute bottom-full">
+                    <div class="absolute bottom-full right-0 m-0">
                         <ProcessIndicator :is-in-process="processing"/>
                         <UnsavedChanges :has-unsaved-changes="isDirty"/>
                     </div>

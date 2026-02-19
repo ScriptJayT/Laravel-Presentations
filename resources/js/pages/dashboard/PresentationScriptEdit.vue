@@ -37,7 +37,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <Container
             :title="script.title"
-            class="info-field grid gap-6"
+            class="info-field relative grid gap-6"
         >
             <div class="order-2 flex flex-col gap-10">
                 <SaveZone form-id="update-script-form"/>
@@ -64,9 +64,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                     disable-while-processing
                     v-slot="{ errors, processing, isDirty }"
                 >
-                    <div>
+                    <div class="absolute bottom-full right-0 m-0">
                         <ProcessIndicator :is-in-process="processing" />
-                        <UnsavedChanges :has-unsaved-changes="isDirty"/>
+                        <UnsavedChanges :has-unsaved-changes="isDirty && !processing"/>
                     </div>
 
                     <FormField
