@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import {
-    type PresentationScript,
-    type BreadcrumbItem,
-} from '@/types';
+import { type PresentationScript, type BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_scripts } from '@/routes';
-import { Head } from '@inertiajs/vue3';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Container } from '@/components/dashboard/containers';
@@ -27,9 +23,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 
 <template>
-    <Head title="Dashboard" />
-
-    <AppLayout :breadcrumbs="breadcrumbs">
+    <AppLayout meta-title="Scripts" :breadcrumbs="breadcrumbs">
         <Container
             title="Scripting stuff"
             id="script-index"

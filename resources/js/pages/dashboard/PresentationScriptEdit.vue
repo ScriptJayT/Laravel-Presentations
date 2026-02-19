@@ -4,8 +4,6 @@ import { type PresentationScript, type BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_script_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
 
-import { Head } from '@inertiajs/vue3';
-
 import { Form, FormField } from '@/components/global/form'
 import { AsideZone, SaveZone, DangerZone } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
@@ -32,9 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 
 <template>
-    <Head title="Dashboard" />
-
-    <AppLayout :breadcrumbs="breadcrumbs">
+    <AppLayout meta-title="Edit Script" :breadcrumbs="breadcrumbs">
         <SideZoneContainer :title="script.title" >
             <template v-slot:sidezone>
                 <SaveZone form-id="update-script-form"/>
@@ -88,23 +84,3 @@ const breadcrumbs: BreadcrumbItem[] = [
         </SideZoneContainer>
     </AppLayout>
 </template>
-
-<style scoped>
-    .hidden-input {
-        transition: 200ms;
-        transition-property: border-color;
-
-        &:is(select)::picker-icon {
-            transition: 200ms;
-            transition-property: color;
-        }
-
-        &:not(:hover, :focus-visible) {
-            border-color: transparent;
-
-            &:is(select)::picker-icon {
-                color: transparent;
-            }
-        }
-    }
-</style>
