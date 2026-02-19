@@ -12,11 +12,10 @@ import { destroy, update } from '@/routes/admin_script';
 
 import { Head, Form } from '@inertiajs/vue3';
 
-import { Spinner } from '@/components/ui/spinner';
+import { FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import Container from '@/components/dashboard/Container.vue';
-import FormField from '@/components/global/form/FormField.vue';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 import DangerZone from '@/components/dashboard/sections/DangerZone.vue';
 import SaveZone from '@/components/dashboard/sections/SaveZone.vue';
@@ -73,12 +72,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                     disable-while-processing
                     v-slot="{ errors, processing, isDirty }"
                 >
-                    <div class="absolute">
-                        <Spinner v-show="processing"/>
-                        <span v-show="isDirty">
-                            Unsaved changes
-                        </span>
+                    <div>
+                        <ProcessIndicator :is-in-process="processing" />
+                        <UnsavedChanges :has-unsaved-changes="isDirty"/>
                     </div>
+
                     <FormField
                         id="script-title" label="Title:"
                         :error="errors.title"
@@ -89,7 +87,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                             class="grow outline-none"
                         />
                     </FormField>
-
                     <FormField :error="errors.content">
                         <textarea
                             aria-label="Content"
@@ -109,10 +106,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 </template>
 
 <style>
-    /* #update-script-form {
-        grid-template-rows: auto auto 1fr;
-    } */
-
     .info-field {
         grid-template-columns: 1fr auto;
     }

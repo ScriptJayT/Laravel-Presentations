@@ -14,14 +14,17 @@ import { Head, Form } from '@inertiajs/vue3';
 import Container from '@/components/dashboard/Container.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 
+import { FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
+
 import EditSlides from '@/components/dashboard/sections/EditSlides.vue';
-import PresentationInfo from '@/components/dashboard/sections/PresentationInfo.vue';
 import EditScript from '@/components/dashboard/sections/EditScript.vue';
-import FormField from '@/components/global/form/FormField.vue';
-import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
+import PresentationInfo from '@/components/dashboard/sections/PresentationInfo.vue';
+
 import DangerZone from '@/components/dashboard/sections/DangerZone.vue';
 import SaveZone from '@/components/dashboard/sections/SaveZone.vue';
 import AsideZone from '@/components/dashboard/sections/AsideZone.vue';
+
+import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 
 const props = defineProps<{
     presentation: Presentation;
@@ -68,17 +71,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                     disable-while-processing
                     v-slot="{ errors, processing, isDirty }"
                 >
-                    <span
-                        v-show="isDirty" aria-live="polite"
-                        class="
-                            absolute right-0
-                            p-2
-                            border border-orange-400 rounded-md
-                            bg-background
-                            "
-                    >
-                        Unsaved Changes
-                    </span>
+                    <div class="absolute bottom-full">
+                        <ProcessIndicator :is-in-process="processing"/>
+                        <UnsavedChanges :has-unsaved-changes="isDirty"/>
+                    </div>
 
                     <fieldset class="space-y-5">
                         <legend class="block font-semibold text-lg mb-5"> Meta </legend>
