@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import InputError from '@/components/global/form/InputError.vue';
-import FieldInfo from './FieldInfo.vue';
+import FieldInfo from '@/components/global/form/FieldInfo.vue';
 
 defineProps<{
     id?: string;
     label?: string;
     class?: string;
     error?: string;
+    descr?: string;
 }>();
 </script>
 
 <template>
     <div :class data-component="global/form/FormField">
-        <InputError :message="error" class="mb-2" />
         <field
             class="
                 flex gap-2 flex-wrap
@@ -26,6 +26,9 @@ defineProps<{
             </template>
             <slot/>
         </field>
-        <FieldInfo />
+        <div class="flex gap-3 justify-between mt-1">
+            <InputError :message="error" />
+            <FieldInfo :description="descr" class="ml-auto" />
+        </div>
     </div>
 </template>

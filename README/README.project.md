@@ -25,6 +25,7 @@ Goal: build a backend interface to create a presentation using markdown
         - https://reniki.com/blog/redirect-back-previous-page-after-login-laravel-fortify
         - https://laracasts.com/discuss/channels/laravel/fortify-redirect
 - "new" HTML / CSS:
+    - anchor position: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning
     - command attributes: https://developer.chrome.com/blog/command-and-commandfor
     - relative colors: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/hsl
     - stylable select: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select

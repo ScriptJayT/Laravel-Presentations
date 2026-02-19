@@ -10,14 +10,12 @@ import {
 } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
 
-import { Trash, OctagonAlert, Save } from 'lucide-vue-next';
 import { Head, Form } from '@inertiajs/vue3';
 
 import { Spinner } from '@/components/ui/spinner';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import Container from '@/components/dashboard/Container.vue';
-import ActionModal from '@/components/dashboard/ActionModal.vue';
 import FormField from '@/components/global/form/FormField.vue';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 import DangerZone from '@/components/dashboard/sections/DangerZone.vue';
@@ -65,8 +63,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <Form
                     id="update-script-form"
                     class="
-                        grid gap-6
-                        max-w-[90ch] h-full
+                        space-y-6
+                        max-w-[90ch] h-fit
                         mx-auto inert:opacity-50
                         "
                     v-bind="update.form(script.id)"
@@ -75,9 +73,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                     disable-while-processing
                     v-slot="{ errors, processing, isDirty }"
                 >
-                    <span v-show="isDirty">
-                        Unsaved changes
-                    </span>
+                    <div class="absolute">
+                        <Spinner v-show="processing"/>
+                        <span v-show="isDirty">
+                            Unsaved changes
+                        </span>
+                    </div>
                     <FormField
                         id="script-title" label="Title:"
                         :error="errors.title"
@@ -108,9 +109,9 @@ const breadcrumbs: BreadcrumbItem[] = [
 </template>
 
 <style>
-    #update-script-form {
-        grid-template-rows: auto 1fr;
-    }
+    /* #update-script-form {
+        grid-template-rows: auto auto 1fr;
+    } */
 
     .info-field {
         grid-template-columns: 1fr auto;
