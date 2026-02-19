@@ -27,6 +27,7 @@ function fail(_response: unknown) {
         data-component="global/form/Form"
         :id
         :class
+        class="inert:opacity-50"
         v-bind="sendTo"
         v-on:success="success"
         v-on:error="fail"
