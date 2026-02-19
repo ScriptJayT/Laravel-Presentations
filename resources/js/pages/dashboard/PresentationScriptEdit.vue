@@ -1,25 +1,17 @@
 <script setup lang="ts">
-import {
-    type PresentationScript,
-    type BreadcrumbItem,
-} from '@/types';
+import { type PresentationScript, type BreadcrumbItem } from '@/types';
 
-import {
-    admin_presentation_index,
-    admin_script_index,
-} from '@/routes';
+import { admin_presentation_index, admin_script_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
 
 import { Head, Form } from '@inertiajs/vue3';
 
 import { FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
+import { AsideZone, SaveZone, DangerZone } from '@/components/dashboard/sections';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import Container from '@/components/dashboard/Container.vue';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
-import DangerZone from '@/components/dashboard/sections/DangerZone.vue';
-import SaveZone from '@/components/dashboard/sections/SaveZone.vue';
-import AsideZone from '@/components/dashboard/sections/AsideZone.vue';
 
 const props = defineProps<{
     script: PresentationScript;

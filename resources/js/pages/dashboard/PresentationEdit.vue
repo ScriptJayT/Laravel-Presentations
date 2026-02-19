@@ -15,14 +15,11 @@ import Container from '@/components/dashboard/Container.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 
 import { FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
-
-import EditSlides from '@/components/dashboard/sections/EditSlides.vue';
-import EditScript from '@/components/dashboard/sections/EditScript.vue';
-import PresentationInfo from '@/components/dashboard/sections/PresentationInfo.vue';
-
-import DangerZone from '@/components/dashboard/sections/DangerZone.vue';
-import SaveZone from '@/components/dashboard/sections/SaveZone.vue';
-import AsideZone from '@/components/dashboard/sections/AsideZone.vue';
+import {
+    AsideZone, SaveZone, DangerZone,
+    PresentationInfo,
+    EditScript, EditSlides
+} from '@/components/dashboard/sections';
 
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 
