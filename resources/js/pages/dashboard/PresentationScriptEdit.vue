@@ -6,7 +6,7 @@ import { destroy, update } from '@/routes/admin_script';
 
 import { Head } from '@inertiajs/vue3';
 
-import { Form, FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
+import { Form, FormField } from '@/components/global/form'
 import { AsideZone, SaveZone, DangerZone } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
 

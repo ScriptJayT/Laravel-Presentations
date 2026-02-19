@@ -14,10 +14,10 @@ withDefaults(defineProps<Props>(), {
     <header :class="variant === 'small' ? '' : 'mb-8 space-y-0.5'">
         <h2
             :class="
-                variant === 'small'
+                    variant === 'small'
                     ? 'mb-0.5 text-base font-medium'
                     : 'text-xl font-semibold tracking-tight'
-            "
+                "
             class="min-h-lh"
         >
             {{ title }}

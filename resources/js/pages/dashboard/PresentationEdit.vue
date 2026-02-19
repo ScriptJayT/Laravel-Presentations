@@ -5,14 +5,14 @@ import {
     type PresentationScript,
     type BreadcrumbItem,
 } from '@/types';
-import { Head, Form } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 import { admin_presentation_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_presentation';
 
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SideZoneContainer } from '@/components/dashboard/containers';
-import { FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
+import { Form, FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
 import {
     AsideZone, SaveZone, DangerZone,
     PresentationInfo,
@@ -58,17 +58,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <Form
                     id="update-presentation-form"
                     class="grid grid-cols-2 gap-x-10"
-                    v-bind="update.form(presentation.id)"
-                    :reset-on-error="false"
-                    :reset-on-success="false"
-                    disable-while-processing
-                    v-slot="{ errors, processing, isDirty }"
+                    :send-to="update.form(presentation.id)"
+                    v-slot="{ errors }"
                 >
-                    <div class="absolute bottom-full right-0 m-0">
-                        <ProcessIndicator :is-in-process="processing"/>
-                        <UnsavedChanges :has-unsaved-changes="isDirty"/>
-                    </div>
-
                     <fieldset class="space-y-5">
                         <legend class="block font-semibold text-lg mb-5"> Meta </legend>
                         <FormField
