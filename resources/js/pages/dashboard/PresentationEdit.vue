@@ -74,17 +74,23 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     <fieldset class="space-y-5">
                         <legend class="block font-semibold text-lg mb-5"> Meta </legend>
-                        <FormField :error="errors.title" label="Title:" id="presentation-title">
+                        <FormField
+                            id="presentation-title"
+                            label="Title:"
+                            :error="errors.title"
+                        >
                             <input
                                 name="title" id="presentation-title"
-                                type="text" :value="presentation.title"
-                                class="
-                                    grow px-2
-                                    border-transparent outline-none
-                                    "
+                                type="text"
+                                v-model.lazy="presentation.title"
+                                class="grow px-2 border-transparent outline-none"
                             >
                         </FormField>
-                        <FormField :error="errors.slug" label="Slug:" id="presentation-slug">
+                        <FormField
+                            id="presentation-slug"
+                            label="Slug:"
+                            :error="errors.slug"
+                        >
                             <input
                                 name="slug" id="presentation-slug"
                                 type="text" :value="presentation.slug"
@@ -94,7 +100,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     "
                             >
                         </FormField>
-                        <FormField :error="errors.visibility" label="Visibility:" id="visibility-rule">
+                        <FormField
+                            id="visibility-rule"
+                            label="Visibility:"
+                            :error="errors.visibility"
+                        >
                             <select
                                 name="visibility" id="visibility-rule"
                                 :value="presentation.presentation_visibility.title"
