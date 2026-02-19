@@ -1,6 +1,10 @@
 * {
     transition-behavior: allow-discrete !important;
 }
+:root {
+    scrollbar-gutter: stable;
+    background-color: var(--sidebar-background);
+}
 textarea,
 input {
     min-width: 0px;
@@ -37,6 +41,7 @@ select,
 }
 
 @layer base {
+    /* lower specificity to allow tw-classes to overwrite */
     textarea {
         display: block;
         height: fit-content;
