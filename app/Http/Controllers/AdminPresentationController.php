@@ -92,5 +92,14 @@ class AdminPresentationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id) {}
+    public function destroy(string $id)
+    {
+        if (Presentation::whereId($id)->delete()) {
+            session()->flash('info', 'successfully deleted the presentation');
+        } else {
+            session()->flash('error', 'something went wrong while deleting a presentation');
+        }
+
+        return Redirect::route('admin_presentation_index');
+    }
 }

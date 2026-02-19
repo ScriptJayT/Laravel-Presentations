@@ -34,7 +34,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `Presentation: #${props.presentation.id}`,
     }
 ];
-console.log(props.rules[0]);
 </script>
 
 <template>
