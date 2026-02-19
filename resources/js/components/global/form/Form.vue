@@ -35,7 +35,7 @@ function fail(_response: unknown) {
         >
             <div class="form--meta | absolute bottom-full right-0 m-0">
                 <ProcessIndicator :is-in-process="processing"/>
-                <UnsavedChanges :has-unsaved-changes="isDirty"/>
+                <UnsavedChanges :has-unsaved-changes="isDirty && !processing"/>
             </div>
             <slot :errors />
         </Form>
