@@ -3,13 +3,11 @@ import {
     type PresentationScript,
     type BreadcrumbItem,
 } from '@/types';
-
 import { admin_presentation_index, admin_scripts } from '@/routes';
-
 import { Head } from '@inertiajs/vue3';
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import Container from '@/components/dashboard/Container.vue';
+import { Container } from '@/components/dashboard/containers';
 import IndexLink from '@/components/dashboard/models/IndexLink.vue';
 import NewLink from '@/components/dashboard/models/NewLink.vue';
 import NewScript from '@/components/dashboard/form/NewScript.vue';

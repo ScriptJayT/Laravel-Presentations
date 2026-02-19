@@ -8,9 +8,9 @@ import { Head, Form } from '@inertiajs/vue3';
 
 import { FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
 import { AsideZone, SaveZone, DangerZone } from '@/components/dashboard/sections';
+import { SideZoneContainer } from '@/components/dashboard/containers';
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import SideZoneContainer from '@/components/dashboard/SideZoneContainer.vue';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 
 const props = defineProps<{

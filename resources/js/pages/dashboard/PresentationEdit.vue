@@ -5,15 +5,13 @@ import {
     type PresentationScript,
     type BreadcrumbItem,
 } from '@/types';
-
+import { Head, Form } from '@inertiajs/vue3';
 import { admin_presentation_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_presentation';
 
-import { Head, Form } from '@inertiajs/vue3';
 
-import Container from '@/components/dashboard/Container.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
-
+import { SideZoneContainer } from '@/components/dashboard/containers';
 import { FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
 import {
     AsideZone, SaveZone, DangerZone,
@@ -21,7 +19,6 @@ import {
     EditScript, EditSlides
 } from '@/components/dashboard/sections';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
-import SideZoneContainer from '@/components/dashboard/SideZoneContainer.vue';
 
 const props = defineProps<{
     presentation: Presentation;

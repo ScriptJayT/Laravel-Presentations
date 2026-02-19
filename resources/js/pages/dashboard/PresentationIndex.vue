@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/vue3';
 import { admin_presentations } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import Container from '@/components/dashboard/Container.vue';
+import { Container } from '@/components/dashboard/containers';
 import IndexLink from '@/components/dashboard/models/IndexLink.vue';
 import NewLink from '@/components/dashboard/models/NewLink.vue';
 
