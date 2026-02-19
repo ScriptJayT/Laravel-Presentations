@@ -13,6 +13,14 @@ class Presentation extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title', 'slug',
+        'user_id',
+        'presentation_visibility_id',
+        'presentation_theme_id',
+        'presentation_script_id',
+    ];
+
     protected $with = [
         'user',
         'presentationVisibility',

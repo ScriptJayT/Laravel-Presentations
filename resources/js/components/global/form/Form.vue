@@ -8,12 +8,13 @@ const props = defineProps<{
     sendTo: RouteFormDefinition<'post'>;
     id?: string;
     class?: string;
+    formAction?: "edit" | "create";
+    successMessage?: string;
     onError?: (_arg: unknown) => void;
     onSuccess?: (_arg: unknown) => void;
 }>();
 
 function success(_response: unknown) {
-    console.log(_response);
     if(props.onSuccess) props.onSuccess(_response);
 }
 function fail(_response: unknown) {
@@ -34,12 +35,22 @@ function fail(_response: unknown) {
         :reset-on-error="false"
         :reset-on-success="false"
         disable-while-processing
-        v-slot="{ errors, processing, isDirty }"
+        v-slot="{ errors, processing, isDirty, wasSuccessful, hasErrors }"
     >
         <div class="form--meta | absolute bottom-full right-0 m-0">
             <ProcessIndicator :is-in-process="processing"/>
-            <UnsavedChanges :has-unsaved-changes="isDirty && !processing"/>
+            <UnsavedChanges
+                v-if="formAction==='edit'"
+                :has-unsaved-changes="isDirty && !processing"
+            />
         </div>
-        <slot :errors />
+
+        <slot :hasErrors :errors :wasSuccessful />
+
+        <template v-if="successMessage">
+            <div v-show="wasSuccessful" aria-live="polite">
+                {{ successMessage }}
+            </div>
+        </template>
     </Form>
 </template>

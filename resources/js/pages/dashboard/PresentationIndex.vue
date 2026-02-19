@@ -7,6 +7,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Container } from '@/components/dashboard/containers';
 import IndexLink from '@/components/dashboard/models/IndexLink.vue';
 import NewLink from '@/components/dashboard/models/NewLink.vue';
+import NewPresentation from '@/components/dashboard/forms/NewPresentation.vue';
 
 defineProps<{
     allPresentations: Presentation[];
@@ -21,10 +22,14 @@ const breadcrumbs: BreadcrumbItem[] = [{
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <Container
+            id="presentation-index"
             title="Full Overview"
             class="grid auto-rows-min gap-4 md:grid-cols-3"
         >
-            <NewLink title="Presentation"/>
+            <NewLink title="Presentation">
+                <h2 class="text-lg font-semibold my-5"> Create a new Presentation </h2>
+                <NewPresentation/>
+            </NewLink>
             <template v-for="_presentation in allPresentations">
                 <IndexLink
                     :title="_presentation.title"
@@ -53,3 +58,11 @@ const breadcrumbs: BreadcrumbItem[] = [{
         </Container>
     </AppLayout>
 </template>
+
+<style>
+    [data-id=presentation-index] .form--meta {
+        bottom: 1rem;
+        right: auto;
+        left: 0;
+    }
+</style>

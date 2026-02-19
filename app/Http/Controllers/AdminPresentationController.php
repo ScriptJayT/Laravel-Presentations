@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Presentation;
 use App\Models\PresentationScript;
+use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -47,7 +48,40 @@ class AdminPresentationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {}
+    public function store(Request $request)
+    {
+        $validated = validator($request->all(), [
+            'title' => 'required|min:2',
+            'goto' => '',
+        ])->validated();
+
+        $slug = Str::slug($validated['title']);
+        validator(['slug' => $slug], [
+            'slug' => 'required|min:2|unique:presentations,slug',
+        ])->validated();
+
+        $user = $request->user();
+        $visibility = PresentationVisibility::where('title', 'creator')->first();
+        $theme = PresentationTheme::where('id', '1')->first();
+        $script = null;
+
+        $presentation = Presentation::create([
+            'title' => $validated['title'],
+            'slug' => $slug,
+            'user_id' => $user->id,
+            'presentation_visibility_id' => $visibility->id,
+            'presentation_theme_id' => $theme->id,
+            'presentation_script_id' => $script,
+        ]);
+
+        if ($validated['goto'] === 'on') {
+            session()->flash('info', 'new presentation created');
+
+            return Redirect::route('admin_presentations', $presentation->id);
+        }
+
+        return Redirect::back();
+    }
 
     /**
      * Display the specified resource.
