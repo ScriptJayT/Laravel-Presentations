@@ -17,6 +17,7 @@ Goal: build a backend interface to create a presentation using markdown
 ### Help-out
 
 - Laravel-Vue:
+    - Vue import/export from index.ts file: https://stackoverflow.com/questions/74950533/how-to-import-index-vue-files-without-specifying-the-file-name-using-vue-3-and-v
     - select columns in eager loaded models: https://stackoverflow.com/questions/32727060/select-specific-columns-from-eloquent-relations
     - append attributes (readable by Vue): https://5balloons.info/how-to-append-new-attributes-to-eloquent-model/
     - flash messages (in Vue): https://arifhassan.com/flash-messages-in-vue-laravel-app/
@@ -25,7 +26,9 @@ Goal: build a backend interface to create a presentation using markdown
         - https://reniki.com/blog/redirect-back-previous-page-after-login-laravel-fortify
         - https://laracasts.com/discuss/channels/laravel/fortify-redirect
 - "new" HTML / CSS:
-    - anchor position: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning
+    - anchor position:
+        - https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning
+        - https://www.oddbird.net/2025/01/29/anchor-position-validity/
     - command attributes: https://developer.chrome.com/blog/command-and-commandfor
     - relative colors: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/hsl
     - stylable select: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select
