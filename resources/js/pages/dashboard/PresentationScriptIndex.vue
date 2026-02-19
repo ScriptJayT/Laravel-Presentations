@@ -10,7 +10,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Container } from '@/components/dashboard/containers';
 import IndexLink from '@/components/dashboard/models/IndexLink.vue';
 import NewLink from '@/components/dashboard/models/NewLink.vue';
-import NewScript from '@/components/dashboard/form/NewScript.vue';
+import NewScript from '@/components/dashboard/forms/NewScript.vue';
 
 const props = defineProps<{
     allScripts: PresentationScript[];

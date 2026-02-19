@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { PresentationSlide } from '@/types';
 import ActionModal from '../ActionModal.vue';
-import NewSlide from '../form/NewSlide.vue';
-import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
-import { Plus } from 'lucide-vue-next';
+import NewSlide from '../forms/NewSlide.vue';
 import NewLink from '../models/NewLink.vue';
 import IndexLink from '../models/IndexLink.vue';
 
