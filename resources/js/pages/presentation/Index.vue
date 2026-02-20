@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
-import { Head } from '@inertiajs/vue3';
 
 import AppWrapper from '@/components/app/AppWrapper.vue';
 import AppHeader from '@/components/app/AppHeader.vue';
@@ -20,11 +19,8 @@ defineProps<{
 </script>
 
 <template>
-    <Head title="Home" />
-
-    <AppWrapper>
+    <AppWrapper meta-title="Home">
         <AppHeader/>
-
         <AppContent class="mt-15 mb-25">
             <Container class="space-y-15">
                 <template v-if="isLoggedIn">
@@ -44,7 +40,6 @@ defineProps<{
                 />
             </Container>
         </AppContent>
-
         <AppFooter />
     </AppWrapper>
 </template>
