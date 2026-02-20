@@ -5,14 +5,12 @@ import {
     type PresentationScript,
     type BreadcrumbItem,
 } from '@/types';
-import { Head } from '@inertiajs/vue3';
 import { admin_presentation_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_presentation';
 
-
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SideZoneContainer } from '@/components/dashboard/containers';
-import { Form, FormField, UnsavedChanges, ProcessIndicator } from '@/components/global/form'
+import { Form, FormField } from '@/components/global/form'
 import {
     AsideZone, SaveZone, DangerZone,
     PresentationInfo,
@@ -37,9 +35,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 
 <template>
-    <Head title="Dashboard" />
-
-    <AppLayout :breadcrumbs="breadcrumbs">
+    <AppLayout :breadcrumbs="breadcrumbs" meta-title="Edit Presentation">
         <SideZoneContainer
             :title="presentation.title"
             main-class="space-y-20"
@@ -133,9 +129,3 @@ const breadcrumbs: BreadcrumbItem[] = [
         </SideZoneContainer>
     </AppLayout>
 </template>
-
-<style>
-    .info-field {
-        grid-template-columns: 1fr auto;
-    }
-</style>

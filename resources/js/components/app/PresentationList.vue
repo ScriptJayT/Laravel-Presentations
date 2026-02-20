@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
-
 import PresentationLink from '@/components/app/PresentationLink.vue';
-
 import Heading from '@/components/Heading.vue';
 
 const props = defineProps<{
@@ -19,7 +17,7 @@ const totalPresentations = Array.isArray(props.presentations)
 
 <template>
     <div data-component="PresentationList" class="p-6 rounded border space-y-4">
-        <Heading :title="title" />
+        <Heading :title />
         <template v-if="totalPresentations < 1">
             <p class="m-0">None found</p>
         </template>
