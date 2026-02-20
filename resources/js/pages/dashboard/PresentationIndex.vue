@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { type Presentation, type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/vue3';
 import { admin_presentations } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -19,9 +18,7 @@ const breadcrumbs: BreadcrumbItem[] = [{
 </script>
 
 <template>
-    <Head title="Dashboard" />
-
-    <AppLayout :breadcrumbs="breadcrumbs">
+    <AppLayout :breadcrumbs="breadcrumbs" meta-title="Presentations">
         <Container
             id="presentation-index"
             title="Full Overview"
