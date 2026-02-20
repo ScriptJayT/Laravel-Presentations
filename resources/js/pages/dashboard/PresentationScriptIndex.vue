@@ -21,8 +21,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: 'Scripts',
     },
 ];
-
-
 </script>
 
 <template>
@@ -33,7 +31,6 @@ const breadcrumbs: BreadcrumbItem[] = [
             class="space-y-10"
         >
             <Search />
-
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                 <NewLink title="Script">
                     <h2 class="text-lg font-semibold my-5"> Create a new Script </h2>
