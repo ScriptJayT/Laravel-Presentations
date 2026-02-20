@@ -4,6 +4,7 @@ import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
 const props = defineProps<{
     title: string;
+    class?:string;
     unsemanticTitle?: boolean;
     link?: RouteDefinition<'get'>;
     lastEdit?: string;
@@ -12,6 +13,8 @@ const props = defineProps<{
 
 <template>
     <div
+        data-component="dashboard/models/IndexLink"
+        :class
         class="
             ct-inline-size
             relative isolate
