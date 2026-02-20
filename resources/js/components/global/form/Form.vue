@@ -86,7 +86,7 @@ function fail(_response: unknown) {
                     <ProcessIndicator :is-in-process="processing"/>
                 </span>
                 <span> {{ buttonText }} </span>
-                <span class="form-submit--icon">
+                <span class="form-submit--icon" aria-hidden="true">
                     <component v-if="icon" :is="icon" class="size-4" />
                 </span>
             </button>
