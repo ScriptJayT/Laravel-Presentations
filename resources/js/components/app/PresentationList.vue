@@ -24,7 +24,7 @@ const totalPresentations = Array.isArray(props.presentations)
             <p class="m-0">None found</p>
         </template>
         <template v-else>
-            <span class="block w-fit ml-auto my-0 | italic">
+            <span class="block w-fit ml-auto my-0 | italic" :class="showGuard ? '-translate-y-1/2' :''">
                 Showing: {{ totalPresentations }} presentation(s)
             </span>
         </template>
