@@ -10,6 +10,7 @@ const props = withDefaults(
         class?: string;
         indexClass?: string;
         searchIn?: string;
+        updatableList?: Array<unknown>;
         cacheIndex?: boolean;
         cacheResult?: boolean;
     }>(),
@@ -18,14 +19,21 @@ const props = withDefaults(
         searchIn: "h1, h2, h3, h4, h5, h6",
         cacheIndex: true,
         cacheResult: true,
+        updatableList: () => [],
     }
 );
+let initialCount = props.updatableList.length;
 const searchTerm = ref('');
 const resultCount = ref(-1);
 const cache = new Map<string, SearchFilterResult>();
 let elements: QueryAllResult = [];
 onMounted(() => {
+    //# reset in case of remount and desync
     console.clear();
+    resultCount.value = -1;
+    cache.clear();
+    empty(); // resets input + list-view
+
     if(props.cacheIndex) elements = indexElements();
     console.log(elements.length, "searchables indexed in cache");
 });
@@ -42,10 +50,6 @@ function filterThrough(_searchTerm: string, _searchIn: string): SearchFilterResu
             return cacheResult;
         }
     }
-    if(!props.cacheIndex) {
-        console.log("Reindexed:", elements.length, 'items');
-        elements = indexElements();
-    }
     const positives: QueryAllResult = [];
     const negatives: QueryAllResult = [];
     elements.forEach(_el => {
@@ -57,11 +61,10 @@ function filterThrough(_searchTerm: string, _searchIn: string): SearchFilterResu
             negatives.push(_el);
             return
         };
-        console.log("found it in:", searchField);
+        console.log("> found it in:", searchField);
         positives.push(_el);
     });
     const result: SearchFilterResult = [ positives, negatives ];
-    console.log(result);
     if(props.cacheResult) cache.set(_searchTerm, result);
 
     return result;
@@ -96,19 +99,36 @@ function empty(): void {
 }
 function resetOnEmpty(_e: KeyboardEvent): void {
     if(
-        !(searchTerm.value == "" && (_e.key === "Delete" || _e.key==="Backspace")) // delete backspace on empty input
+        !(searchTerm.value == "" && (_e.key === "Delete" || _e.key==="Backspace")) // delete | backspace on empty input
         && !((_e.altKey || _e.ctrlKey) && _e.key === "Delete") // pressed alt.delete ctrl.delete
     ) return;
     empty();
 }
 function search(): void {
+    // cleanup
     searchTerm.value = searchTerm.value.trim().toLowerCase();
     if(searchTerm.value.length < 1) {
+        // shortcircuit if no search term
         resultCount.value = -1;
         markElements(elements, "remove");
         return
     };
+    // sync
     console.groupCollapsed("searchin ...");
+    if(initialCount !== props.updatableList.length) {
+        // clear cache & re-index; list got updated / create-delete
+        console.log("Found desync; syncing ...");
+        cache.clear();
+        elements = indexElements();
+        initialCount === elements.length;
+    }
+    if(!props.cacheIndex) {
+        // clear cache & re-index if cache is disabled
+        console.log("Reindexed:", elements.length, 'items');
+        cache.clear();
+        elements = indexElements();
+    }
+    // search
     const results = filterThrough(searchTerm.value, props.searchIn);
     markElements(results[0], "positive");
     markElements(results[1], "negative");
@@ -116,7 +136,10 @@ function search(): void {
 }
 </script>
 <template>
-    <search :class class="block w-full max-w-2xl mx-auto text-lg">
+    <search
+        :title="`Search through ${updatableList.length} records`"
+        :class class="block w-full max-w-2xl mx-auto text-lg"
+    >
         <noscript> This search-function needs JavaScript to work </noscript>
         <form
             v-on:submit.prevent="search"

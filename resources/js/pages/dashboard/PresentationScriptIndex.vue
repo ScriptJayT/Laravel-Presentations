@@ -29,7 +29,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             id="script-index"
             class="space-y-10"
         >
-            <Search />
+            <Search :updatable-list="allScripts" />
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                 <NewLink title="Script">
                     <h2 class="text-lg font-semibold my-5"> Create a new Script </h2>
