@@ -4,3 +4,5 @@ export {default as FieldInfo} from "./FieldInfo.vue";
 export {default as InputError} from "./InputError.vue";
 export {default as UnsavedChanges} from "./UnsavedChanges.vue";
 export {default as ProcessIndicator} from "./ProcessIndicator.vue";
+
+export {default as TextField} from "./TextField.vue";

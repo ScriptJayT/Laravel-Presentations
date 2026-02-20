@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { store } from '@/routes/admin_script';
-import { Form, FormField } from '@/components/global/form';
+import { Form, FormField, TextField } from '@/components/global/form';
 </script>
 
 <template>
@@ -12,12 +12,11 @@ import { Form, FormField } from '@/components/global/form';
         success-message="New Script was created"
         v-slot="{ errors }"
     >
-        <FormField :error="errors.title" label="Script Title:" id="script-title">
-            <input
-                type="text" name="title" id="script-title"
-                class="grow outline-none"
-            >
-        </FormField>
+        <TextField
+            name="title"
+            label="Title:"
+            :error="errors.title || errors.slug"
+        />
         <FormField id="continue-on" label="Continue to edit-page:" >
             <input type="checkbox" name="goto" checked id="continue-on">
         </FormField>
