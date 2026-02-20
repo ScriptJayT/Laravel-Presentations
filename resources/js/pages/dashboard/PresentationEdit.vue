@@ -57,7 +57,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <h3 class="sr-only"> Presentation </h3>
                 <Form
                     id="update-presentation-form"
+                    form-action="edit"
                     class="grid grid-cols-2 gap-x-10"
+                    :show-button="false"
                     :send-to="update.form(presentation.id)"
                     v-slot="{ errors }"
                 >

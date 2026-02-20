@@ -49,12 +49,13 @@ const breadcrumbs: BreadcrumbItem[] = [
             <template v-slot:mainzone>
                 <Form
                     id="update-script-form"
+                    form-action="edit"
                     class="
                         space-y-6
                         max-w-[90ch] h-fit
                         mx-auto inert:opacity-50
                         "
-
+                    :show-button="false"
                     :send-to="update.form(script.id)"
                     v-slot="{ errors }"
                 >
