@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { store } from '@/routes/admin_script';
-import { Form, FormField, TextField } from '@/components/global/form';
+import { Form, RedirectToField, TextField } from '@/components/global/form';
 </script>
 
 <template>
@@ -17,8 +17,10 @@ import { Form, FormField, TextField } from '@/components/global/form';
             label="Title:"
             :error="errors.title || errors.slug"
         />
-        <FormField id="continue-on" label="Continue to edit-page:" >
-            <input type="checkbox" name="goto" checked id="continue-on">
-        </FormField>
+        <RedirectToField
+            type="check"
+            label="Go straight to /edit"
+            value="on"
+        />
     </Form>
 </template>
