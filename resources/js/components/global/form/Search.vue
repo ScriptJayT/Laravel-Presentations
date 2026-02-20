@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import { Search, X } from 'lucide-vue-next'
 import { type QueryAllResult, safeQueryAll } from '@/lib/utils';
 
 type SearchFilterResult = [ QueryAllResult, QueryAllResult ];
@@ -149,7 +150,9 @@ function search(): void {
                     outline-none
                     "
             >
-                X
+                <span aria-hidden="true">
+                    <X class="size-4" />
+                </span>
             </button>
             <button
                 type="submit"
@@ -160,7 +163,9 @@ function search(): void {
                     outline-none
                     "
             >
-                S
+                <span aria-hidden="true">
+                    <Search class="size-4" />
+                </span>
             </button>
         </form>
         <output
