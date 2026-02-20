@@ -8,7 +8,6 @@ import { Form, FormField } from '@/components/global/form';
         class="relative space-y-6"
         form-action="create"
         :send-to="store.form()"
-        show-button
         button-text="Create new Presentation"
         success-message="New Presentation was created"
         v-slot="{ errors }"

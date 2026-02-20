@@ -8,9 +8,8 @@ import { Form, FormField } from '@/components/global/form';
         class="space-y-6"
         form-action="create"
         :send-to="store.form()"
-        success-message="New Slide was created"
-        show-button
         button-text="Create new Slide"
+        success-message="New Slide was created"
         v-slot="{ errors }"
     >
         <FormField :error="errors.title" label="Slide Title:" id="slide-title">

@@ -8,9 +8,8 @@ import { Form, FormField } from '@/components/global/form';
         class="space-y-6"
         form-action="create"
         :send-to="store.form()"
-        success-message="New Script was created"
-        show-button
         button-text="Create new script"
+        success-message="New Script was created"
         v-slot="{ errors }"
     >
         <FormField :error="errors.title" label="Script Title:" id="script-title">
