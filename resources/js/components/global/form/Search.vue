@@ -7,6 +7,7 @@ type SearchFilterResult = [ QueryAllResult, QueryAllResult ];
 
 const props = withDefaults(
     defineProps<{
+        class?: string;
         indexClass?: string;
         searchIn?: string;
         cacheIndex?: boolean;
@@ -19,7 +20,6 @@ const props = withDefaults(
         cacheResult: true,
     }
 );
-
 const searchTerm = ref('');
 const resultCount = ref(-1);
 const cache = new Map<string, SearchFilterResult>();
@@ -116,21 +116,14 @@ function search(): void {
 }
 </script>
 <template>
-    <search
-        title="Script"
-        class="
-            block
-            w-fit
-            mx-auto
-            "
-    >
+    <search :class class="block w-full max-w-2xl mx-auto text-lg">
         <noscript> This search-function needs JavaScript to work </noscript>
         <form
             v-on:submit.prevent="search"
             v-on:reset="empty"
             class="
                 flex gap-2
-                px-2 py-1
+                px-3 py-2
                 border rounded-sm
                 "
         >
@@ -138,17 +131,14 @@ function search(): void {
                 id="search" type="text"
                 v-on:keyup="resetOnEmpty"
                 v-model="searchTerm"
-                placeholder="title"
-                class="outline-none"
+                placeholder="Title"
+                class="outline-none grow placeholder:italic"
             >
             <button
                 type="reset"
                 tabindex="-1"
                 title="Reset Filter"
-                class="
-                    cursor-pointer select-none
-                    outline-none
-                    "
+                class="cursor-pointer select-none outline-none"
             >
                 <span aria-hidden="true">
                     <X class="size-4" />
@@ -158,10 +148,7 @@ function search(): void {
                 type="submit"
                 tabindex="-1"
                 :title="searchTerm ? `Search for: ${searchTerm}` : 'Search'"
-                class="
-                    cursor-pointer select-none
-                    outline-none
-                    "
+                class="cursor-pointer select-none outline-none"
             >
                 <span aria-hidden="true">
                     <Search class="size-4" />

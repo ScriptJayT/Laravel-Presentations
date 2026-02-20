@@ -74,7 +74,7 @@ class AdminPresentationController extends Controller
             'presentation_script_id' => $script,
         ]);
 
-        if ($validated['goto'] === 'on') {
+        if ($validated['goto'] ?? '' === 'on') {
             session()->flash('info', 'new presentation created');
 
             return Redirect::route('admin_presentations', $presentation->id);

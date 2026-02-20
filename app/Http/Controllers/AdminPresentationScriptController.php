@@ -39,7 +39,7 @@ class AdminPresentationScriptController extends Controller
             'content' => '',
         ]);
 
-        if ($validated['goto'] === 'on') {
+        if ($validated['goto'] ?? '' === 'on') {
             session()->flash('info', 'new script created');
 
             return Redirect::route('admin_scripts', $script->id);
