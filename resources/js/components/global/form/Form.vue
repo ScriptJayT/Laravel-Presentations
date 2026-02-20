@@ -3,9 +3,8 @@ import { RouteFormDefinition } from '@/wayfinder';
 import { Form } from '@inertiajs/vue3';
 import { Save, Trash } from 'lucide-vue-next';
 
-
 import { UnsavedChanges, ProcessIndicator } from '@/components/global/form'
-import { FunctionalComponent } from 'vue';
+import { type FunctionalComponent } from 'vue';
 
 const props = withDefaults(
     defineProps<{
