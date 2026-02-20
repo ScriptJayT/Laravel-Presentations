@@ -48,7 +48,7 @@ function filterThrough(_searchTerm: string, _searchIn: string): SearchFilterResu
     const positives: QueryAllResult = [];
     const negatives: QueryAllResult = [];
     elements.forEach(_el => {
-        const searchField = safeQueryAll(`${_searchIn}`)
+        const searchField = safeQueryAll(`${_searchIn}`, _el)
             .map(_el => _el.innerText)
             .join("")
             .toLowerCase();
@@ -56,10 +56,11 @@ function filterThrough(_searchTerm: string, _searchIn: string): SearchFilterResu
             negatives.push(_el);
             return
         };
+        console.log("found it in:", searchField);
         positives.push(_el);
     });
-
     const result: SearchFilterResult = [ positives, negatives ];
+    console.log(result);
     if(props.cacheResult) cache.set(_searchTerm, result);
 
     return result;

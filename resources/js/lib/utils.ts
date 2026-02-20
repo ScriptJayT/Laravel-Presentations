@@ -10,13 +10,14 @@ export function toUrl(href: NonNullable<InertiaLinkProps['href']>) {
     return typeof href === 'string' ? href : href?.url;
 }
 
+export type QueryScope = Element | Document;
 export type QueryResult<T = HTMLElement> = T | null;
 export type QueryAllResult<T = HTMLElement> = Array<T>;
-export function safeQuery<T extends HTMLElement>(query: string): QueryResult<T> {
-    try { return document.querySelector<T>(`${query}`); }
+export function safeQuery<T extends HTMLElement>(query: string, scope: QueryScope = document): QueryResult<T> {
+    try { return scope.querySelector<T>(`${query}`); }
     catch (error) { return null; }
 }
-export function safeQueryAll<T extends HTMLElement>(query: string): QueryAllResult<T> {
-    try { return Array.from(document.querySelectorAll<T>(`${query}`)); }
+export function safeQueryAll<T extends HTMLElement>(query: string, scope: QueryScope = document): QueryAllResult<T> {
+    try { return Array.from(scope.querySelectorAll<T>(`${query}`)); }
     catch (error) { return []; }
 }
