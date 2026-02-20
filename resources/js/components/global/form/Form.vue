@@ -82,9 +82,7 @@ function fail(_response: unknown) {
                     transition-[width]
                     "
             >
-                <span>
-                    <ProcessIndicator :is-in-process="processing"/>
-                </span>
+                <ProcessIndicator :is-in-process="processing"/>
                 <span> {{ buttonText }} </span>
                 <span class="form-submit--icon" aria-hidden="true">
                     <component v-if="icon" :is="icon" class="size-4" />
