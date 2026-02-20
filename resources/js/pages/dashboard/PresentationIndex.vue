@@ -4,8 +4,7 @@ import { admin_presentations } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Container } from '@/components/dashboard/containers';
-import IndexLink from '@/components/dashboard/models/IndexLink.vue';
-import NewLink from '@/components/dashboard/models/NewLink.vue';
+import {IndexLink, NewLink} from '@/components/dashboard/models';
 import NewPresentation from '@/components/dashboard/forms/NewPresentation.vue';
 import { Search } from '@/components/global/form';
 
