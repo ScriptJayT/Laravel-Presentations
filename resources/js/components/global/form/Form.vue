@@ -21,7 +21,7 @@ const props = withDefaults(
         onSuccess?: (_arg: unknown) => void;
     }>(),
     {
-        showButton: false,
+        showButton: true,
         buttonText: "Submit",
     }
 );

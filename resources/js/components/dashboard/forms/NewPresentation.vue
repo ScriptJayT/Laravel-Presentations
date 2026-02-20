@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import FormField from '@/components/global/form/FormField.vue';
-
 import { store } from '@/routes/admin_presentation';
-import { Form } from '@/components/global/form';
+import { Form, FormField } from '@/components/global/form';
 </script>
 
 <template>
@@ -24,9 +22,7 @@ import { Form } from '@/components/global/form';
                 class="grow outline-none"
             >
         </FormField>
-        <FormField
-            id="continue-on" label="Continue to edit-page:"
-        >
+        <FormField id="continue-on" label="Continue to edit-page:" >
             <input type="checkbox" name="goto" checked id="continue-on">
         </FormField>
     </Form>
