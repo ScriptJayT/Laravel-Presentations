@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Presentation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response as IResponse;
@@ -49,12 +50,12 @@ class PresentationController extends Controller
             ->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'login');
         $creator = $this->isLoggedIn()
             ? $all->filter(fn ($_presentation) => $this->loggedinIsCreator($_presentation))
-            : [];
+            : new Collection([]);
 
         return Inertia::render('presentation/Index', [
-            'allPublicPresentations' => $public,
-            'allPrivatePresentations' => $private,
-            'allCreatorPresentations' => $creator,
+            'allPublicPresentations' => array_values($public->all()),
+            'allPrivatePresentations' => array_values($private->all()),
+            'allCreatorPresentations' => array_values($creator->all()),
             'isLoggedIn' => $this->isLoggedIn(),
         ]);
     }
