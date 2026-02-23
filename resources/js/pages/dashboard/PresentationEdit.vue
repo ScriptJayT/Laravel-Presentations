@@ -10,7 +10,7 @@ import { destroy, update } from '@/routes/admin_presentation';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SideZoneContainer } from '@/components/dashboard/containers';
-import { Form, FormField } from '@/components/global/form'
+import { Form, FormField, SelectField, TextField } from '@/components/global/form'
 import {
     AsideZone, SaveZone, DangerZone,
     PresentationInfo,
@@ -32,6 +32,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `Presentation: #${props.presentation.id}`,
     }
 ];
+const visibilityOptions: Record<string, string> = {};
+props.rules.forEach(_visibility => {
+    visibilityOptions[_visibility.id] = `${_visibility.name}`;
+});
 </script>
 
 <template>
@@ -73,44 +77,21 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 class="grow px-2 border-transparent outline-none"
                             >
                         </FormField>
-                        <FormField
-                            id="presentation-slug"
+
+                        <TextField
+                            name="slug"
                             label="Slug:"
+                            :value="presentation.slug"
                             :error="errors.slug"
-                        >
-                            <input
-                                name="slug" id="presentation-slug"
-                                type="text" :value="presentation.slug"
-                                class="
-                                    grow px-2
-                                    border-transparent outline-none
-                                    "
-                            >
-                        </FormField>
-                        <FormField
-                            id="visibility-rule"
+                        />
+                        <SelectField
+                            name="visibility"
                             label="Visibility:"
+                            :default-value="`${presentation.presentation_visibility.id}`"
+                            :allow-null-value="false"
                             :error="errors.visibility"
-                        >
-                            <select
-                                name="visibility" id="visibility-rule"
-                                class="
-                                    grow cursor-pointer
-                                    px-2 border-transparent outline-none
-                                    "
-                            >
-                                <button> <selectedcontent></selectedcontent> </button>
-                                <template v-for="_rule in rules">
-                                    <option
-                                        :value="_rule.id"
-                                        class="px-2"
-                                        :selected="_rule.id === (presentation.presentation_visibility.id)"
-                                    >
-                                        {{ _rule.name }}
-                                    </option>
-                                </template>
-                            </select>
-                        </FormField>
+                            :options="visibilityOptions"
+                        />
                     </fieldset>
                     <fieldset class="space-y-5">
                         <legend class="block font-semibold text-lg mb-5"> Script </legend>

@@ -14,7 +14,9 @@ const id = `textfield-${crypto.randomUUID()}`;
 <template>
      <FormField :label :class :error :descr :id >
         <input
-            :name :value :id type="text"
+            :name
+            :value
+            :id type="text"
             class="grow outline-none"
         >
     </FormField>

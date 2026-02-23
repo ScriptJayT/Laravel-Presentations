@@ -3,15 +3,17 @@ import { FormField } from '@/components/global/form';
 withDefaults(
     defineProps<{
         name: string;
+        options: Record<string, string>;
         defaultValue?: string;
+        allowNullValue?: boolean;
         nullValueText?: string;
         label?: string;
+        descr?: string;
         class?: string;
         error?: string;
-        descr?: string;
-        options: Record<string, string>;
     }>(),
     {
+        allowNullValue: true,
         nullValueText: "Default",
     }
 );
@@ -34,9 +36,11 @@ const id = `selectfield-${crypto.randomUUID()}`;
             <button>
                 <selectedcontent></selectedcontent>
             </button>
-            <option value="" class="px-2">
-                * {{ nullValueText }} *
-            </option>
+            <template v-if="allowNullValue">
+                <option value="" class="px-2">
+                    * {{ nullValueText }} *
+                </option>
+            </template>
             <template v-for="_text, _value in options">
                 <option
                     :value="_value"
