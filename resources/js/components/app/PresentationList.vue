@@ -22,16 +22,18 @@ const totalPresentations = Array.isArray(props.presentations)
 
 <template>
     <div data-component="PresentationList" class="p-6 rounded border space-y-4">
-        <Heading :title />
-        <template v-if="totalPresentations < 1">
-            <p class="m-0">None found</p>
-        </template>
-        <template v-else>
-            <span class="block w-fit ml-auto my-0 | italic" :class="showGuard ? '-translate-y-1/2' :''">
-                Showing: {{ totalPresentations }} presentation(s)
-            </span>
-        </template>
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
+        <div class="flex gap-4 justify-between flex-wrap">
+            <Heading :title />
+            <template v-if="totalPresentations < 1">
+                <p class="m-0 min-w-fit">None found</p>
+            </template>
+            <template v-else>
+                <span class="block min-w-fit ml-auto my-0 | italic">
+                    Showing: {{ totalPresentations }} presentation(s)
+                </span>
+            </template>
+        </div>
+        <div class="grid auto-rows-min gap-6 md:grid-cols-3">
             <template v-for="_presentation in presentations">
                 <PresentationLink
                     :presentation="_presentation"
