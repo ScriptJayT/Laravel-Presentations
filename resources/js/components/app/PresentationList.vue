@@ -15,7 +15,6 @@ const props = withDefaults(
         showUser: true,
     }
 );
-// for some reason, vue's proxy transforms array's to objects; causing issues when trying to get length
 const totalPresentations = Array.isArray(props.presentations)
     ? props.presentations.length
     : Object.keys(props.presentations).length
