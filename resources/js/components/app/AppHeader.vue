@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type Auth } from "@/types";
+import { computed } from "vue";
 import { Link, usePage } from '@inertiajs/vue3';
 import { admin_presentation_index, login, home } from '@/routes';
 import { RouteDefinition } from '@/wayfinder';
@@ -7,7 +8,9 @@ import { RouteDefinition } from '@/wayfinder';
 import UserDropDown from '@/components/app/UserDropDown.vue';
 
 const page = usePage();
-const user = (page.props.auth as Auth)?.user ?? null;
+const user = computed(
+    () => (page.props.auth as Auth)?.user ?? null
+);
 
 type NavItem = {
     title: string;
