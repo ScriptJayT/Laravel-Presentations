@@ -24,7 +24,9 @@ export default defineConfig({
                 compilerOptions: {
                     isCustomElement: (tag) => [
                         'slide-show', 'slide',
-                        'selectedcontent', 'field', 'search'
+                        'field', 'hidden',
+                        'selectedcontent',
+                        'search'
                     ].includes(tag),
                 }
             },

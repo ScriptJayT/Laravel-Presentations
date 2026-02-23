@@ -16,6 +16,7 @@ export type PresentationScript = {
     renderedContent: string,
 } & Model;
 export type PresentationSlide = {
+    id: number,
     title: string,
     content: string,
     presentation_theme: PresentationTheme,

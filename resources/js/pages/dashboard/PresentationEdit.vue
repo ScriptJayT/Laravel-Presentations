@@ -104,7 +104,10 @@ props.rules.forEach(_visibility => {
                 </Form>
                 <div class="space-y-5">
                     <h3 class="text-lg font-semibold"> Slides </h3>
-                    <EditSlides :slides="presentation.slides"/>
+                    <EditSlides
+                        :presentation
+                        :slides="presentation.slides"
+                    />
                 </div>
             </template>
         </SideZoneContainer>

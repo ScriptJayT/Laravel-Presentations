@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPresentationController;
 use App\Http\Controllers\AdminPresentationScriptController;
+use App\Http\Controllers\AdminPresentationSlideController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\PresentationScriptController;
 use Illuminate\Support\Facades\Redirect;
@@ -37,6 +38,14 @@ Route::prefix('dashboard')
                 'destroy' => 'admin_presentation.destroy',
                 'store' => 'admin_presentation.store',
                 'update' => 'admin_presentation.update',
+            ])
+            ->missing(fn () => Redirect::route('admin_presentation_index'));
+        Route::resource('slides', AdminPresentationSlideController::class)
+            ->only(['destroy', 'store', 'update'])
+            ->names([
+                'destroy' => 'admin_slide.destroy',
+                'store' => 'admin_slide.store',
+                'update' => 'admin_slide.update',
             ])
             ->missing(fn () => Redirect::route('admin_presentation_index'));
 

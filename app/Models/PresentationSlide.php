@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,14 +15,17 @@ class PresentationSlide extends Model
     protected $with = ['presentationTheme'];
 
     // ## Casting
+    protected $appends = ['renderedContent'];
 
-    protected function content(): Attribute
+    protected function getRenderedContentAttribute(): string
     {
-        return Attribute::make(
-            get: fn (string $value) => Str::of($value)->markdown(
-                ['heading_shifter' => ['shift_by' => 2]],
-                [new HeadingShifterExtension]
-            ),
+        return Str::of($this->content)->markdown(
+            [
+                'html_input' => 'strip',
+                'allow_unsafe_links' => false,
+                'heading_shifter' => ['shift_by' => 2],
+            ],
+            [new HeadingShifterExtension]
         );
     }
 

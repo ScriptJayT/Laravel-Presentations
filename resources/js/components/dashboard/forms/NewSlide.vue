@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { store } from '@/routes/admin_script';
-import { Form, RedirectToField, TextField } from '@/components/global/form';
+import { store } from '@/routes/admin_slide';
+import { Form, TextField } from '@/components/global/form';
+
+defineProps<{
+    parentId: number;
+}>();
 </script>
 
 <template>
@@ -15,12 +19,10 @@ import { Form, RedirectToField, TextField } from '@/components/global/form';
         <TextField
             name="title"
             label="Title:"
-            :error="errors.title || errors.slug"
+            :error="errors.title"
         />
-        <RedirectToField
-            type="check"
-            label="Go straight to /edit"
-            value="on"
-        />
+        <hidden>
+            <input type="hidden" name="presentation" :value="parentId">
+        </hidden>
     </Form>
 </template>
