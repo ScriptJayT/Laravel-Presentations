@@ -14,6 +14,12 @@ class PresentationSlide extends Model
 
     protected $with = ['presentationTheme'];
 
+    protected $fillable = [
+        'title', 'content', 'order',
+        'presentation_id',
+        'presentation_theme_id',
+    ];
+
     // ## Casting
     protected $appends = ['renderedContent'];
 

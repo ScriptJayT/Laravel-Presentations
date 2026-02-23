@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PresentationSlide;
+use App\Models\PresentationTheme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -23,14 +24,18 @@ class AdminPresentationSlideController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-
         $validated = validator($request->all(), [
-            'title' => 'required|min:5|unique:presentation_scripts,title',
+            'title' => 'required|min:2|unique:presentation_scripts,title',
+            'presentation' => 'required|integer|exists:presentations,id',
         ])->validated();
-        $slide = PresentationSlide::create([
+
+        $theme = PresentationTheme::where('id', '1')->first();
+        PresentationSlide::create([
+            'presentation_id' => $validated['presentation'],
             'title' => e($validated['title']),
             'content' => '',
+            'order' => 0,
+            'presentation_theme_id' => $theme->id,
         ]);
 
         return Redirect::back();
