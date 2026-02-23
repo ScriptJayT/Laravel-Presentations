@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { type Auth } from "@/types";
+import { type RouteDefinition } from '@/wayfinder';
 import { computed } from "vue";
 import { Link, usePage } from '@inertiajs/vue3';
 import { admin_presentation_index, login, home } from '@/routes';
-import { RouteDefinition } from '@/wayfinder';
-
 import UserDropDown from '@/components/app/UserDropDown.vue';
 
 const page = usePage();
@@ -15,7 +14,6 @@ type NavItem = {
     href: RouteDefinition<"get">;
     show: "login" | "guest" | "always"
 };
-
 const links: NavItem[] = [
     {
         title: "Home",
