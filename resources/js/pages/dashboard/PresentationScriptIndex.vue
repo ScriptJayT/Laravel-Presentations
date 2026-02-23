@@ -3,8 +3,8 @@ import { type PresentationScript, type BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_scripts } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Container } from '@/components/dashboard/containers';
-import {IndexLink, NewLink} from '@/components/dashboard/models';
+import { Container, IndexGrid } from '@/components/dashboard/containers';
+import { IndexLink, NewLink } from '@/components/dashboard/models';
 import NewScript from '@/components/dashboard/forms/NewScript.vue';
 import { Search } from '@/components/global/form';
 
@@ -30,7 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             class="space-y-10"
         >
             <Search :updatable-list="allScripts" />
-            <div class="grid auto-rows-min gap-4 md:grid-cols-3">
+            <IndexGrid>
                 <NewLink title="Script">
                     <h2 class="text-lg font-semibold my-5"> Create a new Script </h2>
                     <NewScript />
@@ -43,7 +43,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         :last-edit="_script.updated_at"
                     />
                 </template>
-            </div>
+            </IndexGrid>
         </Container>
     </AppLayout>
 </template>

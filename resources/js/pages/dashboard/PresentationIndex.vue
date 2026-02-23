@@ -3,7 +3,7 @@ import { type Presentation, type BreadcrumbItem } from '@/types';
 import { admin_presentations } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Container } from '@/components/dashboard/containers';
+import { Container, IndexGrid } from '@/components/dashboard/containers';
 import {IndexLink, NewLink} from '@/components/dashboard/models';
 import NewPresentation from '@/components/dashboard/forms/NewPresentation.vue';
 import { Search } from '@/components/global/form';
@@ -25,7 +25,7 @@ const breadcrumbs: BreadcrumbItem[] = [{
             class="space-y-10"
         >
             <Search />
-            <div class="grid auto-rows-min gap-4 md:grid-cols-3">
+            <IndexGrid>
                 <NewLink title="Presentation">
                     <h2 class="text-lg font-semibold my-5"> Create a new Presentation </h2>
                     <NewPresentation/>
@@ -47,7 +47,7 @@ const breadcrumbs: BreadcrumbItem[] = [{
                         </span>
                     </IndexLink>
                 </template>
-            </div>
+            </IndexGrid>
         </Container>
     </AppLayout>
 </template>
