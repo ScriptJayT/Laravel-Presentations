@@ -19,7 +19,7 @@ defineProps<{
             flex gap-2 items-center
             py-1 px-3
             border rounded-sm
-            bg-white
+            bg-background
             "
     >
         <span class="italic text-md">
