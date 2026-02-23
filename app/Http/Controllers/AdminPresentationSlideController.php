@@ -61,10 +61,8 @@ class AdminPresentationSlideController extends Controller
             'content' => '',
         ])->validated();
 
-        dd($validated);
-
         $slide->title = e($validated['title']);
-        $slide->content = e($validated['content']);
+        $slide->content = $validated['content'];
         $slide->save();
 
         return Redirect::back();

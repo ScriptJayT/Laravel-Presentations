@@ -16,8 +16,8 @@ const props = withDefaults(
         showButton?: boolean;
         buttonText?: string;
         buttonIcon?: FunctionalComponent;
-        onError?: (_arg: unknown) => void;
-        onSuccess?: (_arg: unknown) => void;
+        onError?: (..._args: unknown[]) => void;
+        onSuccess?: (..._arg: unknown[]) => void;
     }>(),
     {
         showButton: true,
@@ -51,11 +51,11 @@ function fail(_response: unknown) {
         v-on:success="success"
         v-on:error="fail"
         :reset-on-error="false"
-        :reset-on-success="true"
+        :reset-on-success="formAction!=='edit'"
         disable-while-processing
         v-slot="{ errors, processing, isDirty, wasSuccessful, hasErrors }"
     >
-        <template v-if="formAction==='edit'">
+        <template v-if="formAction==='edit' && !showButton">
             <div class="form--meta | absolute bottom-full right-0 m-0">
                 <ProcessIndicator :is-in-process="processing"/>
                 <UnsavedChanges :has-unsaved-changes="isDirty && !processing" />

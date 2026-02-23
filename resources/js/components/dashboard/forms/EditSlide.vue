@@ -3,6 +3,8 @@ import { type PresentationSlide } from '@/types';
 import { Form, ContentField, TextField } from '@/components/global/form'
 import { destroy, update } from '@/routes/admin_slide';
 
+
+const emit = defineEmits(['success']);
 defineProps<{
     parentId: number;
     slide: PresentationSlide;
