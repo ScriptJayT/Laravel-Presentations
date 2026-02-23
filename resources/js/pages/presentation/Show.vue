@@ -18,15 +18,18 @@ const props = defineProps<{
 onMounted(()=>{
     props.presentation.slides.unshift({
         id: 0,
+        order: 99999999,
         created_at: "",
         updated_at: "",
         title: props.presentation.title,
-        content: `  <span class="created_on | block">
-                        created on: ${ props.presentation.created_at }
-                    </span>
-                    <span class="creator | block">
-                        by: ${ props.presentation.user.name }
-                    </span>`,
+        content: "",
+        renderedContent: `
+            <span class="created_on | block">
+                created on: ${props.presentation.created_at}
+            </span>
+            <span class="creator | block">
+                by: ${props.presentation.user.name}
+            </span>`,
         presentation_theme: props.presentation.presentation_theme,
     });
 });
@@ -57,7 +60,7 @@ onMounted(()=>{
                             </template>
 
                             <div class="flow-root pl-6 | overflow-y-auto overflow-x-clip">
-                                <template v-if="true">
+                                <template v-if="false">
                                     <figure class="
                                         float-end
                                         block max-w-md w-fit
@@ -72,7 +75,7 @@ onMounted(()=>{
                                 </template>
                                 <div
                                     class="contents space-y-5"
-                                    v-html="_slide.content"
+                                    v-html="_slide.renderedContent"
                                 />
                             </div>
                         </div>
@@ -112,6 +115,10 @@ onMounted(()=>{
         }
         & :where(h3, h4, h5, h6) {
             text-wrap: balance;
+        }
+
+        & p:has(img) {
+            display: contents;
         }
     }
 </style>

@@ -1,34 +1,21 @@
-import { type User, type Model } from "@/types";
+import type {
+    Model,
+    HasTitle, IsSluggable,
+    HasRenderableContent, IsOrderable,
+    IsLinkedToUser,
+} from "@/types";
 
 export type PresentationVisibility = {
-    id: number,
-    title: string,
     name: string,
-} & Model;
-export type PresentationTheme = {
-    id: number,
-    title: string,
-} & Model;
-export type PresentationScript = {
-    id: number,
-    title: string,
-    content: string,
-    renderedContent: string,
-} & Model;
+} & Model & HasTitle;
+export type PresentationTheme = Model & HasTitle;
+export type PresentationScript = Model & HasTitle & HasRenderableContent;
 export type PresentationSlide = {
-    id: number,
-    title: string,
-    content: string,
-    order: number,
     presentation_theme: PresentationTheme,
-} & Model;
+} & Model & HasTitle & HasRenderableContent & IsOrderable;
 export type Presentation = {
-    id: number,
-    user: User,
-    title: string,
-    slug: string,
     presentation_visibility: PresentationVisibility,
     presentation_theme: PresentationTheme,
     presentation_script: PresentationScript,
     slides?: Array<PresentationSlide>,
-} & Model;
+} & Model & HasTitle & IsSluggable & IsLinkedToUser;

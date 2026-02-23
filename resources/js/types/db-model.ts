@@ -1,11 +1,30 @@
-import { Fn } from "@vueuse/core";
+import type { User } from "@/types";
 
-export type Model = Id & Timestamps;
+export type Model = HasId & HasTimestamps;
 
-export type Id = {
-    id: number | string;
+export type HasId = {
+    id: number;
 }
-export type Timestamps = {
+export type HasTimestamps = {
     created_at: string;
     updated_at: string;
+}
+
+export type HasTitle = {
+    title: string;
+}
+export type IsSluggable = {
+    slug: string;
+}
+
+export type IsLinkedToUser = {
+    user: User;
+}
+
+export type IsOrderable = {
+    order: number;
+}
+export type HasRenderableContent = {
+    content: string;
+    renderedContent: string;
 }
