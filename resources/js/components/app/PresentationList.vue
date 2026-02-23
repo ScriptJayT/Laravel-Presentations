@@ -21,8 +21,8 @@ const totalPresentations = Array.isArray(props.presentations)
 </script>
 
 <template>
-    <div data-component="PresentationList" class="p-6 rounded border space-y-4">
-        <div class="flex gap-4 justify-between flex-wrap">
+    <section data-component="PresentationList" class="p-6 rounded border space-y-4">
+        <header class="flex gap-4 justify-between flex-wrap">
             <Heading :title />
             <template v-if="totalPresentations < 1">
                 <p class="m-0 min-w-fit">None found</p>
@@ -32,7 +32,7 @@ const totalPresentations = Array.isArray(props.presentations)
                     Showing: {{ totalPresentations }} presentation(s)
                 </span>
             </template>
-        </div>
+        </header>
         <div class="grid auto-rows-min gap-6 md:grid-cols-3">
             <template v-for="_presentation in presentations">
                 <PresentationLink
@@ -42,5 +42,5 @@ const totalPresentations = Array.isArray(props.presentations)
                 />
             </template>
         </div>
-    </div>
+    </section>
 </template>
