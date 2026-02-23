@@ -17,7 +17,7 @@ const classList = props.class ?? "";
             ct-inline-size | relative isolate
             grow flex flex-col
             px-6 md:px-4 dark:px-8 dark:md:px-6
-            py-6
+            pt-6 pb-12
             rounded-xl
             "
     >
