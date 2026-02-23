@@ -38,7 +38,7 @@ class Presentation extends Model
     protected function casts(): array
     {
         return [
-            'created_at' => 'date:m/d/y',
+            'created_at' => "date:m/d/'y",
         ];
     }
 

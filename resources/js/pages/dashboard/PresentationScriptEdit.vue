@@ -36,6 +36,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <SaveZone form-id="update-script-form"/>
                 <AsideZone title="Info" :hidden-title="true">
                     <span class="block">
+                        Created on: {{ script.created_at }}
+                    </span>
+                    <span class="block">
                         Last edit: {{ script.updated_at }}
                     </span>
                 </AsideZone>

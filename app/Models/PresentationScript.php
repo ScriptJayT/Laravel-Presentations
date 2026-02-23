@@ -34,6 +34,13 @@ class PresentationScript extends Model
     }
 
     // transform existing attributes
+    protected function casts(): array
+    {
+        return [
+            'created_at' => "date:m/d/'y",
+        ];
+    }
+
     protected function updatedAt(): Attribute
     {
         return Attribute::make(
