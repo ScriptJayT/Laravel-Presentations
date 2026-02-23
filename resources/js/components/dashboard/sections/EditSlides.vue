@@ -20,8 +20,7 @@ const props = defineProps<{
         </NewLink>
         <template v-for="_slide in slides">
             <IndexLink :title="`${_slide.title}`" :unsemantic-title="true">
-                {{ _slide.order }}
-                {{ _slide.id }}
+                <span> Order magn.: {{ _slide.order }} </span>
                 <button
                     class="
                         model-create--button |
@@ -31,7 +30,7 @@ const props = defineProps<{
                         border-2 rounded-xl hover:border-cyan-700 focus-visible:border-cyan-700
                         outline-offset-8
                         "
-                    :title="`Create a New Slide`"
+                    :title="`Open: ${_slide.title}`"
                     command="show-modal"
                     :commandfor="`modal-for-slide-${_slide.id}`"
                 />
