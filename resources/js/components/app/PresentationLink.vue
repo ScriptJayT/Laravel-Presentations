@@ -2,6 +2,7 @@
 import { type Auth, type Presentation } from '@/types';
 import { presentations, scripts } from '@/routes';
 import { usePage } from '@inertiajs/vue3';
+import { Shield, Lock, LockOpen } from "lucide-vue-next";
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
 const page = usePage();
@@ -21,31 +22,49 @@ withDefaults(
 
 <template>
     <div
-        data-component="PresentationLink"
+        data-component="app/PresentationLink"
+        :data-guard="presentation.presentation_visibility.title"
+        :data-user="presentation.user.name"
         class="
             relative
             flex flex-col
-            aspect-video p-4
+            aspect-video
+            px-4 py-5
             border rounded-xl
             "
     >
         <template v-if="showGuard">
             <span
-                :data-guard="presentation.presentation_visibility.title"
                 class="
                     pointer-events-none select-none
                     absolute top-0 right-4
-                    block px-2
+                    flex gap-2 items-center
+                    py-1 px-3
                     border rounded-sm
                     -translate-y-1/2
-                    italic text-sm
                     bg-white
                     "
             >
-                {{ presentation.presentation_visibility.name }}
+                <span class="italic text-md">
+                    {{ presentation.presentation_visibility.name }}
+                </span>
+                <span>
+                    <template v-if="presentation.presentation_visibility.title === 'creator'">
+                        <Lock class="size-4"/>
+                    </template>
+                    <template v-else-if="presentation.presentation_visibility.title === 'login'">
+                        <Shield class="size-4"/>
+                    </template>
+                    <template v-else-if="presentation.presentation_visibility.title === 'public'">
+                        <LockOpen class="size-4"/>
+                    </template>
+                    <template v-else>
+                        <LockOpen class="size-4"/>
+                    </template>
+                </span>
             </span>
         </template>
-        <h3 class="font-semibold">
+        <h3 class="text-xl font-semibold">
             {{ presentation.title }}
         </h3>
 

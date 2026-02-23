@@ -29,6 +29,7 @@ defineProps<{
                         :show-guard="true"
                         :show-user="false"
                         :presentations="allCreatorPresentations"
+                        class="border-cyan-500"
                     />
                     <PresentationList
                         title="Protected slideshows from everyone"
