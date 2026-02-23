@@ -73,6 +73,6 @@ class Presentation extends Model
 
     public function slides(): HasMany
     {
-        return $this->hasMany(PresentationSlide::class);
+        return $this->hasMany(PresentationSlide::class)->orderBy('order,id', 'desc');
     }
 }

@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { type PresentationSlide } from '@/types';
-import { Form, ContentField, TextField } from '@/components/global/form'
+import { Form, ContentField, TextField, NumberField } from '@/components/global/form'
 import { destroy, update } from '@/routes/admin_slide';
 
-
-const emit = defineEmits(['success']);
+// const emit = defineEmits(['success']);
 defineProps<{
     parentId: number;
     slide: PresentationSlide;
@@ -25,6 +24,7 @@ defineProps<{
             button-text="Update"
             class="space-y-5"
         >
+            <NumberField label="Order:" name="order" :value="slide.order"/>
             <TextField
                 label="Title:"
                 name="title"

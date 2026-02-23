@@ -59,10 +59,12 @@ class AdminPresentationSlideController extends Controller
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
             'content' => '',
+            'order' => 'required|integer',
         ])->validated();
 
         $slide->title = e($validated['title']);
         $slide->content = $validated['content'];
+        $slide->order = $validated['order'];
         $slide->save();
 
         return Redirect::back();

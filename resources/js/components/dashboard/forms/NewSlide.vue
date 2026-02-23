@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { store } from '@/routes/admin_slide';
-import { Form, TextField } from '@/components/global/form';
+import { Form, TextField, NumberField } from '@/components/global/form';
 
 defineProps<{
     parentId: number;
@@ -21,6 +21,8 @@ defineProps<{
             label="Title:"
             :error="errors.title"
         />
+        <NumberField label="Order:" name="order" :value="100"/>
+
         <hidden>
             <input type="hidden" name="presentation" :value="parentId">
         </hidden>

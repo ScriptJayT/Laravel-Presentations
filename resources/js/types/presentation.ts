@@ -19,6 +19,7 @@ export type PresentationSlide = {
     id: number,
     title: string,
     content: string,
+    order: number,
     presentation_theme: PresentationTheme,
 } & Model;
 export type Presentation = {
