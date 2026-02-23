@@ -27,6 +27,7 @@ class AdminPresentationSlideController extends Controller
         $validated = validator($request->all(), [
             'title' => 'required|min:2|unique:presentation_scripts,title',
             'presentation' => 'required|integer|exists:presentations,id',
+            'order' => 'required|integer',
         ])->validated();
 
         $theme = PresentationTheme::where('id', '1')->first();
@@ -34,7 +35,7 @@ class AdminPresentationSlideController extends Controller
             'presentation_id' => $validated['presentation'],
             'title' => e($validated['title']),
             'content' => '',
-            'order' => 0,
+            'order' => $validated['order'],
             'presentation_theme_id' => $theme->id,
         ]);
 
