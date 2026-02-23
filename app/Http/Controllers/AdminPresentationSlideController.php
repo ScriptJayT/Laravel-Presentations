@@ -69,8 +69,6 @@ class AdminPresentationSlideController extends Controller
      */
     public function destroy(string $id)
     {
-        dd($id);
-
         if (PresentationSlide::whereId($id)->delete()) {
             session()->flash('info', 'successfully deleted the slide');
         } else {
