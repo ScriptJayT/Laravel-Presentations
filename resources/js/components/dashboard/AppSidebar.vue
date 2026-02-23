@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, Presentation, House, Scroll, Users } from 'lucide-vue-next';
+import {
+    LayoutGrid, Presentation, Scroll,
+    Users, HeartPulse,
+    BookOpen, Folder,
+} from 'lucide-vue-next';
 import NavFooter from '@/components/dashboard/NavFooter.vue';
 import NavMain from '@/components/dashboard/NavMain.vue';
 import NavUser from '@/components/dashboard/NavUser.vue';
 import {
     Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarHeader,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
+    SidebarContent, SidebarFooter, SidebarHeader,
+    SidebarMenu, SidebarMenuButton, SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { home, admin_presentation_index, admin_script_index } from '@/routes';
+import {
+    home,
+    admin_presentation_index, admin_script_index
+} from '@/routes';
 import AppLogo from '@/components/global/AppLogo.vue';
 
 import { type NavItem } from '@/types';
@@ -40,6 +43,11 @@ const dashboardNavItems: NavItem[] = [
         title: 'Users',
         href: home(),
         icon: Users,
+    },
+    {
+        title: 'Health',
+        href: '/up',
+        icon: HeartPulse,
     },
 ];
 const footerNavItems: NavItem[] = [
