@@ -25,7 +25,7 @@ defineProps<{
         <span class="italic text-md">
             {{ visibility.name }}
         </span>
-        <span>
+        <span role="presentation">
             <template v-if="visibility.title === 'creator'">
                 <Lock class="size-4"/>
             </template>

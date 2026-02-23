@@ -7,6 +7,7 @@ import { Container } from '@/components/dashboard/containers';
 import {IndexLink, NewLink} from '@/components/dashboard/models';
 import NewPresentation from '@/components/dashboard/forms/NewPresentation.vue';
 import { Search } from '@/components/global/form';
+import VisibilityBadge from '@/components/global/model/VisibilityBadge.vue';
 
 defineProps<{
     allPresentations: Presentation[];
@@ -36,19 +37,11 @@ const breadcrumbs: BreadcrumbItem[] = [{
                         :link="admin_presentations(_presentation.id)"
                         :last-edit="_presentation.updated_at"
                     >
-                        <span
+                        <VisibilityBadge
+                            :visibility="_presentation.presentation_visibility"
+                            class="absolute top-0 right-4 z-10 -translate-y-1/2"
                             aria-hidden="true"
-                            class="
-                                pointer-events-none
-                                absolute top-0 right-4 z-10
-                                block px-2 border rounded-sm
-                                -translate-y-1/2
-                                text-sm italic
-                                bg-white
-                                "
-                        >
-                            {{ _presentation.presentation_visibility.name }}
-                        </span>
+                        />
                         <span class="block mt-auto" aria-label="A presentation">
                             by: {{ _presentation.user.name }}
                         </span>
