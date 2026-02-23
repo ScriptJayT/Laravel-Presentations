@@ -2,12 +2,10 @@
 import { type Auth, type Presentation } from '@/types';
 import { presentations, scripts } from '@/routes';
 import { usePage } from '@inertiajs/vue3';
-
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
 const page = usePage();
 const user = (page.props.auth as Auth)?.user ?? null;
-
 withDefaults(
     defineProps<{
         presentation: Presentation;

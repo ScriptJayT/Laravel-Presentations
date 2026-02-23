@@ -2,12 +2,19 @@
 import { type Presentation } from '@/types';
 import PresentationLink from '@/components/app/PresentationLink.vue';
 import Heading from '@/components/Heading.vue';
-const props = defineProps<{
-    title: string;
-    presentations: Array<Presentation>;
-    showGuard?: boolean;
-}>();
 
+const props = withDefaults(
+    defineProps<{
+        title: string;
+        presentations: Array<Presentation>;
+        showGuard?: boolean;
+        showUser?: boolean;
+    }>(),
+    {
+        showGuard: false,
+        showUser: true,
+    }
+);
 // for some reason, vue's proxy transforms array's to objects; causing issues when trying to get length
 const totalPresentations = Array.isArray(props.presentations)
     ? props.presentations.length
@@ -27,7 +34,11 @@ const totalPresentations = Array.isArray(props.presentations)
         </template>
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
             <template v-for="_presentation in presentations">
-                <PresentationLink :presentation="_presentation" :show-guard="showGuard ?? false" />
+                <PresentationLink
+                    :presentation="_presentation"
+                    :show-guard="showGuard"
+                    :show-user="showUser"
+                />
             </template>
         </div>
     </div>
