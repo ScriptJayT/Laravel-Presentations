@@ -21,7 +21,7 @@ defineProps<{
             label="Title:"
             :error="errors.title"
         />
-        <NumberField label="Order:" name="order" :value="100"/>
+        <NumberField label="Order:" name="order" :value="0" :min="0"/>
 
         <hidden>
             <input type="hidden" name="presentation" :value="parentId">

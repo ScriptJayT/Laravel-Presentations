@@ -24,7 +24,7 @@ defineProps<{
             button-text="Update"
             class="space-y-5"
         >
-            <NumberField label="Order:" name="order" :value="slide.order"/>
+            <NumberField label="Order:" name="order" :min="0" :value="slide.order"/>
             <TextField
                 label="Title:"
                 name="title"

@@ -21,6 +21,7 @@ const props = defineProps<{
         <template v-for="_slide in slides">
             <IndexLink :title="`${_slide.title}`" :unsemantic-title="true">
                 {{ _slide.order }}
+                {{ _slide.id }}
                 <button
                     class="
                         model-create--button |

@@ -29,7 +29,11 @@ class AdminPresentationController extends Controller
      */
     public function edit(string $_presId): IResponse
     {
-        $presentation = Presentation::where('id', $_presId)->with('slides')->first();
+        $presentation = Presentation::where('id', $_presId)
+            ->with([
+                'slides' => fn ($q) => $q->orderBy('order', 'desc'),
+            ])
+            ->first();
         $rules = PresentationVisibility::all(['id', 'name'])->all();
         $scripts = PresentationScript::all(['id', 'title'])->all();
 
