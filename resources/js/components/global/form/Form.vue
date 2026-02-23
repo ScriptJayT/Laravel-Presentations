@@ -51,7 +51,7 @@ function fail(_response: unknown) {
         v-on:success="success"
         v-on:error="fail"
         :reset-on-error="false"
-        :reset-on-success="false"
+        :reset-on-success="true"
         disable-while-processing
         v-slot="{ errors, processing, isDirty, wasSuccessful, hasErrors }"
     >
