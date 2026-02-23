@@ -19,7 +19,10 @@ const props = defineProps<{
             <NewSlide :parent-id="presentation.id"/>
         </NewLink>
         <template v-for="_slide in slides">
-            <IndexLink :title="`${_slide.title}`" :unsemantic-title="true">
+            <IndexLink
+                :data-id="_slide.id"
+                :title="`${_slide.title}`" :unsemantic-title="true"
+            >
                 <span> Order magn.: {{ _slide.order }} </span>
                 <button
                     class="
