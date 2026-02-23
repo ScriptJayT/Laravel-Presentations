@@ -94,7 +94,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                         >
                             <select
                                 name="visibility" id="visibility-rule"
-                                :value="presentation.presentation_visibility.id"
                                 class="
                                     grow cursor-pointer
                                     px-2 border-transparent outline-none
@@ -105,6 +104,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <option
                                         :value="_rule.id"
                                         class="px-2"
+                                        :selected="_rule.id === (presentation.presentation_visibility.id)"
                                     >
                                         {{ _rule.name }}
                                     </option>
