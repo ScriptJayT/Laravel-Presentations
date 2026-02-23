@@ -52,3 +52,9 @@ const id = `selectfield-${crypto.randomUUID()}`;
         </select>
     </FormField>
 </template>
+
+<style scoped>
+    ::picker(select) {
+        max-height: 10lh;
+    }
+</style>
