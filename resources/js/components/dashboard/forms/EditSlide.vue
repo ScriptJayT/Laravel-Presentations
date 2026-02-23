@@ -30,7 +30,7 @@ defineProps<{
                 :error="errors.title"
             />
             <FormField :error="errors.content">
-               <textarea :value="slide.content" class="outline-none" />
+               <textarea name="content" :value="slide.content" class="outline-none" />
             </FormField>
        </Form>
 

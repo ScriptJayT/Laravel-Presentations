@@ -56,12 +56,13 @@ class AdminPresentationSlideController extends Controller
      */
     public function update(Request $request, PresentationSlide $slide)
     {
-        dd($request->all());
-
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
             'content' => '',
         ])->validated();
+
+        dd($validated);
+
         $slide->title = e($validated['title']);
         $slide->content = e($validated['content']);
         $slide->save();
