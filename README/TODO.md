@@ -4,14 +4,14 @@
 - [ ] Name App
 - [ ] Check health route
 - CRUD operations
-    - [ ] Presentations R
+    - [x] Presentations
     - [ ] Slides R
-    - [ ] Scripts
+    - [x] Scripts
     - ? Themes
+    - ? Atom lock
 - ? Users Dashboard
-- ? Private Presentation Scripts
+- ? Private PresentationScripts
 - ? Js Script injecting (custom elements, iframes)
-- ? Atom Lock on CRUD operations
 - ? Read-only API
     - json
     - md | html content
