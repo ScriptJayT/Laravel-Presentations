@@ -15,7 +15,7 @@ const options: Record<string, string> = {};
 props.scripts.forEach((_script)=>{
     options[_script.id] = `
         <span>${_script.title}</span>
-        <span>#${_script.id}</span>
+        <span class="ml-auto italic">#${_script.id}</span>
     `;
 });
 </script>
