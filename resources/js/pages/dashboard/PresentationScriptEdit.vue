@@ -4,7 +4,7 @@ import { type PresentationScript, type BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_script_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
 
-import { Form, FormField } from '@/components/global/form'
+import { Form, FormField, ContentField } from '@/components/global/form'
 import { AsideZone, SaveZone, DangerZone } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
 
@@ -72,18 +72,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                             class="grow outline-none"
                         />
                     </FormField>
-                    <FormField :error="errors.content">
-                        <textarea
-                            aria-label="Content"
-                            name="content"
-                            class="
-                                resize-none
-                                outline-none
-                                min-h-[10lh]
-                                "
-                            :value="script.content.trim()"
-                        />
-                    </FormField>
+
+                    <ContentField
+                        name="content"
+                        :error="errors.content"
+                        :value="script.content.trim()"
+                    />
                 </Form>
             </template>
         </SideZoneContainer>

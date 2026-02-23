@@ -8,6 +8,7 @@ export {default as UnsavedChanges} from "./UnsavedChanges.vue";
 export {default as ProcessIndicator} from "./ProcessIndicator.vue";
 
 export {default as TextField} from "./fields/TextField.vue";
+export {default as ContentField} from "./fields/ContentField.vue";
 export {default as CheckboxField} from "./fields/CheckboxField.vue";
 export {default as RedirectToField} from "./fields/RedirectToField.vue";
 export {default as SelectField} from "./fields/SelectField.vue";

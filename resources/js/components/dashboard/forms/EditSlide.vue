@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type PresentationSlide } from '@/types';
-import { Form, FormField, TextField } from '@/components/global/form'
+import { Form, ContentField, TextField } from '@/components/global/form'
 import { destroy, update } from '@/routes/admin_slide';
 
 defineProps<{
@@ -29,9 +29,11 @@ defineProps<{
                 :value="slide.title"
                 :error="errors.title"
             />
-            <FormField :error="errors.content">
-               <textarea name="content" :value="slide.content" class="outline-none" />
-            </FormField>
+            <ContentField
+                name="content"
+                :value="slide.content"
+                :error="errors.content"
+            />
        </Form>
 
         <Form
