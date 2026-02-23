@@ -4,6 +4,7 @@ import { presentations, scripts } from '@/routes';
 import { usePage } from '@inertiajs/vue3';
 import { Shield, Lock, LockOpen } from "lucide-vue-next";
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+import VisibilityBadge from "@/components/global/model/VisibilityBadge.vue"
 
 const page = usePage();
 const user = (page.props.auth as Auth)?.user ?? null;
@@ -33,37 +34,11 @@ withDefaults(
             border rounded-xl
             "
     >
-        <template v-if="showGuard">
-            <span
-                class="
-                    pointer-events-none select-none
-                    absolute top-0 right-4
-                    flex gap-2 items-center
-                    py-1 px-3
-                    border rounded-sm
-                    -translate-y-1/2
-                    bg-white
-                    "
-            >
-                <span class="italic text-md">
-                    {{ presentation.presentation_visibility.name }}
-                </span>
-                <span>
-                    <template v-if="presentation.presentation_visibility.title === 'creator'">
-                        <Lock class="size-4"/>
-                    </template>
-                    <template v-else-if="presentation.presentation_visibility.title === 'login'">
-                        <Shield class="size-4"/>
-                    </template>
-                    <template v-else-if="presentation.presentation_visibility.title === 'public'">
-                        <LockOpen class="size-4"/>
-                    </template>
-                    <template v-else>
-                        <LockOpen class="size-4"/>
-                    </template>
-                </span>
-            </span>
-        </template>
+        <VisibilityBadge
+            v-if="showGuard"
+            :visibility="presentation.presentation_visibility"
+            class="absolute top-0 right-4 -translate-y-1/2"
+        />
         <h3 class="text-xl font-semibold">
             {{ presentation.title }}
         </h3>
