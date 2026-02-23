@@ -3,40 +3,33 @@ import { type PresentationScript } from '@/types';
 import { ExternalLink } from 'lucide-vue-next';
 import { admin_script_index, admin_scripts } from '@/routes';
 
-import FormField from '@/components/global/form/FormField.vue';
+import { SelectField } from '@/components/global/form';
 
 const props = defineProps<{
     scripts: PresentationScript[];
     currentScript?: PresentationScript;
     error?: string;
 }>();
+
+const options: Record<string, string> = {};
+props.scripts.forEach((_script)=>{
+    options[_script.id] = `
+        <span>${_script.title}</span>
+        <span>#${_script.id}</span>
+    `;
+});
 </script>
 
 <template>
-    <FormField label="Current Script:" id="select-script" :error>
-        <select
-            :value="currentScript?.id"
-            name="script" id="select-script"
-            class="
-                cursor-pointer
-                block grow
-                px-2 border-transparent
-                "
-        >
-            <button> <selectedcontent></selectedcontent> </button>
-            <option value="" class="italic"> * None linked * </option>
-            <template v-for="_script in scripts">
-                <option class="px-2" :value="_script.id">
-                    <span>
-                        {{ _script.title }}
-                    </span>
-                    <span>
-                        #{{ _script.id }}
-                    </span>
-                </option>
-            </template>
-        </select>
-    </FormField>
+    <SelectField
+        name="script"
+        label="Current Script:"
+        null-value-text="None linked"
+        :default-value="`${currentScript?.id}`"
+        :options
+        :error
+    />
+
     <div class="space-y-3">
         <template v-if="currentScript">
             <a class="flex gap-1" target="_blank" :href="admin_scripts(currentScript.id).url">
