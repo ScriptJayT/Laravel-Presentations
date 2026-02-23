@@ -2,7 +2,6 @@
 import { type Presentation } from '@/types';
 import PresentationLink from '@/components/app/PresentationLink.vue';
 import Heading from '@/components/Heading.vue';
-
 const props = defineProps<{
     title: string;
     presentations: Array<Presentation>;

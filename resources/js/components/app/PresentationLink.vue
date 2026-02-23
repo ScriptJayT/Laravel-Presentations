@@ -1,13 +1,24 @@
 <script setup lang="ts">
-import { type Presentation } from '@/types';
+import { type Auth, type Presentation } from '@/types';
 import { presentations, scripts } from '@/routes';
+import { usePage } from '@inertiajs/vue3';
 
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 
-defineProps<{
-    presentation: Presentation;
-    showGuard: boolean;
-}>();
+const page = usePage();
+const user = (page.props.auth as Auth)?.user ?? null;
+
+withDefaults(
+    defineProps<{
+        presentation: Presentation;
+        showGuard?: boolean;
+        showUser?: boolean;
+    }>(),
+    {
+        showGuard: false,
+        showUser: true,
+    }
+);
 </script>
 
 <template>
@@ -39,9 +50,12 @@ defineProps<{
         <h3 class="font-semibold">
             {{ presentation.title }}
         </h3>
-        <span class="creator | block">
-            by: {{ presentation.user.name }}
-        </span>
+
+        <template v-if="showUser">
+            <span class="creator | block">
+                by: {{ user?.id === presentation.user.id ? "You" : presentation.user.name }}
+            </span>
+        </template>
 
         <div class="mt-auto grid grid-cols-2 gap-x-2">
             <a

@@ -27,6 +27,7 @@ defineProps<{
                     <PresentationList
                         title="Your Slideshows:"
                         :show-guard="true"
+                        :show-user="false"
                         :presentations="allCreatorPresentations"
                     />
                     <PresentationList
