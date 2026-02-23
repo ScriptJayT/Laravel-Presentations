@@ -24,7 +24,7 @@ const breadcrumbs: BreadcrumbItem[] = [{
             title="Full Overview"
             class="space-y-10"
         >
-            <Search />
+            <Search :updatable-list="allPresentations" />
             <IndexGrid>
                 <NewLink title="Presentation">
                     <h2 class="text-lg font-semibold my-5"> Create a new Presentation </h2>
