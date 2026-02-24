@@ -2,7 +2,6 @@
 import { type Presentation } from '@/types';
 import PresentationLink from '@/components/app/PresentationLink.vue';
 import Heading from '@/components/Heading.vue';
-
 const props = withDefaults(
     defineProps<{
         title: string;
@@ -25,7 +24,13 @@ const totalPresentations = Array.isArray(props.presentations)
     <section
         data-component="app/PresentationList"
         :class
-        class="p-6 rounded border-2 space-y-4"
+        class="
+            space-y-4
+            px-8 pt-8 pb-10
+            border-3 rounded-4xl
+            shadow-lg shadow-gray-500 dark:shadow-gray-400
+            bg-gray-200 dark:bg-gray-800
+            "
     >
         <div class="flex gap-4 justify-between flex-wrap">
             <Heading :title />

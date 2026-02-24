@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { type Auth, type Presentation } from '@/types';
+import type { Auth, Presentation } from '@/types';
 import { presentations, scripts } from '@/routes';
 import { usePage } from '@inertiajs/vue3';
-import { Shield, Lock, LockOpen } from "lucide-vue-next";
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import VisibilityBadge from "@/components/global/model/VisibilityBadge.vue"
 
@@ -31,7 +30,7 @@ withDefaults(
             flex flex-col
             aspect-video
             px-4 py-5
-            border rounded-xl
+            border rounded-xl border-gray-500 dark:border-gray-50/50
             "
     >
         <VisibilityBadge
@@ -55,9 +54,9 @@ withDefaults(
                 :title="`Open presentation: ${presentation.title}`"
                 class="
                     grid place-content-center
-                    px-2
+                    px-2 py-1
                     text-center
-                    bg-gray-100
+                    bg-gray-100 dark:bg-gray-700
                 "
             >
                 Present
@@ -69,9 +68,9 @@ withDefaults(
                     class="
                         cursor-pointer
                         grid place-content-center
-                        px-2
+                        px-2 py-1
                         text-center
-                        bg-gray-100
+                        bg-gray-100 dark:bg-gray-700
                     "
                 >
                     Read
