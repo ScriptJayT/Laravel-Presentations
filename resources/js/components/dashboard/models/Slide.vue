@@ -1,23 +1,17 @@
 <script setup lang="ts">
 import type { PresentationSlide, Presentation } from '@/types';
-import { onUnmounted } from 'vue';
 import IndexLink from '@/components/dashboard/models/IndexLink.vue';
 import ActionModal from '@/components/dashboard/ActionModal.vue';
 import EditSlide from '@/components/dashboard/forms/EditSlide.vue';
-
-const props = defineProps<{
+defineProps<{
     presentation: Presentation;
     slide: PresentationSlide;
 }>();
-
-onUnmounted(()=>{
-    console.log("Unmounted Slide", props.slide.id);
-});
 function handleUpdate(_e: Event) {
-    console.log("handled update", _e);
+    console.log("received update", _e);
 }
 function handeDelete(_e: Event) {
-    console.log("handled delete", _e);
+    console.log("received delete", _e);
 }
 </script>
 
@@ -25,7 +19,7 @@ function handeDelete(_e: Event) {
     <div data-component="dashboard/sections/Slide">
         <IndexLink
             :data-id="slide.id"
-            :title="`${slide.title}`" :unsemantic-title="true"
+            :title="`${slide.title} #${slide.id}`" :unsemantic-title="false"
         >
             <span> Order magn.: {{ slide.order }} </span>
             <button

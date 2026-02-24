@@ -57,9 +57,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                     :all-scripts="scripts"
                     :all-visibility-rules="rules"
                 />
-
                 <div class="space-y-5">
-                    <h3 class="text-lg font-semibold"> Slides </h3>
+                    <h2 class="text-lg font-semibold"> Slides </h2>
                     <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                         <NewLink title="Slide">
                             <h2 class="text-lg font-semibold my-5"> New Slide: </h2>

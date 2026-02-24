@@ -87,7 +87,7 @@ props.allScripts.forEach(_script => {
                             "
                     >
                         <span aria-hidden="true"> <Book class="size-4"/> </span>
-                        <span> Go to script: {{ presentation.presentation_script.title }} </span>
+                        <span> Open: {{ presentation.presentation_script.title }} </span>
                         <span aria-hidden="true"> <ExternalLink class="size-4"/> </span>
                     </a>
                 </template>
