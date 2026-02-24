@@ -51,7 +51,7 @@ function fail(_response: unknown) {
         v-on:success="success"
         v-on:error="fail"
         :reset-on-error="false"
-        :reset-on-success="formAction!=='edit'"
+        :reset-on-success="formAction!=='edit' || (formAction==='edit' && !showButton)"
         disable-while-processing
         v-slot="{ errors, processing, isDirty, wasSuccessful, hasErrors }"
     >

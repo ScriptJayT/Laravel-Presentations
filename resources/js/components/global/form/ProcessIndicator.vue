@@ -12,6 +12,7 @@ defineProps<{
         data-component="global/form/ProcessIndicator"
         aria-live="polite"
         :class
+        class="block"
         v-show="isInProcess"
     >
         <Spinner />
