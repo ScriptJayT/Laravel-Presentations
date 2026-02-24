@@ -9,6 +9,7 @@ defineProps<{
 
 <template>
     <span
+        data-component="global/form/UnsavedChanges"
         v-show="hasUnsavedChanges"
         aria-live="polite"
         :class
@@ -19,7 +20,9 @@ defineProps<{
             bg-background animate-pulse
             "
     >
-        <OctagonAlert class="size-4 text-orange-400"/>
+        <span aria-hidden="true">
+            <OctagonAlert class="size-4 text-orange-400" />
+        </span>
         <span> Unsaved Changes </span>
     </span>
 </template>

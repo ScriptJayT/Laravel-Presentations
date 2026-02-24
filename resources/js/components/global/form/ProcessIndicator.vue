@@ -8,7 +8,12 @@ defineProps<{
 </script>
 
 <template>
-    <span :class>
-        <Spinner v-show="isInProcess"/>
+    <span
+        data-component="global/form/ProcessIndicator"
+        aria-live="polite"
+        :class
+        v-show="isInProcess"
+    >
+        <Spinner />
     </span>
 </template>
