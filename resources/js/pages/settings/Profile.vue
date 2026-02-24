@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Form, Link, usePage } from '@inertiajs/vue3';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
-import DeleteUser from '@/components/dashboard/DeleteUser.vue';
+import { DeleteUser } from '@/components/auth';
 import Heading from '@/components/Heading.vue';
 import { InputError } from '@/components/global/form';
 import { Button } from '@/components/ui/button';
