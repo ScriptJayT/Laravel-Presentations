@@ -17,29 +17,23 @@ const authConfigContent = computed<TwoFactorConfigContent>(() => {
     if (showRecoveryInput.value) {
         return {
             title: 'Recovery Code',
-            description:
-                'Please confirm access to your account by entering one of your emergency recovery codes.',
+            description: 'Please confirm access to your account by entering one of your emergency recovery codes.',
             buttonText: 'login using an authentication code',
         };
     }
-
     return {
         title: 'Authentication Code',
-        description:
-            'Enter the authentication code provided by your authenticator application.',
+        description: 'Enter the authentication code provided by your authenticator application.',
         buttonText: 'login using a recovery code',
     };
 });
-
 const showRecoveryInput = ref<boolean>(false);
-
+const code = ref<string>('');
 const toggleRecoveryMode = (clearErrors: () => void): void => {
     showRecoveryInput.value = !showRecoveryInput.value;
     clearErrors();
     code.value = '';
 };
-
-const code = ref<string>('');
 </script>
 
 <template>
@@ -96,7 +90,6 @@ const code = ref<string>('');
                     </div>
                 </Form>
             </template>
-
             <template v-else>
                 <Form
                     v-bind="store.form()"

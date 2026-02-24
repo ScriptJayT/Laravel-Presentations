@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Form, Head, Link, usePage } from '@inertiajs/vue3';
+import { Form, Link, usePage } from '@inertiajs/vue3';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
 import DeleteUser from '@/components/dashboard/DeleteUser.vue';
 import Heading from '@/components/Heading.vue';
@@ -9,32 +9,24 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
-import { edit } from '@/routes/profile';
 import { send } from '@/routes/verification';
 import type { Auth, BreadcrumbItem } from '@/types';
 
-type Props = {
+defineProps<{
     mustVerifyEmail: boolean;
     status?: string;
-};
-
-defineProps<Props>();
-
+}>();
 const breadcrumbItems: BreadcrumbItem[] = [
     {
         title: 'Profile settings',
-        href: edit().url,
     },
 ];
-
 const page = usePage();
 const user = (page.props.auth as Auth).user;
 </script>
 
 <template>
-    <AppLayout :breadcrumbs="breadcrumbItems">
-        <Head title="Profile settings" />
-
+    <AppLayout :breadcrumbs="breadcrumbItems" meta-title="Profile settings">
         <h1 class="sr-only">Profile Settings</h1>
 
         <SettingsLayout>

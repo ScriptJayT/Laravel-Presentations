@@ -1,47 +1,46 @@
 <script setup lang="ts">
-import { Form, Head } from '@inertiajs/vue3';
+import { Form } from '@inertiajs/vue3';
 import { ShieldBan, ShieldCheck } from 'lucide-vue-next';
 import { onUnmounted, ref } from 'vue';
+import type { BreadcrumbItem } from '@/types';
+import { edit } from '@/routes/profile';
+import { disable, enable } from '@/routes/two-factor';
+
 import Heading from '@/components/Heading.vue';
-import TwoFactorRecoveryCodes from '@/components/auth/TwoFactorRecoveryCodes.vue';
-import TwoFactorSetupModal from '@/components/auth/TwoFactorSetupModal.vue';
+import { TwoFactorRecoveryCodes, TwoFactorSetupModal } from '@/components/auth';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useTwoFactorAuth } from '@/composables/useTwoFactorAuth';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
-import { disable, enable, show } from '@/routes/two-factor';
-import type { BreadcrumbItem } from '@/types';
 
-type Props = {
-    requiresConfirmation?: boolean;
-    twoFactorEnabled?: boolean;
-};
 
-withDefaults(defineProps<Props>(), {
-    requiresConfirmation: false,
-    twoFactorEnabled: false,
-});
-
+withDefaults(
+    defineProps<{
+        requiresConfirmation?: boolean;
+        twoFactorEnabled?: boolean;
+    }>(),
+    {
+        requiresConfirmation: false,
+        twoFactorEnabled: false,
+    }
+);
 const breadcrumbs: BreadcrumbItem[] = [
     {
+        title: 'Profile',
+        href: edit.url(),
+    },
+    {
         title: 'Two-Factor Authentication',
-        href: show.url(),
     },
 ];
-
 const { hasSetupData, clearTwoFactorAuthData } = useTwoFactorAuth();
 const showSetupModal = ref<boolean>(false);
-
-onUnmounted(() => {
-    clearTwoFactorAuthData();
-});
+onUnmounted(() => clearTwoFactorAuthData());
 </script>
 
 <template>
-    <AppLayout :breadcrumbs="breadcrumbs">
-        <Head title="Two-Factor Authentication" />
-
+    <AppLayout :breadcrumbs="breadcrumbs" metaTitle="Two-Factor Authentication">
         <h1 class="sr-only">Two-Factor Authentication Settings</h1>
 
         <SettingsLayout>

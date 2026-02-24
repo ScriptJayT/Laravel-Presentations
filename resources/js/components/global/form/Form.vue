@@ -53,12 +53,12 @@ function fail(_response: unknown) {
         :reset-on-error="false"
         :reset-on-success="formAction!=='edit' || (formAction==='edit' && !showButton)"
         disable-while-processing
-        v-slot="{ errors, processing, isDirty, wasSuccessful, hasErrors }"
+        v-slot="{ errors, processing, isDirty, wasSuccessful, hasErrors, recentlySuccessful }"
     >
         <template v-if="formAction==='edit' && !showButton">
             <div class="form--meta | absolute bottom-full right-0 m-0">
                 <ProcessIndicator :is-in-process="processing"/>
-                <UnsavedChanges :has-unsaved-changes="isDirty && !processing" />
+                <UnsavedChanges :has-unsaved-changes="isDirty && !processing && !recentlySuccessful" />
             </div>
         </template>
 
