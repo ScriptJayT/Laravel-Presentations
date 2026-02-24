@@ -30,7 +30,7 @@ const totalPresentations = Array.isArray(props.presentations)
         <div class="flex gap-4 justify-between flex-wrap">
             <Heading :title />
             <template v-if="totalPresentations < 1">
-                <p class="m-0 min-w-fit">None found</p>
+                <p class="m-0 min-w-fit"> None found </p>
             </template>
             <template v-else>
                 <span class="block min-w-fit ml-auto my-0 | italic">

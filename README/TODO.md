@@ -2,10 +2,10 @@
 - [x] Setup
 - [ ] Design
 - [ ] Name App
-- [ ] Check health route
+- [x] Check health route
 - CRUD operations
     - [x] Presentations
-    - [ ] Slides R
+    - [x] Slides
     - [x] Scripts
     - ? Themes
     - ? Atom lock
