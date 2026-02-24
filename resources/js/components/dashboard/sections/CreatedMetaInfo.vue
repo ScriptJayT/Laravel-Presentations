@@ -11,9 +11,15 @@ const props = defineProps<{
 <template>
     <template v-if="previewUrl">
         <a
-            class="cursor-pointer select-none | flex justify-between gap-1"
             :href="previewUrl.url"
             target="_blank"
+            class="
+                cursor-pointer select-none
+                flex justify-between gap-1
+                rounded-sm
+                outline-sidebar-ring
+                outline-offset-8
+                "
         >
             <span> Go to preview </span>
             <ExternalLink class="size-4"/>

@@ -11,7 +11,14 @@ defineProps<{
     <AsideZone>
         <button
             :form="formId"
-            class="cursor-pointer select-none w-full flex items-center justify-between gap-1"
+            class="
+                cursor-pointer select-none
+                flex items-center justify-between gap-1
+                w-full
+                rounded-sm
+                outline-sidebar-ring
+                outline-offset-8
+                "
         >
             <span> Save </span>
             <Save class="size-4"/>

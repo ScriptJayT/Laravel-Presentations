@@ -72,18 +72,37 @@ props.allScripts.forEach(_script => {
                 :options="scriptOptions"
                 :error="errors.script"
             />
-            <div class="space-y-3">
+            <div class="grid md:grid-cols-2 gap-x-10">
                 <template v-if="presentation.presentation_script">
                     <a
-                        class="flex gap-1"
-                        target="_blank"
                         :href="admin_scripts(presentation.presentation_script.id).url"
+                        target="_blank"
+                        class="
+                            flex gap-1 justify-between items-baseline
+                            p-4
+                            border-2 rounded-md
+                            outline-offset-4
+                            hover:bg-accent dark:hover:bg-accent/50
+                            transition-colors
+                            "
                     >
                         <span> Go to script: {{ presentation.presentation_script.title }} </span>
                         <ExternalLink class="size-4"/>
                     </a>
                 </template>
-                <a class="flex gap-1" target="_blank" :href="admin_script_index().url">
+                <a
+                    :href="admin_script_index().url"
+                    target="_blank"
+                    class="
+                        col-start-2
+                        flex gap-1 justify-between items-baseline
+                        p-4
+                        border-2 rounded-md
+                        outline-offset-4
+                        hover:bg-accent dark:hover:bg-accent/50
+                        transition-colors
+                        "
+                >
                     <span> Create a new script </span>
                     <ExternalLink class="size-4"/>
                 </a>

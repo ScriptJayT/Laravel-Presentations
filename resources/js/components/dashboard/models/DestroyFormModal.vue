@@ -21,6 +21,9 @@ const props = defineProps<{
             cursor-pointer select-none
             flex items-center justify-between gap-1
             w-full
+            rounded-sm
+            outline-sidebar-ring
+            outline-offset-8
             "
     >
         <span> Delete </span>
