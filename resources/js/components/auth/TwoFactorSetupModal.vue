@@ -4,7 +4,7 @@ import { useClipboard } from '@vueuse/core';
 import { Check, Copy, ScanLine } from 'lucide-vue-next';
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue';
 import AlertError from '@/components/auth/AlertError.vue';
-import InputError from '@/components/global/form/InputError.vue';
+import { InputError } from '@/components/global/form';
 import { Button } from '@/components/ui/button';
 import {
     Dialog,
