@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-
 const props = defineProps<{
     interactable?: boolean
 }>();
-
 const patternId = computed(
     () => `pattern-${Math.random().toString(36).substring(2, 9)}`,
 );
@@ -12,12 +10,24 @@ const patternId = computed(
 
 <template>
     <div
-        class="absolute inset-0 -z-10 rounded-[inherit] overflow-clip"
-        :class="interactable ? '' : 'pointer-events-none'"
+        data-component="PlaceholderPattern"
+        class="
+            absolute inset-0 -z-10
+            rounded-[inherit]
+            overflow-clip
+            "
+        :class="
+            interactable
+            ? ''
+            : 'pointer-events-none'
+            "
         role="presentation"
     >
         <svg
-            class="size-full stroke-neutral-900/20 dark:stroke-neutral-100/20"
+            class="
+                size-full
+                stroke-neutral-900/20 dark:stroke-neutral-100/20
+                "
             fill="none"
         >
             <defs>
