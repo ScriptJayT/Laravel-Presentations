@@ -86,7 +86,7 @@ function fail(_response: unknown) {
                 <ProcessIndicator :is-in-process="processing"/>
                 <template v-if="formAction=='edit'">
                     <span v-show="isDirty" class="relative" aria-live="polite">
-                        <span class="sr-only">There are unsaved changes</span>
+                        <span class="sr-only"> There are unsaved changes </span>
                         <span
                             aria-hidden="true"
                             class="block size-3 rounded-full bg-cyan-700"
