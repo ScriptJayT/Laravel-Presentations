@@ -23,7 +23,7 @@ function emitDelete() {
     <div
         data-component="dashboard/forms/EditSlide"
         :class
-        class="grid gap-x-5"
+        class="grid gap-x-15"
     >
         <Form
             :on-success="emitSave"
@@ -45,18 +45,25 @@ function emitDelete() {
                 :value="slide.content"
                 :error="errors.content"
             />
-       </Form>
-
-        <Form
-            :on-success="emitDelete"
-            :send-to="destroy.form(slide.id)"
-            form-action="delete"
-            button-text="Delete"
-        >
-           <p>Are u sure?</p>
         </Form>
+
+        <div data-id="delete-slide" class="space-y-3">
+            <p> Are u sure? </p>
+            <Form
+                :on-success="emitDelete"
+                :send-to="destroy.form(slide.id)"
+                form-action="delete"
+                button-text="Delete this Slide"
+            />
+        </div>
     </div>
 </template>
+
+<style>
+    [data-id="delete-slide"] .form-submit--button {
+        margin-inline: 0;
+    }
+</style>
 
 <style scoped>
     div.grid {
