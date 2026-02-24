@@ -42,6 +42,11 @@ const breadcrumbs: BreadcrumbItem[] = [{
                             class="absolute top-0 right-4 z-10 -translate-y-1/2"
                             aria-hidden="true"
                         />
+
+                        <span v-if="_presentation.presentation_script" >
+                            Has a Script {{ _presentation.presentation_script.title }}
+                        </span>
+
                         <span class="block mt-auto" aria-label="A presentation">
                             by: {{ _presentation.user.name }}
                         </span>
