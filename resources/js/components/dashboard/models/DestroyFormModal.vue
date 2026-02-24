@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { Form } from '@inertiajs/vue3';
+import type { RouteFormDefinition } from '@/wayfinder';
 import { Trash } from 'lucide-vue-next';
-
-import { Spinner } from '@/components/ui/spinner';
+import { Form } from '@/components/global/form';
 import ActionModal from '@/components/dashboard/ActionModal.vue';
-import { RouteFormDefinition } from '@/wayfinder';
-
 const props = defineProps<{
     id: string|number;
     route: RouteFormDefinition<'post'>;
@@ -34,23 +31,10 @@ const props = defineProps<{
             Are you sure you want to delete this entry? This is irreversible.
         </p>
         <Form
-            v-bind="route"
-            v-slot="{ processing }"
-        >
-            <button
-                class="
-                    cursor-pointer select-none
-                    flex items-center gap-1
-                    w-fit
-                    px-2 py-1 mx-auto
-                    border border-red-900 rounded-md
-                    outline-offset-8
-                    "
-            >
-                <span> Yes, delete this </span>
-                <Trash class="size-4"/>
-            </button>
-            <Spinner v-if="processing" />
-        </Form>
+            form-action="delete"
+            button-text="Yes, delete this"
+            :button-icon="Trash"
+            :send-to="route"
+        />
     </ActionModal>
 </template>

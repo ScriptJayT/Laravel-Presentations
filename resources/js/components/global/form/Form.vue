@@ -79,7 +79,8 @@ function fail(_response: unknown) {
                     w-fit px-3 py-2
                     border rounded-md mx-auto
                     outline-offset-8
-                    transition-[width]
+                    transition-colors
+                    hover:bg-accent dark:hover:bg-accent/50
                     "
             >
                 <ProcessIndicator :is-in-process="processing"/>
