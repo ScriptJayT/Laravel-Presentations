@@ -3,7 +3,7 @@ import type { Presentation, PresentationVisibility, PresentationScript, } from '
 import { admin_script_index, admin_scripts } from '@/routes';
 import { update } from '@/routes/admin_presentation';
 
-import { ExternalLink } from 'lucide-vue-next';
+import { ExternalLink, Book, CirclePlus } from 'lucide-vue-next';
 import { Form, FormField, SelectField, TextField } from '@/components/global/form';
 
 const props = defineProps<{
@@ -78,7 +78,7 @@ props.allScripts.forEach(_script => {
                         :href="admin_scripts(presentation.presentation_script.id).url"
                         target="_blank"
                         class="
-                            flex gap-1 justify-between items-baseline
+                            flex gap-1 justify-between items-center
                             p-4
                             border-2 rounded-md
                             outline-offset-4
@@ -86,8 +86,9 @@ props.allScripts.forEach(_script => {
                             transition-colors
                             "
                     >
+                        <span aria-hidden="true"> <Book class="size-4"/> </span>
                         <span> Go to script: {{ presentation.presentation_script.title }} </span>
-                        <ExternalLink class="size-4"/>
+                        <span aria-hidden="true"> <ExternalLink class="size-4"/> </span>
                     </a>
                 </template>
                 <a
@@ -95,7 +96,7 @@ props.allScripts.forEach(_script => {
                     target="_blank"
                     class="
                         col-start-2
-                        flex gap-1 justify-between items-baseline
+                        flex gap-1 justify-between items-center
                         p-4
                         border-2 rounded-md
                         outline-offset-4
@@ -103,8 +104,9 @@ props.allScripts.forEach(_script => {
                         transition-colors
                         "
                 >
+                    <span aria-hidden="true"> <CirclePlus class="size-4"/> </span>
                     <span> Create a new script </span>
-                    <ExternalLink class="size-4"/>
+                    <span aria-hidden="true"> <ExternalLink class="size-4"/> </span>
                 </a>
             </div>
         </fieldset>
