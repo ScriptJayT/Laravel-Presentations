@@ -34,10 +34,13 @@ const links: NavItem[] = [
 </script>
 
 <template>
-    <header id="site-header" class="bg-violet-200">
+    <header
+        id="site-header"
+        class="bg-violet-200 dark:bg-violet-500"
+    >
         <div class="max-w-5xl mx-auto flex items-center justify-between gap-6 flex-wrap">
             <div class="mr-auto"></div>
-            <nav class="block min-w-fit w-fit py-3">
+            <nav class="select-none block min-w-fit w-fit py-3">
                 <ul class="flex items-center justify-end gap-4 flex-wrap text-sm leading-normal">
                     <template v-for="_link in links">
                         <template v-if="
@@ -62,7 +65,6 @@ const links: NavItem[] = [
                             </li>
                         </template>
                     </template>
-
                     <template v-if="user">
                         <li> <UserDropDown/> </li>
                     </template>
