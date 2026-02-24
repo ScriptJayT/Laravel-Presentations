@@ -15,7 +15,7 @@ class AdminPresentationScriptController extends Controller
      */
     public function index(): IResponse
     {
-        return Inertia::render('dashboard/PresentationScriptIndex', [
+        return Inertia::render('dashboard/model-script/Index', [
             'allScripts' => PresentationScript::all(),
         ]);
     }
@@ -58,7 +58,7 @@ class AdminPresentationScriptController extends Controller
      */
     public function edit(PresentationScript $script)
     {
-        return Inertia::render('dashboard/PresentationScriptEdit', [
+        return Inertia::render('dashboard/model-script/Edit', [
             'script' => $script,
         ]);
     }

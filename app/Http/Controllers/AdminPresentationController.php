@@ -19,7 +19,7 @@ class AdminPresentationController extends Controller
      */
     public function index(Request $_): IResponse
     {
-        return Inertia::render('dashboard/PresentationIndex', [
+        return Inertia::render('dashboard/model-presentation/Index', [
             'allPresentations' => Presentation::all(),
         ]);
     }
@@ -37,7 +37,7 @@ class AdminPresentationController extends Controller
         $rules = PresentationVisibility::all(['id', 'name'])->all();
         $scripts = PresentationScript::all(['id', 'title'])->all();
 
-        return Inertia::render('dashboard/PresentationEdit', [
+        return Inertia::render('dashboard/model-presentation/Edit', [
             'presentation' => $presentation,
             'rules' => $rules,
             'scripts' => $scripts,
