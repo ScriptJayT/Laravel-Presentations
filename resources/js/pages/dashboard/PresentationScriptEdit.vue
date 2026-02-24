@@ -5,7 +5,7 @@ import { admin_presentation_index, admin_script_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
 
 import { Form, FormField, ContentField } from '@/components/global/form'
-import { AsideZone, SaveZone, DangerZone } from '@/components/dashboard/sections';
+import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
 
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -35,12 +35,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             <template v-slot:sidezone>
                 <SaveZone form-id="update-script-form"/>
                 <AsideZone title="Info" :hidden-title="true">
-                    <span class="block">
-                        Created on: {{ script.created_at }}
-                    </span>
-                    <span class="block">
-                        Last edit: {{ script.updated_at }}
-                    </span>
+                    <CreatedMetaInfo :model="script" />
                 </AsideZone>
                 <DangerZone>
                     <DestroyFormModal

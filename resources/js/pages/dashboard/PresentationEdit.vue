@@ -5,7 +5,7 @@ import {
     type PresentationScript,
     type BreadcrumbItem,
 } from '@/types';
-import { admin_presentation_index } from '@/routes';
+import { admin_presentation_index, presentations } from '@/routes';
 import { destroy, update } from '@/routes/admin_presentation';
 
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -13,7 +13,7 @@ import { SideZoneContainer } from '@/components/dashboard/containers';
 import { Form, FormField, SelectField, TextField } from '@/components/global/form'
 import {
     AsideZone, SaveZone, DangerZone,
-    PresentationInfo,
+    CreatedMetaInfo,
     EditScript, EditSlides
 } from '@/components/dashboard/sections';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
@@ -47,7 +47,10 @@ props.rules.forEach(_visibility => {
             <template v-slot:sidezone>
                 <SaveZone form-id="update-presentation-form" />
                 <AsideZone title="Info" :hidden-title="true">
-                    <PresentationInfo :presentation />
+                    <CreatedMetaInfo
+                        :model="presentation"
+                        :preview-url="presentations(presentation.slug)"
+                    />
                 </AsideZone>
                 <DangerZone>
                     <DestroyFormModal id="presentation" :route="destroy.form(presentation.id)" />
