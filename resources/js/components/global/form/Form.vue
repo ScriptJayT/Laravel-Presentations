@@ -75,7 +75,7 @@ function fail(_response: unknown) {
                 class="
                     form-submit--button |
                     cursor-pointer select-none
-                    flex items-center gap-2
+                    flex items-center gap-3
                     w-fit px-3 py-2
                     border rounded-md mx-auto
                     outline-offset-8
@@ -84,6 +84,25 @@ function fail(_response: unknown) {
                     "
             >
                 <ProcessIndicator :is-in-process="processing"/>
+                <template v-if="formAction=='edit'">
+                    <span v-show="isDirty" class="relative" aria-live="polite">
+                        <span class="sr-only">There are unsaved changes</span>
+                        <span
+                            aria-hidden="true"
+                            class="block size-3 rounded-full bg-cyan-700"
+                        />
+                        <span
+                            aria-hidden="true"
+                            class="
+                                absolute inset-0
+                                block h-full w-full
+                                rounded-full
+                                bg-cyan-400 opacity-75
+                                animate-ping
+                                "
+                        />
+                    </span>
+                </template>
                 <span> {{ buttonText }} </span>
                 <span class="form-submit--icon" aria-hidden="true">
                     <component v-if="icon" :is="icon" class="size-4" />
