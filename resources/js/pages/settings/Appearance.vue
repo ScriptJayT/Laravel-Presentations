@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppearanceTabs from '@/components/AppearanceTabs.vue';
+import { AppearanceTabs } from '@/components/auth';
 import Heading from '@/components/Heading.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
