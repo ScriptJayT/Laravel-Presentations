@@ -24,7 +24,6 @@ const props = defineProps<{
         </a>
         <hr>
     </template>
-
     <template v-if="model.user">
         <span class="block">
             Created by: {{ model.user.name }}
@@ -38,7 +37,6 @@ const props = defineProps<{
             Created on: {{ model.created_at }}
         </span>
     </template>
-
     <span class="block">
         Last edit: {{ model.updated_at }}
     </span>
