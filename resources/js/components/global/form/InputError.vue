@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { TriangleAlert } from 'lucide-vue-next';
-
 defineProps<{
     message?: string;
 }>();

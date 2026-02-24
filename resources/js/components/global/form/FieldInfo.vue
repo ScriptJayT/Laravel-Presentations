@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { Info } from 'lucide-vue-next';
-
 defineProps<{
     description?: string;
     class?: string;
 }>();
-
 const id = `field-info-${crypto.randomUUID()}`;
 </script>
 

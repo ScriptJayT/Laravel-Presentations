@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import InputError from '@/components/global/form/InputError.vue';
-import FieldInfo from '@/components/global/form/FieldInfo.vue';
-
+import { InputError, FieldInfo } from '@/components/global/form';
 defineProps<{
     id?: string;
     label?: string;

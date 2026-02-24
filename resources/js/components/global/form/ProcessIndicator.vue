@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Spinner } from '@/components/ui/spinner';
-
 defineProps<{
     isInProcess: boolean;
     class?: string;

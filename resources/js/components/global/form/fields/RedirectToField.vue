@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { TextField, CheckboxField } from '@/components/global/form';
-
 type field = {
     label?: string;
     class?: string;
