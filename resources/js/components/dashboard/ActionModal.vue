@@ -25,9 +25,14 @@
     </dialog>
 </template>
 
+<style>
+:root:has(dialog[open]) {
+    overflow: clip;
+}
+</style>
+
 <style scoped>
 dialog {
-    /* --bg: rgb(35 35 35 / 0.5); */
     --bg: hsl(from var(--foreground) h s calc(l * 0.5) / 0.5);
     &::backdrop {
         backdrop-filter: blur(1px);
