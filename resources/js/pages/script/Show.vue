@@ -20,7 +20,7 @@ defineProps<{
     <AppWrapper>
         <AppHeader />
 
-        <AppContent class="mt-15 mb-25">
+        <AppContent class="pt-15 pb-25">
             <Container>
                 <h1 class="font-bold text-5xl mb-10"> {{ script.title }} </h1>
                 <div v-html="script.renderedContent" />

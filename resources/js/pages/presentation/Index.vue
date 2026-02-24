@@ -21,7 +21,7 @@ defineProps<{
 <template>
     <AppWrapper meta-title="Home">
         <AppHeader/>
-        <AppContent class="mt-15 mb-25">
+        <AppContent class="pt-15 pb-25">
             <Container class="space-y-15">
                 <template v-if="isLoggedIn">
                     <PresentationList
