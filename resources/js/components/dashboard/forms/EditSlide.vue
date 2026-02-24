@@ -1,14 +1,22 @@
 <script setup lang="ts">
 import { type PresentationSlide } from '@/types';
-import { Form, ContentField, TextField, NumberField } from '@/components/global/form'
 import { destroy, update } from '@/routes/admin_slide';
+import { Form, ContentField, TextField, NumberField } from '@/components/global/form'
 
-// const emit = defineEmits(['success']);
-defineProps<{
+const emit = defineEmits(["updateSlideSuccess", "deleteSlideSuccess"]);
+const props = defineProps<{
     parentId: number;
     slide: PresentationSlide;
     class?: string;
 }>();
+function emitSave() {
+    console.log("emit: update");
+    emit('updateSlideSuccess', props.slide.id);
+}
+function emitDelete() {
+    console.log("emit: delete");
+    emit('deleteSlideSuccess', props.slide.id);
+}
 </script>
 
 <template>
@@ -18,6 +26,7 @@ defineProps<{
         class="grid gap-x-5"
     >
         <Form
+            :on-success="emitSave"
             :send-to="update.form(slide.id)"
             form-action="edit"
             v-slot="{errors}"
@@ -39,6 +48,7 @@ defineProps<{
        </Form>
 
         <Form
+            :on-success="emitDelete"
             :send-to="destroy.form(slide.id)"
             form-action="delete"
             button-text="Delete"

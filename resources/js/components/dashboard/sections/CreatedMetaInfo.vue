@@ -2,12 +2,8 @@
 import type { Model, User } from '@/types';
 import { ExternalLink } from 'lucide-vue-next';
 import { RouteDefinition } from '@/wayfinder';
-
-type HasUserModel = {
-    user?: User
-} & Model;
 const props = defineProps<{
-    model: HasUserModel;
+    model: { user?: User } & Model;
     previewUrl?: RouteDefinition<'get'>;
 }>();
 </script>

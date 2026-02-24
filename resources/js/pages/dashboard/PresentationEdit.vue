@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import {
-    type Presentation,
-    type PresentationVisibility,
-    type PresentationScript,
-    type BreadcrumbItem,
+import type {
+    Presentation, PresentationVisibility, PresentationScript,
+    BreadcrumbItem,
 } from '@/types';
 import { admin_presentation_index, presentations } from '@/routes';
-import { destroy, update } from '@/routes/admin_presentation';
+import { destroy } from '@/routes/admin_presentation';
+
+import EditPresentation from '@/components/dashboard/forms/EditPresentation.vue';
+import NewSlide from '@/components/dashboard/forms/NewSlide.vue';
+import NewLink from '@/components/dashboard/models/NewLink.vue';
+import Slide from '@/components/dashboard/models/Slide.vue';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SideZoneContainer } from '@/components/dashboard/containers';
-import { Form, FormField, SelectField, TextField } from '@/components/global/form'
-import {
-    AsideZone, SaveZone, DangerZone,
-    CreatedMetaInfo,
-    EditScript, EditSlides
-} from '@/components/dashboard/sections';
+import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 
 const props = defineProps<{
@@ -32,10 +30,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `Presentation: #${props.presentation.id}`,
     }
 ];
-const visibilityOptions: Record<string, string> = {};
-props.rules.forEach(_visibility => {
-    visibilityOptions[_visibility.id] = `${_visibility.name}`;
-});
 </script>
 
 <template>
@@ -58,59 +52,23 @@ props.rules.forEach(_visibility => {
             </template>
             <template v-slot:mainzone>
                 <h3 class="sr-only"> Presentation </h3>
-                <Form
-                    id="update-presentation-form"
-                    form-action="edit"
-                    class="grid grid-cols-2 gap-x-10"
-                    :show-button="false"
-                    :send-to="update.form(presentation.id)"
-                    v-slot="{ errors }"
-                >
-                    <fieldset class="space-y-5">
-                        <legend class="block font-semibold text-lg mb-5"> Meta </legend>
-                        <FormField
-                            id="presentation-title"
-                            label="Title:"
-                            :error="errors.title"
-                        >
-                            <input
-                                name="title" id="presentation-title"
-                                type="text"
-                                v-model.lazy="presentation.title"
-                                class="grow px-2 border-transparent outline-none"
-                            >
-                        </FormField>
+                <EditPresentation
+                    :presentation
+                    :all-scripts="scripts"
+                    :all-visibility-rules="rules"
+                />
 
-                        <TextField
-                            name="slug"
-                            label="Slug:"
-                            :value="presentation.slug"
-                            :error="errors.slug"
-                        />
-                        <SelectField
-                            name="visibility"
-                            label="Visibility:"
-                            :default-value="`${presentation.presentation_visibility.id}`"
-                            :allow-null-value="false"
-                            :error="errors.visibility"
-                            :options="visibilityOptions"
-                        />
-                    </fieldset>
-                    <fieldset class="space-y-5">
-                        <legend class="block font-semibold text-lg mb-5"> Script </legend>
-                        <EditScript
-                            :scripts
-                            :current-script="presentation.presentation_script"
-                            :error="errors.script"
-                        />
-                    </fieldset>
-                </Form>
                 <div class="space-y-5">
                     <h3 class="text-lg font-semibold"> Slides </h3>
-                    <EditSlides
-                        :presentation
-                        :slides="presentation.slides"
-                    />
+                    <div class="grid auto-rows-min gap-4 md:grid-cols-3">
+                        <NewLink title="Slide">
+                            <h2 class="text-lg font-semibold my-5"> New Slide: </h2>
+                            <NewSlide :parent-id="presentation.id"/>
+                        </NewLink>
+                        <template v-for="_slide in presentation.slides">
+                            <Slide :slide="_slide" :presentation/>
+                        </template>
+                    </div>
                 </div>
             </template>
         </SideZoneContainer>
