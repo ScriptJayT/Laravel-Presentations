@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PresentationScript, BreadcrumbItem } from '@/types';
-import { admin_presentation_index, admin_presentations, admin_script_index } from '@/routes';
+import { admin_presentation_index, admin_presentations, admin_script_index, scripts } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
 import { ExternalLink } from "lucide-vue-next";
 import { plural } from '@/lib/utils';
@@ -36,7 +36,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             <template v-slot:sidezone>
                 <SaveZone form-id="update-script-form"/>
                 <AsideZone title="Info" :hidden-title="true">
-                    <CreatedMetaInfo :model="script" />
+                    <CreatedMetaInfo :model="script" :preview-url="scripts(script.id)" />
                     <hr>
 
                     <template v-if="!script.presentations || script.presentations.length < 0">
