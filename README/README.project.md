@@ -13,12 +13,14 @@ Goal: build a backend interface to create a presentation using markdown
 - Laravel: https://laravel.com/docs/12.x
     - md parser: https://commonmark.thephpleague.com/2.x/basic-usage/
     - testing: https://docs.phpunit.de/en/
+    - debugbar: https://laraveldebugbar.com/usage/
 
 ### Help-out
 
 - Laravel-Vue:
     - Vue import/export from index.ts file: https://stackoverflow.com/questions/74950533/how-to-import-index-vue-files-without-specifying-the-file-name-using-vue-3-and-v
     - select columns in eager loaded models: https://stackoverflow.com/questions/32727060/select-specific-columns-from-eloquent-relations
+    - load columns in hasMany models: https://laraveldaily.com/post/laravel-hasmany-load-only-certain-fields-but-dont-skip-xxxxx-id
     - append attributes (readable by Vue): https://5balloons.info/how-to-append-new-attributes-to-eloquent-model/
     - flash messages (in Vue): https://arifhassan.com/flash-messages-in-vue-laravel-app/
     - redirect "back" on login
