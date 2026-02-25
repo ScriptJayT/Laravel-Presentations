@@ -15,6 +15,7 @@ const patternId = computed(
             absolute inset-0 -z-10
             rounded-[inherit]
             overflow-clip
+            bg-neutral-50 dark:bg-neutral-800
             "
         :class="
             interactable
