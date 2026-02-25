@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { User, BreadcrumbItem } from '@/types';
-import { admin_presentation_index, admin_presentations,  } from '@/routes';
+import { admin_user_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
 
 import { Form } from '@/components/global/form'
@@ -16,7 +16,7 @@ const props = defineProps<{
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Users',
-        href: admin_presentation_index().url,
+        href: admin_user_index().url,
     },
     {
         title: `User: `,

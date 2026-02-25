@@ -1,20 +1,13 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
-
 import { Head } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
-
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
-
 import AppWrapper from '@/components/app/AppWrapper.vue';
-import AppHeader from '@/components/app/AppHeader.vue';
 import AppContent from '@/components/app/AppContent.vue';
-import AppFooter from '@/components/app/AppFooter.vue';
-
 const props = defineProps<{
     presentation: Required<Presentation>;
 }>();
-
 onMounted(()=>{
     props.presentation.slides.unshift({
         id: 0,

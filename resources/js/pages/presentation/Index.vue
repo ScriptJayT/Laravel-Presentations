@@ -1,21 +1,17 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
-
 import AppWrapper from '@/components/app/AppWrapper.vue';
 import AppHeader from '@/components/app/AppHeader.vue';
 import AppContent from '@/components/app/AppContent.vue';
 import AppFooter from '@/components/app/AppFooter.vue';
 import Container from '@/components/app/Container.vue';
-
 import PresentationList from '@/components/app/PresentationList.vue';
-
 defineProps<{
     allPublicPresentations: Presentation[];
     allPrivatePresentations: Presentation[];
     allCreatorPresentations: Presentation[];
     isLoggedIn: boolean;
 }>();
-
 </script>
 
 <template>
