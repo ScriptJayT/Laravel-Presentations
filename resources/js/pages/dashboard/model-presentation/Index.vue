@@ -51,7 +51,7 @@ const breadcrumbs: BreadcrumbItem[] = [{
                             {{ _presentation.presentation_script.title }}
                         </span>
 
-                        <span class="block mt-auto" aria-label="A presentation">
+                        <span class="block mt-auto pt-5" aria-label="A presentation">
                             by: {{ _presentation.user.name }}
                         </span>
                     </IndexLink>
