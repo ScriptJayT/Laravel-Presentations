@@ -5,6 +5,7 @@ import { computed } from "vue";
 import { Link, usePage } from '@inertiajs/vue3';
 import { admin_presentation_index, login, home } from '@/routes';
 import UserDropDown from '@/components/app/UserDropDown.vue';
+import { safeQuery } from "@/lib/utils";
 
 const page = usePage();
 const user = computed(() => (page.props.auth as Auth)?.user ?? null);
@@ -31,9 +32,31 @@ const links: NavItem[] = [
         show: "guest",
     }
 ];
+async function skipToContent(_e: MouseEvent) {
+    const content = safeQuery("#site-content")
+    if(!content) return;
+    _e.preventDefault();
+    content.focus({preventScroll: true});
+    content.scrollIntoView({ behavior: "smooth" });
+}
 </script>
 
 <template>
+    <a
+        href="#site-content"
+        @click="skipToContent"
+        class="
+            skip-content |
+            fixed top-3 left-5
+            block px-3 py-1
+            border border-violet-900 rounded
+            transition-transform
+            bg-cyan-100 dark:bg-cyan-950
+            "
+    >
+        Skip to Content
+    </a>
+
     <header
         id="site-header"
         class="bg-violet-200 dark:bg-violet-500"
@@ -73,3 +96,13 @@ const links: NavItem[] = [
         </div>
     </header>
 </template>
+
+<style scoped>
+    .skip-content {
+        translate: 0 calc(-100% - var(--spacing) * 3);
+
+        &:focus-visible {
+            translate: 0 0;
+        }
+    }
+</style>

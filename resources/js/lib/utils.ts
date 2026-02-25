@@ -21,3 +21,9 @@ export function safeQueryAll<T extends HTMLElement>(query: string, scope: QueryS
     try { return Array.from(scope.querySelectorAll<T>(`${query}`)); }
     catch (error) { return []; }
 }
+
+export async function wait(timeInSeconds: number): Promise<void> {
+    return new Promise((_resolve, _reject) => {
+        setTimeout(() => _resolve(), timeInSeconds * 1000);
+    });
+}
