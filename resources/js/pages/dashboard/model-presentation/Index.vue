@@ -60,11 +60,3 @@ const breadcrumbs: BreadcrumbItem[] = [{
         </Container>
     </AppLayout>
 </template>
-
-<style>
-    [data-id=presentation-index] .form--meta {
-        bottom: 1rem;
-        right: auto;
-        left: 0;
-    }
-</style>
