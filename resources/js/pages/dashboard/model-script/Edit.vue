@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { type PresentationScript, type BreadcrumbItem } from '@/types';
-
+import type { PresentationScript, BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_presentations, admin_script_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
+import { ExternalLink } from "lucide-vue-next";
 
 import { Form, FormField, ContentField } from '@/components/global/form'
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
@@ -49,9 +49,20 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <a
                                         :href="admin_presentations(_presentation.id).url"
                                         target="_blank"
+                                        :title="`Open: ${_presentation.title}`"
+                                        class="flex gap-3 justify-between items-center"
                                     >
-                                        {{ _presentation.title }}
-                                        #{{ _presentation.id }}
+                                        <span class="flex gap-1">
+                                            <span class="text-muted-foreground">
+                                                #{{ _presentation.id }}
+                                            </span>
+                                            <span class="block max-w-[20ch] italic text-ellipsis text-nowrap overflow-clip">
+                                                {{ _presentation.title }}
+                                            </span>
+                                        </span>
+                                        <span aria-hidden="true">
+                                            <ExternalLink class="size-3" />
+                                        </span>
                                     </a>
                                 </li>
                             </template>
