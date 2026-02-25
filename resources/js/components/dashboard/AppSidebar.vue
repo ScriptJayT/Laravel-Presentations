@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/sidebar';
 import {
     home,
+    admin_user_index,
     admin_presentation_index, admin_script_index
 } from '@/routes';
 import AppLogo from '@/components/global/AppLogo.vue';
@@ -41,7 +42,7 @@ const dashboardNavItems: NavItem[] = [
     },
     {
         title: 'Users',
-        href: home(),
+        href: admin_user_index(),
         icon: Users,
     },
     {

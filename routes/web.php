@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminPresentationController;
 use App\Http\Controllers\AdminPresentationScriptController;
 use App\Http\Controllers\AdminPresentationSlideController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\PresentationScriptController;
 use Illuminate\Support\Facades\Redirect;
@@ -59,6 +60,17 @@ Route::prefix('dashboard')
                 'update' => 'admin_script.update',
             ])
             ->missing(fn () => Redirect::route('admin_script_index'));
+
+        Route::resource('users', AdminUserController::class)
+            ->except(['show', 'create'])
+            ->names([
+                'index' => 'admin_user_index',
+                'edit' => 'admin_users',
+                'destroy' => 'admin_user.destroy',
+                'store' => 'admin_user.store',
+                'update' => 'admin_user.update',
+            ])
+            ->missing(fn () => Redirect::route('admin_user_index'));
     });
 
 require __DIR__.'/settings.php';
