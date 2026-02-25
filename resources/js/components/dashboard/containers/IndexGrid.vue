@@ -18,6 +18,10 @@ defineProps<{
     div {
         grid-template-columns: repeat(var(--col-count, 1), 1fr);
 
+        /* sm */
+        @container(width >= 40rem) {
+            --col-count: 2;
+        }
         /* md */
         @container(width >= 48rem) {
             --col-count: 3;
@@ -30,6 +34,9 @@ defineProps<{
         @supports not (container-type: inline-size) {
             background: red;
 
+            @media(width >= 40rem) {
+                --col-count: 2;
+            }
             @media (width >= 48rem) {
                 --col-count: 3;
             }
