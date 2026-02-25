@@ -9,7 +9,9 @@ export type PresentationVisibility = {
     name: string,
 } & Model & HasTitle;
 export type PresentationTheme = Model & HasTitle;
-export type PresentationScript = Model & HasTitle & HasRenderableContent;
+export type PresentationScript = {
+    presentations?: Array<Presentation>,
+} & Model & HasTitle & HasRenderableContent;
 export type PresentationSlide = {
     presentation_theme: PresentationTheme,
 } & Model & HasTitle & HasRenderableContent & IsOrderable;

@@ -50,7 +50,7 @@ class PresentationScript extends Model
 
     // ## Relations
 
-    public function presentation(): HasMany
+    public function presentations(): HasMany
     {
         return $this->hasMany(Presentation::class);
     }
