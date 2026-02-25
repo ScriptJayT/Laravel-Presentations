@@ -5,7 +5,16 @@
 </script>
 
 <template>
-    <dialog :id class="px-4 pt-4 pb-10 m-auto border rounded-xl" >
+    <dialog
+        :id
+        class="
+            px-4 pt-4 pb-10
+            m-auto
+            border rounded-xl
+            text-foreground
+            bg-background
+            "
+    >
         <button
             command="close"
             :commandfor="id"
