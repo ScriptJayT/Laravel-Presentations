@@ -78,10 +78,11 @@ props.allScripts.forEach(_script => {
                         :href="admin_scripts(presentation.presentation_script.id).url"
                         target="_blank"
                         class="
-                            flex gap-1 justify-between items-center
+                            flex gap-3 justify-between items-center
                             p-4
                             border-2 rounded-md
                             outline-offset-4
+                            text-center text-balance
                             hover:bg-accent dark:hover:bg-accent/50
                             transition-colors
                             "
@@ -96,10 +97,11 @@ props.allScripts.forEach(_script => {
                     target="_blank"
                     class="
                         col-start-2
-                        flex gap-1 justify-between items-center
+                        flex gap-3 justify-between items-center
                         p-4
                         border-2 rounded-md
                         outline-offset-4
+                        text-center text-balance
                         hover:bg-accent dark:hover:bg-accent/50
                         transition-colors
                         "
