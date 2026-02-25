@@ -9,14 +9,22 @@ type Props = {
 
 defineProps<Props>();
 
-const isOpen = usePage().props.sidebarOpen;
+const isOpen = usePage().props.sidebarOpen as boolean;
 </script>
 
 <template>
-    <div v-if="variant === 'header'" class="flex min-h-screen w-full flex-col">
+    <div
+        v-if="variant === 'header'"
+        data-component="AppShell"
+        class="flex min-h-screen w-full flex-col"
+    >
         <slot />
     </div>
-    <SidebarProvider v-else :default-open="isOpen">
+    <SidebarProvider
+        v-else
+        data-component="AppShell"
+        :default-open="isOpen"
+    >
         <slot />
     </SidebarProvider>
 </template>

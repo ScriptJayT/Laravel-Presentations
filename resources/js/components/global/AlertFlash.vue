@@ -17,6 +17,7 @@ const message = [flash.info, flash.error, flash.success].join("\n");
 <template>
     <Alert
         v-show="anyMessage"
+        data-component="global/AlertFlash"
         class="
             cursor-default
             fixed z-100 right-0 top-6
