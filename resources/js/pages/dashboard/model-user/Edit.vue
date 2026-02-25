@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import type { User, BreadcrumbItem } from '@/types';
 import { admin_user_index } from '@/routes';
-import { destroy, update } from '@/routes/admin_script';
-
+import { update } from '@/routes/admin_user';
 import { Form } from '@/components/global/form'
-import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
+import { AsideZone, SaveZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
-
 import AppLayout from '@/layouts/AppLayout.vue';
-import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
 
 const props = defineProps<{
     user: User;
@@ -19,25 +16,19 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: admin_user_index().url,
     },
     {
-        title: `User: `,
+        title: `User: #${props.user.id}`,
     }
 ];
 </script>
 
 <template>
-    <AppLayout meta-title="Edit Script" :breadcrumbs="breadcrumbs">
+    <AppLayout meta-title="Edit Script" :breadcrumbs>
         <SideZoneContainer :title="user.name" >
             <template v-slot:sidezone>
                 <SaveZone form-id="update-script-form"/>
                 <AsideZone title="Info" :hidden-title="true">
                     <CreatedMetaInfo :model="user" />
                 </AsideZone>
-                <DangerZone>
-                    <DestroyFormModal
-                        id="presentation-script"
-                        :route="destroy.form(user.id)"
-                    />
-                </DangerZone>
             </template>
             <template v-slot:mainzone>
                 <Form
@@ -52,9 +43,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                     :send-to="update.form(user.id)"
                     v-slot="{ errors }"
                 >
-
-
-
                 </Form>
             </template>
         </SideZoneContainer>
