@@ -27,3 +27,12 @@ export async function wait(timeInSeconds: number): Promise<void> {
         setTimeout(() => _resolve(), timeInSeconds * 1000);
     });
 }
+
+type Countable = string | Array<unknown> | Record<string|number|symbol, unknown>;
+export function plural(countable: Countable, word: string, plural_addition: string = 's'): string {
+    const count = typeof countable === "object" && !Array.isArray(countable)
+        ? Object.keys(countable).length
+        : countable.length;
+    if(count === 1) return `${count} ${word}`;
+    return `${count} ${word}${plural_addition}`;
+}

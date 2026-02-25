@@ -3,6 +3,7 @@ import type { PresentationScript, BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_presentations, admin_script_index } from '@/routes';
 import { destroy, update } from '@/routes/admin_script';
 import { ExternalLink } from "lucide-vue-next";
+import { plural } from '@/lib/utils';
 
 import { Form, FormField, ContentField } from '@/components/global/form'
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
@@ -42,14 +43,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <p>Not used anywhere yet</p>
                     </template>
                     <template v-else>
-                        {{ script.presentations.length }} use:
-                        <ul class="list-disc pl-5 text-sm space-y-2">
+                        {{ plural(script.presentations, "use") }}:
+                        <ul class="list-disc pl-5 mt-2 text-sm space-y-2">
                             <template v-for="_presentation in script.presentations">
                                 <li>
                                     <a
                                         :href="admin_presentations(_presentation.id).url"
                                         target="_blank"
-                                        :title="`Open: ${_presentation.title}`"
+                                        :title="`Open presentation: ${_presentation.title}`"
                                         class="flex gap-3 justify-between items-center"
                                     >
                                         <span class="flex gap-1">
