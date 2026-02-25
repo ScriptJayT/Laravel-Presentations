@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Traits\CastUpdatedAtAsDiff;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Carbon;
 
 class Presentation extends Model
 {
-    use HasFactory;
+    use CastUpdatedAtAsDiff, HasFactory;
 
     protected $fillable = [
         'title', 'slug',
@@ -40,13 +39,6 @@ class Presentation extends Model
         return [
             'created_at' => "date:m/d/'y",
         ];
-    }
-
-    protected function updatedAt(): Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => Carbon::parse($value)->diffForHumans(),
-        );
     }
 
     // ## Relations

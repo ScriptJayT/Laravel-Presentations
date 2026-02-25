@@ -5,7 +5,7 @@ namespace App\Traits;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Carbon;
 
-trait ShowUpdatedAtAsDiff
+trait CastUpdatedAtAsDiff
 {
     protected function updatedAt(): Attribute
     {
