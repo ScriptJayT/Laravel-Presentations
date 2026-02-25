@@ -3,34 +3,23 @@
 namespace App\Models;
 
 use App\Traits\CastUpdatedAtAsDiff;
+use App\Traits\HasMarkdownRenderableContent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
-use TuchSoft\CommonMarkHeadingShifter\HeadingShifterExtension;
 
 class PresentationScript extends Model
 {
-    use CastUpdatedAtAsDiff, HasFactory;
+    use CastUpdatedAtAsDiff, HasFactory, HasMarkdownRenderableContent;
 
     protected $fillable = ['title', 'content'];
 
     // ## Casting
 
     // new attributes
-    protected $appends = ['renderedContent'];
-
-    protected function getRenderedContentAttribute(): string
-    {
-        return Str::of($this->content)->markdown(
-            [
-                'html_input' => 'strip',
-                'allow_unsafe_links' => false,
-                'heading_shifter' => ['shift_by' => 1],
-            ],
-            [new HeadingShifterExtension]
-        );
-    }
+    protected $appends = [
+        'renderedContent', // getter in HasMarkdownRenderableContent trait w/ default settings
+    ];
 
     // transform existing attributes
     protected function casts(): array

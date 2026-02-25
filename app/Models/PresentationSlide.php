@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasMarkdownRenderableContent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Str;
-use TuchSoft\CommonMarkHeadingShifter\HeadingShifterExtension;
 
 class PresentationSlide extends Model
 {
-    use HasFactory;
+    use HasFactory, HasMarkdownRenderableContent;
 
     protected $with = ['presentationTheme'];
 
@@ -21,18 +20,14 @@ class PresentationSlide extends Model
     ];
 
     // ## Casting
-    protected $appends = ['renderedContent'];
 
-    protected function getRenderedContentAttribute(): string
+    protected $appends = [
+        'renderedContent', // getter in HasMarkdownRenderableContent trait, setting for that returned in getMdSettings()
+    ];
+
+    protected function getMdSettings(): array
     {
-        return Str::of($this->content)->markdown(
-            [
-                'html_input' => 'strip',
-                'allow_unsafe_links' => false,
-                'heading_shifter' => ['shift_by' => 2],
-            ],
-            [new HeadingShifterExtension]
-        );
+        return ['heading_shifter' => ['shift_by' => 2]];
     }
 
     // ## Relations

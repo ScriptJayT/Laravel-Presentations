@@ -38,8 +38,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    // ## Casting
+
     /**
-     * Get the attributes that should be cast.
+     * transform existing attributes
      *
      * @return array<string, string>
      */
@@ -52,6 +54,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'created_at' => "date:d/m/'y",
         ];
     }
+
+    // ## Relations
 
     public function presentations(): HasMany
     {
