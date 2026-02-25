@@ -37,7 +37,7 @@ const id = `selectfield-${crypto.randomUUID()}`;
                 <selectedcontent></selectedcontent>
             </button>
             <template v-if="allowNullValue">
-                <option value="" class="px-2">
+                <option value="" class="px-2 my-1">
                     * {{ nullValueText }} *
                 </option>
             </template>
@@ -46,7 +46,7 @@ const id = `selectfield-${crypto.randomUUID()}`;
                     :value="_value"
                     v-html="_text"
                     :selected="_value === defaultValue"
-                    class="px-2"
+                    class="px-2 my-1"
                 />
             </template>
         </select>
@@ -56,5 +56,7 @@ const id = `selectfield-${crypto.randomUUID()}`;
 <style scoped>
     ::picker(select) {
         max-height: 10lh;
+        color: var(--foreground);
+        background-color: var(--background);
     }
 </style>
