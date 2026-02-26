@@ -14,13 +14,23 @@ defineProps<{
         <field
             class="
                 flex gap-2 flex-wrap
-                p-4 border-2 rounded-md
-                outline-offset-4
-                focus-within:outline-2
+                p-4
+                border-2 rounded-md
+                outline-offset-4 focus-within:outline-2
                 "
         >
             <template v-if="id && label">
-                <label class="cursor-pointer select-none font-semibold italic" :for="id"> {{ label }} </label>
+                <label
+                    :for="id"
+                    class="
+                        cursor-pointer select-none
+                        font-semibold
+                        underline-offset-2 dark:underline
+                        italic
+                        "
+                >
+                    {{ label }}
+                </label>
             </template>
             <slot/>
         </field>

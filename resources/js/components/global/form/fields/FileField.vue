@@ -7,6 +7,7 @@ defineProps<{
     class?: string;
     error?: string;
     descr?: string;
+    disabled?: boolean
 }>();
 const id = `filefield-${crypto.randomUUID()}`;
 </script>
@@ -14,7 +15,7 @@ const id = `filefield-${crypto.randomUUID()}`;
 <template>
      <FormField :label :class :error :descr :id >
         <input
-            :id :name :value
+            :id :name :value :disabled
             type="file"
             class="cursor-pointer outline-none"
         />

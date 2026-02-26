@@ -82,7 +82,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         />
                     </fieldset>
 
-                    <fieldset>
+                    <fieldset class="space-y-5">
                         <legend class="sr-only"> Visual Representation </legend>
                         <UserAvatar
                             :avatar="user.avatar"
@@ -90,8 +90,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                             :inline="false"
                             class="ml-auto"
                         />
-                        <template v-if="!canEdit">
-                            <FileField name="avatar" label="Avatar:"/>
+                        <template v-if="canEdit">
+                            <FileField
+                                label="Avatar:" name="avatar"
+                                :disabled="canEdit"
+                            />
                         </template>
                     </fieldset>
                 </Form>
