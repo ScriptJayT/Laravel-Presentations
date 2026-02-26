@@ -27,25 +27,12 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout meta-title="Edit Script" :breadcrumbs>
         <SideZoneContainer :title="user.name" >
             <template v-slot:sidezone>
-                <SaveZone form-id="update-script-form"/>
                 <AsideZone title="Info" :hidden-title="true">
                     <CreatedMetaInfo :model="user" />
                 </AsideZone>
             </template>
             <template v-slot:mainzone>
                 <UserAvatar :avatar="user.avatar" :user-name="user.name" :inline="false"/>
-                <Form
-                    id="update-script-form"
-                    form-action="edit"
-                    class="
-                        space-y-6
-                        max-w-[90ch] h-fit
-                        mx-auto inert:opacity-50
-                        "
-                    :show-button="false"
-                    :send-to="update.form(user.id)"
-                    v-slot="{ errors }"
-                />
             </template>
         </SideZoneContainer>
     </AppLayout>
