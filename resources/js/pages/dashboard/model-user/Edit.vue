@@ -66,7 +66,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <template v-if="isLoggedInUser">
                             <a
                                 :href="edit().url"
-                                class="block"
+                                class="
+                                    block w-fit
+                                    px-3 py-2
+                                    border rounded-md
+                                    outline-offset-8
+                                    transition-colors
+                                    hover:bg-accent dark:hover:bg-accent/50
+                                    "
                             >
                                 Edit your profile
                             </a>
