@@ -10,6 +10,12 @@ class RoutesTest extends TestCase
 {
     use RefreshDatabase;
 
+    private function login()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+    }
+
     public function test_app_is_live()
     {
         $response = $this->get('/up');
@@ -44,8 +50,7 @@ class RoutesTest extends TestCase
 
     public function test_adminpages_are_accessible_when_user()
     {
-        $user = User::factory()->create();
-        $this->actingAs($user);
+        $this->login();
 
         $response = $this->get('/dashboard/presentations');
         $response->assertOk();
@@ -63,8 +68,7 @@ class RoutesTest extends TestCase
 
     public function test_profilepages_are_accessible_when_user()
     {
-        $user = User::factory()->create();
-        $this->actingAs($user);
+        $this->login();
 
         $response = $this->get('/settings/profile');
         $response->assertOk();
