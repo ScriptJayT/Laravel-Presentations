@@ -3,6 +3,7 @@
 - [ ] Design
 - [ ] Name App
 - [x] Check health route
+- [ ] Test
 - CRUD operations
     - [x] Presentations
     - [x] Slides
