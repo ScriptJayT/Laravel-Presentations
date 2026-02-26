@@ -6,7 +6,10 @@
     helltation
     presenthell
     tationhell
-    hellpress - empress
+    hellpres
+    hellpress - empress - hell'press
+    hellshow - hellow
+    pressy
 - [x] Check health route
 - [ ] Test
 - CRUD operations
