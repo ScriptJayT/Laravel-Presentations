@@ -14,7 +14,7 @@ class LoginResponse implements LoginResponseContract
 {
     public function toResponse($request)
     {
-        $uri = session()->pull('redirectLinkOnLogin');
+        $uri = session()->pull('redirectLinkOnLogin') ?? route('home');
 
         return redirect($uri);
     }
