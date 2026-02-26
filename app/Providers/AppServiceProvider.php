@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->configureDefaults();
 
         Inertia::share([
+            'appName' => config('app.name'),
             'flash' => fn () => [
                 'success' => session('success'),
                 'error' => session('error'),
