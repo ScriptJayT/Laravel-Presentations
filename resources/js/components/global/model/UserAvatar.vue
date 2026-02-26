@@ -7,12 +7,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const props = withDefaults(
     defineProps<{
         userName: string;
-        avatar?: Required<User['avatar']>;
+        avatar?: User['avatar'];
         inline?: boolean;
     }>(),
     {
         inline: true,
-        avatar: 'https://picsum.photos/200/300',
+        // avatar: 'https://picsum.photos/300/300',
     }
 );
 const showAvatar = computed(() => props.avatar && props.avatar !== '');
@@ -38,11 +38,16 @@ const { getInitials } = useInitials();
             <Avatar
                 v-if="showAvatar"
                 class="
-                    size-30
-                    border-4 rounded-full
+                    size-50
+                    border-4
+                    rounded-[100%] hover:rounded-xl
+                    transition-[border-radius] duration-500
                     "
             >
-                <AvatarImage :src="avatar!" :alt="userName" class="rounded-[inherit]" />
+                <AvatarImage
+                    :src="avatar!"
+                    :alt="userName"
+                />
             </Avatar>
             <template v-else>
                 <div class="relative isolate w-fit mt-3 mr-3">
@@ -69,7 +74,7 @@ const { getInitials } = useInitials();
                     <div
                         role="presentation"
                         class="
-                            size-30
+                            size-50
                             p-2
                             border-4 rounded-full
                             "
