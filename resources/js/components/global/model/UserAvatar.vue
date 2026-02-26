@@ -9,6 +9,7 @@ const props = withDefaults(
         userName: string;
         avatar?: User['avatar'];
         inline?: boolean;
+        class?: string;
     }>(),
     {
         inline: true,
@@ -20,7 +21,7 @@ const { getInitials } = useInitials();
 </script>
 
 <template>
-    <div data-component="global/model/UserAvatar" class="flow-root w-fit">
+    <div data-component="global/model/UserAvatar" class="flow-root w-fit" :class>
         <template v-if="inline">
             <Avatar class="size-8 overflow-hidden rounded-lg">
                 <AvatarImage
@@ -50,7 +51,7 @@ const { getInitials } = useInitials();
                 />
             </Avatar>
             <template v-else>
-                <div class="relative isolate w-fit mt-3 mr-3">
+                <div class="relative isolate w-fit mr-3">
                     <Avatar
                         class="
                             absolute bottom-full left-full

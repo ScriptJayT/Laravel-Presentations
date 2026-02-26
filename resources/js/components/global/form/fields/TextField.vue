@@ -7,6 +7,7 @@ defineProps<{
     class?: string;
     error?: string;
     descr?: string;
+    disabled?: boolean;
 }>();
 const id = `textfield-${crypto.randomUUID()}`;
 </script>
@@ -18,6 +19,7 @@ const id = `textfield-${crypto.randomUUID()}`;
             :value
             :id type="text"
             class="grow outline-none"
+            :disabled
         >
     </FormField>
 </template>
