@@ -122,9 +122,9 @@ const breadcrumbs: BreadcrumbItem[] = [
             </template>
         </SideZoneContainer>
         <Container title="Projects" class="grid grid-cols-2">
-            <div>
-                <h3> Presentations </h3>
-                <ul>
+            <div class="space-y-3">
+                <h3 class="text-lg font-semibold"> Presentations </h3>
+                <ul class="space-y-1">
                     <template v-for="_presentation in user.presentations">
                         <li>
                             <a :href="admin_presentations(_presentation.id).url" >
@@ -136,9 +136,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </ul>
             </div>
 
-            <div>
-                <h3> Scripts </h3>
-                <ul>
+            <div class="space-y-3">
+                <h3 class="text-lg font-semibold"> Scripts </h3>
+                <ul class="space-y-1">
                     <template v-for="_script in user.scripts">
                         <li>
                             <a :href="admin_presentations(_script.id).url" >
