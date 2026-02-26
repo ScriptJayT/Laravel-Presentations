@@ -16,6 +16,18 @@ class RoutesTest extends TestCase
         $this->actingAs($user);
     }
 
+    private function assertRoutes(array $_routes, bool $_ok = true)
+    {
+        foreach ($_routes as $_ => $_route) {
+            $response = $this->get($_route);
+            if ($_ok) {
+                $response->assertOk();
+            } else {
+                $response->assertRedirect();
+            }
+        }
+    }
+
     public function test_app_is_live()
     {
         $response = $this->get('/up');
@@ -24,40 +36,34 @@ class RoutesTest extends TestCase
 
     public function test_homepage_is_accessible()
     {
-        $response = $this->get(route('home'));
-        $response->assertOk();
-        $response = $this->get('/');
-        $response->assertOk();
+        $this->assertRoutes(['/', route('home')]);
     }
 
     public function test_indexpages_are_inaccessible()
     {
-        $response = $this->get('/presentations');
-        $response->assertRedirect();
-        $response = $this->get('/scripts');
-        $response->assertRedirect();
+        $this->assertRoutes(['/presentations', '/scripts'], false);
     }
 
     public function test_dashboardpages_are_inaccessible_when_guest()
     {
-        $response = $this->get('/dashboard/presentations');
-        $response->assertRedirect();
-        $response = $this->get('/dashboard/scripts');
-        $response->assertRedirect();
-        $response = $this->get('/dashboard/users');
-        $response->assertRedirect();
+        $this->assertRoutes(
+            [
+                '/dashboard/presentations', route('admin_presentation_index'),
+                '/dashboard/scripts', route('admin_script_index'),
+                '/dashboard/users', route('admin_user_index'),
+            ],
+            false
+        );
     }
 
     public function test_adminpages_are_accessible_when_user()
     {
         $this->login();
-
-        $response = $this->get('/dashboard/presentations');
-        $response->assertOk();
-        $response = $this->get('/dashboard/scripts');
-        $response->assertOk();
-        $response = $this->get('/dashboard/users');
-        $response->assertOk();
+        $this->assertRoutes([
+            '/dashboard/presentations', route('admin_presentation_index'),
+            '/dashboard/scripts', route('admin_script_index'),
+            '/dashboard/users', route('admin_user_index'),
+        ]);
     }
 
     public function test_profilepages_are_inaccessible_when_guest()
