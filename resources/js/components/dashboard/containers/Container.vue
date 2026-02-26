@@ -6,11 +6,10 @@ const props = defineProps<{
     class?: string;
     title?: string;
 }>();
-const classList = props.class ?? "";
 </script>
 
 <template>
-    <div
+    <section
         data-component="dashboard/Container"
         :data-id="id"
         class="
@@ -22,8 +21,8 @@ const classList = props.class ?? "";
             "
     >
         <Heading :title="title ?? ''"/>
-        <div :class="classList" class="grow">
+        <div :class class="grow">
             <slot />
         </div>
-    </div>
+    </section>
 </template>

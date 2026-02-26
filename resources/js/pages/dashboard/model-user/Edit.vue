@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import type { Auth, User, BreadcrumbItem } from '@/types';
 import { usePage } from '@inertiajs/vue3';
-import { admin_user_index } from '@/routes';
+import { admin_user_index, admin_presentations } from '@/routes';
 import { update, destroy } from '@/routes/admin_user';
 import { edit } from '@/routes/profile';
 import { email } from '@/routes/password';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
-import { SideZoneContainer } from '@/components/dashboard/containers';
+import { SideZoneContainer, Container } from '@/components/dashboard/containers';
 import UserAvatar from '@/components/global/model/UserAvatar.vue';
 import { Form, TextField } from '@/components/global/form';
 import { DestroyFormModal } from '@/components/dashboard/models';
@@ -35,6 +35,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
     <AppLayout meta-title="User" :breadcrumbs>
+        <h1 class="sr-only"> User Profile </h1>
         <SideZoneContainer
             :title="isLoggedInUser
                 ? `${user.name} (You)`
@@ -117,9 +118,37 @@ const breadcrumbs: BreadcrumbItem[] = [
                 >
                     {{ errors.email }}
                     <input type="hidden" name="email" :value="user.email">
-
                 </Form>
             </template>
         </SideZoneContainer>
+        <Container title="Projects" class="grid grid-cols-2">
+            <div>
+                <h3> Presentations </h3>
+                <ul>
+                    <template v-for="_presentation in user.presentations">
+                        <li>
+                            <a :href="admin_presentations(_presentation.id).url" >
+                                #{{ _presentation.id }}
+                                {{ _presentation.title }}
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+            <div>
+                <h3> Scripts </h3>
+                <ul>
+                    <template v-for="_script in user.scripts">
+                        <li>
+                            <a :href="admin_presentations(_script.id).url" >
+                                #{{ _script.id }}
+                                {{ _script.title }}
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </Container>
     </AppLayout>
 </template>
