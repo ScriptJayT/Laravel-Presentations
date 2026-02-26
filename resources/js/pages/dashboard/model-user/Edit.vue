@@ -2,20 +2,24 @@
 import type { Auth, User, BreadcrumbItem } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import { admin_user_index } from '@/routes';
-import { update } from '@/routes/admin_user';
+import { update, destroy } from '@/routes/admin_user';
+import { edit } from '@/routes/profile';
+
 import AppLayout from '@/layouts/AppLayout.vue';
-import { AsideZone, CreatedMetaInfo } from '@/components/dashboard/sections';
+import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
 import UserAvatar from '@/components/global/model/UserAvatar.vue';
 import { Form, TextField } from '@/components/global/form';
-import FormField from '@/components/global/form/helpers/FormField.vue';
+import { DestroyFormModal } from '@/components/dashboard/models';
 
 const page = usePage();
 const loggedInUser = (page.props.auth as Auth).user;
-const canEdit = false;
 const props = defineProps<{
     user: User;
 }>();
+const isLoggedInUser = props.user.id === loggedInUser.id;
+const canEdit = false;
+const canDelete = false;
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Users',
@@ -30,33 +34,53 @@ const breadcrumbs: BreadcrumbItem[] = [
 <template>
     <AppLayout meta-title="User" :breadcrumbs>
         <SideZoneContainer
-            :title="user.id == loggedInUser.id
+            :title="isLoggedInUser
                 ? `${user.name} (You)`
                 : user.name
                 "
         >
             <template v-slot:sidezone>
+                <SaveZone v-if="canEdit" form-id="update-form-edit" />
                 <AsideZone title="Info" :hidden-title="true">
                     <CreatedMetaInfo :model="user" />
                 </AsideZone>
+                <DangerZone v-if="canDelete">
+                    <DestroyFormModal
+                        :id="user.id"
+                        :route="destroy.form(user.id)"
+                    />
+                </DangerZone>
             </template>
             <template v-slot:mainzone>
                 <Form
+                    id="update-form-edit"
                     :send-to="update.form(user.id)"
                     :show-button="false"
                     class="grid grid-cols-2 gap-10"
+                    :disabled="!canEdit"
                 >
                     <fieldset class="space-y-5">
                         <legend class="sr-only"> Credentials </legend>
+
+                        <template v-if="isLoggedInUser">
+                            <a
+                                :href="edit().url"
+                                class="block"
+                            >
+                                Edit your profile
+                            </a>
+                        </template>
+
                         <TextField
                             label="Name:" name="name"
-                            :value="user.name" :disabled="canEdit"
+                            :value="user.name" disabled
                         />
                         <TextField
                             label="Email:" name="email"
-                            :value="user.email" :disabled="canEdit"
+                            :value="user.email" :disabled="!canEdit"
                         />
                     </fieldset>
+
                     <fieldset>
                         <legend class="sr-only"> Visual Representation </legend>
                         <UserAvatar
@@ -65,6 +89,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                             :inline="false"
                             class="ml-auto"
                         />
+                        <template v-if="canEdit">
+                            ...
+                        </template>
                     </fieldset>
                 </Form>
             </template>
