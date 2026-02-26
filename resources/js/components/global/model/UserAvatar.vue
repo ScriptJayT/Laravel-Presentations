@@ -80,7 +80,7 @@ const { getInitials } = useInitials();
                             border-4 rounded-full
                             "
                     >
-                        <Users class="w-full h-full" stroke-width="1"/>
+                        <Users class="w-full h-full text-muted-foreground/75" stroke-width="0.75"/>
                     </div>
                 </div>
             </template>
