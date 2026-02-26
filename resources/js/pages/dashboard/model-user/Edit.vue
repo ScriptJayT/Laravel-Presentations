@@ -2,10 +2,11 @@
 import type { User, BreadcrumbItem } from '@/types';
 import { admin_user_index } from '@/routes';
 import { update } from '@/routes/admin_user';
+import AppLayout from '@/layouts/AppLayout.vue';
 import { Form } from '@/components/global/form'
 import { AsideZone, SaveZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
-import AppLayout from '@/layouts/AppLayout.vue';
+import UserAvatar from '@/components/global/model/UserAvatar.vue';
 
 const props = defineProps<{
     user: User;
@@ -19,6 +20,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `User: #${props.user.id}`,
     }
 ];
+
 </script>
 
 <template>
@@ -31,6 +33,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </AsideZone>
             </template>
             <template v-slot:mainzone>
+                <UserAvatar :avatar="user.avatar" :user-name="user.name" :inline="false"/>
                 <Form
                     id="update-script-form"
                     form-action="edit"
@@ -42,8 +45,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     :show-button="false"
                     :send-to="update.form(user.id)"
                     v-slot="{ errors }"
-                >
-                </Form>
+                />
             </template>
         </SideZoneContainer>
     </AppLayout>
