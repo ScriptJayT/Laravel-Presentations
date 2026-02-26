@@ -11,6 +11,7 @@ import { SideZoneContainer } from '@/components/dashboard/containers';
 import UserAvatar from '@/components/global/model/UserAvatar.vue';
 import { Form, TextField } from '@/components/global/form';
 import { DestroyFormModal } from '@/components/dashboard/models';
+import FileField from '@/components/global/form/fields/FileField.vue';
 
 const page = usePage();
 const loggedInUser = (page.props.auth as Auth).user;
@@ -89,8 +90,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                             :inline="false"
                             class="ml-auto"
                         />
-                        <template v-if="canEdit">
-                            ...
+                        <template v-if="!canEdit">
+                            <FileField name="avatar" label="Avatar:"/>
                         </template>
                     </fieldset>
                 </Form>
