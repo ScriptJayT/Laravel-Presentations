@@ -135,7 +135,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </template>
                 </ul>
             </div>
-
             <div class="space-y-3">
                 <h3 class="text-lg font-semibold"> Scripts </h3>
                 <ul class="space-y-1">

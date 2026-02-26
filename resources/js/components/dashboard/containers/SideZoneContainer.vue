@@ -13,9 +13,9 @@ defineProps<{
             data-component="dashboard/SideZoneContainer"
             class="field | relative grid gap-12"
         >
-            <div class="order-2 space-y-6" :class="sideClass">
+            <aside class="order-2 space-y-6" :class="sideClass">
                 <slot name="sidezone" />
-            </div>
+            </aside>
             <div class="ct-inline-size | order-1" :class="mainClass">
                 <slot name="mainzone" />
             </div>
