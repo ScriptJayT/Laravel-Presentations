@@ -30,9 +30,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <IndexLink
                         class="search-indexable"
                         :title="_user.name"
-                    >
-                    <a :href="admin_users(_user.id).url"> Edit </a>
-                    </IndexLink>
+                        :link="admin_users(_user.id)"
+                    />
                 </template>
             </IndexGrid>
         </Container>
