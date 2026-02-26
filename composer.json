@@ -65,7 +65,6 @@
         ],
         "test": [
             "@php artisan config:clear --ansi",
-            "@test:lint",
             "@php artisan test"
         ],
         "post-autoload-dump": [
