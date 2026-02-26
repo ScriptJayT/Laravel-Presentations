@@ -109,6 +109,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </Form>
 
                 <Form
+                    v-if="!isLoggedInUser"
                     :send-to="email.form()"
                     button-text="Send password reset link"
                     class="w-fit"
