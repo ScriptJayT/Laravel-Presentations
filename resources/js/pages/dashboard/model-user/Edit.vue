@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import type { User, BreadcrumbItem } from '@/types';
 import { admin_user_index } from '@/routes';
-import { update } from '@/routes/admin_user';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Form } from '@/components/global/form'
-import { AsideZone, SaveZone, CreatedMetaInfo } from '@/components/dashboard/sections';
+import { AsideZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
 import UserAvatar from '@/components/global/model/UserAvatar.vue';
 
@@ -20,7 +18,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `User: #${props.user.id}`,
     }
 ];
-
 </script>
 
 <template>
