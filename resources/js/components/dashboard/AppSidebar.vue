@@ -2,8 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import {
     LayoutGrid, Presentation, Scroll,
-    Users, HeartPulse,
-    BookOpen, Folder,
+    Users, HeartPulse, Folder,
 } from 'lucide-vue-next';
 import NavFooter from '@/components/dashboard/NavFooter.vue';
 import NavMain from '@/components/dashboard/NavMain.vue';
@@ -24,9 +23,14 @@ import { type NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Front',
+        title: 'App',
         href: home(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Health',
+        href: '/up',
+        icon: HeartPulse,
     },
 ];
 const dashboardNavItems: NavItem[] = [
@@ -45,22 +49,12 @@ const dashboardNavItems: NavItem[] = [
         href: admin_user_index(),
         icon: Users,
     },
-    {
-        title: 'Health',
-        href: '/up',
-        icon: HeartPulse,
-    },
 ];
 const footerNavItems: NavItem[] = [
     {
         title: 'Github Repo',
         href: 'https://github.com/ScriptJayT/Laravel-Presentations',
         icon: Folder,
-    },
-    {
-        title: 'Documentation Laravel',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
     },
 ];
 </script>
