@@ -4,6 +4,7 @@ import { usePage } from '@inertiajs/vue3';
 import { admin_user_index } from '@/routes';
 import { update, destroy } from '@/routes/admin_user';
 import { edit } from '@/routes/profile';
+import { email } from '@/routes/password';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
@@ -39,6 +40,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 ? `${user.name} (You)`
                 : user.name
                 "
+            main-class="space-y-15"
         >
             <template v-slot:sidezone>
                 <SaveZone v-if="canEdit" form-id="update-form-edit" />
@@ -104,6 +106,17 @@ const breadcrumbs: BreadcrumbItem[] = [
                             />
                         </template>
                     </fieldset>
+                </Form>
+
+                <Form
+                    :send-to="email.form()"
+                    button-text="Send password reset link"
+                    class="w-fit"
+                    v-slot="{ errors }"
+                >
+                    {{ errors.email }}
+                    <input type="hidden" name="email" :value="user.email">
+
                 </Form>
             </template>
         </SideZoneContainer>
