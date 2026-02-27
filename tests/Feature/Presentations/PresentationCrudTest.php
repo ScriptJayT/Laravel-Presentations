@@ -54,7 +54,7 @@ class PresentationCrudTest extends TestCase
             'user_id' => $user->id,
             'presentation_theme_id' => $theme->id,
             'presentation_visibility_id' => $rule->id,
-            'presentation_script_id' => $script,
+            'presentation_script_id' => $script->id,
         ]);
 
         $this->assertEquals($presentation->title, 'Presentation');
