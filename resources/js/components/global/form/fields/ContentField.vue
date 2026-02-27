@@ -1,21 +1,15 @@
 <script setup lang="ts">
-import { FormField } from '@/components/global/form';
-defineProps<{
-    name: string;
-    value?: string;
-    label?: string;
-    class?: string;
-    error?: string;
-    descr?: string;
-}>();
+import { FormField, type TextlikeFieldAttributes, inputClasses } from '@/components/global/form';
+defineProps<TextlikeFieldAttributes>();
 const id = `contentfield-${crypto.randomUUID()}`;
 </script>
 
 <template>
-     <FormField :label :class :error :descr :id >
+     <FormField :label :class :error :description :id :disabled :hidden >
         <textarea
-            :id :name :value
-            class="outline-none min-h-[10lh] resize-none"
+            :id :name :value :disabled
+            :class="inputClasses()"
+            class="min-h-[10lh] resize-none"
         />
     </FormField>
 </template>

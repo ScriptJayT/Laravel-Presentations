@@ -1,23 +1,16 @@
 <script setup lang="ts">
-import { FormField } from '@/components/global/form';
-defineProps<{
-    name: string;
-    value?: string;
-    label?: string;
-    class?: string;
-    error?: string;
-    descr?: string;
-    disabled?: boolean
-}>();
+import { FormField, inputClasses, type TextlikeFieldAttributes } from '@/components/global/form';
+defineProps<TextlikeFieldAttributes>();
 const id = `filefield-${crypto.randomUUID()}`;
 </script>
 
 <template>
-     <FormField :label :class :error :descr :id >
+     <FormField :label :class :error :description :id :disabled :hidden>
         <input
             :id :name :value :disabled
             type="file"
-            class="cursor-pointer outline-none"
+            :class="inputClasses()"
+            class="cursor-pointer"
         />
     </FormField>
 </template>

@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import { InputError, FieldInfo } from '@/components/global/form';
-defineProps<{
-    id?: string;
-    label?: string;
-    class?: string;
-    error?: string;
-    descr?: string;
-}>();
+import { InputError, FieldInfo, type FormFieldAttributes } from '@/components/global/form';
+defineProps<FormFieldAttributes>();
 </script>
 
 <template>
@@ -23,11 +17,11 @@ defineProps<{
                 <label
                     :for="id"
                     class="
-                        cursor-pointer select-none
                         font-semibold
                         underline-offset-2 dark:underline
                         italic
                         "
+                    :class="disabled ? '' : 'cursor-pointer select-none'"
                 >
                     {{ label }}
                 </label>
@@ -36,7 +30,7 @@ defineProps<{
         </field>
         <div class="flex gap-3 justify-between mt-1">
             <InputError :message="error" />
-            <FieldInfo :description="descr" class="ml-auto" />
+            <FieldInfo :description class="ml-auto" />
         </div>
     </div>
 </template>

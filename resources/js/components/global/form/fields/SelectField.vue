@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import { FormField } from '@/components/global/form';
+import { FormField, type FieldAttributes, inputClasses } from '@/components/global/form';
 withDefaults(
-    defineProps<{
-        name: string;
+    defineProps<FieldAttributes & {
         options: Record<string, string>;
+        selected?: string;
         defaultValue?: string;
         allowNullValue?: boolean;
         nullValueText?: string;
-        label?: string;
-        descr?: string;
-        class?: string;
-        error?: string;
     }>(),
     {
         allowNullValue: true,
@@ -21,17 +17,13 @@ const id = `selectfield-${crypto.randomUUID()}`;
 </script>
 
 <template>
-     <FormField :label :class :error :descr :id >
+     <FormField :label :class :error :description :id :disabled :hidden>
         <select
             :name
             :id
-            :data-value="defaultValue"
-            class="
-                cursor-pointer
-                grow
-                px-2
-                border-transparent outline-none
-                "
+            :data-value="defaultValue ?? selected"
+            :class="inputClasses()"
+            class="cursor-pointer px-2 border-transparent"
         >
             <button>
                 <selectedcontent></selectedcontent>
@@ -45,7 +37,7 @@ const id = `selectfield-${crypto.randomUUID()}`;
                 <option
                     :value="_value"
                     v-html="_text"
-                    :selected="_value === defaultValue"
+                    :selected="_value === (defaultValue ?? selected)"
                     class="px-2 my-1"
                 />
             </template>

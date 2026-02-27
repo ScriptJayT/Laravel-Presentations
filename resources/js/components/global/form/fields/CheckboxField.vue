@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import { FormField } from '@/components/global/form';
-defineProps<{
-    name: string;
+import { FormField, type FieldAttributes } from '@/components/global/form';
+defineProps<FieldAttributes & {
     checked?: boolean;
-    label?: string;
-    class?: string;
-    error?: string;
-    descr?: string;
 }>();
 const id = `checkboxfield-${crypto.randomUUID()}`;
 </script>
 
 <template>
-     <FormField :label :class :error :descr :id >
+     <FormField :label :class :error :description :id :disabled :hidden>
         <input
             :name :id :checked type="checkbox"
             class="outline-none"
+            :disabled
         >
     </FormField>
 </template>

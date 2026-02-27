@@ -1,28 +1,22 @@
 <script setup lang="ts">
-import { TextField, CheckboxField } from '@/components/global/form';
-type field = {
-    label?: string;
-    class?: string;
-    error?: string;
-    descr?: string;
-};
+import { TextField, CheckboxField, type FieldAttributes } from '@/components/global/form';
 type checkfield = {
     type: "check",
     value?: "on",
-} & field;
+};
 type textfield = {
     type: "text",
     value?: string,
-} & field;
-type prop = checkfield | textfield;
+};
+type prop = Omit<FieldAttributes, 'name'> & (checkfield | textfield);
 defineProps<prop>();
 </script>
 
 <template>
     <template v-if="type==='text'" >
-        <TextField hidden name="goto" :value />
+        <TextField name="goto" :value :disabled hidden />
     </template>
     <template v-else>
-        <CheckboxField name="goto" :checked="(value==='on')" :label :class :error :descr />
+        <CheckboxField name="goto" :checked="(value==='on')" :label :class :error :description :disabled :hidden />
     </template>
 </template>

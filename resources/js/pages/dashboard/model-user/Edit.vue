@@ -9,15 +9,12 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
 import UserAvatar from '@/components/global/model/UserAvatar.vue';
-import { Form, TextField } from '@/components/global/form';
+import { Form, TextField, FileField } from '@/components/global/form';
 import { DestroyFormModal } from '@/components/dashboard/models';
-import FileField from '@/components/global/form/fields/FileField.vue';
 
 const page = usePage();
 const loggedInUser = (page.props.auth as Auth).user;
-const props = defineProps<{
-    user: User;
-}>();
+const props = defineProps<{ user: User }>();
 const isLoggedInUser = props.user.id === loggedInUser.id;
 const canEdit = false;
 const canDelete = false;
@@ -83,11 +80,15 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <TextField
                             label="Name:" name="name"
-                            :value="user.name" disabled
+                            :value="user.name" :disabled="!canEdit"
                         />
                         <TextField
                             label="Email:" name="email"
                             :value="user.email" :disabled="!canEdit"
+                        />
+                        <TextField
+                            label="Email validated:" name=""
+                            :value="user.email_verified_at ? 'Yes' : 'No'" disabled
                         />
                     </fieldset>
 

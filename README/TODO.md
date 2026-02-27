@@ -16,9 +16,10 @@
     - [x] Presentations
     - [x] Slides
     - [x] Scripts
+    - [~] ? Users
     - ? Themes
     - ? Atom lock
-- [~] ? Users Dashboard
+- ? User Roles
 - ? Private PresentationScripts
 - ? Js Script injecting (custom elements, iframes)
 - ? Read-only API
