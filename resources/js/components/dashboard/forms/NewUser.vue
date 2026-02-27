@@ -32,7 +32,6 @@ defineProps<{ class?: string }>()
         <TextField
             name="password_confirmation"
             label="Confirm Password:"
-            :error="errors.password"
         />
     </Form>
 </template>
