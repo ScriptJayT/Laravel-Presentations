@@ -8,9 +8,9 @@ namespace App\Http\Responses;
  * https://laracasts.com/discuss/channels/laravel/fortify-redirect
  */
 
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\LoginResponse as ResponseContract;
 
-class LoginResponse implements LoginResponseContract
+class LoginResponse implements ResponseContract
 {
     public function toResponse($request)
     {

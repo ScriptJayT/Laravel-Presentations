@@ -1,7 +1,7 @@
 - [x] Brainstorm
 - [x] Setup
 - [ ] Design
-- [ ] Name App
+- [x] Name App
     laravel - presentations - hel
     helltation
     presenthell
@@ -11,14 +11,14 @@
     hellshow - hellow
     pressy
 - [x] Check health route
-- [ ] Test
+- [~] Test
 - CRUD operations
     - [x] Presentations
     - [x] Slides
     - [x] Scripts
     - ? Themes
     - ? Atom lock
-- [ ] ? Users Dashboard
+- [~] ? Users Dashboard
 - ? Private PresentationScripts
 - ? Js Script injecting (custom elements, iframes)
 - ? Read-only API

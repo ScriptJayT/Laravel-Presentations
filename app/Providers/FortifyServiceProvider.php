@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
-use App\Http\Responses\LoginResponse as CustomResponse;
+use App\Http\Responses\LoginResponse as CustomLoginResponse;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -33,7 +33,7 @@ class FortifyServiceProvider extends ServiceProvider
         /**
          * https://laracasts.com/discuss/channels/laravel/fortify-redirect
          */
-        $this->app->singleton(LoginResponseContract::class, CustomResponse::class);
+        $this->app->singleton(LoginResponseContract::class, CustomLoginResponse::class);
 
         $this->configureActions();
         $this->configureViews();
@@ -75,9 +75,11 @@ class FortifyServiceProvider extends ServiceProvider
             'token' => $request->route('token'),
         ]));
 
-        Fortify::requestPasswordResetLinkView(fn (Request $request) => Inertia::render('auth/ForgotPassword', [
-            'status' => $request->session()->get('status'),
-        ]));
+        Fortify::requestPasswordResetLinkView(function (Request $request) {
+            return Inertia::render('auth/ForgotPassword', [
+                'status' => $request->session()->get('status'),
+            ]);
+        });
 
         Fortify::verifyEmailView(fn (Request $request) => Inertia::render('auth/VerifyEmail', [
             'status' => $request->session()->get('status'),
