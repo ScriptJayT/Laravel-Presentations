@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Visibility;
 use App\Models\Presentation;
 use App\Models\PresentationScript;
 use App\Models\PresentationSlide;
@@ -30,15 +31,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $publicVisibilityRule = PresentationVisibility::factory()->create([
-            'title' => 'public',
+            'title' => Visibility::PUBLIC->title(),
             'name' => 'Public',
         ]);
         $loginVisibilityRule = PresentationVisibility::factory()->create([
-            'title' => 'login',
+            'title' => Visibility::PROTECTED->title(),
             'name' => 'Protected',
         ]);
         $creatorVisibilityRule = PresentationVisibility::factory()->create([
-            'title' => 'creator',
+            'title' => Visibility::PRIVATE->title(),
             'name' => 'Private',
         ]);
 
