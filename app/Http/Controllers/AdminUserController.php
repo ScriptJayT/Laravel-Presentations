@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Fortify\CreateNewUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -29,7 +31,9 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        (new CreateNewUser)->create($request->all());
+
+        return Redirect::back();
     }
 
     /**
