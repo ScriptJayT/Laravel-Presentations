@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminPresentationSlideController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\PresentationScriptController;
+use App\Http\Controllers\Settings\AdminPasswordResetController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,8 @@ Route::prefix('dashboard')
                 'update' => 'admin_user.update',
             ])
             ->missing(fn () => Redirect::route('admin_user_index'));
+        Route::post('password-reset', [AdminPasswordResetController::class, 'store'])
+            ->name('send_password');
     });
 
 require __DIR__.'/settings.php';

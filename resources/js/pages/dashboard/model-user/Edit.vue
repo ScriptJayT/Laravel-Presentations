@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import type { Auth, User, BreadcrumbItem } from '@/types';
 import { usePage } from '@inertiajs/vue3';
-import { admin_user_index, admin_presentations } from '@/routes';
+import { admin_user_index, admin_presentations, send_password } from '@/routes';
 import { update, destroy } from '@/routes/admin_user';
 import { edit } from '@/routes/profile';
-import { email } from '@/routes/password';
 
 import AppLayout from '@/layouts/AppLayout.vue';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
@@ -111,12 +110,14 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                 <Form
                     v-if="!isLoggedInUser"
-                    :send-to="email.form()"
+                    :send-to="send_password.form()"
                     button-text="Send password reset link"
                     class="w-fit"
-                    v-slot="{ errors }"
+                    v-slot="{ errors, wasSuccessful }"
                 >
-                    {{ errors.email }}
+                    <div v-if="wasSuccessful"> Reset-link send </div>
+                    <div v-if="errors.email"> The users email is invalid? </div>
+                    <div v-if="errors.status"> Something went wrong </div>
                     <input type="hidden" name="email" :value="user.email">
                 </Form>
             </template>
