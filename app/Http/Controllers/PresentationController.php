@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Visibility;
 use App\Models\Presentation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -45,16 +46,16 @@ class PresentationController extends Controller
             );
 
         $public = $all
-            ->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'public');
-        $private = $all
-            ->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === 'login');
+            ->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === Visibility::PUBLIC->title());
+        $protected = $all
+            ->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === Visibility::PROTECTED->title());
         $creator = $this->isLoggedIn()
             ? $all->filter(fn ($_presentation) => $this->loggedinIsCreator($_presentation))
             : new Collection([]);
 
         return Inertia::render('presentation/Index', [
             'allPublicPresentations' => array_values($public->all()),
-            'allPrivatePresentations' => array_values($private->all()),
+            'allPrivatePresentations' => array_values($protected->all()),
             'allCreatorPresentations' => array_values($creator->all()),
             'isLoggedIn' => $this->isLoggedIn(),
         ]);
@@ -64,9 +65,9 @@ class PresentationController extends Controller
     {
         $presentation = Presentation::where('slug', $_presId)->with('slides')->first();
         $isAllowedFurter = match ($presentation->presentationVisibility->title) {
-            'public' => true,
-            'login' => $this->isLoggedIn(),
-            'creator' => $this->loggedinIsCreator($presentation),
+            Visibility::PUBLIC->title() => true,
+            Visibility::PROTECTED->title() => $this->isLoggedIn(),
+            Visibility::PRIVATE->title() => $this->loggedinIsCreator($presentation),
             default => false,
         };
 
