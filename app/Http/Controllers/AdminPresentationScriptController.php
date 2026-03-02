@@ -97,9 +97,11 @@ class AdminPresentationScriptController extends Controller
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
             'content' => '',
+            'visibility' => 'required|exists:presentation_visibilities,id',
         ])->validated();
         $script->title = e($validated['title']);
         $script->content = e($validated['content']);
+        $script->presentation_visibility_id = $validated['visibility'];
         $script->save();
 
         return Redirect::back();
