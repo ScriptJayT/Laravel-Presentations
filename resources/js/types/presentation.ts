@@ -10,6 +10,7 @@ export type PresentationVisibility = {
 } & Model & HasTitle;
 export type PresentationTheme = Model & HasTitle;
 export type PresentationScript = {
+    presentation_visibility: PresentationVisibility,
     presentations?: Array<Presentation>,
 } & Model & HasTitle & HasRenderableContent;
 export type PresentationSlide = {

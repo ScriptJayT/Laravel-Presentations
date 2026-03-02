@@ -15,6 +15,10 @@ class PresentationScript extends Model
 
     protected $fillable = ['title', 'content', 'presentation_visibility_id'];
 
+    protected $with = [
+        // 'user',
+        'presentationVisibility',
+    ];
     // ## Casting
 
     // new attributes
@@ -31,6 +35,11 @@ class PresentationScript extends Model
     }
 
     // ## Relations
+
+    // public function user(): BelongsTo
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
     public function presentations(): HasMany
     {

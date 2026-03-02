@@ -7,6 +7,7 @@ import { Container, IndexGrid } from '@/components/dashboard/containers';
 import { IndexLink, NewLink } from '@/components/dashboard/models';
 import NewScript from '@/components/dashboard/forms/NewScript.vue';
 import { Search } from '@/components/global/form';
+import VisibilityBadge from '@/components/global/model/VisibilityBadge.vue';
 
 const props = defineProps<{
     allScripts: PresentationScript[];
@@ -20,6 +21,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: 'Scripts',
     },
 ];
+console.log(props.allScripts[0].presentation_visibility);
 </script>
 
 <template>
@@ -41,7 +43,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                         class="search-indexable"
                         :link="admin_scripts(_script.id)"
                         :last-edit="_script.updated_at"
-                    />
+                    >
+                        <VisibilityBadge
+                            :visibility="_script.presentation_visibility"
+                            class="absolute top-0 right-4 z-10 -translate-y-1/2"
+                            aria-hidden="true"
+                        />
+                    </IndexLink>
                 </template>
             </IndexGrid>
         </Container>
