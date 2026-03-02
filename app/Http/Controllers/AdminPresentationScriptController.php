@@ -56,6 +56,7 @@ class AdminPresentationScriptController extends Controller
             'title' => e($validated['title']),
             'content' => '',
             'presentation_visibility_id' => $visibility->id,
+            'user_id' => $request->user()->id,
         ]);
 
         if ($validated['goto'] ?? '' === 'on') {

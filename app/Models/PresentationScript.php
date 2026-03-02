@@ -13,10 +13,13 @@ class PresentationScript extends Model
 {
     use CastUpdatedAtAsDiff, HasFactory, HasMarkdownRenderableContent;
 
-    protected $fillable = ['title', 'content', 'presentation_visibility_id'];
+    protected $fillable = [
+        'title', 'content',
+        'presentation_visibility_id', 'user_id',
+    ];
 
     protected $with = [
-        // 'user',
+        'user',
         'presentationVisibility',
     ];
     // ## Casting
