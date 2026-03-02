@@ -2,19 +2,15 @@
 import type { Presentation, PresentationVisibility, PresentationScript, } from '@/types';
 import { admin_script_index, admin_scripts } from '@/routes';
 import { update } from '@/routes/admin_presentation';
-
 import { ExternalLink, Book, CirclePlus } from 'lucide-vue-next';
 import { Form, FormField, SelectField, TextField } from '@/components/global/form';
+import SelectVisibility from '../models/SelectVisibility.vue';
 
 const props = defineProps<{
     presentation: Presentation;
     allVisibilityRules: PresentationVisibility[];
     allScripts: PresentationScript[];
 }>();
-const visibilityOptions: Record<string, string> = {};
-props.allVisibilityRules.forEach(_visibility => {
-    visibilityOptions[_visibility.id] = `${_visibility.name}`;
-});
 const scriptOptions: Record<string, string> = {};
 props.allScripts.forEach(_script => {
     scriptOptions[_script.id] = `
@@ -53,13 +49,9 @@ props.allScripts.forEach(_script => {
                 :value="presentation.slug"
                 :error="errors.slug"
             />
-            <SelectField
-                name="visibility"
-                label="Visibility:"
-                :default-value="`${presentation.presentation_visibility.id}`"
-                :allow-null-value="false"
-                :error="errors.visibility"
-                :options="visibilityOptions"
+            <SelectVisibility
+                :current-rule="presentation.presentation_visibility.id"
+                :rules="allVisibilityRules"
             />
         </fieldset>
         <fieldset class="space-y-5">

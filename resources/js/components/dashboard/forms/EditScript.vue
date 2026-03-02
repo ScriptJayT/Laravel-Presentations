@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import { PresentationScript, PresentationVisibility } from '@/types';
-import { Form, FormField, ContentField, SelectField } from '@/components/global/form';
+import { Form, FormField, ContentField } from '@/components/global/form';
+import SelectVisibility from '../models/SelectVisibility.vue';
 import { update } from '@/routes/admin_script';
-
-const props = defineProps<{
+defineProps<{
     script: PresentationScript;
     allVisibilityRules: PresentationVisibility[];
 }>();
-const visibilityOptions: Record<string, string> = {};
-props.allVisibilityRules.forEach(_visibility => {
-    visibilityOptions[_visibility.id] = `${_visibility.name}`;
-});
 </script>
+
 <template>
     <Form
         id="update-script-form"
@@ -35,16 +32,10 @@ props.allVisibilityRules.forEach(_visibility => {
                 class="grow outline-none"
             />
         </FormField>
-
-        <SelectField
-            name="visibility"
-            label="Visibility:"
-            :default-value="`${script.presentation_visibility.id}`"
-            :allow-null-value="false"
-            :error="errors.visibility"
-            :options="visibilityOptions"
+        <SelectVisibility
+            :current-rule="script.presentation_visibility.id"
+            :rules="allVisibilityRules"
         />
-
         <ContentField
             name="content"
             :error="errors.content"
