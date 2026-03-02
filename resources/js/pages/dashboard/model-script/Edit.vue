@@ -40,7 +40,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <hr>
 
                     <template v-if="!script.presentations || script.presentations.length < 0">
-                        <p>Not used anywhere yet</p>
+                        <p> Not used anywhere yet </p>
                     </template>
                     <template v-else>
                         {{ plural(script.presentations, "use") }}:
