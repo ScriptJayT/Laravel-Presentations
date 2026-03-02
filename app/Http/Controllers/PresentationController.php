@@ -50,9 +50,9 @@ class PresentationController extends Controller
         ]);
     }
 
-    public function show(string $_presId): mixed
+    public function show(Presentation $presentation): mixed
     {
-        $presentation = Presentation::where('slug', $_presId)->with('slides')->first();
+        $presentation->load('slides');
 
         return $this->isAllowedFurter(
             _visibility: $presentation->presentationVisibility,

@@ -17,8 +17,8 @@ Route::redirect('presentations', '/');
 Route::redirect('scripts', '/');
 Route::controller(PresentationController::class)->group(function () {
     Route::get('/', 'index')->name('home');
-    Route::get('p/{slug}', 'show')->name('presentations');
-    Route::get('presentations/{slug}', 'show');
+    Route::get('p/{presentation:slug}', 'show')->name('presentations');
+    Route::get('presentations/{presentation:slug}', 'show');
 });
 
 Route::controller(PresentationScriptController::class)->group(function () {
