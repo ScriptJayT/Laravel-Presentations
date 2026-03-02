@@ -13,19 +13,20 @@ defineProps<{
             data-component="dashboard/SideZoneContainer"
             class="field | relative grid gap-12"
         >
-            <aside class="order-2 space-y-6" :class="sideClass">
-                <slot name="sidezone" />
-            </aside>
-            <div class="ct-inline-size | order-1" :class="mainClass">
+            <div class="ct-inline-size" :class="mainClass">
                 <slot name="mainzone" />
             </div>
+            <aside class="ct-inline-size | space-y-6" :class="sideClass">
+                <slot name="sidezone" />
+            </aside>
         </div>
     </Container>
 </template>
 
 <style scoped>
     .field {
-        grid-template-columns: 1fr auto;
-        /* a column with auto is not able to be/contain a inline size container */
+        @container (width > 54rem) {
+            grid-template-columns: 1fr 350px;
+        }
     }
 </style>
