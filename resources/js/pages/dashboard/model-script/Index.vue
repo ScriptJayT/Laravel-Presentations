@@ -49,6 +49,9 @@ console.log(props.allScripts[0].presentation_visibility);
                             class="absolute top-0 right-4 z-10 -translate-y-1/2"
                             aria-hidden="true"
                         />
+                        <!-- <span class="block mt-auto pt-5" aria-label="A presentation">
+                            by: {{ _script.user.name }}
+                        </span> -->
                     </IndexLink>
                 </template>
             </IndexGrid>
