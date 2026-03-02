@@ -76,8 +76,11 @@ class AdminPresentationController extends Controller
         ])->validated();
 
         $user = $request->user();
-        $visibility = PresentationVisibility::where('title', Visibility::PRIVATE->title())->first();
-        $theme = PresentationTheme::where('id', '1')->first();
+        $visibility = PresentationVisibility::select('id')
+            ->where('title', Visibility::PRIVATE->title())
+            ->first();
+        $theme = PresentationTheme::select('id')
+            ->first();
         $script = null;
 
         $presentation = Presentation::create([

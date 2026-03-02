@@ -36,7 +36,9 @@ class AdminPresentationScriptController extends Controller
             'title' => 'required|min:5|unique:presentation_scripts,title',
             'goto' => '',
         ])->validated();
-        $visibility = PresentationVisibility::where('title', Visibility::PROTECTED->title())->first();
+        $visibility = PresentationVisibility::select('id')
+            ->where('title', Visibility::PROTECTED->title())
+            ->first();
         $script = PresentationScript::create([
             'title' => e($validated['title']),
             'content' => '',

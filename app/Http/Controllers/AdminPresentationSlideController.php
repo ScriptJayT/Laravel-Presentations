@@ -30,7 +30,7 @@ class AdminPresentationSlideController extends Controller
             'order' => 'required|integer',
         ])->validated();
 
-        $theme = PresentationTheme::where('id', '1')->first();
+        $theme = PresentationTheme::select('id')->first();
         PresentationSlide::create([
             'presentation_id' => $validated['presentation'],
             'title' => e($validated['title']),
