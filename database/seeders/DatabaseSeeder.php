@@ -45,21 +45,36 @@ class DatabaseSeeder extends Seeder
 
         $defaultTheme = PresentationTheme::factory()->create(['title' => 'base']);
 
-        $script = PresentationScript::factory()->create([
-            'user_id' => $testUser->id,
-            'presentation_visibility_id' => $creatorVisibilityRule->id,
-        ]);
-        PresentationScript::factory(3)->create([
-            'user_id' => $testUser->id,
-            'presentation_visibility_id' => $loginVisibilityRule->id,
-        ]);
-
         $examplePresentation = Presentation::factory()->create([
-            'title' => 'Welcome',
-            'slug' => Str::of('Welcome')->slug(),
+            'title' => 'Welcome to Hell\'Press',
+            'slug' => Str::of('Welcome to Hell\'Press')->slug(),
             'user_id' => $botUser->id,
             'presentation_visibility_id' => $loginVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
+        ]);
+        PresentationSlide::factory()->create([
+            'presentation_id' => $examplePresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
+            'title' => 'Title Shift',
+            'content' => "Titles are shifted down automatically: \n # h1 \n ## h2 \n ### h3 \n #### h4 \n ##### h5 \n ###### h6",
+        ]);
+
+        $entryPresentation = Presentation::factory()->create([
+            'title' => 'Hello world',
+            'slug' => Str::of('Hello world')->slug(),
+            'user_id' => $botUser->id,
+            'presentation_visibility_id' => $publicVisibilityRule->id,
+            'presentation_theme_id' => $defaultTheme->id,
+        ]);
+        PresentationSlide::factory(2)->create([
+            'presentation_id' => $entryPresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
+        ]);
+
+        $script = PresentationScript::factory()->create([
+            'title' => 'My personal project',
+            'user_id' => $testUser->id,
+            'presentation_visibility_id' => $creatorVisibilityRule->id,
         ]);
         $scaffoldingPresentation = Presentation::factory()->create([
             'title' => 'My personal project',
@@ -69,28 +84,7 @@ class DatabaseSeeder extends Seeder
             'presentation_theme_id' => $defaultTheme->id,
             'presentation_script_id' => $script->id,
         ]);
-        $entryPresentation = Presentation::factory()->create([
-            'title' => 'Hello world',
-            'slug' => Str::of('Hello world')->slug(),
-            'user_id' => $botUser->id,
-            'presentation_visibility_id' => $publicVisibilityRule->id,
-            'presentation_theme_id' => $defaultTheme->id,
-        ]);
-
-        PresentationSlide::factory(2)->create([
-            'presentation_id' => $examplePresentation->id,
-            'presentation_theme_id' => $defaultTheme->id,
-        ]);
         PresentationSlide::factory()->create([
-            'presentation_id' => $entryPresentation->id,
-            'presentation_theme_id' => $defaultTheme->id,
-            'content' => "# h1 \n ## h2 \n ### h3 \n #### h4 \n ##### h5 \n ###### h6",
-        ]);
-        PresentationSlide::factory(2)->create([
-            'presentation_id' => $entryPresentation->id,
-            'presentation_theme_id' => $defaultTheme->id,
-        ]);
-        PresentationSlide::factory(2)->create([
             'presentation_id' => $scaffoldingPresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
         ]);
