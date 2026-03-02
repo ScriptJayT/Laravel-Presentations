@@ -13,16 +13,16 @@ trait HasVisibilityRule
         return auth()->check();
     }
 
-    protected function loggedinIsCreator(User $_creator): bool
+    protected function loggedinIsCreator(?User $_creator): bool
     {
-        if (! $this->isLoggedIn()) {
+        if (! $_creator || ! $this->isLoggedIn()) {
             return false;
         }
 
         return $_creator->id === auth()->user()->id;
     }
 
-    protected function isAllowedFurter(PresentationVisibility $_visibility, User $_creator): bool
+    protected function isAllowedFurter(PresentationVisibility $_visibility, ?User $_creator): bool
     {
         return match ($_visibility->title) {
             Visibility::PUBLIC->title() => true,

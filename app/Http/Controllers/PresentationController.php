@@ -53,12 +53,6 @@ class PresentationController extends Controller
     public function show(string $_presId): mixed
     {
         $presentation = Presentation::where('slug', $_presId)->with('slides')->first();
-        // $isAllowedFurter = match ($presentation->presentationVisibility->title) {
-        //     Visibility::PUBLIC->title() => true,
-        //     Visibility::PROTECTED->title() => $this->isLoggedIn(),
-        //     Visibility::PRIVATE->title() => $this->loggedinIsCreator($presentation),
-        //     default => false,
-        // };
 
         return $this->isAllowedFurter(
             _visibility: $presentation->presentationVisibility,
