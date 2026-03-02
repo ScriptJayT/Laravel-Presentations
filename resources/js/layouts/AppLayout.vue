@@ -17,7 +17,7 @@ withDefaults(defineProps<Props>(), {
 <template >
     <Head :title="metaTitle" />
     <AlertFlash />
-    <AppLayout :breadcrumbs="breadcrumbs">
+    <AppLayout :breadcrumbs>
         <slot />
     </AppLayout>
 </template>
