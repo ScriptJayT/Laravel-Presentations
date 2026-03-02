@@ -66,10 +66,6 @@ class DatabaseSeeder extends Seeder
             'presentation_visibility_id' => $publicVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
         ]);
-        PresentationSlide::factory(2)->create([
-            'presentation_id' => $entryPresentation->id,
-            'presentation_theme_id' => $defaultTheme->id,
-        ]);
 
         $script = PresentationScript::factory()->create([
             'title' => 'My personal project',
