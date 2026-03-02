@@ -96,7 +96,7 @@ console.log(props.formAction);
                         <span class="sr-only"> There are unsaved changes </span>
                         <span
                             aria-hidden="true"
-                            class="block size-3 rounded-full bg-cyan-700"
+                            class="block size-3 rounded-full bg-orange-700"
                         />
                         <span
                             aria-hidden="true"
@@ -104,7 +104,7 @@ console.log(props.formAction);
                                 absolute inset-0
                                 block h-full w-full
                                 rounded-full
-                                bg-cyan-400 opacity-75
+                                bg-orange-400 opacity-75
                                 animate-ping
                                 "
                         />
