@@ -32,7 +32,7 @@ const props = defineProps<{
             :href="admin_users(model.user.id).url"
             target="_blank"
             class="
-                cursor-pointer select-none
+                cursor-pointer
                 flex justify-between gap-1
                 rounded-sm
                 outline-sidebar-ring outline-offset-8
