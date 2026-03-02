@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Visibility;
 use App\Models\Presentation;
+use App\Traits\HasVisibilityRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redirect;
@@ -12,19 +13,7 @@ use Inertia\Response as IResponse;
 
 class PresentationController extends Controller
 {
-    private function isLoggedIn(): bool
-    {
-        return auth()->check();
-    }
-
-    private function loggedinIsCreator(Presentation $_presentation): bool
-    {
-        if (! $this->isLoggedIn()) {
-            return false;
-        }
-
-        return $_presentation->user->id === auth()->user()->id;
-    }
+    use HasVisibilityRule;
 
     public function index(Request $_): IResponse
     {
@@ -50,7 +39,7 @@ class PresentationController extends Controller
         $protected = $all
             ->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === Visibility::PROTECTED->title());
         $creator = $this->isLoggedIn()
-            ? $all->filter(fn ($_presentation) => $this->loggedinIsCreator($_presentation))
+            ? $all->filter(fn ($_presentation) => $this->loggedinIsCreator($_presentation->user))
             : new Collection([]);
 
         return Inertia::render('presentation/Index', [
@@ -64,14 +53,17 @@ class PresentationController extends Controller
     public function show(string $_presId): mixed
     {
         $presentation = Presentation::where('slug', $_presId)->with('slides')->first();
-        $isAllowedFurter = match ($presentation->presentationVisibility->title) {
-            Visibility::PUBLIC->title() => true,
-            Visibility::PROTECTED->title() => $this->isLoggedIn(),
-            Visibility::PRIVATE->title() => $this->loggedinIsCreator($presentation),
-            default => false,
-        };
+        // $isAllowedFurter = match ($presentation->presentationVisibility->title) {
+        //     Visibility::PUBLIC->title() => true,
+        //     Visibility::PROTECTED->title() => $this->isLoggedIn(),
+        //     Visibility::PRIVATE->title() => $this->loggedinIsCreator($presentation),
+        //     default => false,
+        // };
 
-        return $isAllowedFurter
+        return $this->isAllowedFurter(
+            _visibility: $presentation->presentationVisibility,
+            _creator: $presentation->user
+        )
             ? Inertia::render('presentation/Show', ['presentation' => $presentation])
             : Redirect::route('home');
     }
