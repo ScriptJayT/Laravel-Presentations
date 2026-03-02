@@ -54,7 +54,7 @@ props.allScripts.forEach(_script => {
                 :rules="allVisibilityRules"
             />
         </fieldset>
-        <fieldset class="space-y-5">
+        <fieldset class="space-y-5 ct-inline-size">
             <legend class="block font-semibold text-lg mb-5"> Script </legend>
             <SelectField
                 name="script"
@@ -64,14 +64,15 @@ props.allScripts.forEach(_script => {
                 :options="scriptOptions"
                 :error="errors.script"
             />
-            <div class="grid md:grid-cols-2 gap-x-10">
+            <div class="script-links | flex flex-wrap gap-y-6 gap-x-5">
                 <template v-if="presentation.presentation_script">
                     <a
                         :href="admin_scripts(presentation.presentation_script.id).url"
                         target="_blank"
                         class="
+                            grow
                             flex gap-3 justify-between items-center
-                            p-4
+                            min-w-fit p-4
                             border-2 rounded-md
                             outline-offset-4
                             text-center text-balance
@@ -88,9 +89,9 @@ props.allScripts.forEach(_script => {
                     :href="admin_script_index().url"
                     target="_blank"
                     class="
-                        col-start-2
+                        grow self-end
                         flex gap-3 justify-between items-center
-                        p-4
+                        min-w-fit p-4
                         border-2 rounded-md
                         outline-offset-4
                         text-center text-balance
