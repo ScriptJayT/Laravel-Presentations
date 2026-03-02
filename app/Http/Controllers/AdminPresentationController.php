@@ -43,9 +43,7 @@ class AdminPresentationController extends Controller
     public function edit(string $_presId): IResponse
     {
         $presentation = Presentation::where('id', $_presId)
-            ->with([
-                'slides' => fn ($q) => $q->orderBy('order', 'desc'),
-            ])
+            ->with(['slides' => fn ($q) => $q->orderBy('order', 'desc')])
             ->first();
         $rules = PresentationVisibility::all(['id', 'name'])->all();
         $scripts = PresentationScript::all(['id', 'title'])->all();
@@ -71,7 +69,6 @@ class AdminPresentationController extends Controller
             'title' => 'required|min:2',
             'goto' => '',
         ])->validated();
-
         $slug = Str::slug($validated['title']);
         validator(['slug' => $slug], [
             'slug' => 'required|min:2|unique:presentations,slug',
