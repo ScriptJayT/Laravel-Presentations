@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import type { PresentationScript, BreadcrumbItem } from '@/types';
+import type { PresentationScript, PresentationVisibility, BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_presentations, admin_script_index, scripts } from '@/routes';
-import { destroy, update } from '@/routes/admin_script';
+import { destroy } from '@/routes/admin_script';
 import { ExternalLink } from "lucide-vue-next";
 import { plural } from '@/lib/utils';
 
-import { Form, FormField, ContentField } from '@/components/global/form'
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
-
 import AppLayout from '@/layouts/AppLayout.vue';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
+import EditScript from '@/components/dashboard/forms/EditScript.vue';
 
 const props = defineProps<{
     script: PresentationScript;
+    rules: PresentationVisibility[];
 }>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -28,7 +28,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `Script: #${props.script.id}`,
     }
 ];
-console.log(props.script);
 </script>
 
 <template>
@@ -79,35 +78,10 @@ console.log(props.script);
                 </DangerZone>
             </template>
             <template v-slot:mainzone>
-                <Form
-                    id="update-script-form"
-                    form-action="edit"
-                    class="
-                        space-y-6
-                        max-w-[90ch] h-fit
-                        mx-auto inert:opacity-50
-                        "
-                    :show-button="false"
-                    :send-to="update.form(script.id)"
-                    v-slot="{ errors }"
-                >
-                    <FormField
-                        id="script-title" label="Title:"
-                        :error="errors.title"
-                    >
-                        <input
-                            id="script-title" name="title" type="text"
-                            v-model.lazy="script.title"
-                            class="grow outline-none"
-                        />
-                    </FormField>
-
-                    <ContentField
-                        name="content"
-                        :error="errors.content"
-                        :value="script.content.trim()"
-                    />
-                </Form>
+                <EditScript
+                    :script
+                    :all-visibility-rules="rules"
+                />
             </template>
         </SideZoneContainer>
     </AppLayout>
