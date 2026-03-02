@@ -20,12 +20,12 @@ class AdminPresentationScriptController extends Controller
         $all = PresentationScript::select(
             'id', 'title', 'updated_at',
             /** to allow eager loading to work when selecting, exact id's are required */
-            // 'user_id',
+            'user_id',
             'presentation_visibility_id',
         )
             ->with([
                 /** always inlcude the id, as db doesn't otherwise now what to look against */
-                // 'user' => fn ($q) => $q->select('id', 'name'),
+                'user' => fn ($q) => $q->select('id', 'name'),
                 'presentationVisibility' => fn ($q) => $q->select('id', 'title', 'name'),
             ])
             ->get();

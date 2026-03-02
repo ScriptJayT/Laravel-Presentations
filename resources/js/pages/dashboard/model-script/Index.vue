@@ -48,18 +48,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                             class="absolute top-0 right-4 z-10 -translate-y-1/2"
                             aria-hidden="true"
                         />
-                        <!-- <span class="block mt-auto pt-5" aria-label="A presentation">
+                        <span class="block mt-auto pt-5" aria-label="A presentation">
                             by: {{ _script.user.name }}
-                        </span> -->
+                        </span>
                     </IndexLink>
                 </template>
             </IndexGrid>
         </Container>
     </AppLayout>
 </template>
-
-<style>
-    [data-id=script-index] .model-entry--last-edit {
-        margin-top: auto;
-    }
-</style>
