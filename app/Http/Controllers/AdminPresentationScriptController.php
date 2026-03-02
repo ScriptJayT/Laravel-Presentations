@@ -81,9 +81,11 @@ class AdminPresentationScriptController extends Controller
             // need the presentation_script_id for it to work
             'presentations' => fn ($q) => $q->select('presentation_script_id', 'id', 'title'),
         ]);
+        $rules = PresentationVisibility::all(['id', 'name'])->all();
 
         return Inertia::render('dashboard/model-script/Edit', [
             'script' => $script,
+            'rules' => $rules,
         ]);
     }
 

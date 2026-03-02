@@ -28,6 +28,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `Script: #${props.script.id}`,
     }
 ];
+console.log(props.script);
 </script>
 
 <template>

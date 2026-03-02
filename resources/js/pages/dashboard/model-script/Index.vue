@@ -21,7 +21,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: 'Scripts',
     },
 ];
-console.log(props.allScripts[0].presentation_visibility);
 </script>
 
 <template>
