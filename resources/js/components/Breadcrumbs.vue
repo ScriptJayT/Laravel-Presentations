@@ -18,7 +18,7 @@ defineProps<Props>();
 </script>
 
 <template>
-    <Breadcrumb>
+    <Breadcrumb data-component="Breadcrumbs">
         <BreadcrumbList>
             <template v-for="(item, index) in breadcrumbs" :key="index">
                 <BreadcrumbItem>
@@ -27,9 +27,18 @@ defineProps<Props>();
                     </template>
                     <template v-else>
                         <BreadcrumbLink as-child>
-                            <Link :href="item.href ?? '#'">{{
-                                item.title
-                            }}</Link>
+                            <Link
+                                :href="item.href ?? '#'"
+                                class="
+                                    h-7
+                                    grid place-content-center
+                                    px-1
+                                    rounded-md
+                                    focus-visible:ring-ring/25 focus-visible:ring-[3px]
+                                    "
+                            >
+                                {{ item.title }}
+                            </Link>
                         </BreadcrumbLink>
                     </template>
                 </BreadcrumbItem>
