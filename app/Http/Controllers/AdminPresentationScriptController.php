@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Visibility;
 use App\Models\PresentationScript;
+use App\Models\PresentationVisibility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -34,9 +36,11 @@ class AdminPresentationScriptController extends Controller
             'title' => 'required|min:5|unique:presentation_scripts,title',
             'goto' => '',
         ])->validated();
+        $visibility = PresentationVisibility::where('title', Visibility::PROTECTED->title())->first();
         $script = PresentationScript::create([
             'title' => e($validated['title']),
             'content' => '',
+            'presentation_visibility_id' => $visibility->id,
         ]);
 
         if ($validated['goto'] ?? '' === 'on') {

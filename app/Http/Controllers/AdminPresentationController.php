@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Visibility;
 use App\Models\Presentation;
 use App\Models\PresentationScript;
 use App\Models\PresentationTheme;
@@ -75,7 +76,7 @@ class AdminPresentationController extends Controller
         ])->validated();
 
         $user = $request->user();
-        $visibility = PresentationVisibility::where('title', 'creator')->first();
+        $visibility = PresentationVisibility::where('title', Visibility::PRIVATE->title())->first();
         $theme = PresentationTheme::where('id', '1')->first();
         $script = null;
 
