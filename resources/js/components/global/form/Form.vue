@@ -39,6 +39,8 @@ function fail(_response: unknown) {
     console.log(_response);
     if(props.onError) props.onError(_response);
 }
+
+console.log(props.formAction);
 </script>
 
 <template>
@@ -51,14 +53,15 @@ function fail(_response: unknown) {
         v-on:success="success"
         v-on:error="fail"
         :reset-on-error="false"
-        :reset-on-success="formAction!=='edit' || (formAction==='edit' && !showButton)"
+        :reset-on-success="formAction!=='edit'"
+        :set-defaults-on-success="formAction==='edit'"
         disable-while-processing
-        v-slot="{ errors, processing, isDirty, wasSuccessful, hasErrors, recentlySuccessful }"
+        v-slot="{ errors, processing, isDirty, wasSuccessful, hasErrors }"
     >
         <template v-if="formAction==='edit' && !showButton">
             <div class="form--meta | absolute bottom-full right-0 m-0">
                 <ProcessIndicator :is-in-process="processing"/>
-                <UnsavedChanges :has-unsaved-changes="isDirty && !processing && !recentlySuccessful" />
+                <UnsavedChanges :has-unsaved-changes="isDirty && !processing" />
             </div>
         </template>
 
@@ -85,7 +88,11 @@ function fail(_response: unknown) {
             >
                 <ProcessIndicator :is-in-process="processing"/>
                 <template v-if="formAction=='edit'">
-                    <span v-show="isDirty" class="relative" aria-live="polite">
+                    <span
+                        v-show="isDirty && !processing"
+                        aria-live="polite"
+                        class="relative"
+                    >
                         <span class="sr-only"> There are unsaved changes </span>
                         <span
                             aria-hidden="true"
