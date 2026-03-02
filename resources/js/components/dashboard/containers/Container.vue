@@ -10,7 +10,7 @@ const props = defineProps<{
 
 <template>
     <section
-        data-component="dashboard/Container"
+        data-component="dashboard/containers/Container"
         :data-id="id"
         class="
             ct-inline-size | relative isolate

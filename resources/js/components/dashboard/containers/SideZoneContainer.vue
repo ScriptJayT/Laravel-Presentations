@@ -10,7 +10,7 @@ defineProps<{
 <template>
     <Container :title>
         <div
-            data-component="dashboard/SideZoneContainer"
+            data-component="dashboard/containers/SideZoneContainer"
             class="field | relative grid gap-12"
         >
             <div class="ct-inline-size" :class="mainClass">
