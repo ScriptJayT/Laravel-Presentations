@@ -41,11 +41,9 @@ class AdminPresentationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $_presId): IResponse
+    public function edit(Presentation $presentation): IResponse
     {
-        $presentation = Presentation::where('id', $_presId)
-            ->with(['slides' => fn ($q) => $q->orderBy('order', 'desc')])
-            ->first();
+        $presentation->load(['slides' => fn ($q) => $q->orderBy('order', 'desc')]);
         $rules = PresentationVisibility::all(['id', 'name'])->all();
         $scripts = PresentationScript::all(['id', 'title'])->all();
 
