@@ -46,9 +46,11 @@ class DatabaseSeeder extends Seeder
         $defaultTheme = PresentationTheme::factory()->create(['title' => 'base']);
 
         $script = PresentationScript::factory()->create([
+            'user_id' => $testUser->id,
             'presentation_visibility_id' => $creatorVisibilityRule->id,
         ]);
         PresentationScript::factory(3)->create([
+            'user_id' => $testUser->id,
             'presentation_visibility_id' => $loginVisibilityRule->id,
         ]);
 

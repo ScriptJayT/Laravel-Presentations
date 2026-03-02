@@ -57,10 +57,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     // ## Relations
 
-    // public function presentationScripts(): HasMany
-    // {
-    //     return $this->hasMany(PresentationScripts::class);
-    // }
+    public function presentationScripts(): HasMany
+    {
+        return $this->hasMany(PresentationScript::class);
+    }
 
     public function presentations(): HasMany
     {

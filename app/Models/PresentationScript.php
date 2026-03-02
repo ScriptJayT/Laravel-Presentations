@@ -36,10 +36,10 @@ class PresentationScript extends Model
 
     // ## Relations
 
-    // public function user(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function presentations(): HasMany
     {
