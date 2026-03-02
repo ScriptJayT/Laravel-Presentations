@@ -45,7 +45,6 @@ class PresentationCrudTest extends TestCase
             'title' => Visibility::PROTECTED->title(),
             'name' => 'Gibberish',
         ]);
-
         $script = PresentationScript::factory()->create();
 
         $presentation = Presentation::create([
@@ -58,5 +57,9 @@ class PresentationCrudTest extends TestCase
         ]);
 
         $this->assertEquals($presentation->title, 'Presentation');
+        $this->assertNotNull($presentation->user);
+        $this->assertEquals($presentation->presentationVisibility->name, 'Gibberish');
+        $this->assertNotNull($presentation->presentationScript);
+        $this->assertNotNull($presentation->presentationTheme);
     }
 }
