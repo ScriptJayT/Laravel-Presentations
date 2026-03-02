@@ -30,16 +30,16 @@ class PresentationController extends Controller
             ])
             ->get()
             ->sortBy(
-                callback: fn ($_presentation) => $_presentation->presentationVisibility->id,
+                callback: fn ($_p) => $_p->presentationVisibility->id,
                 descending: true
             );
 
         $public = $all
-            ->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === Visibility::PUBLIC->title());
+            ->filter(fn ($_p) => $_p->presentationVisibility->title === Visibility::PUBLIC->title());
         $protected = $all
-            ->filter(fn ($_presentation) => $_presentation->presentationVisibility->title === Visibility::PROTECTED->title());
+            ->filter(fn ($_p) => $_p->presentationVisibility->title === Visibility::PROTECTED->title());
         $creator = $this->isLoggedIn()
-            ? $all->filter(fn ($_presentation) => $this->loggedinIsCreator($_presentation->user))
+            ? $all->filter(fn ($_p) => $this->loggedinIsCreator($_p->user))
             : new Collection([]);
 
         return Inertia::render('presentation/Index', [
