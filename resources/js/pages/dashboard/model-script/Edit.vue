@@ -51,7 +51,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         :href="admin_presentations(_presentation.id).url"
                                         target="_blank"
                                         :title="`Open presentation: ${_presentation.title}`"
-                                        class="flex gap-3 justify-between items-center"
+                                        class="
+                                            cursor-pointer select-none
+                                            flex gap-3 justify-between items-center
+                                            rounded-sm
+                                            outline-sidebar-ring outline-offset-8
+                                            "
                                     >
                                         <span class="flex gap-1">
                                             <span class="text-muted-foreground">

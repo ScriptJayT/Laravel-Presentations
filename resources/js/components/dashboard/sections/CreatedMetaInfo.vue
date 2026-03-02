@@ -35,8 +35,7 @@ const props = defineProps<{
                 cursor-pointer select-none
                 flex justify-between gap-1
                 rounded-sm
-                outline-sidebar-ring
-                outline-offset-8
+                outline-sidebar-ring outline-offset-8
                 "
         >
             <span> Created by: {{ model.user.name }} </span>
