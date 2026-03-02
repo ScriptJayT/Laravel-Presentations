@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { PresentationVisibility } from '@/types';
+import { getAppEnums } from '@/lib/utils';
 import { Shield, Lock, LockOpen } from "lucide-vue-next";
+const visibilityTitles = getAppEnums().visibility;
 defineProps<{
     visibility: PresentationVisibility;
     class?: string;
@@ -20,17 +22,15 @@ defineProps<{
             bg-background
             "
     >
-        <span class="italic text-md">
-            {{ visibility.name }}
-        </span>
+        <span class="italic text-md"> {{ visibility.name }} </span>
         <span role="presentation">
-            <template v-if="visibility.title === 'creator'">
+            <template v-if="visibility.title === visibilityTitles.PRIVATE">
                 <Lock class="size-4"/>
             </template>
-            <template v-else-if="visibility.title === 'login'">
+            <template v-else-if="visibility.title === visibilityTitles.PROTECTED">
                 <Shield class="size-4"/>
             </template>
-            <template v-else-if="visibility.title === 'public'">
+            <template v-else-if="visibility.title === visibilityTitles.PUBLIC">
                 <LockOpen class="size-4"/>
             </template>
             <template v-else>

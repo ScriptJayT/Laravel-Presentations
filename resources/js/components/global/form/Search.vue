@@ -29,7 +29,6 @@ const cache = new Map<string, SearchFilterResult>();
 let elements: QueryAllResult = [];
 onMounted(() => {
     //# reset in case of remount and desync
-    console.clear();
     resultCount.value = -1;
     cache.clear();
     empty(); // resets input + list-view

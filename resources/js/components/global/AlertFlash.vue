@@ -1,15 +1,10 @@
 <script setup lang="ts">
+import type { AppServiceShared } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import { AlertCircle } from 'lucide-vue-next';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-
-type Flash = {
-    success?: string,
-    error?: string,
-    info?: string,
-}
-const flash = computed(() => usePage().props.flash).value as Flash;
+const flash = computed(() => usePage().props.flash).value as AppServiceShared['flash'];
 const anyMessage = !!(flash.info || flash.error || flash.success);
 const message = [flash.info, flash.error, flash.success].join("\n");
 </script>

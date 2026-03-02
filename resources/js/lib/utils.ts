@@ -1,5 +1,6 @@
-import type { InertiaLinkProps } from '@inertiajs/vue3';
-import { clsx, type ClassValue } from 'clsx';
+import type { AppServiceShared } from '@/types';
+import { type InertiaLinkProps, usePage } from '@inertiajs/vue3';
+import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -38,4 +39,8 @@ export function plural(countable: Countable, word: string, plural_addition: stri
             : countable.length;
     if(count === 1) return `${count} ${word}`;
     return `${count} ${word}${plural_addition}`;
+}
+
+export function getAppEnums() {
+    return (usePage().props.enums as AppServiceShared['enums']);
 }

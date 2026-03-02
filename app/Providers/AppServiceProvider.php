@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Enums\Visibility;
 use Carbon\CarbonImmutable;
 use Fruitcake\LaravelDebugbar\Facades\Debugbar;
 use Illuminate\Foundation\AliasLoader;
@@ -31,11 +32,17 @@ class AppServiceProvider extends ServiceProvider
 
         Inertia::share([
             'appName' => config('app.name'),
+            'enums' => [
+                'visibility' => [
+                    'PUBLIC' => Visibility::PUBLIC->title(),
+                    'PROTECTED' => Visibility::PROTECTED->title(),
+                    'PRIVATE' => Visibility::PRIVATE->title(),
+                ],
+            ],
             'flash' => fn () => [
                 'success' => session('success'),
                 'error' => session('error'),
                 'info' => session('info'),
-                'raw' => session(),
             ],
         ]);
     }

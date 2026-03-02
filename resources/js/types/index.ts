@@ -4,6 +4,7 @@ export * from './auth';
 export * from './navigation';
 export * from './ui';
 
+export * from './shared';
 export * from './db-model';
 export * from './presentation';
 
