@@ -7,6 +7,7 @@ defineProps<{
     visibility: PresentationVisibility;
     class?: string;
 }>();
+const iconClass = "size-4";
 </script>
 
 <template>
@@ -24,18 +25,22 @@ defineProps<{
     >
         <span class="italic text-md"> {{ visibility.name }} </span>
         <span role="presentation">
-            <template v-if="visibility.title === visibilityTitles.PRIVATE">
-                <Lock class="size-4"/>
-            </template>
-            <template v-else-if="visibility.title === visibilityTitles.PROTECTED">
-                <Shield class="size-4"/>
-            </template>
-            <template v-else-if="visibility.title === visibilityTitles.PUBLIC">
-                <LockOpen class="size-4"/>
-            </template>
-            <template v-else>
-                <LockOpen class="size-4"/>
-            </template>
+            <Lock
+                v-if="visibility.title === visibilityTitles.PRIVATE"
+                :class="iconClass"
+            />
+            <Shield
+                v-else-if="visibility.title === visibilityTitles.PROTECTED"
+                :class="iconClass"
+            />
+            <LockOpen
+                v-else-if="visibility.title === visibilityTitles.PUBLIC"
+                :class="iconClass"
+            />
+            <LockOpen
+                v-else
+                :class="iconClass"
+            />
         </span>
     </span>
 </template>
