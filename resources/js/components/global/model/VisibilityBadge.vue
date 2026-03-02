@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { type PresentationVisibility } from '@/types';
+import type { PresentationVisibility } from '@/types';
 import { Shield, Lock, LockOpen } from "lucide-vue-next";
-
 defineProps<{
     visibility: PresentationVisibility;
     class?: string;
 }>();
-
 </script>
 
 <template>
