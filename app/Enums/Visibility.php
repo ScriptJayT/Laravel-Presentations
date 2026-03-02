@@ -12,8 +12,8 @@ enum Visibility
     {
         return match ($this) {
             self::PUBLIC => 'public',
-            self::PROTECTED => 'login',
-            self::PRIVATE => 'creator',
+            self::PROTECTED => 'protected',
+            self::PRIVATE => 'private',
         };
     }
 }
