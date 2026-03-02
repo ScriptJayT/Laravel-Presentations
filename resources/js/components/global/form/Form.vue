@@ -39,8 +39,6 @@ function fail(_response: unknown) {
     console.log(_response);
     if(props.onError) props.onError(_response);
 }
-
-console.log(props.formAction);
 </script>
 
 <template>
