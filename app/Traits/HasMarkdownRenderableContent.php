@@ -24,6 +24,12 @@ trait HasMarkdownRenderableContent
             [
                 'html_input' => 'strip',
                 'allow_unsafe_links' => false,
+                'max_nesting_level' => 10,
+                'renderer' => [
+                    'block_separator' => "\n",
+                    'inner_separator' => "\n",
+                    'soft_break' => '<br>',
+                ],
                 ...$this->getMdSettings(),
             ],
             [
