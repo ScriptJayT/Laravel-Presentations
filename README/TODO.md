@@ -1,6 +1,6 @@
 - [x] Brainstorm
 - [x] Setup
-- [ ] Design
+- [x] Design
 - [x] Name App
     laravel - presentations - hel
     helltation
@@ -20,7 +20,7 @@
     - ? Themes
     - ? Atom lock
 - ? User Roles
-- ? Private PresentationScripts
+- [x] ? Private PresentationScripts
 - ? Js Script injecting (custom elements, iframes)
 - ? Read-only API
     - json
