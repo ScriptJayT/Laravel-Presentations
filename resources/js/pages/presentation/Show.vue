@@ -142,6 +142,10 @@ onMounted(()=>{
                 &::after {
                     content: ":";
                 }
+
+                dd + & {
+                    margin-top: 0.75ch;
+                }
             }
             & dd {
                 font-style: italic;
