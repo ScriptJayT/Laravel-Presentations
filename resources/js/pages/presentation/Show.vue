@@ -129,5 +129,10 @@ onMounted(()=>{
                 margin-top: 0.75ch;
             }
         }
+
+        & a {
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
     }
 </style>

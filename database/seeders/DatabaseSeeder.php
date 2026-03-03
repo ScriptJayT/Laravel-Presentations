@@ -81,13 +81,13 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Markdown (MD)',
-            'content' => "You can use markdown to scaffold your script and slides \n\n# \# title h1 \n## \#\# title h2 \n### \#\#\# title h3 \n#### \#\#\#\# title h4 \n##### \#\#\#\#\# title h5 \n###### \#\#\#\#\#\# title h6 \n\n \*text\* => *italic* \n \*\*text\*\* => **strong** \n \*\*\*text\*\*\* => ***italic/strong*** \n\n- unordered \n- list \n\n1. ordered \n1. list",
+            'content' => "You can use markdown to scaffold your script and slides, though it is only supported in the content slot. \n\n Need a [cheat sheet](https://www.markdownguide.org/cheat-sheet/)? \n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\n- unordered \n- list \n\n1. ordered \n1. list",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Title Shift',
-            'content' => "MD titles in slides and scripts are shifted down automatically: for example in slides: '\# title' which would be an h1 shall be an h3",
+            'content' => "MD titles in slides and scripts are shifted down automatically: \n'\# title' which would be an h1 shall be rendered as an h3 in slides, for example",
         ]);
 
         Presentation::factory()->create([
