@@ -80,13 +80,13 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Markdown (MD)',
-            'content' => 'You can use markdown to scaffold your script and slides',
+            'content' => "You can use markdown to scaffold your script and slides \n\n \*text\* => *italic* \n \*\*text\*\* => **strong** \n \*\*\*text\*\*\* => ***strong/italic*** \n\n- unordered \n- list \n\n1. ordered \n 1. list",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Title Shift',
-            'content' => "MD titles in slides and scripts are shifted down automatically: \n # h1 \n ## h2 \n ### h3 \n #### h4 \n ##### h5 \n ###### h6",
+            'content' => "MD titles in slides and scripts are shifted down automatically: \n\n # \# h1 => h3 \n ## \## h2 => h4 \n ### \### h3 => h5 \n #### \#### h4 => h6 \n ##### \##### h5 => h6 \n ###### \###### h6 => h6",
         ]);
 
         Presentation::factory()->create([

@@ -114,9 +114,16 @@ onMounted(()=>{
 
         & ul {
             list-style-type: square;
-            padding-inline-start: 2ch;
+            list-style-position: inside;
 
-            & li + li {
+        }
+        & ol {
+            list-style-type: decimal-leading-zero;
+            list-style-position: inside;
+        }
+        & li {
+            & + & {
+
                 margin-top: 0.75ch;
             }
         }
