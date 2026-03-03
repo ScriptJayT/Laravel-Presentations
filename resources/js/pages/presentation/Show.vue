@@ -5,9 +5,7 @@ import { onMounted } from 'vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import AppWrapper from '@/components/app/AppWrapper.vue';
 import AppContent from '@/components/app/AppContent.vue';
-const props = defineProps<{
-    presentation: Required<Presentation>;
-}>();
+const props = defineProps<{ presentation: Required<Presentation> }>();
 onMounted(()=>{
     props.presentation.slides.unshift({
         id: 0,
@@ -112,6 +110,15 @@ onMounted(()=>{
 
         & p:has(img) {
             display: contents;
+        }
+
+        & ul {
+            list-style-type: square;
+            padding-inline-start: 2ch;
+
+            & li + li {
+                margin-top: 0.75ch;
+            }
         }
     }
 </style>

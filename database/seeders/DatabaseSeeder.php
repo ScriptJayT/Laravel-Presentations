@@ -55,8 +55,38 @@ class DatabaseSeeder extends Seeder
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
+            'title' => 'Presentations',
+            'content' => '',
+        ]);
+        PresentationSlide::factory()->create([
+            'presentation_id' => $examplePresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
+            'title' => 'Slides',
+            'content' => '',
+        ]);
+        PresentationSlide::factory()->create([
+            'presentation_id' => $examplePresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
+            'title' => 'Scripts',
+            'content' => "Scripts are like mini-thesis \n\n You can optionally link your script to your presentation",
+        ]);
+        PresentationSlide::factory()->create([
+            'presentation_id' => $examplePresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
+            'title' => 'Guards',
+            'content' => "You can make presentations and scripts: \n- accessible to everyone \n- accessible to logged in users only \n- accessible to you alone",
+        ]);
+        PresentationSlide::factory()->create([
+            'presentation_id' => $examplePresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
+            'title' => 'Markdown (MD)',
+            'content' => 'You can use markdown to scaffold your script and slides',
+        ]);
+        PresentationSlide::factory()->create([
+            'presentation_id' => $examplePresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Title Shift',
-            'content' => "Titles are shifted down automatically: \n # h1 \n ## h2 \n ### h3 \n #### h4 \n ##### h5 \n ###### h6",
+            'content' => "MD titles in slides and scripts are shifted down automatically: \n # h1 \n ## h2 \n ### h3 \n #### h4 \n ##### h5 \n ###### h6",
         ]);
 
         Presentation::factory()->create([
