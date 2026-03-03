@@ -105,6 +105,7 @@ onMounted(()=>{
 
         & p {
             text-wrap: pretty;
+            line-height: 1.6;
 
             &:has(img) {
                 display: contents;
