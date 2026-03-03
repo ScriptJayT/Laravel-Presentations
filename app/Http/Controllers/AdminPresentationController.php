@@ -7,6 +7,7 @@ use App\Models\Presentation;
 use App\Models\PresentationScript;
 use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
+use App\Traits\HasVisibilityRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
@@ -15,6 +16,8 @@ use Inertia\Response as IResponse;
 
 class AdminPresentationController extends Controller
 {
+    use HasVisibilityRule;
+
     /**
      * Display a listing of the resource.
      */
@@ -41,9 +44,14 @@ class AdminPresentationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Presentation $presentation): IResponse
+    public function edit(Presentation $presentation)
     {
         $presentation->load(['slides' => fn ($q) => $q->orderBy('order', 'desc')]);
+        if (! $this->isAllowedFurter($presentation->presentationVisibility, $presentation->user)) {
+            session()->flash('error', "You're not the creator, you're not allowed to edit this");
+
+            return Redirect::route('admin_presentation_index');
+        }
         $rules = PresentationVisibility::all(['id', 'name'])->all();
         $scripts = PresentationScript::all(['id', 'title'])->all();
 
@@ -109,6 +117,10 @@ class AdminPresentationController extends Controller
      */
     public function update(Request $request, Presentation $presentation)
     {
+        if (! $this->isAllowedFurter($presentation->presentationVisibility, $presentation->user)) {
+            return Redirect::back();
+        }
+
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
             'slug' => 'required|min:2',
