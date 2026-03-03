@@ -103,15 +103,15 @@ onMounted(()=>{
         }
         & p {
             text-wrap: pretty;
+
+            &:has(img) {
+                display: contents;
+            }
         }
         & :where(h3, h4, h5, h6) {
             text-wrap: balance;
             font-weight: 500;
             font-size: 1.2em;
-        }
-
-        & p:has(img) {
-            display: contents;
         }
 
         & ul {
@@ -139,6 +139,12 @@ onMounted(()=>{
             margin-block: 2em;
             border-width: 2px;
             border-color: var(--color-muted-foreground);
+        }
+
+        & p code {
+            padding-inline: 0.5ch;
+            border-radius: 5px;
+            background-color: var(--color-neutral-700);
         }
 
         & a {
