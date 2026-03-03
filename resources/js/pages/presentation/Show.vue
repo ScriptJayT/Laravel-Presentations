@@ -130,6 +130,17 @@ onMounted(()=>{
             }
         }
 
+        & blockquote {
+            border-inline-start: 5px solid var(--color-muted-foreground);
+            padding-inline-start: 1.5ch;
+        }
+
+        & hr {
+            margin-block: 2em;
+            border-width: 2px;
+            border-color: var(--color-muted-foreground);
+        }
+
         & a {
             text-decoration: underline;
             text-underline-offset: 2px;

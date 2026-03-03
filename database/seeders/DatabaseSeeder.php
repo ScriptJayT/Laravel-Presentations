@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Slides',
-            'content' => '',
+            'content' => 'Surprise',
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Markdown (MD)',
-            'content' => "You can use markdown to scaffold your script and slides, though it is only supported in the content slot. \n\nNeed a [cheat sheet](https://www.markdownguide.org/cheat-sheet/)? \nOr go to the last slide.",
+            'content' => "You can use markdown to scaffold your script and slides, though it is only supported in the content slot. \n\nNeed a [cheat sheet](https://www.markdownguide.org/cheat-sheet/)? \nOr: go to the last slide.",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Render Test',
-            'content' => "\n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\n- unordered \n- list \n\n1. ordered \n1. list",
+            'content' => "\n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\`text\` => `code` \n\n- unordered \n- list \n\n1. ordered \n1. list \n\n> blockquote with \> \n\n--- \n",
         ]);
 
         Presentation::factory()->create([
