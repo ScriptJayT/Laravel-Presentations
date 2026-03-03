@@ -57,13 +57,13 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Presentations',
-            'content' => '',
+            'content' => "Hell'Press brings your presentations online and ensures you remain the owner. \nNo need for propriatery software that hides your presentation under obfuscation.",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Slides',
-            'content' => 'Surprise',
+            'content' => 'Surprise, a presentation is made up out of slides, who\'d thunk it.',
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Render Test',
-            'content' => "\n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\`text\` => `code` \n\=\=text\=\= => ==highlight== \n\nH~2~0 \nx^2^ \n\nEmoji: :joy: \n\n- unordered \n- list \n\n1. ordered \n1. list \n\n- [ ] task \n- [x] finished \n\nterm \n: definition \n\nterm \n: definition \n\n> blockquote with \> \n\nSeperator with \-\-\-: \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```",
+            'content' => "\n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\`text\` => `code` \n\=\=text\=\= => ==highlight== \n\n- unordered \n- list \n\n1. ordered \n1. list \n\n- [ ] task \n- [x] finished \n\nterm \n: definition \n\nterm \n: definition \n\n> blockquote with \> \n\nSeperator with \-\-\-: \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```",
         ]);
 
         Presentation::factory()->create([

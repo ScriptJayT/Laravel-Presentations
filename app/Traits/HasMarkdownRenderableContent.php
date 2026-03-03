@@ -33,6 +33,13 @@ trait HasMarkdownRenderableContent
                     'inner_separator' => "\n",
                     'soft_break' => '<br>',
                 ],
+                'commonmark' => [
+                    'enable_em' => true,
+                    'enable_strong' => true,
+                    'use_asterisk' => true,
+                    'use_underscore' => false,
+                    'unordered_list_markers' => ['-', '*', '+'],
+                ],
                 'external_link' => [
                     'internal_hosts' => config('app.url'),
                     'open_in_new_window' => true,
