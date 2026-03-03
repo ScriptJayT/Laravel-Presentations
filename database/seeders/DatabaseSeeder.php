@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $botUser = User::factory()->create([
-            'name' => 'Bot',
+            'name' => 'Bot 🤖',
             'email' => 'bot@example.com',
             'password' => Hash::make(uniqid()),
         ]);
@@ -81,13 +81,19 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Markdown (MD)',
-            'content' => "You can use markdown to scaffold your script and slides, though it is only supported in the content slot. \n\n Need a [cheat sheet](https://www.markdownguide.org/cheat-sheet/)? \n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\n- unordered \n- list \n\n1. ordered \n1. list",
+            'content' => "You can use markdown to scaffold your script and slides, though it is only supported in the content slot. \n\nNeed a [cheat sheet](https://www.markdownguide.org/cheat-sheet/)? \nOr go to the last slide.",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Title Shift',
-            'content' => "MD titles in slides and scripts are shifted down automatically: \n'\# title' which would be an h1 shall be rendered as an h3 in slides, for example",
+            'content' => "MD titles in slides and scripts are shifted down automatically: \n'\# title' which would be an h1 shall be rendered as an h3 in slides, for example. \nSo you don't need to worry about any semantic differences in your text versus the actual render.",
+        ]);
+        PresentationSlide::factory()->create([
+            'presentation_id' => $examplePresentation->id,
+            'presentation_theme_id' => $defaultTheme->id,
+            'title' => 'Render Test',
+            'content' => "\n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\n- unordered \n- list \n\n1. ordered \n1. list",
         ]);
 
         Presentation::factory()->create([
