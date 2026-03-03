@@ -106,6 +106,8 @@ onMounted(()=>{
         }
         & :where(h3, h4, h5, h6) {
             text-wrap: balance;
+            font-weight: 500;
+            font-size: 1.2em;
         }
 
         & p:has(img) {

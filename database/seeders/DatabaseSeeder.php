@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $testUser = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password' => Hash::make('password'),
         ]);
 
         $publicVisibilityRule = PresentationVisibility::factory()->create([
@@ -80,13 +81,13 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Markdown (MD)',
-            'content' => "You can use markdown to scaffold your script and slides \n\n \*text\* => *italic* \n \*\*text\*\* => **strong** \n \*\*\*text\*\*\* => ***strong/italic*** \n\n- unordered \n- list \n\n1. ordered \n 1. list",
+            'content' => "You can use markdown to scaffold your script and slides \n\n# \# title h1 \n## \#\# title h2 \n### \#\#\# title h3 \n#### \#\#\#\# title h4 \n##### \#\#\#\#\# title h5 \n###### \#\#\#\#\#\# title h6 \n\n \*text\* => *italic* \n \*\*text\*\* => **strong** \n \*\*\*text\*\*\* => ***italic/strong*** \n\n- unordered \n- list \n\n1. ordered \n1. list",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Title Shift',
-            'content' => "MD titles in slides and scripts are shifted down automatically: \n\n # \# h1 => h3 \n ## \## h2 => h4 \n ### \### h3 => h5 \n #### \#### h4 => h6 \n ##### \##### h5 => h6 \n ###### \###### h6 => h6",
+            'content' => "MD titles in slides and scripts are shifted down automatically: for example in slides: '\# title' which would be an h1 shall be an h3",
         ]);
 
         Presentation::factory()->create([
