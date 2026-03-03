@@ -135,6 +135,18 @@ onMounted(()=>{
                 margin-top: 0.75ch;
             }
         }
+        & dl {
+            & dt {
+                font-weight: 500;
+
+                &::after {
+                    content: ":";
+                }
+            }
+            & dd {
+                font-style: italic;
+            }
+        }
 
         & blockquote {
             border-inline-start: 5px solid var(--color-muted-foreground);

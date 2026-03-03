@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Support\Str;
+use League\CommonMark\Extension\DescriptionList\DescriptionListExtension;
 use League\CommonMark\Extension\ExternalLink\ExternalLinkExtension;
 use League\CommonMark\Extension\Highlight\HighlightExtension;
 use TuchSoft\CommonMarkHeadingShifter\HeadingShifterExtension;
@@ -46,6 +47,7 @@ trait HasMarkdownRenderableContent
                 new HeadingShifterExtension,
                 new HighlightExtension,
                 new ExternalLinkExtension,
+                new DescriptionListExtension,
 
                 ...$this->getMdExtensions(),
             ]
