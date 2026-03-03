@@ -98,9 +98,11 @@ onMounted(()=>{
         }
 
         & p,
+        & :where(ul, ol),
         & :where(h3, h4, h5, h6) {
             max-width: 50ch;
         }
+
         & p {
             text-wrap: pretty;
 
