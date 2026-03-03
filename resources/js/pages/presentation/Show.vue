@@ -127,7 +127,6 @@ onMounted(()=>{
         }
         & li {
             & + & {
-
                 margin-top: 0.75ch;
             }
         }
@@ -146,6 +145,13 @@ onMounted(()=>{
         & p code {
             padding-inline: 0.5ch;
             border-radius: 5px;
+            background-color: var(--color-neutral-700);
+        }
+
+        & pre {
+            padding: 1rem;
+            min-height: 1lh;
+            border-radius: 15px;
             background-color: var(--color-neutral-700);
         }
 
