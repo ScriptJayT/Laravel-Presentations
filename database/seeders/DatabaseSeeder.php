@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             'content' => "Titles are shifted down automatically: \n # h1 \n ## h2 \n ### h3 \n #### h4 \n ##### h5 \n ###### h6",
         ]);
 
-        $entryPresentation = Presentation::factory()->create([
+        Presentation::factory()->create([
             'title' => 'Hello world',
             'slug' => Str::of('Hello world')->slug(),
             'user_id' => $botUser->id,
