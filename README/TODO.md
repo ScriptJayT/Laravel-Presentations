@@ -11,7 +11,7 @@
     hellshow - hellow
     pressy
 - [x] Check health route
-- [~] Test
+- [ ] make private models also private from other users
 - CRUD operations
     - [x] Presentations
     - [x] Slides
@@ -19,6 +19,7 @@
     - [~] ? Users
     - ? Themes
     - ? Atom lock
+- [~] Test
 - ? User Roles
 - [x] ? Private PresentationScripts
 - ? Js Script injecting (custom elements, iframes)
