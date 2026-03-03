@@ -2,7 +2,6 @@
 import { type Presentation } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
-import { ExternalLink } from 'lucide-vue-next';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import AppWrapper from '@/components/app/AppWrapper.vue';
 import AppContent from '@/components/app/AppContent.vue';
@@ -31,7 +30,6 @@ onMounted(()=>{
     <Head :title="presentation.title" />
 
     <AppWrapper>
-        <ExternalLink id="test"/>
         <AppContent>
             <slide-show class="relative | block h-[80vh] mt-[7.5vh] space-y-10 px-8 | text-2xl | overflow-x-clip overflow-y-scroll">
                 <template v-for="(_slide, _index) in presentation.slides">
