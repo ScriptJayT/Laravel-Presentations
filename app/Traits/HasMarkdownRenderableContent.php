@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use Illuminate\Support\Str;
+use League\CommonMark\Extension\ExternalLink\ExternalLinkExtension;
+use League\CommonMark\Extension\Highlight\HighlightExtension;
 use TuchSoft\CommonMarkHeadingShifter\HeadingShifterExtension;
 
 trait HasMarkdownRenderableContent
@@ -30,10 +32,21 @@ trait HasMarkdownRenderableContent
                     'inner_separator' => "\n",
                     'soft_break' => '<br>',
                 ],
+                'external_link' => [
+                    'internal_hosts' => config('app.url'),
+                    'open_in_new_window' => true,
+                    'html_class' => 'external-link',
+                    'nofollow' => 'external',
+                    'noopener' => 'external',
+                    'noreferrer' => 'external',
+                ],
                 ...$this->getMdSettings(),
             ],
             [
                 new HeadingShifterExtension,
+                new HighlightExtension,
+                new ExternalLinkExtension,
+
                 ...$this->getMdExtensions(),
             ]
         );
