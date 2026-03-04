@@ -32,6 +32,11 @@ class PresentationSlide extends Model
 
     // ## Relations
 
+    public function presentation(): BelongsTo
+    {
+        return $this->belongsTo(Presentation::class);
+    }
+
     public function presentationTheme(): BelongsTo
     {
         return $this->belongsTo(PresentationTheme::class);

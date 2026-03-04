@@ -18,7 +18,10 @@ trait HasVisibilityRule
 
     protected function loggedinIsCreator(?User $_creator): bool
     {
-        if (! $_creator || ! $this->isLoggedIn()) {
+        if (! $_creator || ! $_creator->id) {
+            return false;
+        }
+        if (! $this->isLoggedIn()) {
             return false;
         }
 
@@ -28,11 +31,17 @@ trait HasVisibilityRule
     /**
      * @param  ?BackedEnum|string  $_route
      */
-    protected function returnIfNotAllowed(ModelHasUserVisibilityRules $_model, ?string $_message, ?string $_route = null)
+    protected function returnIfNotAllowed(ModelHasUserVisibilityRules $_model, ?string $_message = null, ?string $_route = null)
     {
         if ($this->isAllowedFurter($_model->presentationVisibility, $_model->user)) {
             return false;
         }
+
+        return $this->notAllowedRedirect($_message, $_route);
+    }
+
+    protected function notAllowedRedirect(?string $_message, ?string $_route)
+    {
         if ($_message) {
             session()->flash('error', $_message);
         }
@@ -40,6 +49,10 @@ trait HasVisibilityRule
         return $_route ? Redirect::route($_route) : Redirect::back();
     }
 
+    /**
+     * @param  PresentationVisibility  $_visibility  the model only *needs* a title attribute attached
+     * @param  ?User  $_user  the model only *needs* an id attribute attached
+     */
     protected function isAllowedFurter(PresentationVisibility $_visibility, ?User $_creator): bool
     {
         return match ($_visibility->title) {

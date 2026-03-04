@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\PresentationSlide;
 use App\Models\PresentationTheme;
+use App\Traits\HasVisibilityRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class AdminPresentationSlideController extends Controller
 {
+    use HasVisibilityRule;
+
     /**
      * Display a listing of the resource.
      */
@@ -57,6 +60,19 @@ class AdminPresentationSlideController extends Controller
      */
     public function update(Request $request, PresentationSlide $slide)
     {
+        $slide->load([
+            'presentation.user' => fn ($q) => $q->select('id'),
+            'presentation.presentationVisibility' => fn ($q) => $q->select('id', 'title'),
+        ]);
+
+        if ($notAllowedRedirect = $this->returnIfNotAllowed(
+            $slide->presentation,
+            "You're not the creator of this presentation, you can't update this slide",
+            'admin_presentation_index'
+        )) {
+            return $notAllowedRedirect;
+        }
+
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
             'content' => '',
@@ -74,9 +90,22 @@ class AdminPresentationSlideController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(PresentationSlide $slide)
     {
-        if (PresentationSlide::whereId($id)->delete()) {
+        $slide->load([
+            'presentation.user' => fn ($q) => $q->select('id'),
+            'presentation.presentationVisibility' => fn ($q) => $q->select('id', 'title'),
+        ]);
+
+        if ($notAllowedRedirect = $this->returnIfNotAllowed(
+            $slide->presentation,
+            "You're not the creator of this presentation, you can't delete this slide",
+            'admin_presentation_index'
+        )) {
+            return $notAllowedRedirect;
+        }
+
+        if ($slide->delete()) {
             session()->flash('info', 'successfully deleted the slide');
         } else {
             session()->flash('error', 'something went wrong while deleting a slide');
