@@ -1,3 +1,9 @@
+## Day
+
+- [ ] React to offer
+
+## Project:
+
 - [x] Brainstorm
 - [x] Setup
 - [x] Design
@@ -45,12 +51,3 @@
     - script | slides | both
 
 ## Done today:
-
-- implemented visibility guard
-    - public, protected, private
-    - prev: show views
-    - now: admin protection for private
-- tested new implementation
-- todo:
-    - throw 405 error in implementation
-    - check laravel for better guard on select methods, w/ custom redirect & flash message
