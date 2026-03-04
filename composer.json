@@ -68,6 +68,11 @@
             "@php artisan config:clear --ansi",
             "@php artisan test"
         ],
+        "test:c": [
+            "clear",
+            "@php artisan config:clear --ansi",
+            "@php artisan test tests/Feature/Presentations/ScriptCrudTest.php"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Settings;
+namespace Tests\Feature\Presentations;
 
 use App\Enums\Visibility;
 use App\Models\PresentationScript;
