@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -21,8 +20,7 @@ class DashboardTest extends TestCase
         $response = $this->get(route('dashboard'));
         $response->assertRedirect();
 
-        $user = User::factory()->create();
-        $this->actingAs($user);
+        $this->loginRandomUser();
         $response = $this->get(route('dashboard'));
         $response->assertRedirect();
     }
