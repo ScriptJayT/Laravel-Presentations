@@ -9,13 +9,15 @@ use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class PresentationCrudTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_presentation_tables_can_be_setup()
+    #[Test]
+    public function presentation_tables_can_be_setup()
     {
         PresentationVisibility::factory()->create([
             'title' => Visibility::PUBLIC->title(),
@@ -37,7 +39,8 @@ class PresentationCrudTest extends TestCase
         $this->assertCount(1, $themes->all());
     }
 
-    public function test_presentation_can_be_made()
+    #[Test]
+    public function presentation_can_be_made()
     {
         $user = User::factory()->create();
         $theme = PresentationTheme::factory()->create();
@@ -67,7 +70,8 @@ class PresentationCrudTest extends TestCase
         $this->assertNotNull($presentation->presentationTheme);
     }
 
-    public function test_admin_public_presentation_can_be_read_by_other_user()
+    #[Test]
+    public function admin_public_presentation_can_be_read_by_other_user()
     {
         // setup
         $user = User::factory()->create();
@@ -90,7 +94,8 @@ class PresentationCrudTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_admin_protected_presentation_can_be_read_by_other_user()
+    #[Test]
+    public function admin_protected_presentation_can_be_read_by_other_user()
     {
         // setup
         $user = User::factory()->create();
@@ -113,7 +118,8 @@ class PresentationCrudTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_admin_private_presentation_cannot_be_read_by_other_user()
+    #[Test]
+    public function admin_private_presentation_cannot_be_read_by_other_user()
     {
         // setup
         $user = User::factory()->create();
@@ -136,7 +142,8 @@ class PresentationCrudTest extends TestCase
         $response->assertRedirect();
     }
 
-    public function test_admin_protected_presentation_can_be_updated_by_other_user()
+    #[Test]
+    public function admin_protected_presentation_can_be_updated_by_other_user()
     {
         // setup
         $user = User::factory()->create();
@@ -172,7 +179,8 @@ class PresentationCrudTest extends TestCase
 
     }
 
-    public function test_admin_private_presentation_cannot_be_updated_by_other_user()
+    #[Test]
+    public function admin_private_presentation_cannot_be_updated_by_other_user()
     {
         // setup
         $user = User::factory()->create();
