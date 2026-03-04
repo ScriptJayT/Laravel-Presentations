@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class PresentationScript extends Model
+class PresentationScript extends Model implements ModelHasUserVisibilityRules
 {
     use CastUpdatedAtAsDiff, HasFactory, HasMarkdownRenderableContent;
 

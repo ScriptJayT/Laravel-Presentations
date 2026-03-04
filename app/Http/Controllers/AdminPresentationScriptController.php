@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\Visibility;
 use App\Models\PresentationScript;
 use App\Models\PresentationVisibility;
+use App\Traits\HasVisibilityRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -12,6 +13,8 @@ use Inertia\Response as IResponse;
 
 class AdminPresentationScriptController extends Controller
 {
+    use HasVisibilityRule;
+
     /**
      * Display a listing of the resource.
      */
@@ -78,8 +81,16 @@ class AdminPresentationScriptController extends Controller
      */
     public function edit(PresentationScript $script)
     {
+        if ($notAllowedRedirect = $this->returnIfNotAllowed(
+            $script,
+            "You're not the creator, you're not allowed to edit this",
+            'admin_script_index'
+        )) {
+            return $notAllowedRedirect;
+        }
+
         $script->load([
-            // need the presentation_script_id for it to work
+            // need the presentation_script_id for load to work
             'presentations' => fn ($q) => $q->select('presentation_script_id', 'id', 'title'),
         ]);
         $rules = PresentationVisibility::all(['id', 'name'])->all();
@@ -95,6 +106,14 @@ class AdminPresentationScriptController extends Controller
      */
     public function update(Request $request, PresentationScript $script)
     {
+        if ($notAllowedRedirect = $this->returnIfNotAllowed(
+            $script,
+            "You're not the creator, you're not allowed to update this",
+            'admin_script_index'
+        )) {
+            return $notAllowedRedirect;
+        }
+
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
             'content' => '',
@@ -111,9 +130,17 @@ class AdminPresentationScriptController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(PresentationScript $script)
     {
-        if (PresentationScript::whereId($id)->delete()) {
+        if ($notAllowedRedirect = $this->returnIfNotAllowed(
+            $script,
+            "You're not the creator, you're not allowed to delete this",
+            'admin_script_index'
+        )) {
+            return $notAllowedRedirect;
+        }
+
+        if ($script->delete()) {
             session()->flash('info', 'successfully deleted the script');
         } else {
             session()->flash('error', 'something went wrong while deleting a script');

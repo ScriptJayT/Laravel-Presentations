@@ -46,12 +46,15 @@ class AdminPresentationController extends Controller
      */
     public function edit(Presentation $presentation)
     {
-        $presentation->load(['slides' => fn ($q) => $q->orderBy('order', 'desc')]);
-        if (! $this->isAllowedFurter($presentation->presentationVisibility, $presentation->user)) {
-            session()->flash('error', "You're not the creator, you're not allowed to edit this");
-
-            return Redirect::route('admin_presentation_index');
+        if ($notAllowedRedirect = $this->returnIfNotAllowed(
+            $presentation,
+            "You're not the creator, you're not allowed to edit this",
+            'admin_presentation_index'
+        )) {
+            return $notAllowedRedirect;
         }
+
+        $presentation->load(['slides' => fn ($q) => $q->orderBy('order', 'desc')]);
         $rules = PresentationVisibility::all(['id', 'name'])->all();
         $scripts = PresentationScript::all(['id', 'title'])->all();
 
@@ -117,8 +120,12 @@ class AdminPresentationController extends Controller
      */
     public function update(Request $request, Presentation $presentation)
     {
-        if (! $this->isAllowedFurter($presentation->presentationVisibility, $presentation->user)) {
-            return Redirect::back();
+        if ($notAllowedRedirect = $this->returnIfNotAllowed(
+            $presentation,
+            "You're not the creator, you're not allowed to update this",
+            'admin_presentation_index'
+        )) {
+            return $notAllowedRedirect;
         }
 
         $validated = validator($request->all(), [
@@ -154,9 +161,17 @@ class AdminPresentationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Presentation $presentation)
     {
-        if (Presentation::whereId($id)->delete()) {
+        if ($notAllowedRedirect = $this->returnIfNotAllowed(
+            $presentation,
+            "You're not the creator, you're not allowed to delete this",
+            'admin_presentation_index'
+        )) {
+            return $notAllowedRedirect;
+        }
+
+        if ($presentation->delete()) {
             session()->flash('info', 'successfully deleted the presentation');
         } else {
             session()->flash('error', 'something went wrong while deleting a presentation');
