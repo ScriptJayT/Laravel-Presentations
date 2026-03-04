@@ -25,12 +25,12 @@
         - can delete when public/protected & (random) user
         - can't delete when private & random user
     - [ ] Script CRUD
-        - can read when public public/protected & random user
-        - can't read when private & random user
-        - can update when public public/protected & (random) user
-        - can't update when private & random user
-        - can delete when public/protected & (random) user
-        - can't delete when private & random user
+        - [x] can read when public public/protected & random user
+        - [x] can't read when private & random user
+        - [x] can update when public public/protected & (random) user
+        - [x] can't update when private & random user
+        - [ ] can delete when public/protected & (random) user
+        - [ ] can't delete when private & random user
     - [ ] Slides CRUD
         - can update when public public/protected & (random) user
         - can't update when private & random user
@@ -43,3 +43,14 @@
     - json
     - md | html content
     - script | slides | both
+
+## Done today:
+
+- implemented visibility guard
+    - public, protected, private
+    - prev: show views
+    - now: admin protection for private
+- tested new implementation
+- todo:
+    - throw 405 error in implementation
+    - check laravel for better guard on select methods, w/ custom redirect & flash message
