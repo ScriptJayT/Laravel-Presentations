@@ -64,13 +64,13 @@
             "pint --parallel --test"
         ],
         "test": [
-            "clear",
             "@php artisan config:clear --ansi",
+            "clear",
             "@php artisan test"
         ],
         "test:c": [
-            "clear",
             "@php artisan config:clear --ansi",
+            "clear",
             "@php artisan test tests/Feature/Presentations/PresentationCrudTest.php",
             "@php artisan test tests/Feature/Presentations/ScriptCrudTest.php"
         ],
