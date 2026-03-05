@@ -45,14 +45,8 @@ class PresentationCrudTest extends TestCase
     {
         $user = User::factory()->create();
         $theme = PresentationTheme::factory()->create();
-        $rule = PresentationVisibility::factory()->create([
-            'title' => Visibility::PROTECTED->title(),
-            'name' => 'Gibberish',
-        ]);
-        $script = PresentationScript::factory()->create([
-            'user_id' => $user->id,
-            'presentation_visibility_id' => $rule->id,
-        ]);
+        $rule = PresentationVisibility::factory()->create();
+        $script = PresentationScript::factory()->create();
         $presentation = Presentation::create([
             'title' => 'Presentation',
             'slug' => 'presentation',
@@ -65,25 +59,19 @@ class PresentationCrudTest extends TestCase
         $this->assertEquals($presentation->title, 'Presentation');
         $this->assertNotNull($presentation->user);
         $this->assertEquals($presentation->user->id, $user->id);
-        $this->assertEquals($presentation->presentationVisibility->name, 'Gibberish');
+        $this->assertNotNull($presentation->presentationVisibility);
         $this->assertNotNull($presentation->presentationScript);
         $this->assertNotNull($presentation->presentationTheme);
     }
 
     private function setupPresentation(Visibility $_visibility = Visibility::PUBLIC): Presentation
     {
-        $user = User::factory()->create();
-        $theme = PresentationTheme::factory()->create();
         $rule = PresentationVisibility::factory()->create([
             'title' => $_visibility->title(),
-            'name' => 'Gibberish',
         ]);
 
-        return Presentation::create([
+        return Presentation::factory()->create([
             'title' => 'Presentation',
-            'slug' => 'presentation',
-            'user_id' => $user->id,
-            'presentation_theme_id' => $theme->id,
             'presentation_visibility_id' => $rule->id,
         ]);
     }

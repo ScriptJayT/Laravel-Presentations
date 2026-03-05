@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Visibility;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class PresentationVisibilityFactory extends Factory
     {
         return [
             'name' => fake()->word(),
+            'title' => Visibility::PRIVATE->title(),
         ];
     }
 }

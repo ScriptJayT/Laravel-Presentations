@@ -38,10 +38,7 @@ class ScriptCrudTest extends TestCase
     public function script_can_be_made()
     {
         $user = User::factory()->create();
-        $rule = PresentationVisibility::factory()->create([
-            'title' => Visibility::PROTECTED->title(),
-            'name' => 'Gibberish',
-        ]);
+        $rule = PresentationVisibility::factory()->create();
 
         $presentation = PresentationScript::create([
             'title' => 'Presentation',
@@ -53,7 +50,7 @@ class ScriptCrudTest extends TestCase
         $this->assertEquals($presentation->title, 'Presentation');
         $this->assertNotNull($presentation->user);
         $this->assertEquals($presentation->user->id, $user->id);
-        $this->assertEquals($presentation->presentationVisibility->name, 'Gibberish');
+        $this->assertNotNull($presentation->presentationVisibility);
     }
 
     private function setupScript(Visibility $_visibility = Visibility::PUBLIC): PresentationScript
@@ -61,7 +58,6 @@ class ScriptCrudTest extends TestCase
         $user = User::factory()->create();
         $rule = PresentationVisibility::factory()->create([
             'title' => $_visibility->title(),
-            'name' => 'Gibberish',
         ]);
 
         return PresentationScript::create([

@@ -4,11 +4,9 @@ namespace Tests\Feature\Presentations;
 
 use App\Enums\Visibility;
 use App\Models\Presentation;
-use App\Models\PresentationScript;
 use App\Models\PresentationSlide;
 use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
-use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
@@ -21,21 +19,8 @@ class SlideCrudTest extends TestCase
     #[Test]
     public function slide_can_be_made()
     {
-        $user = User::factory()->create();
         $theme = PresentationTheme::factory()->create();
-        $rule = PresentationVisibility::factory()->create([
-            'title' => Visibility::PROTECTED->title(),
-            'name' => 'Gibberish',
-        ]);
-        $script = PresentationScript::factory()->create([
-            'user_id' => $user->id,
-            'presentation_visibility_id' => $rule->id,
-        ]);
-        $presentation = Presentation::factory()->create([
-            'presentation_theme_id' => $theme->id,
-            'presentation_visibility_id' => $rule->id,
-            'presentation_script_id' => $script->id,
-        ]);
+        $presentation = Presentation::factory()->create();
         $slide = PresentationSlide::create([
             'title' => 'Title',
             'content' => '',
@@ -50,20 +35,12 @@ class SlideCrudTest extends TestCase
 
     private function setupSlide(Visibility $_visibility = Visibility::PUBLIC): PresentationSlide
     {
-        $user = User::factory()->create();
         $theme = PresentationTheme::factory()->create();
         $rule = PresentationVisibility::factory()->create([
             'title' => $_visibility->title(),
-            'name' => 'Gibberish',
-        ]);
-        $script = PresentationScript::factory()->create([
-            'user_id' => $user->id,
-            'presentation_visibility_id' => $rule->id,
         ]);
         $presentation = Presentation::factory()->create([
-            'presentation_theme_id' => $theme->id,
             'presentation_visibility_id' => $rule->id,
-            'presentation_script_id' => $script->id,
         ]);
 
         return PresentationSlide::create([
