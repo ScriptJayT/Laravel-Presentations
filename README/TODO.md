@@ -46,9 +46,9 @@
         - [x] can delete when public/protected & (random) user
         - [x] can't delete when private & random user
     - Slides CRUD
-        - [ ] can update when public public/protected & (random) user
+        - [x] can update when public public/protected & (random) user
         - [ ] can't update when private & random user
-        - [ ] can delete when public/protected & (random) user
+        - [x] can delete when public/protected & (random) user
         - [ ] can't delete when private & random user
 - ? User Roles
 - [x] ? Private PresentationScripts
