@@ -1,5 +1,6 @@
 ## Day
 
+- [~] Fix CV
 - [ ] React to offer
 
 ## Project:
@@ -30,13 +31,13 @@
     - [ ] Presentation CRUD
         - can delete when public/protected & (random) user
         - can't delete when private & random user
-    - [ ] Script CRUD
+    - [x] Script CRUD
         - [x] can read when public public/protected & random user
         - [x] can't read when private & random user
         - [x] can update when public public/protected & (random) user
         - [x] can't update when private & random user
-        - [ ] can delete when public/protected & (random) user
-        - [ ] can't delete when private & random user
+        - [x] can delete when public/protected & (random) user
+        - [x] can't delete when private & random user
     - [ ] Slides CRUD
         - can update when public public/protected & (random) user
         - can't update when private & random user

@@ -6,6 +6,7 @@ use App\Enums\Visibility;
 use App\Models\PresentationScript;
 use App\Models\PresentationVisibility;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -105,6 +106,29 @@ class ScriptCrudTest extends TestCase
     }
 
     #[Test]
+    public function admin_public_script_can_be_updated_by_other_user()
+    {
+        // setup
+        $model = $this->setupScript();
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_scripts', ['script' => $model->id]))
+            ->patch(
+                route('admin_script.update', ['script' => $model->id]),
+                [
+                    'title' => 'title 2',
+                    'content' => '',
+                    'order' => 0,
+                    'visibility' => $model->presentationVisibility->id,
+                ]
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+        $this->assertEquals($model->refresh()->title, 'title 2');
+    }
+
+    #[Test]
     public function admin_protected_script_can_be_updated_by_other_user()
     {
         // setup
@@ -150,5 +174,62 @@ class ScriptCrudTest extends TestCase
             // ->assertSessionHasErrors()
             ->assertRedirect();
         $this->assertEquals($model->refresh()->title, $initialTitle);
+    }
+
+    #[Test]
+    public function admin_public_script_can_be_deleted_by_other_user()
+    {
+        // setup
+        $model = $this->setupScript();
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_scripts', ['script' => $model->id]))
+            ->delete(
+                route('admin_script.destroy', ['script' => $model->id]),
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+
+        $this->expectException(ModelNotFoundException::class);
+        $model->refresh();
+    }
+
+    #[Test]
+    public function admin_protected_script_can_be_deleted_by_other_user()
+    {
+        // setup
+        $model = $this->setupScript(Visibility::PROTECTED);
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_scripts', ['script' => $model->id]))
+            ->delete(
+                route('admin_script.destroy', ['script' => $model->id]),
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+
+        $this->expectException(ModelNotFoundException::class);
+        $model->refresh();
+    }
+
+    #[Test]
+    public function admin_private_script_cannot_be_deleted_by_other_user()
+    {
+        // setup
+        $model = $this->setupScript(Visibility::PRIVATE);
+        $oldTitle = $model->title;
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_scripts', ['script' => $model->id]))
+            ->delete(
+                route('admin_script.destroy', ['script' => $model->id]),
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+
+        $this->assertEquals($model->refresh()->title, $oldTitle);
     }
 }
