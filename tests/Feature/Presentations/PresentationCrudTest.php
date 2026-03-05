@@ -8,6 +8,7 @@ use App\Models\PresentationScript;
 use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -52,7 +53,6 @@ class PresentationCrudTest extends TestCase
             'user_id' => $user->id,
             'presentation_visibility_id' => $rule->id,
         ]);
-
         $presentation = Presentation::create([
             'title' => 'Presentation',
             'slug' => 'presentation',
@@ -93,7 +93,6 @@ class PresentationCrudTest extends TestCase
     {
         // setup
         $presentation = $this->setupPresentation();
-
         // test
         $this->loginRandomUser();
         $response = $this->get(route('admin_presentations', ['presentation' => $presentation->id]));
@@ -105,7 +104,6 @@ class PresentationCrudTest extends TestCase
     {
         // setup
         $presentation = $this->setupPresentation(Visibility::PROTECTED);
-
         // test
         $this->loginRandomUser();
         $response = $this->get(route('admin_presentations', ['presentation' => $presentation->id]));
@@ -117,7 +115,6 @@ class PresentationCrudTest extends TestCase
     {
         // setup
         $presentation = $this->setupPresentation(Visibility::PRIVATE);
-
         // test
         $this->loginRandomUser();
         $response = $this->get(route('admin_presentations', ['presentation' => $presentation->id]));
@@ -125,11 +122,33 @@ class PresentationCrudTest extends TestCase
     }
 
     #[Test]
+    public function admin_public_presentation_can_be_updated_by_other_user()
+    {
+        // setup
+        $presentation = $this->setupPresentation();
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentations', ['presentation' => $presentation->id]))
+            ->patch(
+                route('admin_presentation.update', ['presentation' => $presentation->id]),
+                [
+                    'title' => 'Presentation 2',
+                    'slug' => 'presentation-2',
+                    'visibility' => $presentation->presentationVisibility->id,
+                    'script' => null,
+                ]
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+        $this->assertEquals($presentation->refresh()->title, 'Presentation 2');
+    }
+
+    #[Test]
     public function admin_protected_presentation_can_be_updated_by_other_user()
     {
         // setup
         $presentation = $this->setupPresentation(Visibility::PROTECTED);
-
         // test
         $response = $this->loginRandomUser()
             ->from(route('admin_presentations', ['presentation' => $presentation->id]))
@@ -154,7 +173,6 @@ class PresentationCrudTest extends TestCase
         // setup
         $presentation = $this->setupPresentation(Visibility::PRIVATE);
         $initialTitle = $presentation->title;
-
         // test
         $response = $this->loginRandomUser()
             ->from(route('admin_presentations', ['presentation' => $presentation->id]))
@@ -168,7 +186,61 @@ class PresentationCrudTest extends TestCase
                 ]
             );
         $response
-            // ->assertSessionHasErrors()
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+        $this->assertEquals($presentation->refresh()->title, $initialTitle);
+    }
+
+    #[Test]
+    public function admin_public_presentation_can_be_deleted_by_other_user()
+    {
+        // setup
+        $presentation = $this->setupPresentation();
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentations', ['presentation' => $presentation->id]))
+            ->delete(
+                route('admin_presentation.destroy', ['presentation' => $presentation->id])
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+        $this->expectException(ModelNotFoundException::class);
+        $presentation->refresh();
+    }
+
+    #[Test]
+    public function admin_protected_presentation_can_be_deleted_by_other_user()
+    {
+        // setup
+        $presentation = $this->setupPresentation(Visibility::PROTECTED);
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentations', ['presentation' => $presentation->id]))
+            ->delete(
+                route('admin_presentation.destroy', ['presentation' => $presentation->id])
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+        $this->expectException(ModelNotFoundException::class);
+        $presentation->refresh();
+    }
+
+    #[Test]
+    public function admin_private_presentation_cannot_be_deleted_by_other_user()
+    {
+        // setup
+        $presentation = $this->setupPresentation(Visibility::PRIVATE);
+        $initialTitle = $presentation->title;
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentations', ['presentation' => $presentation->id]))
+            ->delete(
+                route('admin_presentation.destroy', ['presentation' => $presentation->id])
+            );
+        $response
+            ->assertSessionHasNoErrors()
             ->assertRedirect();
         $this->assertEquals($presentation->refresh()->title, $initialTitle);
     }

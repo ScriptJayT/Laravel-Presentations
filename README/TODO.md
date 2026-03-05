@@ -32,8 +32,12 @@
     - ? Atom lock
 - [~] Test
     - Presentation CRUD
-        - [ ] can delete when public/protected & (random) user
-        - [ ] can't delete when private & random user
+        - [x] can read when public public/protected & random user
+        - [x] can't read when private & random user
+        - [x] can update when public public/protected & (random) user
+        - [x] can't update when private & random user
+        - [x] can delete when public/protected & (random) user
+        - [x] can't delete when private & random user
     - Script CRUD
         - [x] can read when public public/protected & random user
         - [x] can't read when private & random user
