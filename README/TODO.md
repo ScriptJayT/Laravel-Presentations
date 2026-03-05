@@ -1,7 +1,7 @@
 ## Day
 
-- [~] Fix CV
-- [ ] React to offer
+- [x] Fix CV
+- [x] React to offer
 
 ## Project:
 
