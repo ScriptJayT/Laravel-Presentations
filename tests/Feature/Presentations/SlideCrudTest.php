@@ -99,6 +99,53 @@ class SlideCrudTest extends TestCase
     }
 
     #[Test]
+    public function admin_protected_slide_can_be_updated_by_other_user()
+    {
+        // setup
+        $slide = $this->setupSlide(Visibility::PROTECTED);
+        $presentation = $slide->presentation;
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentations', ['presentation' => $presentation->id]))
+            ->patch(
+                route('admin_slide.update', ['slide' => $slide->id]),
+                [
+                    'title' => 'Slide Title',
+                    'content' => '',
+                    'order' => 10,
+                ]
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+        $this->assertEquals($slide->refresh()->title, 'Slide Title');
+    }
+
+    #[Test]
+    public function admin_private_slide_cannot_be_updated_by_other_user()
+    {
+        // setup
+        $slide = $this->setupSlide(Visibility::PRIVATE);
+        $initialTitle = $slide->title;
+        $presentation = $slide->presentation;
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentations', ['presentation' => $presentation->id]))
+            ->patch(
+                route('admin_slide.update', ['slide' => $slide->id]),
+                [
+                    'title' => 'Slide Title',
+                    'content' => '',
+                    'order' => 10,
+                ]
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+        $this->assertEquals($slide->refresh()->title, $initialTitle);
+    }
+
+    #[Test]
     public function admin_public_slide_can_be_deleted_by_other_user()
     {
         // setup
@@ -115,5 +162,43 @@ class SlideCrudTest extends TestCase
             ->assertRedirect();
         $this->expectException(ModelNotFoundException::class);
         $slide->refresh();
+    }
+
+    #[Test]
+    public function admin_protected_slide_can_be_deleted_by_other_user()
+    {
+        // setup
+        $slide = $this->setupSlide(Visibility::PROTECTED);
+        $presentation = $slide->presentation;
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentations', ['presentation' => $presentation->id]))
+            ->delete(
+                route('admin_slide.destroy', ['slide' => $slide->id])
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+        $this->expectException(ModelNotFoundException::class);
+        $slide->refresh();
+    }
+
+    #[Test]
+    public function admin_private_slide_cannot_be_deleted_by_other_user()
+    {
+        // setup
+        $slide = $this->setupSlide(Visibility::PRIVATE);
+        $initialTitle = $slide->title;
+        $presentation = $slide->presentation;
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentations', ['presentation' => $presentation->id]))
+            ->delete(
+                route('admin_slide.destroy', ['slide' => $slide->id])
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect();
+        $this->assertEquals($slide->refresh()->title, $initialTitle);
     }
 }
