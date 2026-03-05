@@ -109,17 +109,13 @@ class DatabaseSeeder extends Seeder
             'user_id' => $testUser->id,
             'presentation_visibility_id' => $creatorVisibilityRule->id,
         ]);
-        $scaffoldingPresentation = Presentation::factory()->create([
+        Presentation::factory()->create([
             'title' => 'My personal project',
             'slug' => Str::of('My personal project')->slug(),
             'user_id' => $testUser->id,
             'presentation_visibility_id' => $creatorVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
             'presentation_script_id' => $script->id,
-        ]);
-        PresentationSlide::factory()->create([
-            'presentation_id' => $scaffoldingPresentation->id,
-            'presentation_theme_id' => $defaultTheme->id,
         ]);
     }
 }
