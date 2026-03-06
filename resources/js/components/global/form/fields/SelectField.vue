@@ -24,7 +24,7 @@ const id = `selectfield-${useId()}`;
             :id
             :data-value="defaultValue ?? selected"
             :class="inputClasses()"
-            class="cursor-pointer px-2 border-transparent"
+            class="cursor-pointer border-transparent"
         >
             <button>
                 <selectedcontent></selectedcontent>

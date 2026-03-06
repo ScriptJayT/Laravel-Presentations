@@ -1,17 +1,22 @@
 <script setup lang="ts">
+import { cn } from '@/lib/utils';
 import { InputError, FieldInfo, type FormFieldAttributes } from '@/components/global/form';
-defineProps<FormFieldAttributes>();
+const props = defineProps<FormFieldAttributes>();
 </script>
 
 <template>
-    <div :class data-component="global/form/FormField">
+    <div data-component="global/form/FormField">
         <field
-            class="
-                flex gap-2 flex-wrap
-                p-4
-                border-2 rounded-md
-                outline-offset-4 focus-within:outline-2
-                "
+            :data-disabled="disabled || inert"
+            :class="cn(
+                `
+                    flex gap-2 flex-wrap
+                    p-4
+                    border-2 rounded-md
+                    outline-offset-4 focus-within:outline-2
+                `,
+                props.class
+                )"
         >
             <template v-if="id && label">
                 <label

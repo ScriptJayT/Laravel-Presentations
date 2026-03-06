@@ -17,7 +17,7 @@ function handleChange(_e: Event) {
 </script>
 
 <template>
-     <FormField :label :class :error :description :id :disabled :hidden>
+     <FormField :label :class :error :description :id :disabled :hidden :inert>
         <input
             data-component="global/form/fields/FileField"
             v-on:change="handleChange"

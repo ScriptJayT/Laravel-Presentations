@@ -5,6 +5,7 @@ export type FormFieldAttributes = {
     error?: string;
     description?: string;
     disabled?: boolean;
+    inert?: boolean;
     hidden?: boolean;
 };
 export type FieldAttributes = Omit<FormFieldAttributes, 'id'> & { name: string };
