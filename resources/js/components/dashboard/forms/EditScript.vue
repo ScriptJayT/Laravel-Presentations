@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PresentationScript, PresentationVisibility } from '@/types';
-import { Form, FormField, ContentField } from '@/components/global/form';
-import SelectVisibility from '../models/SelectVisibility.vue';
+import { Form, FormField, ContentField, FileField } from '@/components/global/form';
+import { SelectVisibility, EditContent } from '../models';
 import { update } from '@/routes/admin_script';
 defineProps<{
     script: PresentationScript;
@@ -36,10 +36,9 @@ defineProps<{
             :current-rule="script.presentation_visibility.id"
             :rules="allVisibilityRules"
         />
-        <ContentField
-            name="content"
+        <EditContent
             :error="errors.content"
-            :value="script.content.trim()"
+            :value="script.content"
         />
     </Form>
 </template>
