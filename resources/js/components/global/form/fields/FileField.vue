@@ -28,3 +28,12 @@ function handleChange(_e: Event) {
         />
     </FormField>
 </template>
+
+<style scoped>
+    input {
+        color: transparent;
+        &::file-selector-button {
+            color: var(--foreground);
+        }
+    }
+</style>

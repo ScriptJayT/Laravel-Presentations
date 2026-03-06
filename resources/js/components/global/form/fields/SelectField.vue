@@ -1,25 +1,33 @@
 <script setup lang="ts">
 import { useId } from 'vue';
 import { FormField, type FieldAttributes, inputClasses } from '@/components/global/form';
-withDefaults(
+const props = withDefaults(
     defineProps<FieldAttributes & {
         options: Record<string, string>;
         selected?: string;
         defaultValue?: string;
         allowNullValue?: boolean;
         nullValueText?: string;
+        onSelect?: (_input: HTMLSelectElement) => void;
     }>(),
     {
         allowNullValue: true,
         nullValueText: "Default",
     }
 );
+function handleSelect(_e: Event) {
+    if(!props.onSelect) return;
+    const input = _e.target as HTMLSelectElement;
+    if(!input) return;
+    props.onSelect(input);
+}
 const id = `selectfield-${useId()}`;
 </script>
 
 <template>
      <FormField :label :class :error :description :id :disabled :hidden>
         <select
+            v-on:change="handleSelect"
             :name
             :id
             :data-value="defaultValue ?? selected"
