@@ -6,14 +6,16 @@ const props = defineProps<TextlikeFieldAttributes & {
     onInput?: (_input: HTMLTextAreaElement) => void,
 }>();
 function handleChange(_e: Event) {
+    if(!props.onChange) return;
     const input = _e.target as HTMLTextAreaElement;
     if(!input) return;
-    if(props.onChange) props.onChange(input);
+    props.onChange(input);
 }
 function handleInput(_e: Event) {
+    if(!props.onInput) return;
     const input = _e.target as HTMLTextAreaElement;
     if(!input) return;
-    if(props.onInput) props.onInput(input);
+    props.onInput(input);
 }
 const id = `contentfield-${useId()}`;
 </script>
