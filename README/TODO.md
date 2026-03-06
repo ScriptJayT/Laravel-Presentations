@@ -32,7 +32,8 @@
     - [ ] Guarded actions throw error 405 w/ redirect
     - ? Themes
     - ? Atom lock
-- [x] Test
+- [ ] Test
+    - [ ] add extra user to seeder to test private scripts/presentations
     - Presentation CRUD
         - [x] can read when public public/protected & random user
         - [x] can't read when private & random user
