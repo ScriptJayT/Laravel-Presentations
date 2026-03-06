@@ -31,6 +31,7 @@ function handleChange(_e: Event) {
 
 <style scoped>
     input {
+        user-select: none;
         color: transparent;
         &::file-selector-button {
             color: var(--foreground);

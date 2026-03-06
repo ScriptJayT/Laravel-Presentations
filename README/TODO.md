@@ -22,7 +22,7 @@
 - [x] Check health route
 - [x] make private models also private from other users
 - allow for md upload in:
-    - [ ] scripts
+    - [x] scripts
     - ? [ ] slides
 - CRUD operations
     - [x] Presentations

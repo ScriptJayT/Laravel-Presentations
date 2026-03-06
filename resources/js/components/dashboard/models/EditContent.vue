@@ -94,7 +94,7 @@ function updateContent(_input: HTMLTextAreaElement) {
 
 <template>
     <fieldset data-component="dashboard/models/EditContent">
-        <div class="flex gap-3 justify-end">
+        <div class="flex gap-x-3 justify-end flex-wrap">
             <FileField
                 name="--"
                 :on-change="handleChange"
@@ -110,27 +110,36 @@ function updateContent(_input: HTMLTextAreaElement) {
                 :selected="insertMode"
                 class="p-2"
             />
-            <button
-                v-on:click="insertFile"
-                :disabled="!fileContent"
-                type="button"
-                :class="!fileContent ? 'cursor-not-allowed' : 'cursor-pointer'"
-                class="border-2 rounded-md p-2"
-            >
-                Paste File
-            </button>
-            <button
-                v-on:click="popHistory"
-                :disabled="contentHistory.length < 1"
-                type="button"
-                class="
-                    cursor-pointer disabled:cursor-not-allowed
-                    border-2 rounded-md
-                    p-2
-                    "
-            >
-                Undo Paste
-            </button>
+            <div>
+                <button
+                    v-on:click="insertFile"
+                    :disabled="!fileContent"
+                    type="button"
+                    class="
+                        cursor-pointer disabled:cursor-not-allowed
+                        select-none
+                        p-2
+                        border-2 rounded-md
+                        "
+                >
+                    Paste File
+                </button>
+            </div>
+            <div>
+                <button
+                    v-on:click="popHistory"
+                    :disabled="contentHistory.length < 1"
+                    type="button"
+                    class="
+                        cursor-pointer disabled:cursor-not-allowed
+                        select-none
+                        p-2
+                        border-2 rounded-md
+                        "
+                >
+                    Undo Paste
+                </button>
+            </div>
         </div>
 
         <div class="flex gap-5 w-fit ml-auto mb-2 text-sm text-muted-foreground">
