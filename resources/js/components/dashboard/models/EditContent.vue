@@ -5,7 +5,12 @@ import {
     type TextlikeFieldAttributes
 } from '@/components/global/form';
 type Props = Omit<TextlikeFieldAttributes, 'name'>;
-const props = defineProps<Props>();
+const props = withDefaults(
+    defineProps<Props>(),
+    {
+        value: '',
+    }
+);
 
 const contentHistory: Array<string> = [];
 const insertModeOptions = {
@@ -21,7 +26,7 @@ const fileName = ref("");
 const disabledInput = ref(false);
 const fileContent = ref("");
 const insertMode = ref(insertOptions[0]);
-const content = ref(props.value ?? "");
+const content = ref(props.value);
 
 function insertFile() {
     // get new content
