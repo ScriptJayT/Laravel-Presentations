@@ -1,9 +1,10 @@
 ## Day
 
-- file upload
-- Guarded actions
+- Guarded actions:
     - throw error 405 w/ redirect
     - check for laravel middleware docs for cleaner
+- manual test:
+    - add extra user to seeder to test private scripts/presentations
 
 ## Project:
 
@@ -29,6 +30,7 @@
     - [x] Slides
     - [x] Scripts
     - [~] ? Users
+    - [ ] cleanup "unreachable" user actions
     - [ ] Guarded actions throw error 405 w/ redirect
     - ? Themes
     - ? Atom lock
