@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { useId } from 'vue';
 import { FormField, inputClasses, type TextlikeFieldAttributes } from '@/components/global/form';
 const props = defineProps<TextlikeFieldAttributes & {
     accept?: string,
     onChange?: (_input: HTMLInputElement) => void,
 }>();
-const id = `filefield-${crypto.randomUUID()}`;
+const id = `filefield-${useId()}`;
 function handleChange(_e: Event) {
     const input = _e.target as HTMLInputElement;
     if(!input) return;

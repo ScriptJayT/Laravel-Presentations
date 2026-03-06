@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { useId } from 'vue';
 import { FormField, type FieldAttributes } from '@/components/global/form';
 defineProps<FieldAttributes & {
     checked?: boolean;
 }>();
-const id = `checkboxfield-${crypto.randomUUID()}`;
+const id = `checkboxfield-${useId()}`;
 </script>
 
 <template>

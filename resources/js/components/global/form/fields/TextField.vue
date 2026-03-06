@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { useId } from 'vue';
 import { FormField, type TextlikeFieldAttributes, inputClasses } from '@/components/global/form';
 defineProps<TextlikeFieldAttributes>();
-const id = `textfield-${crypto.randomUUID()}`;
+const id = `textfield-${useId()}`;
 </script>
 
 <template>

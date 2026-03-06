@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { FileField, ContentField, type TextlikeFieldAttributes } from '@/components/global/form';
 type Props = Omit<TextlikeFieldAttributes, 'name'>;
 defineProps<Props>();

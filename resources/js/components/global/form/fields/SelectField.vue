@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useId } from 'vue';
 import { FormField, type FieldAttributes, inputClasses } from '@/components/global/form';
 withDefaults(
     defineProps<FieldAttributes & {
@@ -13,7 +14,7 @@ withDefaults(
         nullValueText: "Default",
     }
 );
-const id = `selectfield-${crypto.randomUUID()}`;
+const id = `selectfield-${useId()}`;
 </script>
 
 <template>

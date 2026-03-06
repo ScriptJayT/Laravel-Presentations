@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { useId } from 'vue';
 import { FormField, type RangelikeFieldAttributes, inputClasses } from '@/components/global/form';
 defineProps<RangelikeFieldAttributes>();
-const id = `numberfield-${crypto.randomUUID()}`;
+const id = `numberfield-${useId()}`;
 </script>
 
 <template>
