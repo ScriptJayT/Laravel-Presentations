@@ -30,7 +30,7 @@
     - [ ] Guarded actions throw error 405 w/ redirect
     - ? Themes
     - ? Atom lock
-- [~] Test
+- [x] Test
     - Presentation CRUD
         - [x] can read when public public/protected & random user
         - [x] can't read when private & random user
