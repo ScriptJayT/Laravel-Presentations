@@ -1,7 +1,9 @@
 ## Day
 
-- [x] Fix CV
-- [x] React to offer
+- file upload
+- Guarded actions
+    - throw error 405 w/ redirect
+    - check for laravel middleware docs for cleaner
 
 ## Project:
 
@@ -50,8 +52,9 @@
         - [x] can't update when private & random user
         - [x] can delete when public/protected & (random) user
         - [x] can't delete when private & random user
-- ? User Roles
 - [x] ? Private PresentationScripts
+- ? User Avatar upload
+- ? User Roles
 - ? Js Script injecting (custom elements, iframes)
 - ? Read-only API
     - json
