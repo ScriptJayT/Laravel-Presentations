@@ -34,7 +34,6 @@ const props = withDefaults(
         </button>
     </IndexLink>
     <ActionModal :id="`newlink-modal-for-${title.toLowerCase()}`" class="min-w-[30vw] max-w-4xl">
-
         <SectionHeading
             v-if="headingLevel === 2"
             :title="`Create a new ${title}`"
