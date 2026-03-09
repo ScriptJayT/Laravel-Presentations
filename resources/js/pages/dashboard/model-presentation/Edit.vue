@@ -12,6 +12,7 @@ import NewLink from '@/components/dashboard/models/NewLink.vue';
 import Slide from '@/components/dashboard/models/Slide.vue';
 
 import AppLayout from '@/layouts/AppLayout.vue';
+import { SubSectionHeading } from '@/components/global/text';
 import { SideZoneContainer } from '@/components/dashboard/containers';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
@@ -61,7 +62,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <h2 class="text-lg font-semibold"> Slides </h2>
                     <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                         <NewLink title="Slide">
-                            <h2 class="text-lg font-semibold my-5"> New Slide: </h2>
+                            <SubSectionHeading title="New Slide:" class="my-5" />
                             <NewSlide :parent-id="presentation.id"/>
                         </NewLink>
                         <template v-for="_slide in presentation.slides">

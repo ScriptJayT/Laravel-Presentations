@@ -11,9 +11,12 @@ const props = defineProps<{
 </script>
 
 <template>
-    <header data-component="global/text/SubSectionHeading" >
-        <h3 :class="cn(
-                props.class,
+    <header
+        data-component="global/text/SubSectionHeading"
+        :class
+    >
+        <h3
+            :class="cn(
                 ['flex', 'items-center', 'gap-x-3', 'min-h-lh'],
                 SubSectionHeadingClasses(),
             )"
