@@ -167,8 +167,8 @@ class ScriptCrudTest extends TestCase
                 ]
             );
         $response
-            // ->assertSessionHasErrors()
-            ->assertRedirect();
+            ->assertSessionHasNoErrors()
+            ->assertStatus(403);
         $this->assertEquals($model->refresh()->title, $initialTitle);
     }
 
@@ -224,7 +224,7 @@ class ScriptCrudTest extends TestCase
             );
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect();
+            ->assertStatus(403);
 
         $this->assertEquals($model->refresh()->title, $oldTitle);
     }

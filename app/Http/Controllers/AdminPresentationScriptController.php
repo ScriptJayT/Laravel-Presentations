@@ -106,13 +106,10 @@ class AdminPresentationScriptController extends Controller
      */
     public function update(Request $request, PresentationScript $script)
     {
-        if ($notAllowedRedirect = $this->returnIfNotAllowed(
-            $script,
-            "You're not the creator, you're not allowed to update this",
-            'admin_script_index'
-        )) {
-            return $notAllowedRedirect;
-        }
+        $this->returnIfNotAllowed(
+            _model: $script,
+            _useAbort: true,
+        );
 
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
@@ -132,13 +129,10 @@ class AdminPresentationScriptController extends Controller
      */
     public function destroy(PresentationScript $script)
     {
-        if ($notAllowedRedirect = $this->returnIfNotAllowed(
-            $script,
-            "You're not the creator, you're not allowed to delete this",
-            'admin_script_index'
-        )) {
-            return $notAllowedRedirect;
-        }
+        $this->returnIfNotAllowed(
+            _model: $script,
+            _useAbort: true,
+        );
 
         if ($script->delete()) {
             session()->flash('info', 'successfully deleted the script');
