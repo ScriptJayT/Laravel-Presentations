@@ -3,8 +3,9 @@ import { type Presentation, type BreadcrumbItem } from '@/types';
 import { admin_presentations } from '@/routes';
 import { Scroll } from "lucide-vue-next";
 import AppLayout from '@/layouts/AppLayout.vue';
+import { SubSectionHeading } from '@/components/global/text';
 import { Container, IndexGrid } from '@/components/dashboard/containers';
-import {IndexLink, NewLink} from '@/components/dashboard/models';
+import { IndexLink, NewLink } from '@/components/dashboard/models';
 import NewPresentation from '@/components/dashboard/forms/NewPresentation.vue';
 import { Search } from '@/components/global/form';
 import VisibilityBadge from '@/components/global/model/VisibilityBadge.vue';
@@ -27,8 +28,7 @@ const breadcrumbs: BreadcrumbItem[] = [{
             <Search :updatable-list="allPresentations" />
             <IndexGrid>
                 <NewLink title="Presentation">
-                    <h2 class="text-lg font-semibold my-5"> Create a new Presentation </h2>
-                    <NewPresentation/>
+                    <NewPresentation />
                 </NewLink>
                 <template v-for="_presentation in allPresentations">
                     <IndexLink
