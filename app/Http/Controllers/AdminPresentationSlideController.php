@@ -65,13 +65,10 @@ class AdminPresentationSlideController extends Controller
             'presentation.presentationVisibility' => fn ($q) => $q->select('id', 'title'),
         ]);
 
-        if ($notAllowedRedirect = $this->returnIfNotAllowed(
-            $slide->presentation,
-            "You're not the creator of this presentation, you can't update this slide",
-            'admin_presentation_index'
-        )) {
-            return $notAllowedRedirect;
-        }
+        $this->returnIfNotAllowed(
+            _model: $slide->presentation,
+            _useAbort: true,
+        );
 
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
@@ -97,13 +94,10 @@ class AdminPresentationSlideController extends Controller
             'presentation.presentationVisibility' => fn ($q) => $q->select('id', 'title'),
         ]);
 
-        if ($notAllowedRedirect = $this->returnIfNotAllowed(
-            $slide->presentation,
-            "You're not the creator of this presentation, you can't delete this slide",
-            'admin_presentation_index'
-        )) {
-            return $notAllowedRedirect;
-        }
+        $this->returnIfNotAllowed(
+            _model: $slide->presentation,
+            _useAbort: true,
+        );
 
         if ($slide->delete()) {
             session()->flash('info', 'successfully deleted the slide');

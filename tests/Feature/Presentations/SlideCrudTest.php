@@ -118,7 +118,7 @@ class SlideCrudTest extends TestCase
             );
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect();
+            ->assertStatus(403);
         $this->assertEquals($slide->refresh()->title, $initialTitle);
     }
 
@@ -175,7 +175,7 @@ class SlideCrudTest extends TestCase
             );
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect();
+            ->assertStatus(403);
         $this->assertEquals($slide->refresh()->title, $initialTitle);
     }
 }
