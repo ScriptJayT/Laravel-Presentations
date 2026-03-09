@@ -6,6 +6,12 @@
 - manual test:
     - add extra user to seeder to test private scripts/presentations
 
+## Global
+
+- [ ] 10/03: check on vacature "Functioneel Analyst" zimmo
+    - check mailbox
+    - send friendly reminder mail for updates
+
 ## Project:
 
 - [x] Brainstorm
