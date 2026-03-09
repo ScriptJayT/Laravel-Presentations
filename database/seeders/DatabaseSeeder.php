@@ -57,6 +57,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $botUser->id,
             'presentation_visibility_id' => $loginVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
+            'presentation_script_id' => null,
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
@@ -107,6 +108,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $botUser->id,
             'presentation_visibility_id' => $publicVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
+            'presentation_script_id' => null,
         ]);
 
         $script = PresentationScript::factory()->create([
