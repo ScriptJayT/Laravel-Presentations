@@ -126,6 +126,11 @@ const breadcrumbs: BreadcrumbItem[] = [
         <Container title="Projects" class="grid grid-cols-2">
             <div class="space-y-3">
                 <h3 class="text-lg font-semibold"> Presentations </h3>
+                <template v-if="(user.presentations?.length ?? 0) < 1">
+                    <p>
+                        {{ user.name }} has no Presentations yet.
+                    </p>
+                </template>
                 <ul class="space-y-1">
                     <template v-for="_presentation in user.presentations">
                         <li>
@@ -139,6 +144,11 @@ const breadcrumbs: BreadcrumbItem[] = [
             </div>
             <div class="space-y-3">
                 <h3 class="text-lg font-semibold"> Scripts </h3>
+                <template v-if="(user.scripts?.length ?? 0) < 1">
+                    <p>
+                        {{ user.name }} has no Scripts yet.
+                    </p>
+                </template>
                 <ul class="space-y-1">
                     <template v-for="_script in user.scripts">
                         <li>
