@@ -7,12 +7,6 @@ defineProps<{
     presentation: Presentation;
     slide: PresentationSlide;
 }>();
-function handleUpdate(_e: Event) {
-    console.log("received update", _e);
-}
-function handeDelete(_e: Event) {
-    console.log("received delete", _e);
-}
 </script>
 
 <template>
@@ -39,9 +33,7 @@ function handeDelete(_e: Event) {
         </IndexLink>
         <ActionModal :id="`modal-for-slide-${slide.id}`" class="w-[80vw]">
             <EditSlide
-                @delete-slide-success="handeDelete"
-                @update-slide-success="handleUpdate"
-                :slide="slide"
+                :slide
                 :parent-id="presentation.id"
                 class="mt-10"
             />
