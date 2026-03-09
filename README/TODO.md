@@ -37,7 +37,7 @@
 - [ ] Test
     - [x] add extra user to seeder to test private scripts/presentations
     - Presentation CRUD
-        - [ ] can store a new entry
+        - [x] can store a new entry
         - [x] can read when public public/protected & random user
         - [x] can't read when private & random user
         - [x] can update when public public/protected & (random) user

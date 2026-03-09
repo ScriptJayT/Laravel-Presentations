@@ -77,6 +77,30 @@ class PresentationCrudTest extends TestCase
     }
 
     #[Test]
+    public function admin_presentation_can_be_created()
+    {
+        // setup; a private visibility & theme needs to be present in db
+        PresentationVisibility::factory()->create([
+            'title' => Visibility::PRIVATE->title(),
+            'name' => 'Gibberish',
+        ]);
+        PresentationTheme::factory()->create();
+        // test
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentation_index'))
+            ->post(
+                route('admin_presentation.store'),
+                [
+                    'title' => 'Presentations Title',
+                ]
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirectBack();
+        $this->assertDatabaseCount('presentations', 1);
+    }
+
+    #[Test]
     public function admin_public_presentation_can_be_read_by_other_user()
     {
         // setup
