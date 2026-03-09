@@ -1,11 +1,14 @@
 <script setup lang="ts">
-withDefaults(
+import { cn } from '@/lib/utils';
+const props = withDefaults(
     defineProps<{
         title: string;
         description?: string;
+        class?: string;
         variant?: 'default' | 'small';
     }>(),
     {
+        class: '',
         variant: 'default',
     }
 );
@@ -14,23 +17,27 @@ withDefaults(
 <template>
     <header
         data-component="global/text/SectionHeading"
-        :class="
+        :class="cn(
             variant === 'small'
-            ? ''
-            : 'mb-8 space-y-0.5'
-            "
+                ? ''
+                : 'mb-8 space-y-0.5',
+            props.class
+        )"
     >
         <h2
-            :class="
+            :class="cn(
                 variant === 'small'
-                ? 'mb-0.5 text-base font-medium'
-                : 'text-xl font-semibold tracking-tight'
-                "
-            class="min-h-lh"
+                    ? 'mb-0.5 text-base font-medium'
+                    : 'text-xl font-semibold tracking-tight',
+                'min-h-lh'
+            )"
         >
             {{ title }}
         </h2>
-        <p v-if="description" class="text-sm text-muted-foreground">
+        <p
+            v-if="description"
+            class="text-sm text-muted-foreground"
+        >
             {{ description }}
         </p>
     </header>

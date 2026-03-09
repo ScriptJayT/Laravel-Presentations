@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
+import { plural } from '@/lib/utils';
 import { SectionHeading } from '../global/text';
 import PresentationLink from '@/components/app/PresentationLink.vue';
 const props = withDefaults(
@@ -34,14 +35,9 @@ const totalPresentations = Array.isArray(props.presentations)
     >
         <div class="flex gap-4 justify-between flex-wrap">
             <SectionHeading :title />
-            <template v-if="totalPresentations < 1">
-                <p class="m-0 min-w-fit"> None found </p>
-            </template>
-            <template v-else>
-                <span class="block min-w-fit ml-auto my-0 | italic">
-                    Showing: {{ totalPresentations }} presentation(s)
-                </span>
-            </template>
+            <span class="block min-w-fit ml-auto my-0 italic">
+                {{ plural(presentations, 'presentation') }} found
+            </span>
         </div>
         <div class="grid auto-rows-min gap-x-10 gap-y-12 md:grid-cols-3">
             <template v-for="_presentation in presentations">
