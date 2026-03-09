@@ -49,6 +49,7 @@ class AdminUserController extends Controller
     {
         $user->load([
             'presentations' => fn ($q) => $q->select('user_id', 'id', 'title'),
+            'presentationScripts' => fn ($q) => $q->select('user_id', 'id', 'title'),
         ]);
 
         return Inertia::render('dashboard/model-user/Edit', [

@@ -5,7 +5,7 @@ export type User = {
     email: string;
     avatar?: string;
     presentations?: Array<Presentation>;
-    scripts?: Array<PresentationScript>;
+    presentation_scripts?: Array<PresentationScript>;
     email_verified_at: string | null;
     [key: string]: unknown;
 } & Model;

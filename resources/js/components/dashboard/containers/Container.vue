@@ -1,11 +1,18 @@
 <script setup lang="ts">
+import { cn } from '@/lib/utils';
 import Heading from '@/components/Heading.vue';
 
-const props = defineProps<{
-    id?: string;
-    class?: string;
-    title?: string;
-}>();
+const props = withDefaults(
+    defineProps<{
+        id?: string;
+        class?: string;
+        title?: string;
+    }>(),
+    {
+        class: "",
+        title: "",
+    }
+);
 </script>
 
 <template>
@@ -20,8 +27,8 @@ const props = defineProps<{
             rounded-xl
             "
     >
-        <Heading :title="title ?? ''"/>
-        <div :class class="grow">
+        <Heading :title />
+        <div :class="cn(props.class, ['grow'])">
             <slot />
         </div>
     </section>

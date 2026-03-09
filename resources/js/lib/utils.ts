@@ -37,6 +37,7 @@ export function plural(countable: Countable, word: string, plural_addition: stri
         : typeof countable === "object" && !Array.isArray(countable)
             ? Object.keys(countable).length
             : countable.length;
+    if(count === 0) return `no ${word}${plural_addition}`;
     if(count === 1) return `${count} ${word}`;
     return `${count} ${word}${plural_addition}`;
 }

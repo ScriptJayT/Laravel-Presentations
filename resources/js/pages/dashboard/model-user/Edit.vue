@@ -4,7 +4,7 @@ import { usePage } from '@inertiajs/vue3';
 import { admin_user_index, admin_presentations, send_password } from '@/routes';
 import { update, destroy } from '@/routes/admin_user';
 import { edit } from '@/routes/profile';
-
+import { plural } from '@/lib/utils';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
@@ -123,14 +123,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </Form>
             </template>
         </SideZoneContainer>
-        <Container title="Projects" class="grid grid-cols-2">
+        <Container title="Projects" class="grid grid-cols-2 pb-20">
             <div class="space-y-3">
                 <h3 class="text-lg font-semibold"> Presentations </h3>
-                <template v-if="(user.presentations?.length ?? 0) < 1">
-                    <p>
-                        {{ user.name }} has no Presentations yet.
-                    </p>
-                </template>
+                <p>
+                    {{ user.name }} has {{ plural(user.presentations, 'Presentation') }}
+                </p>
                 <ul class="space-y-1">
                     <template v-for="_presentation in user.presentations">
                         <li>
@@ -144,13 +142,11 @@ const breadcrumbs: BreadcrumbItem[] = [
             </div>
             <div class="space-y-3">
                 <h3 class="text-lg font-semibold"> Scripts </h3>
-                <template v-if="(user.scripts?.length ?? 0) < 1">
-                    <p>
-                        {{ user.name }} has no Scripts yet.
-                    </p>
-                </template>
+                <p>
+                    {{ user.name }} has {{ plural(user.presentation_scripts, 'Script') }}
+                </p>
                 <ul class="space-y-1">
-                    <template v-for="_script in user.scripts">
+                    <template v-for="_script in user.presentation_scripts">
                         <li>
                             <a :href="admin_presentations(_script.id).url" >
                                 #{{ _script.id }}
