@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IndexLink from '@/components/dashboard/models/IndexLink.vue';
 import { Plus } from 'lucide-vue-next';
-import { SectionHeading, SubSectionHeading } from '@/components/global/text';
+import { SectionHeading, SubSectionHeading, FalseHeading } from '@/components/global/text';
 import ActionModal from '../ActionModal.vue';
 
 const props = withDefaults(
@@ -34,13 +34,8 @@ const props = withDefaults(
         </button>
     </IndexLink>
     <ActionModal :id="`newlink-modal-for-${title.toLowerCase()}`" class="min-w-[30vw] max-w-4xl">
-        <SectionHeading
-            v-if="headingLevel === 2"
-            :title="`Create a new ${title}`"
-            class="my-5"
-        />
-        <SubSectionHeading
-            v-else-if="headingLevel === 3"
+        <FalseHeading
+            :semantic-lvl="headingLevel"
             :title="`Create a new ${title}`"
             class="my-5"
         />
