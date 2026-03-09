@@ -31,8 +31,11 @@ trait HasVisibilityRule
     /**
      * @param  ?BackedEnum|string  $_route
      */
-    protected function returnIfNotAllowed(ModelHasUserVisibilityRules $_model, ?string $_message = null, ?string $_route = null)
-    {
+    protected function returnIfNotAllowed(
+        ModelHasUserVisibilityRules $_model,
+        ?string $_message = null,
+        ?string $_route = null
+    ) {
         if ($this->isAllowedFurter($_model->presentationVisibility, $_model->user)) {
             return false;
         }
