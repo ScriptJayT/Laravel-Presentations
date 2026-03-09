@@ -19,7 +19,8 @@ function handeDelete(_e: Event) {
     <div data-component="dashboard/sections/Slide">
         <IndexLink
             :data-id="slide.id"
-            :title="`${slide.title} #${slide.id}`" :unsemantic-title="false"
+            :title="`${slide.title} #${slide.id}`"
+            :unsemantic-title="false"
         >
             <span> Order magn.: {{ slide.order }} </span>
             <button

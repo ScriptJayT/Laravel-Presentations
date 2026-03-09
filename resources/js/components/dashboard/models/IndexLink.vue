@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { type RouteDefinition } from '@/wayfinder';
+import { cn } from '@/lib/utils';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
-
+import { SubSectionHeading, SubSectionHeadingClasses } from '@/components/global/text';
 const props = defineProps<{
     title: string;
     class?:string;
@@ -23,16 +24,21 @@ const props = defineProps<{
             p-4 border border-transparent rounded-xl
             "
     >
-        <template v-if="unsemanticTitle">
-            <span class="model-entry--title | text-lg font-semibold" aria-hidden="true">
-                {{ title }}
-            </span>
-        </template>
-        <template v-else>
-            <h3 class="model-entry--title | text-lg font-semibold">
-                {{ title }}
-            </h3>
-        </template>
+        <span
+            v-if="unsemanticTitle"
+            :class="cn(
+                'model-entry--title',
+                SubSectionHeadingClasses()
+            )"
+            aria-hidden="true"
+        >
+            {{ title }}
+        </span>
+        <SubSectionHeading
+            v-else
+            :title
+            class="model-entry--title"
+        />
 
         <slot />
 
@@ -53,6 +59,6 @@ const props = defineProps<{
                 :title="`Open: ${title}`"
             ></a>
         </template>
-        <PlaceholderPattern :interactable="false"/>
+        <PlaceholderPattern :interactable="false" />
     </div>
 </template>

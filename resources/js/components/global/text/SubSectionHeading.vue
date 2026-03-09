@@ -1,18 +1,29 @@
 <script setup lang="ts">
-defineProps<{
+import type { FunctionalComponent } from 'vue';
+import { SubSectionHeadingClasses } from '.';
+import { cn } from '@/lib/utils';
+const props = defineProps<{
     title: string;
     description?: string;
     class?: string;
+    icon?: FunctionalComponent
 }>();
 </script>
 
 <template>
-    <header
-        data-component="global/text/SubSectionHeading"
-        :class
-    >
-        <h3 class="min-h-lh text-lg font-semibold">
-            {{ title }}
+    <header data-component="global/text/SubSectionHeading" >
+        <h3 :class="cn(
+                props.class,
+                ['flex', 'items-center', 'gap-x-3', 'min-h-lh'],
+                SubSectionHeadingClasses(),
+            )"
+        >
+            <component
+                v-if="icon"
+                :is="icon"
+                class="size-5"
+            />
+            <span> {{ title }} </span>
         </h3>
         <p
             v-if="description"

@@ -9,7 +9,7 @@ const props = defineProps<{
 </script>
 
 <template>
-    <IndexLink :title="`New ${title}`">
+    <IndexLink :title="`New ${title}`" :unsemantic-title="true">
         <button
             class="
                 model-create--button |
