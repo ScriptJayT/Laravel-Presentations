@@ -31,7 +31,10 @@ defineProps<{
                 :commandfor="`modal-for-slide-${slide.id}`"
             />
         </IndexLink>
-        <ActionModal :id="`modal-for-slide-${slide.id}`" class="w-[80vw]">
+        <ActionModal
+            :id="`modal-for-slide-${slide.id}`"
+            class="w-[80vw]"
+        >
             <EditSlide
                 :slide
                 :parent-id="presentation.id"
