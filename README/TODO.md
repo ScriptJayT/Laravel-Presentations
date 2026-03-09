@@ -53,7 +53,7 @@
         - [x] can delete when public/protected & (random) user
         - [x] can't delete when private & random user
     - Slides CRUD
-        - [ ] can store a new entry
+        - [x] can store a new entry
         - [x] can update when public public/protected & (random) user
         - [x] can't update when private & random user
         - [x] can delete when public/protected & (random) user

@@ -53,6 +53,28 @@ class SlideCrudTest extends TestCase
     }
 
     #[Test]
+    public function admin_slide_can_be_created()
+    {
+        $slide = $this->setupSlide();
+        $presentation = $slide->presentation;
+
+        $response = $this->loginRandomUser()
+            ->from(route('admin_presentations', ['presentation' => $presentation->id]))
+            ->post(
+                route('admin_slide.store'),
+                [
+                    'title' => 'Slide Title',
+                    'presentation' => $presentation->id,
+                    'order' => 10,
+                ]
+            );
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirectBack();
+        $this->assertEquals($presentation->refresh()->slides->count(), 2);
+    }
+
+    #[Test]
     public function admin_public_slide_can_be_updated_by_other_user()
     {
         // setup
