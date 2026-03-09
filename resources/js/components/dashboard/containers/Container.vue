@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
-import Heading from '@/components/Heading.vue';
+import { SectionHeading } from '@/components/global/text';
 
 const props = withDefaults(
     defineProps<{
@@ -27,7 +27,7 @@ const props = withDefaults(
             rounded-xl
             "
     >
-        <Heading :title />
+        <SectionHeading :title />
         <div :class="cn(props.class, ['grow'])">
             <slot />
         </div>

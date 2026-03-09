@@ -6,10 +6,11 @@ import { update, destroy } from '@/routes/admin_user';
 import { edit } from '@/routes/profile';
 import { plural } from '@/lib/utils';
 import AppLayout from '@/layouts/AppLayout.vue';
+import { SubSectionHeading } from '@/components/global/text';
+import { Form, TextField, FileField } from '@/components/global/form';
+import UserAvatar from '@/components/global/model/UserAvatar.vue';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
-import UserAvatar from '@/components/global/model/UserAvatar.vue';
-import { Form, TextField, FileField } from '@/components/global/form';
 import { DestroyFormModal } from '@/components/dashboard/models';
 
 const page = usePage();
@@ -125,10 +126,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         </SideZoneContainer>
         <Container title="Projects" class="grid grid-cols-2 pb-20">
             <div class="space-y-3">
-                <h3 class="text-lg font-semibold"> Presentations </h3>
-                <p>
-                    {{ user.name }} has {{ plural(user.presentations, 'Presentation') }}
-                </p>
+                <SubSectionHeading
+                    title="Presentations"
+                    :description="`${user.name} has ${plural(user.presentations, 'Presentation')}`"
+                />
                 <ul class="space-y-1">
                     <template v-for="_presentation in user.presentations">
                         <li>
@@ -141,10 +142,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </ul>
             </div>
             <div class="space-y-3">
-                <h3 class="text-lg font-semibold"> Scripts </h3>
-                <p>
-                    {{ user.name }} has {{ plural(user.presentation_scripts, 'Script') }}
-                </p>
+                <SubSectionHeading
+                    title="Scripts"
+                    :description="`${user.name} has ${plural(user.presentation_scripts, 'Script')}`"
+                />
                 <ul class="space-y-1">
                     <template v-for="_script in user.presentation_scripts">
                         <li>
