@@ -31,6 +31,7 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
+        // the CreateNewUser class handles all validation; so we can pass all params to it
         (new CreateNewUser)->create($request->all());
 
         return Redirect::back();
@@ -60,7 +61,7 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        dd($request->all(), $user);
+        abort(403, 'You have no access to this');
     }
 
     /**
@@ -68,6 +69,6 @@ class AdminUserController extends Controller
      */
     public function destroy(string $id)
     {
-        dd($id);
+        abort(403, 'You have no access to this');
     }
 }

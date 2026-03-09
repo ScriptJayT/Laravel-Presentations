@@ -34,8 +34,8 @@
     - [x] Slides
     - [x] Scripts
     - [~] ? Users
-    - [ ] cleanup "unreachable" user actions
-    - [ ] Guarded actions throw error 405 w/ redirect
+    - [x] cleanup "unreachable" user actions
+    - [x] Guarded actions throw error 405 w/ redirect
     - ? Themes
     - ? Atom lock
 - [ ] Test
