@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import Heading from '@/components/Heading.vue';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { useCurrentUrl } from '@/composables/useCurrentUrl';
@@ -10,6 +9,7 @@ import { edit as editProfile } from '@/routes/profile';
 import { show } from '@/routes/two-factor';
 import { edit as editPassword } from '@/routes/user-password';
 import { type NavItem } from '@/types';
+import { SectionHeading } from '@/components/global/text';
 
 const sidebarNavItems: NavItem[] = [
     {
@@ -35,7 +35,7 @@ const { isCurrentUrl } = useCurrentUrl();
 
 <template>
     <div class="px-4 py-6">
-        <Heading
+        <SectionHeading
             title="Settings"
             description="Manage your profile and account settings"
         />

@@ -3,7 +3,7 @@ import type { BreadcrumbItem } from '@/types';
 import { Form } from '@inertiajs/vue3';
 import PasswordController from '@/actions/App/Http/Controllers/Settings/PasswordController';
 
-import Heading from '@/components/Heading.vue';
+import { SectionHeading } from '@/components/global/text';
 import { InputError } from '@/components/global/form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -28,7 +28,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
         <h1 class="sr-only"> Password Settings </h1>
         <SettingsLayout>
             <div class="space-y-6">
-                <Heading
+                <SectionHeading
                     variant="small"
                     title="Update password"
                     description="Ensure your account is using a long, random password to stay secure"

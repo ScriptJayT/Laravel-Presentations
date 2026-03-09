@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
+import { SectionHeading } from '../global/text';
 import PresentationLink from '@/components/app/PresentationLink.vue';
-import Heading from '@/components/Heading.vue';
 const props = withDefaults(
     defineProps<{
         title: string;
@@ -33,7 +33,7 @@ const totalPresentations = Array.isArray(props.presentations)
             "
     >
         <div class="flex gap-4 justify-between flex-wrap">
-            <Heading :title />
+            <SectionHeading :title />
             <template v-if="totalPresentations < 1">
                 <p class="m-0 min-w-fit"> None found </p>
             </template>

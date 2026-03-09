@@ -2,7 +2,7 @@
 import { Form } from '@inertiajs/vue3';
 import { useTemplateRef } from 'vue';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
-import Heading from '@/components/Heading.vue';
+import { SectionHeading } from '../global/text';
 import { InputError } from '@/components/global/form';
 import { Button } from '@/components/ui/button';
 import {
@@ -23,7 +23,7 @@ const passwordInput = useTemplateRef('passwordInput');
 
 <template>
     <div class="space-y-6">
-        <Heading
+        <SectionHeading
             variant="small"
             title="Delete account"
             description="Delete your account and all of its resources"

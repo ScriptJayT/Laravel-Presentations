@@ -2,7 +2,7 @@
 import { Form, Link, usePage } from '@inertiajs/vue3';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
 import { DeleteUser } from '@/components/auth';
-import Heading from '@/components/Heading.vue';
+import { SectionHeading } from '@/components/global/text';
 import { InputError } from '@/components/global/form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -31,7 +31,7 @@ const user = (page.props.auth as Auth).user;
 
         <SettingsLayout>
             <div class="flex flex-col space-y-6">
-                <Heading
+                <SectionHeading
                     variant="small"
                     title="Profile information"
                     description="Update your name and email address"

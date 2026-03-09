@@ -5,8 +5,7 @@ import { onUnmounted, ref } from 'vue';
 import type { BreadcrumbItem } from '@/types';
 import { edit } from '@/routes/profile';
 import { disable, enable } from '@/routes/two-factor';
-
-import Heading from '@/components/Heading.vue';
+import { SectionHeading } from "@/components/global/text";
 import { TwoFactorRecoveryCodes, TwoFactorSetupModal } from '@/components/auth';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -45,7 +44,7 @@ onUnmounted(() => clearTwoFactorAuthData());
 
         <SettingsLayout>
             <div class="space-y-6">
-                <Heading
+                <SectionHeading
                     variant="small"
                     title="Two-Factor Authentication"
                     description="Manage your two-factor authentication settings"
