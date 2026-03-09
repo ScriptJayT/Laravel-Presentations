@@ -3,8 +3,6 @@
 - Guarded actions:
     - throw error 405 w/ redirect
     - check for laravel middleware docs for cleaner
-- manual test:
-    - add extra user to seeder to test private scripts/presentations
 
 ## Global
 
@@ -41,7 +39,7 @@
     - ? Themes
     - ? Atom lock
 - [ ] Test
-    - [ ] add extra user to seeder to test private scripts/presentations
+    - [x] add extra user to seeder to test private scripts/presentations
     - Presentation CRUD
         - [x] can read when public public/protected & random user
         - [x] can't read when private & random user

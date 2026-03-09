@@ -20,9 +20,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->create([
+            'name' => 'Hestia',
+            'email' => 'dev@hellpress.dev',
+            'password' => Hash::make('password'),
+        ]);
         $botUser = User::factory()->create([
             'name' => 'Bot 🤖',
-            'email' => 'bot@example.com',
+            'email' => 'bot@hellpress.dev',
             'password' => Hash::make(uniqid()),
         ]);
         $testUser = User::factory()->create([
