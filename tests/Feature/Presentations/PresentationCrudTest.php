@@ -175,7 +175,7 @@ class PresentationCrudTest extends TestCase
             );
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect();
+            ->assertStatus(403);
         $this->assertEquals($presentation->refresh()->title, $initialTitle);
     }
 
@@ -229,7 +229,7 @@ class PresentationCrudTest extends TestCase
             );
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect();
+            ->assertStatus(403);
         $this->assertEquals($presentation->refresh()->title, $initialTitle);
     }
 }

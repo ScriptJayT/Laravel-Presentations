@@ -47,9 +47,9 @@ class AdminPresentationController extends Controller
     public function edit(Presentation $presentation)
     {
         if ($notAllowedRedirect = $this->returnIfNotAllowed(
-            $presentation,
-            "You're not the creator, you're not allowed to edit this",
-            'admin_presentation_index'
+            _model: $presentation,
+            _message: "You're not the creator, you're not allowed to edit this",
+            _route: 'admin_presentation_index'
         )) {
             return $notAllowedRedirect;
         }
@@ -120,13 +120,10 @@ class AdminPresentationController extends Controller
      */
     public function update(Request $request, Presentation $presentation)
     {
-        if ($notAllowedRedirect = $this->returnIfNotAllowed(
-            $presentation,
-            "You're not the creator, you're not allowed to update this",
-            'admin_presentation_index'
-        )) {
-            return $notAllowedRedirect;
-        }
+        $this->returnIfNotAllowed(
+            _model: $presentation,
+            _useAbort: true,
+        );
 
         $validated = validator($request->all(), [
             'title' => 'required|min:2',
@@ -163,13 +160,10 @@ class AdminPresentationController extends Controller
      */
     public function destroy(Presentation $presentation)
     {
-        if ($notAllowedRedirect = $this->returnIfNotAllowed(
-            $presentation,
-            "You're not the creator, you're not allowed to delete this",
-            'admin_presentation_index'
-        )) {
-            return $notAllowedRedirect;
-        }
+        $this->returnIfNotAllowed(
+            _model: $presentation,
+            _useAbort: true,
+        );
 
         if ($presentation->delete()) {
             session()->flash('info', 'successfully deleted the presentation');
