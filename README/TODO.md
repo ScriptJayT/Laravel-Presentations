@@ -1,9 +1,5 @@
 ## Day
 
-- Guarded actions:
-    - throw error 405 w/ redirect
-    - check for laravel middleware docs for cleaner
-
 ## Global
 
 - [ ] 10/03: check on vacature "Functioneel Analyst" zimmo
