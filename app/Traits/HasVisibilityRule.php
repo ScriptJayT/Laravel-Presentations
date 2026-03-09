@@ -46,7 +46,9 @@ trait HasVisibilityRule
             session()->flash('error', $_message);
         }
 
-        return $_route ? Redirect::route($_route) : Redirect::back();
+        return $_route
+            ? Redirect::route($_route)
+            : Redirect::back();
     }
 
     /**
