@@ -4,9 +4,15 @@ import { Plus } from 'lucide-vue-next';
 import { SectionHeading, SubSectionHeading } from '@/components/global/text';
 import ActionModal from '../ActionModal.vue';
 
-const props = defineProps<{
-    title: string;
-}>();
+const props = withDefaults(
+    defineProps<{
+        title: string;
+        headingLevel?: 2 | 3;
+    }>(),
+    {
+        headingLevel: 2,
+    }
+);
 </script>
 
 <template>
@@ -28,7 +34,14 @@ const props = defineProps<{
         </button>
     </IndexLink>
     <ActionModal :id="`newlink-modal-for-${title.toLowerCase()}`" class="min-w-[30vw] max-w-4xl">
+
+        <SectionHeading
+            v-if="headingLevel === 2"
+            :title="`Create a new ${title}`"
+            class="my-5"
+        />
         <SubSectionHeading
+            v-else-if="headingLevel === 3"
             :title="`Create a new ${title}`"
             class="my-5"
         />

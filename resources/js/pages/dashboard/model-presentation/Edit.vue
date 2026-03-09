@@ -61,7 +61,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="space-y-5">
                     <h2 class="text-lg font-semibold"> Slides </h2>
                     <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                        <NewLink title="Slide">
+                        <NewLink title="Slide" :heading-level="3">
                             <NewSlide :parent-id="presentation.id"/>
                         </NewLink>
                         <template v-for="_slide in presentation.slides">
