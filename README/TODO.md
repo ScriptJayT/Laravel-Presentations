@@ -22,6 +22,7 @@
     pressy
 - [x] Check health route
 - [x] make private models also private from other users
+- [ ] allow txt download of script
 - allow for md upload in:
     - [x] scripts
     - ? [ ] slides
