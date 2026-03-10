@@ -69,6 +69,24 @@ class ScriptCrudTest extends TestCase
     }
 
     #[Test]
+    public function admin_script_can_be_created()
+    {
+        PresentationVisibility::factory()->create([
+            'title' => Visibility::PRIVATE->title(),
+            'name' => 'Gibberish',
+        ]);
+        $response = $this->loginRandomUser()
+            ->from(route('admin_script_index'))
+            ->post(route('admin_script.store'), [
+                'title' => 'Script Title',
+            ]);
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirectBack();
+        $this->assertDatabaseCount('scripts', 1);
+    }
+
+    #[Test]
     public function admin_public_script_can_be_read_by_other_user()
     {
         // setup

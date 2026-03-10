@@ -53,7 +53,7 @@ class AdminPresentationScriptController extends Controller
             'goto' => '',
         ])->validated();
         $visibility = PresentationVisibility::select('id')
-            ->where('title', Visibility::PROTECTED->title())
+            ->where('title', Visibility::PRIVATE->title())
             ->first();
         $script = PresentationScript::create([
             'title' => e($validated['title']),
