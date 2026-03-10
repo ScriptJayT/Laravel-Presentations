@@ -17,7 +17,7 @@ class AdminUserController extends Controller
     public function index(): Response
     {
         return Inertia::render('dashboard/model-user/Index', [
-            'allUsers' => User::all(),
+            'allUsers' => User::all(['id', 'name']),
         ]);
     }
 

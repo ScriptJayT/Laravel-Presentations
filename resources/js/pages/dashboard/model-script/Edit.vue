@@ -39,7 +39,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <CreatedMetaInfo :model="script" :preview-url="scripts(script.id)" />
                     <hr>
 
-                    <template v-if="!script.presentations || script.presentations.length < 0">
+                    <template v-if="!script.presentations || (script.presentations.length <= 0)">
                         <p> Not used anywhere yet </p>
                     </template>
                     <template v-else>
