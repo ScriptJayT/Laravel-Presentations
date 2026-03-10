@@ -33,7 +33,9 @@ function handleChange(_e: Event) {
             <input
                 v-on:drop.prevent=""
                 v-on:change="handleChange"
-                :id="fieldId" :name :value :disabled :accept
+                :id="fieldId"
+                :name="name!=='--' ? name : undefined"
+                :value :disabled :accept
                 type="file"
                 :class="cn(inputClasses(), 'cursor-pointer')"
             />

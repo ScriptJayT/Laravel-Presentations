@@ -28,7 +28,7 @@ const id = `selectfield-${useId()}`;
      <FormField :label :class :error :description :id :disabled :hidden>
         <select
             v-on:change="handleSelect"
-            :name
+            :name="name!=='--' ? name : undefined"
             :id
             :data-value="defaultValue ?? selected"
             :class="inputClasses()"

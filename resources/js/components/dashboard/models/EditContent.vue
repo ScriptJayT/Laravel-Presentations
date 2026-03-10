@@ -73,12 +73,9 @@ function handleChange(_input: HTMLInputElement) {
     if(!files) return errorUpload(_input);
     if(files.length < 1) return errorUpload(_input);
     const desiredFile = files[0];
-    if(
-        ![
-            '',             //.md
-            'text/plain'    //.txt
-        ].includes(desiredFile.type)
-    ) return errorUpload(_input);
+    //.md, .txt
+    if(!['','text/plain'].includes(desiredFile.type))
+        return errorUpload(_input);
 
     uploadFailed.value = false;
     disabledInput.value = true;
@@ -135,7 +132,7 @@ function downloadAsMd() {
             />
             <SelectField
                 :on-select="updateInsertMode"
-                name="---"
+                name="--"
                 :allow-null-value="false"
                 :options="insertModeOptions"
                 :selected="insertMode"

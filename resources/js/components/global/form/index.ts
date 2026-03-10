@@ -8,7 +8,7 @@ export type FormFieldAttributes = {
     inert?: boolean;
     hidden?: boolean;
 };
-export type FieldAttributes = Omit<FormFieldAttributes, 'id'> & { name: string };
+export type FieldAttributes = Omit<FormFieldAttributes, 'id'> & { name: '--' | string };
 export type TextlikeFieldAttributes = FieldAttributes & { value?: string };
 export type RangelikeFieldAttributes = FieldAttributes & {
     value?: number;
