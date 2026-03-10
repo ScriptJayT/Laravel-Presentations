@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useId } from 'vue';
+import { Upload } from 'lucide-vue-next';
 import { FormField, inputClasses, type TextlikeFieldAttributes } from '@/components/global/form';
 const props = defineProps<TextlikeFieldAttributes & {
     accept?: string,
@@ -18,18 +19,24 @@ function handleChange(_e: Event) {
 
 <template>
      <FormField :label :class :error :description :id :disabled :hidden :inert>
-        <input
-            data-component="global/form/fields/FileField"
-            v-on:change="handleChange"
-            :id :name :value :disabled :accept
-            type="file"
-            :class="inputClasses()"
-            class="cursor-pointer"
-        />
+        <div class="grid gap-x-2 items-center">
+            <input
+                data-component="global/form/fields/FileField"
+                v-on:change="handleChange"
+                :id :name :value :disabled :accept
+                type="file"
+                :class="inputClasses()"
+                class="cursor-pointer"
+            />
+            <Upload class="size-4"/>
+        </div>
     </FormField>
 </template>
 
 <style scoped>
+    div.grid {
+        grid-template-columns: auto 1fr;
+    }
     input {
         user-select: none;
         color: transparent;
