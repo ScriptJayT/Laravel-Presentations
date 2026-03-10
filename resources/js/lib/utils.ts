@@ -45,3 +45,19 @@ export function plural(countable: Countable, word: string, plural_addition: stri
 export function getAppEnums() {
     return (usePage().props.enums as AppServiceShared['enums']);
 }
+
+type FileExtension = "md" | "txt";
+export function textToDownloaded(
+    _content: string,
+    _filename: string,
+    _extension: FileExtension,
+) {
+    const mdBlob = new Blob([_content], { type: 'text/md' });
+    const tempLink = document.createElement('a');
+    tempLink.href = URL.createObjectURL(mdBlob);
+    tempLink.download = `${_filename}.${_extension}`;
+    tempLink.style.display = 'none';
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+}

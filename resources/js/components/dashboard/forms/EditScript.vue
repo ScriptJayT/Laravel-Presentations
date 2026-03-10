@@ -37,6 +37,7 @@ defineProps<{
             :rules="allVisibilityRules"
         />
         <EditContent
+            titleInputQuery="#script-title"
             :error="errors.content"
             :value="script.content"
         />

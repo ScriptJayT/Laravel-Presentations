@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { Download } from 'lucide-vue-next';
+import { textToDownloaded, safeQuery } from '@/lib/utils';
 import {
     FileField, ContentField, SelectField,
     type TextlikeFieldAttributes
 } from '@/components/global/form';
-type Props = Omit<TextlikeFieldAttributes, 'name'>;
+type Props = Omit<TextlikeFieldAttributes, 'name'> & {
+    titleInputQuery: string;
+};
 const props = withDefaults(
     defineProps<Props>(),
     {
@@ -95,6 +99,12 @@ function updateInsertMode(_input: HTMLSelectElement) {
 function updateContent(_input: HTMLTextAreaElement) {
     content.value = _input.value;
 }
+
+function downloadAsMd() {
+    const titleInput = safeQuery<HTMLInputElement>(`input${props.titleInputQuery}`);
+    const fileName = titleInput?.value?.trim() || "Hell'Press Download";
+    textToDownloaded(content.value, fileName, "md");
+}
 </script>
 
 <template>
@@ -146,7 +156,6 @@ function updateContent(_input: HTMLTextAreaElement) {
                 </button>
             </div>
         </div>
-
         <div class="flex gap-5 w-fit ml-auto mb-2 text-sm text-muted-foreground">
             <output
                 v-show="fileName"
@@ -171,12 +180,28 @@ function updateContent(_input: HTMLTextAreaElement) {
                 </span>
             </output>
         </div>
-
         <ContentField
             :on-input="updateContent"
             name="content"
             :error
             :value="content"
         />
+        <div class="flex justify-end mt-2">
+            <button
+                v-on:click="downloadAsMd"
+                :disabled="!content"
+                type="button"
+                class="
+                    cursor-pointer disabled:cursor-not-allowed
+                    select-none
+                    flex gap-2 items-center
+                    p-2
+                    border-2 rounded-md
+                    "
+            >
+                <span> Download as Markdown File </span>
+                <Download class="size-4" />
+            </button>
+        </div>
     </fieldset>
 </template>
