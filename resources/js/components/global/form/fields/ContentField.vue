@@ -27,7 +27,7 @@ const id = `contentfield-${useId()}`;
             v-on:input="handleInput"
             :id :name :value :disabled
             :class="inputClasses()"
-            class="min-h-[10lh] resize-none"
+            class="min-h-[10lh] max-w-full overflow-clip resize-none"
         />
     </FormField>
 </template>

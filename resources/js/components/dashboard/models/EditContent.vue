@@ -135,6 +135,8 @@ function downloadAsMd() {
                         select-none
                         p-2
                         border-2 rounded-md
+                        disabled:opacity-50
+                        outline-offset-4 focus-visible:outline-2
                         "
                 >
                     Paste File
@@ -150,6 +152,8 @@ function downloadAsMd() {
                         select-none
                         p-2
                         border-2 rounded-md
+                        disabled:opacity-50
+                        outline-offset-4 focus-visible:outline-2
                         "
                 >
                     Undo Paste
@@ -197,6 +201,8 @@ function downloadAsMd() {
                     flex gap-2 items-center
                     p-2
                     border-2 rounded-md
+                    disabled:opacity-50
+                    outline-offset-4 focus-visible:outline-2
                     "
             >
                 <span> Download as Markdown File </span>
