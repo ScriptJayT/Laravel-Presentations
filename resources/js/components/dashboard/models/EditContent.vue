@@ -24,6 +24,7 @@ const insertModeOptions = {
 };
 const insertOptions = Object.keys(insertModeOptions);
 
+const uploadFailed = ref(false);
 const fileProgressPercent = ref(-1);
 const fileSize = ref("0 bytes");
 const fileName = ref("");
@@ -32,6 +33,14 @@ const fileContent = ref("");
 const insertMode = ref(insertOptions[0]);
 const content = ref(props.value);
 
+function errorUpload(_input: HTMLInputElement) {
+    _input.value = '';
+    uploadFailed.value = true;
+    fileProgressPercent.value = -1;
+    fileSize.value = "0 bytes";
+    fileName.value = "";
+    fileContent.value = "";
+}
 function insertFile() {
     // get new content
     let newContent = "";
@@ -61,14 +70,22 @@ function insertFile() {
 }
 function handleChange(_input: HTMLInputElement) {
     const files = _input.files;
-    if(!files) return;
-    if(files.length < 1) return;
+    if(!files) return errorUpload(_input);
+    if(files.length < 1) return errorUpload(_input);
+    const desiredFile = files[0];
+    if(
+        ![
+            '',             //.md
+            'text/plain'    //.txt
+        ].includes(desiredFile.type)
+    ) return errorUpload(_input);
 
+    uploadFailed.value = false;
     disabledInput.value = true;
     fileContent.value = '';
     fileProgressPercent.value = 0;
-    fileSize.value = `${files[0].size} bytes`;
-    fileName.value = `${files[0].name}`;
+    fileSize.value = `${desiredFile.size} bytes`;
+    fileName.value = `${desiredFile.name}`;
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -80,13 +97,12 @@ function handleChange(_input: HTMLInputElement) {
     };
     reader.onerror = (_err) => {
         disabledInput.value = false;
-        _input.value = '';
-        alert("Something went wrong!");
+        errorUpload(_input);
     };
     reader.onprogress = (_p: ProgressEvent) => {
         fileProgressPercent.value = Math.round((_p.loaded/_p.total) * 100);
     };
-    reader.readAsText(files[0]);
+    reader.readAsText(desiredFile);
 }
 function popHistory() {
     if(contentHistory.length < 1) return;
@@ -160,7 +176,16 @@ function downloadAsMd() {
                 </button>
             </div>
         </div>
-        <div class="flex gap-5 w-fit ml-auto mb-2 text-sm text-muted-foreground">
+        <div class="flex justify-end">
+            <output
+                v-show="uploadFailed"
+                aria-live="polite"
+                class="text-red-600 dark:text-red-500"
+            >
+                Something went wrong; make sure you upload a valid file
+            </output>
+        </div>
+        <div class="flex gap-5 justify-end mb-2 text-sm text-muted-foreground">
             <output
                 v-show="fileName"
                 aria-live="polite"
