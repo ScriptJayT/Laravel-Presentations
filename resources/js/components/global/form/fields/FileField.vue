@@ -31,6 +31,7 @@ function handleChange(_e: Event) {
             class="grid gap-x-2 items-center"
         >
             <input
+                v-on:drop.prevent=""
                 v-on:change="handleChange"
                 :id="fieldId" :name :value :disabled :accept
                 type="file"
