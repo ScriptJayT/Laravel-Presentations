@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useId } from 'vue';
 import { FormField, type TextlikeFieldAttributes, inputClasses } from '@/components/global/form';
 const props = defineProps<TextlikeFieldAttributes & {
     onChange?: (_input: HTMLTextAreaElement) => void,
@@ -17,15 +16,21 @@ function handleInput(_e: Event) {
     if(!input) return;
     props.onInput(input);
 }
-const id = `contentfield-${useId()}`;
 </script>
 
 <template>
-     <FormField :label :class :error :description :id :disabled :hidden >
+     <FormField
+        id-prefix="contentfield"
+        :label :class
+        :error
+        :description
+        :disabled :hidden
+        v-slot="{ fieldId }"
+     >
         <textarea
             v-on:change="handleChange"
             v-on:input="handleInput"
-            :id :name :value :disabled
+            :id="fieldId" :name :value :disabled
             :class="inputClasses()"
             class="min-h-[10lh] max-w-full overflow-clip resize-none"
         />
