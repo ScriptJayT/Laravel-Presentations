@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Enums\Visibility;
 use App\Models\Presentation;
-use App\Models\PresentationScript;
 use App\Models\PresentationSlide;
 use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
@@ -22,18 +21,13 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'Hestia',
-            'email' => 'dev@hellpress.dev',
+            'email' => 'main@hellpress.dev',
             'password' => Hash::make('password'),
         ]);
         $botUser = User::factory()->create([
             'name' => 'Bot 🤖',
             'email' => 'bot@hellpress.dev',
             'password' => Hash::make(uniqid()),
-        ]);
-        $testUser = User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password'),
         ]);
 
         $publicVisibilityRule = PresentationVisibility::factory()->create([
@@ -109,20 +103,6 @@ class DatabaseSeeder extends Seeder
             'presentation_visibility_id' => $publicVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
             'presentation_script_id' => null,
-        ]);
-
-        $script = PresentationScript::factory()->create([
-            'title' => 'My personal project',
-            'user_id' => $testUser->id,
-            'presentation_visibility_id' => $creatorVisibilityRule->id,
-        ]);
-        Presentation::factory()->create([
-            'title' => 'My personal project',
-            'slug' => Str::of('My personal project')->slug(),
-            'user_id' => $testUser->id,
-            'presentation_visibility_id' => $creatorVisibilityRule->id,
-            'presentation_theme_id' => $defaultTheme->id,
-            'presentation_script_id' => $script->id,
         ]);
     }
 }
