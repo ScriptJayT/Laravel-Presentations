@@ -109,15 +109,12 @@ class ScriptCrudTest extends TestCase
         // test
         $response = $this->loginRandomUser()
             ->from(route('admin_scripts', ['script' => $model->id]))
-            ->patch(
-                route('admin_script.update', ['script' => $model->id]),
-                [
-                    'title' => 'title 2',
-                    'content' => '',
-                    'order' => 0,
-                    'visibility' => $model->presentationVisibility->id,
-                ]
-            );
+            ->patch(route('admin_script.update', ['script' => $model->id]), [
+                'title' => 'title 2',
+                'content' => '',
+                'order' => 0,
+                'visibility' => $model->presentationVisibility->id,
+            ]);
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect();
@@ -132,15 +129,12 @@ class ScriptCrudTest extends TestCase
         // test
         $response = $this->loginRandomUser()
             ->from(route('admin_scripts', ['script' => $model->id]))
-            ->patch(
-                route('admin_script.update', ['script' => $model->id]),
-                [
-                    'title' => 'title 2',
-                    'content' => '',
-                    'order' => 0,
-                    'visibility' => $model->presentationVisibility->id,
-                ]
-            );
+            ->patch(route('admin_script.update', ['script' => $model->id]), [
+                'title' => 'title 2',
+                'content' => '',
+                'order' => 0,
+                'visibility' => $model->presentationVisibility->id,
+            ]);
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect();
@@ -157,15 +151,12 @@ class ScriptCrudTest extends TestCase
         // test
         $response = $this->loginRandomUser()
             ->from(route('admin_scripts', ['script' => $model->id]))
-            ->patch(
-                route('admin_script.update', ['script' => $model->id]),
-                [
-                    'title' => 'script 2',
-                    'content' => '',
-                    'order' => 0,
-                    'visibility' => $model->presentationVisibility->id,
-                ]
-            );
+            ->patch(route('admin_script.update', ['script' => $model->id]), [
+                'title' => 'script 2',
+                'content' => '',
+                'order' => 0,
+                'visibility' => $model->presentationVisibility->id,
+            ]);
         $response
             ->assertSessionHasNoErrors()
             ->assertStatus(403);
@@ -180,9 +171,7 @@ class ScriptCrudTest extends TestCase
         // test
         $response = $this->loginRandomUser()
             ->from(route('admin_scripts', ['script' => $model->id]))
-            ->delete(
-                route('admin_script.destroy', ['script' => $model->id]),
-            );
+            ->delete(route('admin_script.destroy', ['script' => $model->id]));
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect();
@@ -199,9 +188,7 @@ class ScriptCrudTest extends TestCase
         // test
         $response = $this->loginRandomUser()
             ->from(route('admin_scripts', ['script' => $model->id]))
-            ->delete(
-                route('admin_script.destroy', ['script' => $model->id]),
-            );
+            ->delete(route('admin_script.destroy', ['script' => $model->id]));
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect();
@@ -219,9 +206,7 @@ class ScriptCrudTest extends TestCase
         // test
         $response = $this->loginRandomUser()
             ->from(route('admin_scripts', ['script' => $model->id]))
-            ->delete(
-                route('admin_script.destroy', ['script' => $model->id]),
-            );
+            ->delete(route('admin_script.destroy', ['script' => $model->id]));
         $response
             ->assertSessionHasNoErrors()
             ->assertStatus(403);
