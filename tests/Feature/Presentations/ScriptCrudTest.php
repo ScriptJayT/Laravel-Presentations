@@ -73,7 +73,6 @@ class ScriptCrudTest extends TestCase
     {
         PresentationVisibility::factory()->create([
             'title' => Visibility::PRIVATE->title(),
-            'name' => 'Gibberish',
         ]);
         $response = $this->loginRandomUser()
             ->from(route('admin_script_index'))
@@ -83,7 +82,7 @@ class ScriptCrudTest extends TestCase
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirectBack();
-        $this->assertDatabaseCount('scripts', 1);
+        $this->assertDatabaseCount('presentation_scripts', 1);
     }
 
     #[Test]
