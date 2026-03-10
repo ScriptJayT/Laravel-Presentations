@@ -2,9 +2,10 @@
 
 ## Global
 
-- [ ] 10/03: check on vacature "Functioneel Analyst" zimmo
+- [x] 10/03: check on vacature "Functioneel Analyst"
     - check mailbox
     - send friendly reminder mail for updates
+- [ ] finish project before 20/03
 
 ## Project:
 
@@ -35,7 +36,7 @@
     - [x] Guarded actions throw error 405 w/ redirect
     - ? Themes
     - ? Atom lock
-- [ ] Test
+- [~] Test
     - [x] add extra user to seeder to test private scripts/presentations
     - Presentation CRUD
         - [x] can store a new entry
