@@ -9,7 +9,7 @@ defineProps<{
         id="site-content"
         tabindex="-1"
         :class
-        class="bg-gray-200 dark:bg-gray-900 outline-none"
+        class="grow bg-neutral-200 dark:bg-neutral-900 outline-none"
     >
         <slot />
     </main>

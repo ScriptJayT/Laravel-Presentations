@@ -16,9 +16,6 @@ const props = withDefaults(
         showUser: true,
     }
 );
-const totalPresentations = Array.isArray(props.presentations)
-    ? props.presentations.length
-    : Object.keys(props.presentations).length
 </script>
 
 <template>
@@ -29,7 +26,7 @@ const totalPresentations = Array.isArray(props.presentations)
             space-y-4
             px-8 pt-8 pb-10
             border-3 rounded-4xl
-            shadow-lg shadow-gray-500 dark:shadow-gray-400
+            shadow-lg shadow-gray-500 dark:shadow-md dark:shadow-gray-400
             bg-gray-200 dark:bg-gray-800
             "
     >

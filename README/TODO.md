@@ -5,6 +5,7 @@
 - [x] 10/03: check on vacature "Functioneel Analyst"
     - check mailbox
     - send friendly reminder mail for updates
+- [ ] make press bout project
 - [ ] finish project before 20/03
 
 ## Project:
@@ -61,6 +62,7 @@
         - [x] can delete when public/protected & (random) user
         - [x] can't delete when private & random user
 - [x] ? Private PresentationScripts
+- [ ] cleanup app darkmode
 - ? User Avatar upload
 - ? User Roles
 - ? Js Script injecting (custom elements, iframes)
@@ -70,3 +72,7 @@
     - script | slides | both
 
 ## Done today:
+
+- looked at positions
+- registered for vdab jobmarket
+-
