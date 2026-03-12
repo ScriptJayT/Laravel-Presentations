@@ -46,11 +46,16 @@ async function skipToContent(_e: MouseEvent) {
         class="
             skip-content |
             fixed top-3 left-5
-            block px-3 py-1
-            border-2 border-cyan-900 rounded
-            outline-offset-8 focus-visible:outline-2
-            transition-transform
-            bg-background
+            block px-5 py-1.5
+            rounded-md border-2
+            border-neutral-500 dark:border-cyan-900
+            hover:border-cyan-600 dark:hover:border-cyan-500
+            focus-visible:border-cyan-600 dark:focus-visible:border-cyan-500
+            outline-offset-6 focus-visible:outline-2
+            hover:scale-105
+            focus-visible:scale-105
+            transition-all
+            bg-background hover:bg-background/90
             "
     >
         Skip to Content
@@ -79,11 +84,15 @@ async function skipToContent(_e: MouseEvent) {
                                 <Link :href="_link.href"
                                     class="
                                         block px-5 py-1.5
-                                        bg-gray-50 dark:bg-gray-700
-                                        rounded-sm border
-                                        border-[#19140035] dark:border-[#3E3E3A]
-                                        hover:border-[#1915014a] dark:hover:border-[#62605b]
-                                        text-[#1b1b18] dark:text-[#EDEDEC]
+                                        rounded-md border-2
+                                        border-neutral-500 dark:border-cyan-900
+                                        hover:border-cyan-600 dark:hover:border-cyan-500
+                                        focus-visible:border-cyan-600 dark:focus-visible:border-cyan-500
+                                        outline-offset-6 focus-visible:outline-2
+                                        hover:scale-105
+                                        focus-visible:scale-105
+                                        transition-all
+                                        bg-background hover:bg-background/90
                                         "
                                 >
                                     {{ _link.title }}
