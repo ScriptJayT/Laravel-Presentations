@@ -63,6 +63,7 @@
         - [x] can't delete when private & random user
 - [x] ? Private PresentationScripts
 - [ ] cleanup app darkmode
+- [ ] add fullscreen mode to slideshow
 - ? User Avatar upload
 - ? User Roles
 - ? Js Script injecting (custom elements, iframes)

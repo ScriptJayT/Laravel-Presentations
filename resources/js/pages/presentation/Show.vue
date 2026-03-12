@@ -55,7 +55,7 @@ onMounted(()=>{
                             "
                     >
                         <div class="slide-wrapper | grid gap-y-5 max-h-full h-min pt-4 pb-8">
-                            <header class="pl-10 pr-6">
+                            <header class="slide-header | pl-10 pr-6">
                                 <template v-if="_index === 0">
                                     <h1 class="text-center text-5xl">
                                         {{ _slide.title }}
@@ -69,6 +69,7 @@ onMounted(()=>{
                             </header>
 
                             <div class="
+                                slide-content |
                                 flow-root
                                 pl-18 pr-6
                                 text-lg
@@ -116,12 +117,13 @@ onMounted(()=>{
             flex-direction: column;
             justify-content: center;
         }
-
         & > .slide-wrapper {
             grid-template-rows: auto 1fr;
         }
-
-
+        /* & .slide-header {} */
+        & .slide-content {
+            scrollbar-width: thin;
+        }
     }
     .render {
         font-size: calc(1rem + 1.5cqmin);
@@ -172,7 +174,7 @@ onMounted(()=>{
                 }
 
                 dd + & {
-                    margin-top: 0.75ch;
+                    margin-top: 0.25em;
                 }
             }
             & dd {
