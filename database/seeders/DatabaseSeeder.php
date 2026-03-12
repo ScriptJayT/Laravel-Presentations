@@ -57,13 +57,13 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Presentations',
-            'content' => "Hell'Press brings your presentations online and ensures you remain the owner. \nNo need for propriatery software that hides your presentation under obfuscation.",
+            'content' => "Hell'Press brings your presentations online and ensures you remain the owner. \n\nNo need for propriatery software that steals your presentation and makes it unreadable or uneditable for you elsewhere due to their obfuscation.\n\nSimple text editing for quick n easy presentations.",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Slides',
-            'content' => 'Surprise, a presentation is made up out of slides, who\'d thunk it.',
+            'content' => "Surprise, a presentation is made up out of slides, \nwho'd thunk it.",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
@@ -87,13 +87,13 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Title Shift',
-            'content' => "MD titles in slides and scripts are shifted down automatically: \n'\# title' which would be an h1 shall be rendered as an h3 in slides, for example. \nSo you don't need to worry about any semantic differences in your text versus the actual render.",
+            'content' => "MD titles in slides and scripts are shifted down automatically: \n'\# title' which would be an h1- shall be rendered as an h3 in slides, for example. \n\nSo you don't need to worry about any semantic differences in your text versus the actual render.",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Render Test',
-            'content' => "\n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\`text\` => `code` \n\=\=text\=\= => ==highlight== \n\n- unordered \n- list \n\n1. ordered \n1. list \n\n- [ ] task \n- [x] finished \n\nterm \n: definition \n\nterm \n: definition \n\n> blockquote with \> \n\nSeperator with \-\-\-: \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```",
+            'content' => "\n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\`text\` => `code` \n\=\=text\=\= => ==highlight== \n\n- unordered list \n- with \+ \n- or \- \n- or \* \n\n1. ordered list \n1. with 1.  \n\n- [ ] task \n- [x] finished \n\nterm \n: definition \n\nterm \n: definition \n\n> blockquote with \> \n\nSeperator with \-\-\-: \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```",
         ]);
 
         Presentation::factory()->create([
