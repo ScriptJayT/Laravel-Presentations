@@ -64,6 +64,7 @@
 - [x] ? Private PresentationScripts
 - [ ] cleanup app darkmode
 - [ ] add fullscreen mode to slideshow
+- ? visually interesting bg in app index
 - ? User Avatar upload
 - ? User Roles
 - ? Js Script injecting (custom elements, iframes)

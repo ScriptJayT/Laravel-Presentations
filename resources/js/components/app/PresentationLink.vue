@@ -31,6 +31,7 @@ withDefaults(
             aspect-video
             px-4 py-5
             border rounded-xl border-gray-500 dark:border-gray-50/50
+            bg-neutral-50 dark:bg-neutral-800
             "
     >
         <VisibilityBadge
@@ -48,15 +49,23 @@ withDefaults(
             </span>
         </template>
 
-        <div class="mt-auto grid grid-cols-2 gap-x-2">
+        <div class="mt-auto grid grid-cols-2 gap-x-4">
             <a
                 :href="presentations(presentation.slug).url" target="_blank"
                 :title="`Open presentation: ${presentation.title}`"
                 class="
-                    grid place-content-center
-                    px-2 py-1
+                    cursor-pointer
+                    block px-5 py-1.5
+                    rounded-md border-2
+                    border-neutral-500 dark:border-cyan-900
+                    hover:border-cyan-600 dark:hover:border-cyan-500
+                    focus-visible:border-cyan-600 dark:focus-visible:border-cyan-500
+                    outline-offset-6 focus-visible:outline-2
+                    hover:scale-105
+                    focus-visible:scale-105
                     text-center
-                    bg-gray-100 dark:bg-gray-700
+                    transition-all
+                    bg-background hover:bg-background/90
                 "
             >
                 Present
@@ -67,10 +76,17 @@ withDefaults(
                     :title="`Open script: ${presentation.presentation_script.title}`"
                     class="
                         cursor-pointer
-                        grid place-content-center
-                        px-2 py-1
+                        block px-5 py-1.5
+                        rounded-md border-2
+                        border-neutral-500 dark:border-cyan-900
+                        hover:border-cyan-600 dark:hover:border-cyan-500
+                        focus-visible:border-cyan-600 dark:focus-visible:border-cyan-500
+                        outline-offset-6 focus-visible:outline-2
+                        hover:scale-105
+                        focus-visible:scale-105
                         text-center
-                        bg-gray-100 dark:bg-gray-700
+                        transition-all
+                        bg-background hover:bg-background/90
                     "
                 >
                     Read
