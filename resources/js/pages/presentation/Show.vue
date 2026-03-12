@@ -36,13 +36,14 @@ onMounted(()=>{
                     <slide
                         :data-theme="_slide.presentation_theme.title + ' ' + presentation.presentation_theme.title"
                         class="
-                            relative isolate | block h-full
+                            relative isolate
+                            block h-full
                             border rounded-4xl
                             bg-amber-200 dark:bg-amber-800
-                             overflow-clip
+                            overflow-clip
                             "
                     >
-                        <div class="slide-wrapper | grid gap-y-8 | max-h-full h-min p-8">
+                        <div class="slide-wrapper | grid gap-y-8 max-h-full h-min p-8">
                             <template v-if="_index === 0">
                                 <h1 class="text-center text-5xl"> {{ _slide.title }} </h1>
                             </template>
@@ -50,7 +51,7 @@ onMounted(()=>{
                                 <h2> {{ _slide.title }} </h2>
                             </template>
 
-                            <div class="flow-root pl-6 | overflow-y-auto overflow-x-clip">
+                            <div class="flow-root pl-6 overflow-y-auto overflow-x-clip">
                                 <template v-if="false">
                                     <figure class="
                                         float-end
@@ -70,7 +71,7 @@ onMounted(()=>{
                                 />
                             </div>
                         </div>
-                        <PlaceholderPattern :interactable="false" />
+                        <PlaceholderPattern transparent />
                     </slide>
                 </template>
             </slide-show>
@@ -167,14 +168,14 @@ onMounted(()=>{
         & p code {
             padding-inline: 0.5ch;
             border-radius: 5px;
-            background-color: var(--color-neutral-700);
+            background-color: hsl(from var(--color-background) h s l / 0.5);
         }
 
         & pre {
             padding: 1rem;
             min-height: 1lh;
             border-radius: 15px;
-            background-color: var(--color-neutral-700);
+            background-color: hsl(from var(--color-background) h s l / 0.5);
         }
 
         & mark {

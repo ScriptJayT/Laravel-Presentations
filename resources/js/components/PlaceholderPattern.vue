@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-const props = defineProps<{
-    interactable?: boolean
-}>();
+import { cn } from '@/lib/utils';
+const props = withDefaults(
+    defineProps<{
+    interactable?: boolean;
+    transparent?: boolean;
+    }>(),
+    {
+        interactable: false,
+        transparent: false,
+    }
+);
 const patternId = computed(
     () => `pattern-${Math.random().toString(36).substring(2, 9)}`,
 );
@@ -11,17 +19,16 @@ const patternId = computed(
 <template>
     <div
         data-component="PlaceholderPattern"
-        class="
-            absolute inset-0 -z-10
-            rounded-[inherit]
-            overflow-clip
-            bg-neutral-50 dark:bg-neutral-800
-            "
-        :class="
+        :class="cn(
+            ['absolute', 'inset-0', '-z-10'],
+            ['rounded-[inherit]', 'overflow-clip'],
             interactable
-            ? ''
-            : 'pointer-events-none'
-            "
+                ? ''
+                : 'pointer-events-none',
+            transparent
+                ? []
+                : ['bg-neutral-50', 'dark:bg-neutral-800'],
+        )"
         role="presentation"
     >
         <svg
