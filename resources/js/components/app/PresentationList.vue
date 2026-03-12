@@ -27,7 +27,7 @@ const props = withDefaults(
             px-8 pt-8 pb-10
             border-3 rounded-4xl
             shadow-lg shadow-gray-500 dark:shadow-md dark:shadow-gray-400
-            bg-gray-200 dark:bg-neutral-950
+            bg-card
             "
     >
         <div class="flex gap-4 justify-between flex-wrap">
