@@ -2,7 +2,6 @@
     transition-behavior: allow-discrete !important;
 }
 :root {
-    /* scrollbar-gutter: stable; */
     background-color: var(--sidebar-background);
 }
 textarea,

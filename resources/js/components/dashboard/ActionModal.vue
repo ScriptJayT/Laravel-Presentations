@@ -37,6 +37,7 @@
 <style>
 :root:has(dialog[open]) {
     overflow: clip;
+    scrollbar-gutter: stable;
 }
 </style>
 
