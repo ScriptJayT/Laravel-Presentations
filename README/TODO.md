@@ -62,8 +62,9 @@
         - [x] can delete when public/protected & (random) user
         - [x] can't delete when private & random user
 - [x] ? Private PresentationScripts
-- [ ] cleanup app darkmode
+- [x] cleanup app darkmode
 - [ ] add fullscreen mode to slideshow
+- [ ] add appname logo to app header
 - ? visually interesting bg in app index
 - ? User Avatar upload
 - ? User Roles
