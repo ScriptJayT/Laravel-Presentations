@@ -58,6 +58,6 @@ trait HasMarkdownRenderableContent
 
                 ...$this->getMdExtensions(),
             ]
-        );
+        )->replace('\\', '');
     }
 }

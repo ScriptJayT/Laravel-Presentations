@@ -90,7 +90,7 @@ onMounted(()=>{
                                     </figure>
                                 </template>
                                 <div
-                                    class="render | contents space-y-4"
+                                    class="render | contents space-y-6"
                                     v-html="_slide.renderedContent"
                                 />
                             </div>
