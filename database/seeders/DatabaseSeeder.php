@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'title' => Visibility::PROTECTED->title(),
             'name' => 'Protected',
         ]);
-        $creatorVisibilityRule = PresentationVisibility::factory()->create([
+        PresentationVisibility::factory()->create([
             'title' => Visibility::PRIVATE->title(),
             'name' => 'Private',
         ]);
