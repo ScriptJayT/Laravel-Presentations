@@ -42,8 +42,15 @@ export function plural(countable: Countable, word: string, plural_addition: stri
     return `${count} ${word}${plural_addition}`;
 }
 
+function getAppProp(_prop: keyof AppServiceShared) {
+    const props = (usePage().props as unknown as AppServiceShared);
+    return props[_prop];
+}
 export function getAppEnums() {
-    return (usePage().props.enums as AppServiceShared['enums']);
+    return getAppProp('enums') as AppServiceShared['enums'];
+}
+export function getAppName() {
+    return getAppProp("appName") as AppServiceShared['appName'];
 }
 
 type FileExtension = "md" | "txt";
@@ -52,6 +59,7 @@ export function textToDownloaded(
     _filename: string,
     _extension: FileExtension,
 ) {
+    if(!document) return;
     const mdBlob = new Blob([_content], { type: 'text/md' });
     const tempLink = document.createElement('a');
     tempLink.href = URL.createObjectURL(mdBlob);

@@ -57,7 +57,11 @@ async function skipToContent(_e: MouseEvent) {
 
     <header
         id="site-header"
-        class="bg-gray-300 dark:bg-gray-950"
+        class="
+            border-b-2 dark:border-b-3
+            border-cyan-300 dark:border-cyan-900
+            bg-neutral-50 dark:bg-neutral-950
+            "
     >
         <div class="max-w-5xl mx-auto flex items-center justify-between gap-6 flex-wrap">
             <div class="mr-auto"></div>

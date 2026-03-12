@@ -1,11 +1,19 @@
+<script setup lang="ts">
+import { getAppName } from '@/lib/utils';
+</script>
 <template>
     <footer
         id="site-footer"
         class="
-            min-h-10 mt-auto
-            bg-gray-300 dark:bg-gray-950
+            mt-auto
+            py-5
+            border-t-2 dark:border-t-3
+            border-cyan-300 dark:border-cyan-900
+            bg-neutral-50 dark:bg-neutral-950
             "
     >
-        <slot />
+        <div class="px-5 text-center">
+            brought to you by {{ getAppName() }}
+        </div>
     </footer>
 </template>

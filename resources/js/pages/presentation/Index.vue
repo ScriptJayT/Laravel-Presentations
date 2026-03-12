@@ -25,11 +25,12 @@ defineProps<{
                         :show-guard="true"
                         :show-user="false"
                         :presentations="allCreatorPresentations"
-                        class="border-cyan-200 dark:border-cyan-700"
+                        class="min-h-80"
                     />
                     <PresentationList
                         title="Protected slideshows from everyone:"
                         :presentations="allPrivatePresentations"
+                        class="mt-25"
                     />
                 </template>
                 <PresentationList
