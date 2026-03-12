@@ -1,4 +1,5 @@
-import type { AppServiceShared } from '@/types';
+import type { AppServiceShared, Auth } from '@/types';
+import { computed } from "vue";
 import { type InertiaLinkProps, usePage } from '@inertiajs/vue3';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -51,6 +52,13 @@ export function getAppEnums() {
 }
 export function getAppName() {
     return getAppProp("appName") as AppServiceShared['appName'];
+}
+export function getUser(_reactive: boolean) {
+    const page = usePage();
+    const auth = page.props.auth as Auth;
+    if(!auth) return null;
+    if(_reactive) return computed(() => auth.user ?? null);
+    return auth.user ?? null;
 }
 
 type FileExtension = "md" | "txt";

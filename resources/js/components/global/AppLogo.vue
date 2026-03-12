@@ -4,14 +4,13 @@ import { getAppName } from '@/lib/utils';
 </script>
 
 <template>
-    <div
-        class="
-            flex items-center justify-center
-            size-8 aspect-square
-            rounded-md
-            text-sidebar-primary-foreground
-            bg-sidebar-primary
-            "
+    <div class="
+        flex items-center justify-center
+        size-8 aspect-square
+        rounded-md
+        text-sidebar-primary-foreground
+        bg-sidebar-primary
+        "
     >
         <AppLogoIcon class="size-5 fill-current text-white dark:text-black" />
     </div>
