@@ -13,7 +13,7 @@ import { getAppName } from '@/lib/utils';
             "
     >
         <div class="px-5 text-center">
-            brought to you by {{ getAppName() }}
+            These works were brought to you by: <br> the amazing users of {{ getAppName() }}
         </div>
     </footer>
 </template>
