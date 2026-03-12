@@ -47,9 +47,10 @@ async function skipToContent(_e: MouseEvent) {
             skip-content |
             fixed top-3 left-5
             block px-3 py-1
-            border border-violet-900 rounded
+            border-2 border-cyan-900 rounded
+            outline-offset-8 focus-visible:outline-2
             transition-transform
-            bg-cyan-100 dark:bg-cyan-950
+            bg-background
             "
     >
         Skip to Content
