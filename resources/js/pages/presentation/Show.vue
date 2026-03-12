@@ -15,12 +15,14 @@ onMounted(()=>{
         title: props.presentation.title,
         content: "",
         renderedContent: `
-            <span class="created_on | block">
-                created on: ${props.presentation.created_at}
-            </span>
-            <span class="creator | block">
-                by: ${props.presentation.user.name}
-            </span>`,
+            <p class="text-center mt-5 mx-auto">
+                <span class="created_on | block">
+                    created on: ${props.presentation.created_at}
+                </span>
+                <span class="creator | block">
+                    by: ${props.presentation.user.name}
+                </span>
+            </p>`,
         presentation_theme: props.presentation.presentation_theme,
     });
 });
@@ -31,11 +33,20 @@ onMounted(()=>{
 
     <AppWrapper>
         <AppContent>
-            <slide-show class="relative | block h-[80vh] mt-[7.5vh] space-y-10 px-8 | text-2xl | overflow-x-clip overflow-y-scroll">
+            <slide-show class="
+                relative
+                block h-[80vh]
+                mt-[7.5vh]
+                space-y-10
+                px-8
+                overflow-x-clip overflow-y-scroll
+                "
+            >
                 <template v-for="(_slide, _index) in presentation.slides">
                     <slide
                         :data-theme="_slide.presentation_theme.title + ' ' + presentation.presentation_theme.title"
                         class="
+                            ct-inline-size
                             relative isolate
                             block h-full
                             border rounded-4xl
@@ -43,15 +54,27 @@ onMounted(()=>{
                             overflow-clip
                             "
                     >
-                        <div class="slide-wrapper | grid gap-y-8 max-h-full h-min p-8">
-                            <template v-if="_index === 0">
-                                <h1 class="text-center text-5xl"> {{ _slide.title }} </h1>
-                            </template>
-                            <template v-else>
-                                <h2> {{ _slide.title }} </h2>
-                            </template>
+                        <div class="slide-wrapper | grid gap-y-5 max-h-full h-min pt-4 pb-8">
+                            <header class="pl-10 pr-6">
+                                <template v-if="_index === 0">
+                                    <h1 class="text-center text-5xl">
+                                        {{ _slide.title }}
+                                    </h1>
+                                </template>
+                                <template v-else>
+                                    <h2 class="text-3xl underline underline-offset-3">
+                                        {{ _slide.title }}
+                                    </h2>
+                                </template>
+                            </header>
 
-                            <div class="flow-root pl-6 overflow-y-auto overflow-x-clip">
+                            <div class="
+                                flow-root
+                                pl-18 pr-6
+                                text-lg
+                                overflow-y-auto overflow-x-clip
+                                "
+                            >
                                 <template v-if="false">
                                     <figure class="
                                         float-end
@@ -66,7 +89,7 @@ onMounted(()=>{
                                     </figure>
                                 </template>
                                 <div
-                                    class="contents space-y-5"
+                                    class="render | contents space-y-4"
                                     v-html="_slide.renderedContent"
                                 />
                             </div>
@@ -98,6 +121,11 @@ onMounted(()=>{
             grid-template-rows: auto 1fr;
         }
 
+
+    }
+    .render {
+        font-size: calc(1rem + 1.5cqmin);
+
         & p,
         & :where(ul, ol),
         & :where(h3, h4, h5, h6) {
@@ -106,7 +134,7 @@ onMounted(()=>{
 
         & p {
             text-wrap: pretty;
-            line-height: 1.6;
+            line-height: 1.5;
 
             &:has(img) {
                 display: contents;
@@ -124,8 +152,6 @@ onMounted(()=>{
 
             &:has(li>[type=checkbox]) {
                 list-style: none;
-
-                /* & input:checked {} */
             }
         }
         & ol {
@@ -134,7 +160,7 @@ onMounted(()=>{
         }
         & li {
             & + & {
-                margin-top: 0.75ch;
+                margin-top: .25em;
             }
         }
         & dl {
