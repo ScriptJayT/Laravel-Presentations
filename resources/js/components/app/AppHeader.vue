@@ -6,10 +6,8 @@ import { Link, usePage } from '@inertiajs/vue3';
 import { admin_presentation_index, login, home } from '@/routes';
 import UserDropDown from '@/components/app/UserDropDown.vue';
 import { safeQuery } from "@/lib/utils";
-
 const page = usePage();
 const user = computed(() => (page.props.auth as Auth)?.user ?? null);
-
 type NavItem = {
     title: string;
     href: RouteDefinition<"get">;
@@ -59,7 +57,7 @@ async function skipToContent(_e: MouseEvent) {
 
     <header
         id="site-header"
-        class="bg-violet-200 dark:bg-violet-500"
+        class="bg-gray-300 dark:bg-gray-950"
     >
         <div class="max-w-5xl mx-auto flex items-center justify-between gap-6 flex-wrap">
             <div class="mr-auto"></div>
