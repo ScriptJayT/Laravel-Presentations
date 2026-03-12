@@ -78,4 +78,4 @@
 
 - looked at positions
 - registered for vdab jobmarket
--
+- styled app + fixed escape bugs
