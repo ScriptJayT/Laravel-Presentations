@@ -67,6 +67,8 @@
 - [ ] find better (temp) logo for app
 - [ ] add fullscreen mode to slideshow
 - ? visually interesting bg in app index
+- ? Slide bg options
+- ? upload manager for images
 - ? User Avatar upload
 - ? User Roles
 - ? Js Script injecting (custom elements, iframes)
