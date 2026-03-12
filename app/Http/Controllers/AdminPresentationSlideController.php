@@ -76,8 +76,8 @@ class AdminPresentationSlideController extends Controller
             'order' => 'required|integer',
         ])->validated();
 
-        $slide->title = e($validated['title']);
-        $slide->content = $validated['content'];
+        $slide->title = $validated['title'];
+        $slide->content = htmlspecialchars($validated['content'], flags: ENT_NOQUOTES);
         $slide->order = $validated['order'];
         $slide->save();
 

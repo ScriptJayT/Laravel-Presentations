@@ -94,7 +94,7 @@ class AdminPresentationController extends Controller
 
         $presentation = Presentation::create([
             'title' => $validated['title'],
-            'slug' => $slug,
+            'slug' => e($slug),
             'user_id' => $user->id,
             'presentation_visibility_id' => $visibility->id,
             'presentation_theme_id' => $theme->id,
@@ -133,7 +133,7 @@ class AdminPresentationController extends Controller
         ])->validated();
 
         $slug = Str::slug($validated['slug']);
-        $validated['slug'] = $slug;
+        $validated['slug'] = e($slug);
         if ($presentation->slug !== $slug) {
             validator(['slug' => $slug], [
                 'slug' => 'unique:presentations,slug',
@@ -146,7 +146,7 @@ class AdminPresentationController extends Controller
             ])->validated();
         }
 
-        $presentation->title = e($validated['title']);
+        $presentation->title = $validated['title'];
         $presentation->slug = $validated['slug'];
         $presentation->presentation_script_id = $validated['script'];
         $presentation->presentation_visibility_id = $validated['visibility'];
