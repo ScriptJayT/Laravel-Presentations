@@ -1,22 +1,21 @@
 <script setup lang="ts">
-import { AppIcon } from '@/components/global/logo';
-import { getAppName } from '@/lib/utils';
+import { LaravelIcon } from '@/components/global/logo';
 </script>
 
 <template>
     <div class="
-        flex items-center justify-center
+        grid place-content-center
         size-8 aspect-square
         rounded-md
         text-sidebar-primary-foreground
         bg-sidebar-primary
         "
     >
-        <AppIcon class="size-5 fill-current text-white dark:text-black" />
+        <LaravelIcon class="size-5 fill-current text-white dark:text-black" />
     </div>
     <div class="ml-1 grid flex-1 text-left text-sm">
         <span class="mb-0.5 truncate leading-tight font-semibold">
-            {{ getAppName() }}
+            Laravel
         </span>
     </div>
 </template>
