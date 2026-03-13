@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
+import { SectionHeadingClasses } from '.';
 const props = withDefaults(
     defineProps<{
         title: string;
@@ -28,7 +29,7 @@ const props = withDefaults(
             :class="cn(
                 variant === 'small'
                     ? 'mb-0.5 text-base font-medium'
-                    : 'text-xl font-semibold tracking-tight',
+                    : SectionHeadingClasses(),
                 'min-h-lh'
             )"
         >
