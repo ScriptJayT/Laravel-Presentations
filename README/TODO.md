@@ -68,6 +68,7 @@
     - [ ] Create user initial function can't handle emoji's
     - [ ] Dark mode does not set color-scheme (scrollbars don't switch with)
 - Extra's
+    - [ ] Improve queries for app index, app slideshow
     - [x] Add a check health route to dashboard
     - [ ] ? Add password rotation in queue for bot users
 - Test:
