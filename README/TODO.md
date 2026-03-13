@@ -1,9 +1,8 @@
 ## Today:
 
-- Find better (temp) logo for app
-
 ### Done:
 
+- Find better (temp) logo for app
 - Add fullscreen mode
 
 
@@ -56,14 +55,14 @@
             - [x] Scripts
             - [ ] ? Presentations
             - [ ] ? Slides
-    - [ ] Slideshow:
+    - Slideshow:
         - [x] Add fullscreen mode
     - [ ] ? Add a read-only API
         - Type: json
         - [ ] Allow content rendering of md/html
         - [ ] Allow selection of script/slides/both
 - App Look
-    - [ ] Find better (temp) logo for app
+    - [x] Find better (temp) logo for app
     - [x] Cleanup app darkmode
     - [x] Add appname logo to app header
     - [ ] ? Add icons icons of User, Protected, Private to index
@@ -72,7 +71,7 @@
     - [ ] Create user initial function can't handle emoji's
     - [ ] Dark mode does not set color-scheme (scrollbars don't switch with)
 - Extra's
-    - [ ] Improve queries for app index, app slideshow
+    - [ ] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
     - [ ] ? Add password rotation in queue for bot users
 - Test:
