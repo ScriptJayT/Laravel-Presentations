@@ -53,7 +53,6 @@ onUnmounted(() => {
         <AppContent>
             <slide-show
                 :id
-                tabindex="0"
                 :data-theme="presentation.presentation_theme.title"
                 class="
                     relative
@@ -67,13 +66,15 @@ onUnmounted(() => {
                 <template v-for="(_slide, _index) in presentation.slides">
                     <slide
                         :data-theme="_slide.presentation_theme.title"
+                        tabindex="0"
                         class="
                             ct-inline-size
                             relative isolate
                             block h-full
                             border rounded-4xl
                             bg-amber-200 dark:bg-amber-800
-                            overflow-clip
+                            outline-amber-800 dark:outline-amber-200
+                            outline-offset-8 focus-visible:outline-2
                             "
                     >
                         <div class="slide-wrapper | grid gap-y-5 max-h-full h-min pt-4 pb-8">
