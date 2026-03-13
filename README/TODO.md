@@ -1,5 +1,8 @@
 ## Day
 
+- Find better (temp) logo for app
+- Add fullscreen mode
+
 ## Global
 
 - [x] 10/03: check on vacature "Functioneel Analyst"
@@ -24,16 +27,16 @@
         hellshow - hellow
         pressy
 - App Functions
-    - CRUD operations:
+    - [~] CRUD operations:
         - [ ] ? Add an atom lock to all operations
         - [x] Add presentations
-        - [x] Add slides
+        - [~] Add slides
             - [ ] ? Add media/scripts injecting (custom elements, iframes)
             - [ ] ? Add full bg options
         - [x] Add scripts
-        - [x] ? Add users
-            - [ ] ? Add avatar option
-            - [ ] ? Add roles
+        - [~] ? Add users
+            - [ ] Add avatar option
+            - [ ] Add roles
             - [x] Cleanup "unreachable" user actions
         - [ ] ? Add themes
         - [ ] ? Add a media manager
@@ -41,15 +44,15 @@
         - [x] Throw error 403 w/ redirect if not allowed
         - [x] Make private models also private from other users
         - [x] ? Make scripts/presentations/slides private-able
-    - Markdown:
-        - Allow download of:
+    - [~] Markdown:
+        - [~] Allow download of:
             - [x] Content of scripts
             - [ ] ? Whole presentation
-        - Allow upload in:
+        - [~] Allow upload in:
             - [x] Scripts
             - [ ] ? Presentations
             - [ ] ? Slides
-    - Slideshow:
+    - [ ] Slideshow:
         - [ ] Add fullscreen mode
     - [ ] ? Add a read-only API
         - Type: json
@@ -59,12 +62,15 @@
     - [ ] Find better (temp) logo for app
     - [x] Cleanup app darkmode
     - [x] Add appname logo to app header
+    - [ ] ? Add icons icons of User, Protected, Private to index
     - [ ] ? Add a visually interesting bg to index
+- Bugs:
+    - [ ] Create user initial function can't handle emoji's
 - Extra's
     - [x] Add a check health route to dashboard
     - [ ] ? Add password rotation in queue for bot users
-- [~] Test
-    - [x] add extra user to seeder to test private scripts/presentations
+- Test:
+    - [x] Add extra temp user to seeder to manually test private scripts/presentations
     - Presentation CRUD:
         - [x] can store a new entry
         - [x] can read when public public/protected & random user
