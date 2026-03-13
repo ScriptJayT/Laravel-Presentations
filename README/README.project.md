@@ -39,6 +39,7 @@ Goal: build a backend interface to create a presentation using markdown
 - functions:
     - JS fullscreen: https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
     - JS download text to file: https://stackoverflow.com/questions/61597868/creating-and-downloading-text-file-from-string-in-javascript-blob-createobjectu
+    - JS emoji: https://stackoverflow.com/questions/18862256/how-to-detect-emoji-using-javascript
 
 ## Project Requirements
 
