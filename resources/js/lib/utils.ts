@@ -30,24 +30,24 @@ export async function wait(timeInSeconds: number): Promise<void> {
     });
 }
 
-export function fullscreenController(target: HTMLElement | QueryResult) {
+export function fullscreenController(target: QueryResult) {
     function isCapable(_target: unknown): _target is HTMLElement {
         if(!document.fullscreenEnabled) return false;
         if(!_target) return false;
         return true;
     };
     const open = async () => {
-        if(!isCapable(target)) return
+        if(!isCapable(target)) return;
         if(document.fullscreenElement) return;
         return await target.requestFullscreen();
     };
     const close = async () => {
-        if(!isCapable(target)) return
+        if(!isCapable(target)) return;
         if(!document.fullscreenElement) return;
         return await document.exitFullscreen()
     };
     const toggle = async () => {
-        if(!isCapable(target)) return
+        if(!isCapable(target)) return;
         if(document.fullscreenElement) return close();
         return open();
     }

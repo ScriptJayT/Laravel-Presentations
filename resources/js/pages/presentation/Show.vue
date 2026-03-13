@@ -29,6 +29,8 @@ onMounted(() => {
                 </p>`,
             presentation_theme: props.presentation.presentation_theme,
         });
+    } else {
+        console.log("prevented frontslide from duplicating");
     }
     // add functionality
     const slideShow = safeQuery(`#${id}`);
