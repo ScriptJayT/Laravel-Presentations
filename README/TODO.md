@@ -1,7 +1,11 @@
-## Day
+## Today:
 
 - Find better (temp) logo for app
+
+### Done:
+
 - Add fullscreen mode
+
 
 ## Global
 
@@ -53,7 +57,7 @@
             - [ ] ? Presentations
             - [ ] ? Slides
     - [ ] Slideshow:
-        - [ ] Add fullscreen mode
+        - [x] Add fullscreen mode
     - [ ] ? Add a read-only API
         - Type: json
         - [ ] Allow content rendering of md/html
@@ -95,5 +99,3 @@
         - [x] can't update when private & random user
         - [x] can delete when public/protected & (random) user
         - [x] can't delete when private & random user
-
-## Done today:

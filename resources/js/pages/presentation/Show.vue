@@ -1,29 +1,48 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted, useId } from 'vue';
+import { safeQuery, fullscreenController } from '@/lib/utils';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import AppWrapper from '@/components/app/AppWrapper.vue';
 import AppContent from '@/components/app/AppContent.vue';
 const props = defineProps<{ presentation: Required<Presentation> }>();
+const id = `slideshow--${useId()}`;
+const abortSignal = new AbortController();
 onMounted(() => {
-    props.presentation.slides.unshift({
-        id: 0,
-        order: 99999999,
-        created_at: "",
-        updated_at: "",
-        title: props.presentation.title,
-        content: "",
-        renderedContent: `
-            <p class="text-center mt-5 mx-auto">
-                <span class="created_on | block">
-                    created on: ${props.presentation.created_at}
-                </span>
-                <span class="creator | block">
-                    by: ${props.presentation.user.name}
-                </span>
-            </p>`,
-        presentation_theme: props.presentation.presentation_theme,
-    });
+    // add frontslide, if not yet added
+    if(props.presentation.slides[0].id !== -1) {
+        props.presentation.slides.unshift({
+            id: -1,
+            order: -1,
+            created_at: "",
+            updated_at: "",
+            title: props.presentation.title,
+            content: "",
+            renderedContent: `
+                <p class="text-center mt-5 mx-auto">
+                    <span class="created_on | block">
+                        created on: ${props.presentation.created_at}
+                    </span>
+                    <span class="creator | block">
+                        by: ${props.presentation.user.name}
+                    </span>
+                </p>`,
+            presentation_theme: props.presentation.presentation_theme,
+        });
+    }
+    // add functionality
+    const slideShow = safeQuery(`#${id}`);
+    const fullscreen = fullscreenController(slideShow);
+    document.addEventListener("keypress", (_e: KeyboardEvent) => {
+        if(!slideShow) return;
+        if(_e.key !== "f") return;
+        if(_e.altKey || _e.ctrlKey) return;
+        fullscreen.toggle();
+    }, {signal: abortSignal.signal});
+});
+onUnmounted(() => {
+    console.log("closing");
+    abortSignal.abort();
 });
 </script>
 
@@ -31,6 +50,8 @@ onMounted(() => {
     <AppWrapper :meta-title="presentation.title">
         <AppContent>
             <slide-show
+                :id
+                tabindex="0"
                 :data-theme="presentation.presentation_theme.title"
                 class="
                     relative

@@ -30,6 +30,31 @@ export async function wait(timeInSeconds: number): Promise<void> {
     });
 }
 
+export function fullscreenController(target: HTMLElement | QueryResult) {
+    function isCapable(_target: unknown): _target is HTMLElement {
+        if(!document.fullscreenEnabled) return false;
+        if(!_target) return false;
+        return true;
+    };
+    const open = async () => {
+        if(!isCapable(target)) return
+        if(document.fullscreenElement) return;
+        return await target.requestFullscreen();
+    };
+    const close = async () => {
+        if(!isCapable(target)) return
+        if(!document.fullscreenElement) return;
+        return await document.exitFullscreen()
+    };
+    const toggle = async () => {
+        if(!isCapable(target)) return
+        if(document.fullscreenElement) return close();
+        return open();
+    }
+
+    return {open, close, toggle};
+}
+
 type Nill = undefined | null;
 type Countable = Nill | string | Array<unknown> | Record<string|number|symbol, unknown>;
 export function plural(countable: Countable, word: string, plural_addition: string = 's'): string {

@@ -37,6 +37,7 @@ Goal: build a backend interface to create a presentation using markdown
     - relative colors: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/hsl
     - stylable select: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select
 - functions:
+    - JS fullscreen: https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
     - JS download text to file: https://stackoverflow.com/questions/61597868/creating-and-downloading-text-file-from-string-in-javascript-blob-createobjectu
 
 ## Project Requirements
