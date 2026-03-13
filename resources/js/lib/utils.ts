@@ -51,7 +51,6 @@ export function fullscreenController(target: QueryResult) {
         if(document.fullscreenElement) return close();
         return open();
     }
-
     return {open, close, toggle};
 }
 
