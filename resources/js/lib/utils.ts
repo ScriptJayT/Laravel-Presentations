@@ -68,7 +68,7 @@ export function plural(countable: Countable, word: string, plural_addition: stri
 }
 
 function getAppProp(_prop: keyof AppServiceShared) {
-    const props = (usePage().props as unknown as AppServiceShared);
+    const props = usePage().props;
     return props[_prop];
 }
 export function getAppEnums() {
@@ -78,8 +78,7 @@ export function getAppName() {
     return getAppProp("appName") as AppServiceShared['appName'];
 }
 export function getUser(_reactive: boolean) {
-    const page = usePage();
-    const auth = page.props.auth as Auth;
+    const auth = usePage().props.auth as Auth;
     if(!auth) return null;
     if(_reactive) return computed(() => auth.user ?? null);
     return auth.user ?? null;
