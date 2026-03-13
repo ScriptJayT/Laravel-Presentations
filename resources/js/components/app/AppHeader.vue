@@ -4,7 +4,7 @@ import { type RouteDefinition } from '@/wayfinder';
 import { safeQuery, getUser } from "@/lib/utils";
 import { Link } from '@inertiajs/vue3';
 import UserDropDown from '@/components/app/UserDropDown.vue';
-import AppLogo from '../global/AppLogo.vue';
+import { AppLogo } from '../global/logo';
 const user = getUser(true);
 type NavItem = {
     title: string;

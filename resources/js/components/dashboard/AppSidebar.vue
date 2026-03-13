@@ -17,7 +17,7 @@ import {
     admin_user_index,
     admin_presentation_index, admin_script_index
 } from '@/routes';
-import AppLogo from '@/components/global/AppLogo.vue';
+import { AppLogo } from '@/components/global/logo';
 
 import { type NavItem } from '@/types';
 

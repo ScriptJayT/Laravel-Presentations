@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-vue-next';
-import { computed } from 'vue';
-import AppLogo from '@/components/global/AppLogo.vue';
-import AppLogoIcon from '@/components/global/AppLogoIcon.vue';
+import { getUser } from '@/lib/utils';
+
+import { AppIcon, AppLogo } from '@/components/global/logo';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -38,21 +38,17 @@ import { toUrl } from '@/lib/utils';
 import { admin_presentation_index } from '@/routes';
 import type { BreadcrumbItem, NavItem } from '@/types';
 
-type Props = {
-    breadcrumbs?: BreadcrumbItem[];
-};
-
-const props = withDefaults(defineProps<Props>(), {
-    breadcrumbs: () => [],
-});
-
-const page = usePage();
-const auth = computed(() => page.props.auth);
+const props = withDefaults(
+    defineProps<{
+        breadcrumbs?: BreadcrumbItem[];
+    }>(),
+    {
+        breadcrumbs: () => [],
+    }
+);
+const user = getUser(true);
 const { isCurrentUrl, whenCurrentUrl } = useCurrentUrl();
-
-const activeItemStyles =
-    'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
-
+const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
@@ -60,7 +56,6 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
 ];
-
 const rightNavItems: NavItem[] = [
     {
         title: 'Repository',
@@ -96,7 +91,7 @@ const rightNavItems: NavItem[] = [
                                 >Navigation Menu</SheetTitle
                             >
                             <SheetHeader class="flex justify-start text-left">
-                                <AppLogoIcon
+                                <AppIcon
                                     class="size-6 fill-current text-black dark:text-white"
                                 />
                             </SheetHeader>
@@ -199,7 +194,6 @@ const rightNavItems: NavItem[] = [
                                 class="size-5 opacity-80 group-hover:opacity-100"
                             />
                         </Button>
-
                         <div class="hidden space-x-1 lg:flex">
                             <template
                                 v-for="item in rightNavItems"
@@ -245,24 +239,27 @@ const rightNavItems: NavItem[] = [
                                 size="icon"
                                 class="relative size-10 w-auto rounded-full p-1 focus-within:ring-2 focus-within:ring-primary"
                             >
-                                <Avatar
-                                    class="size-8 overflow-hidden rounded-full"
-                                >
+                                <Avatar class="size-8 overflow-hidden rounded-full">
                                     <AvatarImage
-                                        v-if="auth.user.avatar"
-                                        :src="auth.user.avatar"
-                                        :alt="auth.user.name"
+                                        v-if="user?.avatar"
+                                        :src="user.avatar"
+                                        :alt="user.name"
                                     />
                                     <AvatarFallback
-                                        class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white"
+                                        class="
+                                            rounded-lg
+                                            font-semibold
+                                            text-black dark:text-white
+                                            bg-neutral-200 dark:bg-neutral-700
+                                            "
                                     >
-                                        {{ getInitials(auth.user?.name) }}
+                                        {{ getInitials(user?.name) }}
                                     </AvatarFallback>
                                 </Avatar>
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" class="w-56">
-                            <UserMenuContent :user="auth.user" />
+                            <UserMenuContent :user />
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
@@ -273,8 +270,13 @@ const rightNavItems: NavItem[] = [
             v-if="props.breadcrumbs.length > 1"
             class="flex w-full border-b border-sidebar-border/70"
         >
-            <div
-                class="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl"
+            <div class="
+                flex items-center justify-start
+                h-12 w-full md:max-w-7xl
+                px-4
+                mx-auto
+                text-neutral-500
+                "
             >
                 <Breadcrumbs :breadcrumbs="breadcrumbs" />
             </div>
