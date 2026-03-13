@@ -68,7 +68,7 @@
     - [ ] ? Add icons icons of User, Protected, Private to index
     - [ ] ? Add a visually interesting bg to index
 - Bugs:
-    - [ ] Create user initial function can't handle emoji's
+    - [x] Create user initial function can't handle emoji's
     - [ ] Dark mode does not set color-scheme (scrollbars don't switch with)
 - Extra's
     - [ ] Improve db-queries for app index, app slideshow
