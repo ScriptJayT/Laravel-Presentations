@@ -2,10 +2,6 @@
 
 ### Done:
 
-- Find better (temp) logo for app
-- Add fullscreen mode
-
-
 ## Global
 
 - [x] 10/03: check on vacature "Functioneel Analyst"
