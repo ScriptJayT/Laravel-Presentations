@@ -10,36 +10,62 @@
 
 ## Project:
 
-- [x] Brainstorm
-- [x] Setup
-- [x] Design
-- [x] Name App
-    laravel - presentations - hel
-    helltation
-    presenthell
-    tationhell
-    hellpres
-    hellpress - empress - hell'press
-    hellshow - hellow
-    pressy
-- [x] Check health route
-- [x] make private models also private from other users
-- [x] allow txt download of script
-- allow for md upload in:
-    - [x] scripts
-    - ? [ ] slides
-- CRUD operations
-    - [x] Presentations
-    - [x] Slides
-    - [x] Scripts
-    - [~] ? Users
-    - [x] cleanup "unreachable" user actions
-    - [x] Guarded actions throw error 405 w/ redirect
-    - ? Themes
-    - ? Atom lock
+- Init
+    - [x] Brainstorm
+    - [x] Setup
+    - [x] Design
+    - [x] Name App
+        laravel - presentations - hel
+        helltation
+        presenthell
+        tationhell
+        hellpres
+        hellpress - empress - hell'press
+        hellshow - hellow
+        pressy
+- App Functions
+    - CRUD operations:
+        - [ ] ? Add an atom lock to all operations
+        - [x] Add presentations
+        - [x] Add slides
+            - [ ] ? Add media/scripts injecting (custom elements, iframes)
+            - [ ] ? Add full bg options
+        - [x] Add scripts
+        - [x] ? Add users
+            - [ ] ? Add avatar option
+            - [ ] ? Add roles
+            - [x] Cleanup "unreachable" user actions
+        - [ ] ? Add themes
+        - [ ] ? Add a media manager
+    - Guarding:
+        - [x] Throw error 403 w/ redirect if not allowed
+        - [x] Make private models also private from other users
+        - [x] ? Make scripts/presentations/slides private-able
+    - Markdown:
+        - Allow download of:
+            - [x] Content of scripts
+            - [ ] ? Whole presentation
+        - Allow upload in:
+            - [x] Scripts
+            - [ ] ? Presentations
+            - [ ] ? Slides
+    - Slideshow:
+        - [ ] Add fullscreen mode
+    - [ ] ? Add a read-only API
+        - Type: json
+        - [ ] Allow content rendering of md/html
+        - [ ] Allow selection of script/slides/both
+- App Look
+    - [ ] Find better (temp) logo for app
+    - [x] Cleanup app darkmode
+    - [x] Add appname logo to app header
+    - [ ] ? Add a visually interesting bg to index
+- Extra's
+    - [x] Add a check health route to dashboard
+    - [ ] ? Add password rotation in queue for bot users
 - [~] Test
     - [x] add extra user to seeder to test private scripts/presentations
-    - Presentation CRUD
+    - Presentation CRUD:
         - [x] can store a new entry
         - [x] can read when public public/protected & random user
         - [x] can't read when private & random user
@@ -47,7 +73,7 @@
         - [x] can't update when private & random user
         - [x] can delete when public/protected & (random) user
         - [x] can't delete when private & random user
-    - Script CRUD
+    - Script CRUD:
         - [x] can store a new entry
         - [x] can read when public public/protected & random user
         - [x] can't read when private & random user
@@ -55,26 +81,11 @@
         - [x] can't update when private & random user
         - [x] can delete when public/protected & (random) user
         - [x] can't delete when private & random user
-    - Slides CRUD
+    - Slides CRUD:
         - [x] can store a new entry
         - [x] can update when public public/protected & (random) user
         - [x] can't update when private & random user
         - [x] can delete when public/protected & (random) user
         - [x] can't delete when private & random user
-- [x] ? Private PresentationScripts
-- [x] cleanup app darkmode
-- [x] add appname logo to app header
-- [ ] find better (temp) logo for app
-- [ ] add fullscreen mode to slideshow
-- ? visually interesting bg in app index
-- ? Slide bg options
-- ? upload manager for images
-- ? User Avatar upload
-- ? User Roles
-- ? Js Script injecting (custom elements, iframes)
-- ? Read-only API
-    - json
-    - md | html content
-    - script | slides | both
 
 ## Done today:
