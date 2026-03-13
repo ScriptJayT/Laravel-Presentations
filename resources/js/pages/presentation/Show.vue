@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
-import { Head } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import AppWrapper from '@/components/app/AppWrapper.vue';
 import AppContent from '@/components/app/AppContent.vue';
 const props = defineProps<{ presentation: Required<Presentation> }>();
-onMounted(()=>{
+onMounted(() => {
     props.presentation.slides.unshift({
         id: 0,
         order: 99999999,
@@ -29,22 +28,22 @@ onMounted(()=>{
 </script>
 
 <template>
-    <Head :title="presentation.title" />
-
-    <AppWrapper>
+    <AppWrapper :meta-title="presentation.title">
         <AppContent>
-            <slide-show class="
-                relative
-                block h-[80vh]
-                mt-[7.5vh]
-                space-y-10
-                px-8
-                overflow-x-clip overflow-y-scroll
-                "
+            <slide-show
+                :data-theme="presentation.presentation_theme.title"
+                class="
+                    relative
+                    block h-[80vh]
+                    mt-[7.5vh]
+                    space-y-10
+                    px-8
+                    overflow-x-clip overflow-y-scroll
+                    "
             >
                 <template v-for="(_slide, _index) in presentation.slides">
                     <slide
-                        :data-theme="_slide.presentation_theme.title + ' ' + presentation.presentation_theme.title"
+                        :data-theme="_slide.presentation_theme.title"
                         class="
                             ct-inline-size
                             relative isolate
