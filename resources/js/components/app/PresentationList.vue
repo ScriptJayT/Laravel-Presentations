@@ -41,7 +41,7 @@ const props = withDefaults(
                 {{ plural(presentations, 'presentation') }} found
             </span>
         </header>
-        <div class="grid auto-rows-min gap-x-10 gap-y-12 md:grid-cols-3">
+        <div class="grid auto-rows-min gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
             <template v-for="_presentation in presentations">
                 <PresentationLink
                     :presentation="_presentation"
