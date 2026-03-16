@@ -2,6 +2,8 @@
 
 ### Done:
 
+- App index columns breaking on smaller screens
+
 ## Global
 
 - [x] 10/03: check on vacature "Functioneel Analyst"
@@ -65,7 +67,7 @@
     - [ ] ? Add a visually interesting bg to index
 - Bugs:
     - [x] Create user initial function can't handle emoji's
-    - [ ] App index columns breaking on smaller screens
+    - [x] App index columns breaking on smaller screens
     - [ ] Dark mode does not set color-scheme (scrollbars don't switch with)
 - Extra's
     - [ ] Improve db-queries for app index, app slideshow

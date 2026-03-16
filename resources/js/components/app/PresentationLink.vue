@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import type { Auth, Presentation } from '@/types';
+import type { Presentation } from '@/types';
 import { presentations, scripts } from '@/routes';
-import { usePage } from '@inertiajs/vue3';
+import { getUser } from '@/lib/utils';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
 import VisibilityBadge from "@/components/global/model/VisibilityBadge.vue"
-
-const page = usePage();
-const user = (page.props.auth as Auth)?.user ?? null;
+const user = getUser(false);
 withDefaults(
     defineProps<{
         presentation: Presentation;
@@ -28,8 +26,9 @@ withDefaults(
         class="
             relative
             flex flex-col
-            aspect-video
             px-4 py-5
+            min-h-60
+            md:aspect-video
             border rounded-xl border-gray-500 dark:border-gray-50/50
             bg-neutral-50 dark:bg-neutral-800
             "
@@ -39,23 +38,31 @@ withDefaults(
             :visibility="presentation.presentation_visibility"
             class="absolute top-0 right-4 -translate-y-1/2"
         />
-        <h3 class="text-xl font-semibold">
+        <h3 class="text-xl font-semibold mb-2">
             {{ presentation.title }}
         </h3>
 
         <template v-if="showUser">
-            <span class="creator | block">
+            <span class="creator | block mb-4">
                 by: {{ user?.id === presentation.user.id ? "You" : presentation.user.name }}
             </span>
         </template>
 
-        <div class="mt-auto grid grid-cols-2 gap-x-4">
+        <div class="
+            ct-inline-size
+            flex flex-wrap
+            gap-x-4 gap-y-2
+            mt-auto
+            "
+        >
             <a
                 :href="presentations(presentation.slug).url" target="_blank"
                 :title="`Open presentation: ${presentation.title}`"
                 class="
+                    grow
                     cursor-pointer
-                    block px-5 py-1.5
+                    block min-w-fit
+                    px-5 py-1.5
                     rounded-md border-2
                     border-neutral-500 dark:border-cyan-900
                     hover:border-cyan-600 dark:hover:border-cyan-500
@@ -75,8 +82,10 @@ withDefaults(
                     :href="scripts(presentation.presentation_script.id).url" target="_blank"
                     :title="`Open script: ${presentation.presentation_script.title}`"
                     class="
+                        grow
                         cursor-pointer
-                        block px-5 py-1.5
+                        block min-w-fit
+                        px-5 py-1.5
                         rounded-md border-2
                         border-neutral-500 dark:border-cyan-900
                         hover:border-cyan-600 dark:hover:border-cyan-500
