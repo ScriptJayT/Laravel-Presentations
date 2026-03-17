@@ -19,6 +19,7 @@ class PresentationScript extends Model implements ModelHasUserVisibilityRules
     ];
 
     protected $with = [
+        // needs to always be eager loaded to check access
         'user',
         'presentationVisibility',
     ];
@@ -48,12 +49,12 @@ class PresentationScript extends Model implements ModelHasUserVisibilityRules
     public function presentations(): HasMany
     {
         return $this->hasMany(Presentation::class)
-            ->select('id', 'title', 'slug');
+            ->select('presentation_script_id', 'id', 'title');
     }
 
     public function presentationVisibility(): BelongsTo
     {
         return $this->belongsTo(PresentationVisibility::class)
-            ->select('id', 'title', 'name');
+            ->select('id', 'title');
     }
 }

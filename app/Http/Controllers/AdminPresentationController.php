@@ -29,10 +29,9 @@ class AdminPresentationController extends Controller
             'user_id', 'presentation_visibility_id', 'presentation_script_id',
         )
             ->with([
+                'presentationScript',
                 /** always inlcude the id, as db doesn't otherwise now what to look against */
-                'user' => fn ($q) => $q->select('id', 'name'),
                 'presentationVisibility' => fn ($q) => $q->select('id', 'title', 'name'),
-                'presentationScript' => fn ($q) => $q->select('id', 'title'),
             ])
             ->get();
 
@@ -53,8 +52,7 @@ class AdminPresentationController extends Controller
         )) {
             return $notAllowedRedirect;
         }
-
-        $presentation->load(['slides' => fn ($q) => $q->orderBy('order', 'desc')]);
+        $presentation->load('slides');
         $rules = PresentationVisibility::all(['id', 'name'])->all();
         $scripts = PresentationScript::all(['id', 'title'])->all();
 

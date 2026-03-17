@@ -27,8 +27,6 @@ class AdminPresentationScriptController extends Controller
             'presentation_visibility_id',
         )
             ->with([
-                /** always inlcude the id, as db doesn't otherwise now what to look against */
-                'user' => fn ($q) => $q->select('id', 'name'),
                 'presentationVisibility' => fn ($q) => $q->select('id', 'title', 'name'),
             ])
             ->get();
@@ -88,11 +86,7 @@ class AdminPresentationScriptController extends Controller
         )) {
             return $notAllowedRedirect;
         }
-
-        $script->load([
-            // need the presentation_script_id for load to work
-            'presentations' => fn ($q) => $q->select('presentation_script_id', 'id', 'title'),
-        ]);
+        $script->load('presentations');
         $rules = PresentationVisibility::all(['id', 'name'])->all();
 
         return Inertia::render('dashboard/model-script/Edit', [

@@ -1,14 +1,14 @@
 ## Today:
 
-- Improve db-queries for app index, app slideshow
 - ? Add a visually interesting bg to index
 
 ### Done:
 
+- Improve db-queries for app index, app slideshow
 - Dark mode does not set color-scheme (scrollbars don't switch with)
 - App index columns breaking on smaller screens
 
-## Global
+## Global:
 
 - [ ] make press bout project
 - [ ] finish project before 20/03
@@ -82,7 +82,7 @@
     - [x] App index columns breaking on smaller screens
     - [x] Dark mode does not set color-scheme (scrollbars don't switch with)
 - Extra's
-    - [ ] Improve db-queries for app index, app slideshow
+    - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
     - [ ] ? Add password rotation in queue for bot users
 - Test:
