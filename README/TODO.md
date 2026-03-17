@@ -81,8 +81,8 @@
     - [x] ? Add icons icons of User, Protected, Private to index
     - [ ] ? Add a visually interesting bg to index
     - [ ] ? Form submit button should be sticky bottom-0
-- [ ] Bugs:
-    - [ ] Dashboard app icon squishes when closing sidebar
+- Bugs:
+    - [x] Dashboard app icon squishes when closing sidebar
     - [x] Create user initial function can't handle emoji's
     - [x] App index columns breaking on smaller screens
     - [x] Dark mode does not set color-scheme (scrollbars don't switch with)
