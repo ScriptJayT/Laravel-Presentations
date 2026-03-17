@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Scripts',
-            'content' => "Scripts are like mini-thesis \n\n You can optionally link your script to your presentation",
+            'content' => "Scripts are like mini-thesis \n\nYou can optionally link your script to your presentation",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
@@ -93,13 +93,13 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Title Shift',
-            'content' => "MD titles in slides and scripts are shifted down automatically: \n'\# title' which would be an h1- shall be rendered as an h3 in slides, for example. \n\nSo you don't need to worry about any semantic differences in your text versus the actual render.",
+            'content' => "MD titles in slides and scripts are shifted down automatically: \n\n'\# title' would be an \<h1\> \nbut gets rendered as an \<h3\> in slides, for example. \n\nSo you don't need to worry about any semantic differences in your text versus the actual render.",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Render Test',
-            'content' => "\n\n# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\`text\` => `code` \n\=\=text\=\= => ==highlight== \n\n- unordered list \n- with \+ \n- or \- \n- or \* \n\n1. ordered list \n1. with 1.  \n\n- [ ] task \n- [x] finished \n\nterm \n: definition \n\nterm \n: definition \n\n> blockquote with \> \n\nSeperator with \-\-\-: \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```",
+            'content' => "# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\`text\` => `code` \n\=\=text\=\= => ==highlight== \n\n- unordered list \n- with \+ \n- or \- \n- or \* \n\n1. ordered list \n1. with 1.  \n\n- [ ] task \n- [x] finished \n\nterm \n: definition \n\nterm \n: definition \n\n> blockquote with \> \n\nSeperator with \-\-\-: \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```",
         ]);
 
         Presentation::factory()->create([
