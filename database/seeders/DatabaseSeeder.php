@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\Visibility;
 use App\Models\Presentation;
+use App\Models\PresentationScript;
 use App\Models\PresentationSlide;
 use App\Models\PresentationTheme;
 use App\Models\PresentationVisibility;
@@ -38,20 +39,25 @@ class DatabaseSeeder extends Seeder
             'title' => Visibility::PROTECTED->title(),
             'name' => 'Protected',
         ]);
-        PresentationVisibility::factory()->create([
+        $privateVisibilityRule = PresentationVisibility::factory()->create([
             'title' => Visibility::PRIVATE->title(),
             'name' => 'Private',
         ]);
 
         $defaultTheme = PresentationTheme::factory()->create(['title' => 'base']);
 
+        $exampleScript = PresentationScript::factory()->create([
+            'title' => 'Welcome to Hell\'Press',
+            'user_id' => $botUser->id,
+            'presentation_visibility_id' => $loginVisibilityRule->id,
+        ]);
         $examplePresentation = Presentation::factory()->create([
             'title' => 'Welcome to Hell\'Press',
             'slug' => Str::of('Welcome to Hell\'Press')->slug(),
             'user_id' => $botUser->id,
             'presentation_visibility_id' => $loginVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
-            'presentation_script_id' => null,
+            'presentation_script_id' => $exampleScript->id,
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
@@ -101,6 +107,14 @@ class DatabaseSeeder extends Seeder
             'slug' => Str::of('Hello world')->slug(),
             'user_id' => $botUser->id,
             'presentation_visibility_id' => $publicVisibilityRule->id,
+            'presentation_theme_id' => $defaultTheme->id,
+            'presentation_script_id' => null,
+        ]);
+        Presentation::factory()->create([
+            'title' => 'Private Presentation',
+            'slug' => Str::of('private')->slug(),
+            'user_id' => $botUser->id,
+            'presentation_visibility_id' => $privateVisibilityRule->id,
             'presentation_theme_id' => $defaultTheme->id,
             'presentation_script_id' => null,
         ]);

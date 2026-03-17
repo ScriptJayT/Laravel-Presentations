@@ -1,5 +1,6 @@
 ## Today:
 
+- write script
 - ? Add a visually interesting bg to index
 
 ### Done:
