@@ -110,8 +110,8 @@ class AdminPresentationScriptController extends Controller
             'content' => '',
             'visibility' => 'required|exists:presentation_visibilities,id',
         ])->validated();
-        $script->title = e($validated['title']);
-        $script->content = e($validated['content']);
+        $script->title = $validated['title'];
+        $script->content = $validated['content'];
         $script->presentation_visibility_id = $validated['visibility'];
         $script->save();
 

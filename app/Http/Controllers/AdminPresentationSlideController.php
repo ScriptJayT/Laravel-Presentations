@@ -77,7 +77,7 @@ class AdminPresentationSlideController extends Controller
         ])->validated();
 
         $slide->title = $validated['title'];
-        $slide->content = htmlspecialchars($validated['content'], flags: ENT_NOQUOTES);
+        $slide->content = $validated['content'];
         $slide->order = $validated['order'];
         $slide->save();
 
