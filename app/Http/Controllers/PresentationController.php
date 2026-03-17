@@ -52,13 +52,19 @@ class PresentationController extends Controller
 
     public function show(Presentation $presentation): mixed
     {
-        $presentation->load('slides');
+        $presentation->load([
+            'slides' => fn ($q) => $q->select(
+                'id', 'presentation_id', 'title', 'content'
+            ),
+        ]);
 
         return $this->isAllowedFurter(
             _visibility: $presentation->presentationVisibility,
             _creator: $presentation->user
         )
-            ? Inertia::render('presentation/Show', ['presentation' => $presentation])
+            ? Inertia::render('presentation/Show', [
+                'presentation' => $presentation,
+            ])
             : Redirect::route('home');
     }
 }

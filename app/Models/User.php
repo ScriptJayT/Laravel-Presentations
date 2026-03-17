@@ -59,11 +59,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function presentationScripts(): HasMany
     {
-        return $this->hasMany(PresentationScript::class);
+        return $this->hasMany(PresentationScript::class)
+            ->select('user_id', 'id', 'title');
     }
 
     public function presentations(): HasMany
     {
-        return $this->hasMany(Presentation::class);
+        return $this->hasMany(Presentation::class)
+            ->select('user_id', 'id', 'title');
     }
 }

@@ -41,16 +41,19 @@ class PresentationScript extends Model implements ModelHasUserVisibilityRules
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)
+            ->select('id', 'name');
     }
 
     public function presentations(): HasMany
     {
-        return $this->hasMany(Presentation::class);
+        return $this->hasMany(Presentation::class)
+            ->select('id', 'title', 'slug');
     }
 
     public function presentationVisibility(): BelongsTo
     {
-        return $this->belongsTo(PresentationVisibility::class);
+        return $this->belongsTo(PresentationVisibility::class)
+            ->select('id', 'title', 'name');
     }
 }

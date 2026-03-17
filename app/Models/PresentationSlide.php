@@ -11,7 +11,7 @@ class PresentationSlide extends Model
 {
     use HasFactory, HasMarkdownRenderableContent;
 
-    protected $with = ['presentationTheme'];
+    // protected $with = ['presentationTheme'];
 
     protected $fillable = [
         'title', 'content', 'order',
@@ -34,11 +34,13 @@ class PresentationSlide extends Model
 
     public function presentation(): BelongsTo
     {
-        return $this->belongsTo(Presentation::class);
+        return $this->belongsTo(Presentation::class)
+            ->select('id', 'title');
     }
 
     public function presentationTheme(): BelongsTo
     {
-        return $this->belongsTo(PresentationTheme::class);
+        return $this->belongsTo(PresentationTheme::class)
+            ->select('id', 'title');
     }
 }

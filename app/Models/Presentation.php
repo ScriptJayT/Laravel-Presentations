@@ -23,7 +23,7 @@ class Presentation extends Model implements ModelHasUserVisibilityRules
     protected $with = [
         'user',
         'presentationVisibility',
-        'presentationTheme',
+        // 'presentationTheme',
         'presentationScript',
     ];
 
@@ -45,22 +45,26 @@ class Presentation extends Model implements ModelHasUserVisibilityRules
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)
+            ->select('id', 'name');
     }
 
     public function presentationScript(): BelongsTo
     {
-        return $this->belongsTo(PresentationScript::class);
+        return $this->belongsTo(PresentationScript::class)
+            ->select('id', 'title');
     }
 
     public function presentationVisibility(): BelongsTo
     {
-        return $this->belongsTo(PresentationVisibility::class);
+        return $this->belongsTo(PresentationVisibility::class)
+            ->select('id', 'title', 'name');
     }
 
     public function presentationTheme(): BelongsTo
     {
-        return $this->belongsTo(PresentationTheme::class);
+        return $this->belongsTo(PresentationTheme::class)
+            ->select('id', 'title');
     }
 
     public function slides(): HasMany

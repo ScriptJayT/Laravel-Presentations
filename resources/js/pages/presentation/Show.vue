@@ -53,7 +53,7 @@ onUnmounted(() => {
         <AppContent>
             <slide-show
                 :id
-                :data-theme="presentation.presentation_theme.title"
+                data-theme="base"
                 class="
                     relative
                     block h-[80vh]
@@ -65,7 +65,7 @@ onUnmounted(() => {
             >
                 <template v-for="(_slide, _index) in presentation.slides">
                     <slide
-                        :data-theme="_slide.presentation_theme.title"
+                        data-theme="base"
                         tabindex="0"
                         class="
                             ct-inline-size
@@ -135,7 +135,7 @@ onUnmounted(() => {
         }
     }
     slide {
-        &[data-theme^='base'] {
+        &[data-theme='base'] {
             display: flex;
             flex-direction: column;
             justify-content: center;
