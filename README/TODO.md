@@ -1,16 +1,27 @@
 ## Today:
 
+- Improve db-queries for app index, app slideshow
+- ? Add a visually interesting bg to index
+
 ### Done:
 
+- Dark mode does not set color-scheme (scrollbars don't switch with)
 - App index columns breaking on smaller screens
 
 ## Global
 
-- [x] 10/03: check on vacature "Functioneel Analyst"
-    - check mailbox
-    - send friendly reminder mail for updates
 - [ ] make press bout project
 - [ ] finish project before 20/03
+- vacature "Functioneel Analyst"
+    - [x] 10/03: check on status
+        - check mailbox
+        - send reminder mail for updates
+    - [ ] 18/03: check on status
+- vacature "Jr JS Mobile Developer"
+    - [ ] 20/03 check on status
+        - app.wiggli
+        - chack mailbox
+        - send reminder mail for updates
 
 ## Project:
 
@@ -68,7 +79,7 @@
 - Bugs:
     - [x] Create user initial function can't handle emoji's
     - [x] App index columns breaking on smaller screens
-    - [ ] Dark mode does not set color-scheme (scrollbars don't switch with)
+    - [x] Dark mode does not set color-scheme (scrollbars don't switch with)
 - Extra's
     - [ ] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
