@@ -4,10 +4,13 @@ import { getAppName } from '@/lib/utils';
 </script>
 
 <template>
-    <div class="
-        grid place-content-center
-        size-8 rounded-md
-        bg-sidebar-primary
+    <div
+        data-component="global/AppLogo"
+        class="
+            shrink-0
+            grid place-content-center
+            size-8 rounded-md
+            bg-sidebar-primary
         "
     >
         <AppIcon class="
@@ -17,7 +20,13 @@ import { getAppName } from '@/lib/utils';
             "
         />
     </div>
-    <div class="ml-1 grid flex-1 text-left text-sm">
+    <div class="
+        flex-1
+        grid
+        ml-1
+        text-left text-sm
+        "
+    >
         <span class="mb-0.5 truncate leading-tight font-semibold">
             {{ getAppName() }}
         </span>
