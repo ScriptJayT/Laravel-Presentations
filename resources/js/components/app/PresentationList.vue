@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
-import { plural } from '@/lib/utils';
+import { plural, cn } from '@/lib/utils';
 import { SectionHeadingClasses } from '../global/text';
 import PresentationLink from '@/components/app/PresentationLink.vue';
 import { FunctionalComponent } from 'vue';
@@ -23,13 +23,27 @@ const props = withDefaults(
 <template>
     <section
         data-component="app/PresentationList"
-        :class
-        class="space-y-4 rounded-4xl border-3 bg-card px-8 pt-8 pb-10 shadow-lg shadow-gray-500 dark:shadow-md dark:shadow-gray-400"
+        :class="
+            cn(
+                props.class,
+                ['space-y-4'],
+                ['rounded-4xl', 'border-3', 'bg-card'],
+                ['px-5', 'md:px-6', 'lg:px-8'],
+                ['pt-5', 'md:pt-6', 'lg:pt-8'],
+                ['pb-6', 'md:pb-8', 'lg:pb-10'],
+                [
+                    'shadow-lg',
+                    'shadow-gray-500',
+                    'dark:shadow-md',
+                    'dark:shadow-gray-400',
+                ],
+            )
+        "
     >
         <header class="mb-10 flex flex-wrap gap-4">
             <div class="flex items-center gap-4">
-                <span v-if="icon" class="block shrink-0">
-                    <component :is="icon" class="size-7" />
+                <span v-if="icon" class="hidden sm:block shrink-0">
+                    <component :is="icon" class="size-6 md:size-7" />
                 </span>
                 <h2 :class="SectionHeadingClasses()">
                     {{ title }}
@@ -40,7 +54,7 @@ const props = withDefaults(
             </span>
         </header>
         <div
-            class="grid auto-rows-min gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3"
+            class="grid auto-rows-min gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
         >
             <template v-for="_presentation in presentations">
                 <PresentationLink
