@@ -50,7 +50,6 @@ const buttonStyles = cn(
         :class="
             cn(
                 ['relative', 'flex', 'flex-col'],
-                // ['min-h-50', 'sm:min-h-auto'],
                 ['md:aspect-video'],
                 ['px-4', 'py-5'],
                 ['rounded-xl', 'border'],
@@ -67,18 +66,17 @@ const buttonStyles = cn(
         <h3 :class="cn(SubSectionHeadingClasses(), 'mb-2')">
             {{ presentation.title }}
         </h3>
-
-        <template v-if="showUser">
-            <span class="creator | mb-4 block italic">
-                by:
-                {{
-                    user?.id === presentation.user.id
-                        ? 'You'
-                        : presentation.user.name
-                }}
-            </span>
-        </template>
-
+        <span
+            v-if="showUser"
+            class="creator | mb-4 block italic"
+        >
+            by:
+            {{
+                user?.id === presentation.user.id
+                    ? 'You'
+                    : presentation.user.name
+            }}
+        </span>
         <div
             class="ct-inline-size | mt-auto pt-5 flex flex-wrap gap-x-4 gap-y-2 sm:justify-center"
         >
@@ -100,7 +98,6 @@ const buttonStyles = cn(
                 Read
             </a>
         </div>
-
         <PlaceholderPattern :interactable="false" />
     </div>
 </template>
