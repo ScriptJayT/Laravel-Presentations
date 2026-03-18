@@ -86,6 +86,15 @@
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
     - [ ] ? Add password rotation in queue for bot users
+    - [ ] ? MD support for:
+        - [x] underline: ` __text__ `
+        - small text: ` -# text `
+        - spoilers: `||text||`
+        - supscript: `lorem^(text)`
+        - subpscript: `lorem~(text)`
+        - multiline quote: `>>> text \n text \n\n`
+    - [ ] ? MD rendering:
+        - syntax highlighting in code blocks: ` ```lang `
 - Test:
     - [x] Add extra temp user to seeder to manually test private scripts/presentations
     - Presentation CRUD:

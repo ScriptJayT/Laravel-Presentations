@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\MdExtensions\Extensions\UnderlineExtension;
 use Illuminate\Support\Str;
 use League\CommonMark\Extension\DescriptionList\DescriptionListExtension;
 use League\CommonMark\Extension\ExternalLink\ExternalLinkExtension;
@@ -55,6 +56,7 @@ trait HasMarkdownRenderableContent
                 new HighlightExtension,
                 new ExternalLinkExtension,
                 new DescriptionListExtension,
+                new UnderlineExtension,
 
                 ...$this->getMdExtensions(),
             ]
