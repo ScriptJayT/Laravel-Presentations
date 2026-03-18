@@ -19,17 +19,25 @@ withDefaults(
 );
 const buttonStyles = [
     'grow',
-    'cursor-pointer', 'select-none',
+    ['cursor-pointer', 'select-none'],
     'block',
-    'min-w-fit', 'max-w-1/2',
-    'px-5', 'py-1.5',
-    'rounded-md', 'border-2',
-    'border-neutral-500', 'hover:border-cyan-600', 'focus-visible:border-cyan-600',
-    'dark:border-cyan-900', 'dark:hover:border-cyan-500', 'dark:focus-visible:border-cyan-500',
-    'outline-offset-6', 'focus-visible:outline-2',
+    ['min-w-fit', 'max-w-1/2'],
+    ['px-5', 'py-1.5'],
+    ['rounded-md', 'border-2'],
+    [
+        'border-neutral-500',
+        'hover:border-cyan-600',
+        'focus-visible:border-cyan-600',
+    ],
+    [
+        'dark:border-cyan-900',
+        'dark:hover:border-cyan-500',
+        'dark:focus-visible:border-cyan-500',
+    ],
+    ['outline-offset-6', 'focus-visible:outline-2'],
     'text-center',
-    'hover:scale-105', 'focus-visible:scale-105',
-    'bg-background', 'hover:bg-background/90',
+    ['hover:scale-105', 'focus-visible:scale-105'],
+    ['bg-background', 'hover:bg-background/90'],
     'transition-all',
 ];
 </script>
@@ -72,7 +80,7 @@ const buttonStyles = [
         </template>
 
         <div
-            class="ct-inline-size mt-auto flex flex-wrap gap-x-4 gap-y-2 sm:justify-center"
+            class="ct-inline-size | mt-auto flex flex-wrap gap-x-4 gap-y-2 sm:justify-center"
         >
             <a
                 :href="presentations(presentation.slug).url"
@@ -82,16 +90,15 @@ const buttonStyles = [
             >
                 Present
             </a>
-            <template v-if="presentation.presentation_script">
-                <a
-                    :href="scripts(presentation.presentation_script.id).url"
-                    target="_blank"
-                    :title="`Open script: ${presentation.presentation_script.title}`"
-                    :class="buttonStyles"
-                >
-                    Read
-                </a>
-            </template>
+            <a
+                v-if="presentation.presentation_script"
+                :href="scripts(presentation.presentation_script.id).url"
+                target="_blank"
+                :title="`Open script: ${presentation.presentation_script.title}`"
+                :class="buttonStyles"
+            >
+                Read
+            </a>
         </div>
 
         <PlaceholderPattern :interactable="false" />
