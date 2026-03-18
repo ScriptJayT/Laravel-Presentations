@@ -17,7 +17,7 @@ withDefaults(
         showUser: true,
     },
 );
-const buttonStyles = [
+const buttonStyles = cn(
     'grow',
     ['cursor-pointer', 'select-none'],
     'block',
@@ -39,7 +39,7 @@ const buttonStyles = [
     ['hover:scale-105', 'focus-visible:scale-105'],
     ['bg-background', 'hover:bg-background/90'],
     'transition-all',
-];
+);
 </script>
 
 <template>
