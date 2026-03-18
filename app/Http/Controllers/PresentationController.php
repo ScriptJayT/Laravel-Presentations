@@ -22,11 +22,11 @@ class PresentationController extends Controller
             /** to allow eager loading to work when selecting, exact id's are required */
             'user_id', 'presentation_visibility_id', 'presentation_script_id',
         )
-            ->with(
+            ->with([
                 'user',
-                'presentationVisibility',
                 'presentationScript',
-            )
+                'presentationVisibility' => fn ($q) => $q->select('id', 'title', 'name'),
+            ])
             ->get()
             ->sortBy(
                 callback: fn ($_p) => $_p->presentationVisibility->id,
