@@ -54,7 +54,11 @@ const props = withDefaults(
             </span>
         </header>
         <div
-            class="grid auto-rows-min gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
+            :class="cn(
+                ['grid', 'auto-rows-min'],
+                ['gap-x-5', 'gap-y-6', 'md:gap-x-10', 'md:gap-y-12'],
+                ['sm:grid-cols-2', 'lg:grid-cols-3']
+            )"
         >
             <template v-for="_presentation in presentations">
                 <PresentationLink

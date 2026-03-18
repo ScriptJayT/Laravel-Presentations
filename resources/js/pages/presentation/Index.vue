@@ -27,7 +27,7 @@ defineProps<{
                         :show-user="false"
                         :icon="User"
                         :presentations="allCreatorPresentations"
-                        class="min-h-80"
+                        class="min-h-50 md:min-h-80"
                     />
                     <PresentationList
                         title="Protected slideshows from everyone:"
