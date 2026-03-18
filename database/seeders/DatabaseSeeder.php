@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Render Test',
-            'content' => "# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\~\~text\~\~ => ~~strikethrough~~ \n\`text\` => `code` \n\=\=text\=\= => ==highlight== \n\n- unordered list \n- with \+ \n- or \- \n- or \* \n\n1. ordered list \n1. with 1.  \n\n- [ ] task \n- [x] finished \n\nterm \n: definition \n\nterm \n: definition \n\n> blockquote with \> \n\nSeperator with \-\-\-: \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```",
+            'content' => "# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\__text\__ => __underline__ \n\~\~text\~\~ => ~~strikethrough~~ \n\`text\` => `code` \n\=\=text\=\= => ==highlight== \n\n- unordered list \n- with \+ \n- or \- \n- or \* \n\n1. ordered list \n1. with 1.  \n\n- [ ] task \n- [x] finished \n\nterm \n: definition \n\nterm \n: definition \n\n> blockquote with \> \n\nSeperator with \-\-\-: \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```",
         ]);
 
         Presentation::factory()->create([
