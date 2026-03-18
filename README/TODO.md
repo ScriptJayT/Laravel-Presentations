@@ -18,12 +18,7 @@
     - [x] 10/03: check on status
         - check mailbox
         - send reminder mail for updates
-    - [ ] 18/03: check on status
-- vacature "Jr JS Mobile Developer"
-    - [ ] 20/03 check on status
-        - app.wiggli
-        - chack mailbox
-        - send reminder mail for updates
+    - [x] 18/03: check on status
 
 ## Project:
 
