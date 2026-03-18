@@ -16,9 +16,12 @@ final class UnderlineRenderer implements NodeRendererInterface, XmlNodeRendererI
     {
         Delimiter::assertInstanceOf($node);
 
+        $attr = $node->data->get('attributes');
+        // $attr = ['test' => 'value'];
+
         return new HtmlElement(
             'u',
-            $node->data->get('attributes'),
+            $attr,
             $childRenderer->renderNodes($node->children())
         );
     }
