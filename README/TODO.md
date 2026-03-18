@@ -5,6 +5,7 @@
 
 ### Done:
 
+- Fix presentation not showing bug
 - Dashboard app icon squishes when closing sidebar
 - Improve db-queries for app index, app slideshow
 - Dark mode does not set color-scheme (scrollbars don't switch with)
