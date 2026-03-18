@@ -17,6 +17,21 @@ withDefaults(
         showUser: true,
     },
 );
+const buttonStyles = [
+    'grow',
+    'cursor-pointer', 'select-none',
+    'block',
+    'min-w-fit', 'max-w-1/2',
+    'px-5', 'py-1.5',
+    'rounded-md', 'border-2',
+    'border-neutral-500', 'hover:border-cyan-600', 'focus-visible:border-cyan-600',
+    'dark:border-cyan-900', 'dark:hover:border-cyan-500', 'dark:focus-visible:border-cyan-500',
+    'outline-offset-6', 'focus-visible:outline-2',
+    'text-center',
+    'hover:scale-105', 'focus-visible:scale-105',
+    'bg-background', 'hover:bg-background/90',
+    'transition-all',
+];
 </script>
 
 <template>
@@ -63,7 +78,7 @@ withDefaults(
                 :href="presentations(presentation.slug).url"
                 target="_blank"
                 :title="`Open presentation: ${presentation.title}`"
-                class="block max-w-1/2 min-w-fit grow cursor-pointer rounded-md border-2 border-neutral-500 bg-background px-5 py-1.5 text-center outline-offset-6 transition-all hover:scale-105 hover:border-cyan-600 hover:bg-background/90 focus-visible:scale-105 focus-visible:border-cyan-600 focus-visible:outline-2 dark:border-cyan-900 dark:hover:border-cyan-500 dark:focus-visible:border-cyan-500"
+                :class="buttonStyles"
             >
                 Present
             </a>
@@ -72,7 +87,7 @@ withDefaults(
                     :href="scripts(presentation.presentation_script.id).url"
                     target="_blank"
                     :title="`Open script: ${presentation.presentation_script.title}`"
-                    class="block max-w-1/2 min-w-fit grow cursor-pointer rounded-md border-2 border-neutral-500 bg-background px-5 py-1.5 text-center outline-offset-6 transition-all hover:scale-105 hover:border-cyan-600 hover:bg-background/90 focus-visible:scale-105 focus-visible:border-cyan-600 focus-visible:outline-2 dark:border-cyan-900 dark:hover:border-cyan-500 dark:focus-visible:border-cyan-500"
+                    :class="buttonStyles"
                 >
                     Read
                 </a>
