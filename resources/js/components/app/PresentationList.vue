@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type Presentation } from '@/types';
 import { plural } from '@/lib/utils';
-import { SectionHeading, SectionHeadingClasses } from '../global/text';
+import { SectionHeadingClasses } from '../global/text';
 import PresentationLink from '@/components/app/PresentationLink.vue';
 import { FunctionalComponent } from 'vue';
 const props = withDefaults(
@@ -16,7 +16,7 @@ const props = withDefaults(
     {
         showGuard: false,
         showUser: true,
-    }
+    },
 );
 </script>
 
@@ -24,24 +24,24 @@ const props = withDefaults(
     <section
         data-component="app/PresentationList"
         :class
-        class="
-            space-y-4
-            px-8 pt-8 pb-10
-            border-3 rounded-4xl
-            shadow-lg shadow-gray-500 dark:shadow-md dark:shadow-gray-400
-            bg-card
-            "
+        class="space-y-4 rounded-4xl border-3 bg-card px-8 pt-8 pb-10 shadow-lg shadow-gray-500 dark:shadow-md dark:shadow-gray-400"
     >
-        <header class="flex gap-4 justify-between flex-wrap mb-10">
-            <div class="flex gap-4 items-center">
-                <component v-if="icon" :is="icon" class="size-7" />
-                <h2 :class="SectionHeadingClasses()"> {{ title }} </h2>
+        <header class="mb-10 flex flex-wrap gap-4">
+            <div class="flex items-center gap-4">
+                <span v-if="icon" class="block shrink-0">
+                    <component :is="icon" class="size-7" />
+                </span>
+                <h2 :class="SectionHeadingClasses()">
+                    {{ title }}
+                </h2>
             </div>
-            <span class="block min-w-fit ml-auto my-0 italic">
+            <span class="my-0 ml-auto block min-w-fit italic">
                 {{ plural(presentations, 'presentation') }} found
             </span>
         </header>
-        <div class="grid auto-rows-min gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+        <div
+            class="grid auto-rows-min gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3"
+        >
             <template v-for="_presentation in presentations">
                 <PresentationLink
                     :presentation="_presentation"
