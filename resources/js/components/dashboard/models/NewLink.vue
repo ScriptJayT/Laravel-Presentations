@@ -16,7 +16,7 @@ const props = withDefaults(
 </script>
 
 <template>
-    <IndexLink :title="`New ${title}`" :unsemantic-title="true">
+    <IndexLink :title="`<New ${title}>`" :unsemantic-title="true">
         <button
             class="
                 model-create--button |
@@ -30,7 +30,7 @@ const props = withDefaults(
             command="show-modal"
             :commandfor="`newlink-modal-for-${title.toLowerCase()}`"
         >
-            <Plus class="size-[15cqw] opacity-15"/>
+            <Plus class="size-[15cqw] opacity-15" />
         </button>
     </IndexLink>
     <ActionModal :id="`newlink-modal-for-${title.toLowerCase()}`" class="min-w-[30vw] max-w-4xl">
