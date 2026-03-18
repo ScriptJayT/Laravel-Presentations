@@ -50,7 +50,7 @@ withDefaults(
 
         <div class="
             ct-inline-size
-            flex flex-wrap
+            flex flex-wrap sm:justify-center
             gap-x-4 gap-y-2
             mt-auto
             "
@@ -61,7 +61,7 @@ withDefaults(
                 class="
                     grow
                     cursor-pointer
-                    block min-w-fit
+                    block min-w-fit max-w-1/2
                     px-5 py-1.5
                     rounded-md border-2
                     border-neutral-500 dark:border-cyan-900
@@ -84,7 +84,7 @@ withDefaults(
                     class="
                         grow
                         cursor-pointer
-                        block min-w-fit
+                        block min-w-fit max-w-1/2
                         px-5 py-1.5
                         rounded-md border-2
                         border-neutral-500 dark:border-cyan-900
