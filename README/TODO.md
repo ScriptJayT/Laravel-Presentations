@@ -5,11 +5,14 @@
 
 ### Done:
 
-- Fix presentation not showing bug
-- Dashboard app icon squishes when closing sidebar
 - Improve db-queries for app index, app slideshow
-- Dark mode does not set color-scheme (scrollbars don't switch with)
-- App index columns breaking on smaller screens
+    - Fix presentation not showing bug
+- css-bugs:
+    - Dashboard app icon squishes when closing sidebar
+    - Dark mode does not set color-scheme (scrollbars don't switch with)
+    - App index columns breaking on smaller screens
+- MD support for underline: ` __text__ `
+- Position follow up
 
 ## Global:
 
@@ -20,6 +23,7 @@
         - check mailbox
         - send reminder mail for updates
     - [x] 18/03: check on status
+    - [ ] 27/03: talk
 
 ## Project:
 
