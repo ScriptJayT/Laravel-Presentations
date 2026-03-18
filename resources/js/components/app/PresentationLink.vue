@@ -18,7 +18,7 @@ withDefaults(
     },
 );
 const buttonStyles = cn(
-    'grow',
+    'flex-1',
     ['cursor-pointer', 'select-none'],
     'block',
     ['min-w-fit', 'max-w-1/2'],
@@ -51,7 +51,7 @@ const buttonStyles = cn(
             cn(
                 ['relative', 'flex', 'flex-col'],
                 // ['min-h-50', 'sm:min-h-auto'],
-                ['aspect-video'],
+                ['md:aspect-video'],
                 ['px-4', 'py-5'],
                 ['rounded-xl', 'border'],
                 ['border-gray-500', 'dark:border-gray-50/50'],
@@ -80,7 +80,7 @@ const buttonStyles = cn(
         </template>
 
         <div
-            class="ct-inline-size | mt-auto flex flex-wrap gap-x-4 gap-y-2 sm:justify-center"
+            class="ct-inline-size | mt-auto pt-5 flex flex-wrap gap-x-4 gap-y-2 sm:justify-center"
         >
             <a
                 :href="presentations(presentation.slug).url"
