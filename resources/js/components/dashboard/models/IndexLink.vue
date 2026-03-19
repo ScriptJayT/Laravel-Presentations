@@ -53,7 +53,7 @@ const props = defineProps<{
                     model-entry--link |
                     absolute inset-0
                     border-2 rounded-xl hover:border-cyan-700 focus-visible:border-cyan-700
-                    outline-offset-8
+                    outline-offset-8 outline-ring focus-visible:outline-2
                     "
                 :href="link.url"
                 :title="`Open: ${title}`"

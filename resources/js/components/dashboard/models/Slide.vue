@@ -24,7 +24,7 @@ defineProps<{
                     absolute inset-0
                     grid place-content-center
                     border-2 rounded-xl hover:border-cyan-700 focus-visible:border-cyan-700
-                    outline-offset-8
+                    outline-offset-8 outline-ring focus-visible:outline-2
                     "
                 :title="`Open: ${slide.title}`"
                 command="show-modal"

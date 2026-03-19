@@ -30,7 +30,11 @@ const props = withDefaults(
                         'hover:border-green-700',
                         'focus-visible:border-green-700',
                     ],
-                    'outline-offset-8',
+                    [
+                        'outline-offset-8',
+                        'outline-ring',
+                        'focus-visible:outline-2',
+                    ],
                 )
             "
             :title="`Create a New ${title}`"
