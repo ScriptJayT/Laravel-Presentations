@@ -1,18 +1,10 @@
 ## Today:
 
 - write script
+- make press bout project
 - ? Add a visually interesting bg to index
 
 ### Done:
-
-- Improve db-queries for app index, app slideshow
-    - Fix presentation not showing bug
-- css-bugs:
-    - Dashboard app icon squishes when closing sidebar
-    - Dark mode does not set color-scheme (scrollbars don't switch with)
-    - App index columns breaking on smaller screens
-- MD support for underline: ` __text__ `
-- Position follow up
 
 ## Global:
 
