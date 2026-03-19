@@ -2,7 +2,6 @@
 
 - write script
 - make press bout project
-- ? Add a visually interesting bg to index
 
 ### Done:
 
