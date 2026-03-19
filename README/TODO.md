@@ -78,7 +78,7 @@
     - [x] App index columns breaking on smaller screens
     - [x] Dark mode does not set color-scheme (scrollbars don't switch with)
     - [x] Edit Script View: `Download as` button misses hover, see Edit Prsentation View `Create a` link
-    - [ ] Danger zone colors in dark mode too dark
+    - [x] Danger zone colors in dark mode too dark
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard

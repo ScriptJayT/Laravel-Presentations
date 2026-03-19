@@ -5,10 +5,10 @@ import AsideZone from './AsideZone.vue';
 </script>
 
 <template>
-    <AsideZone class="border-red-900">
+    <AsideZone class="border-red-900 dark:border-red-300">
         <SubSectionHeading
             title="Danger zone"
-            class=" text-red-900"
+            class=" text-red-900 dark:text-red-300"
             :icon="OctagonAlert"
         />
         <slot/>
