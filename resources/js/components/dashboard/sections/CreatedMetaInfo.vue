@@ -45,11 +45,9 @@ const props = defineProps<{
             on: {{ model.created_at }}
         </span>
     </template>
-    <template v-else>
-        <span class="block">
-            Created on: {{ model.created_at }}
-        </span>
-    </template>
+    <span class="block" v-else>
+        Created on: {{ model.created_at }}
+    </span>
     <span class="block">
         Last edit: {{ model.updated_at }}
     </span>
