@@ -83,7 +83,7 @@
     - [x] Actionmodal close not rounded
     - [x] Dashboard Slides overview outline wrong color
     - [x] User edit route, should temp become user show route
-    - [ ] Search no focus visible, no hover
+    - [x] Search no focus visible, no hover
     - [ ] formfield hover/ focus visible
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
