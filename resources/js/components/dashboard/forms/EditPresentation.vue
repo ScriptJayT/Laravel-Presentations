@@ -4,6 +4,7 @@ import { admin_script_index, admin_scripts } from '@/routes';
 import { update } from '@/routes/admin_presentation';
 import { ExternalLink, Book, CirclePlus } from 'lucide-vue-next';
 import { Form, FormField, SelectField, TextField } from '@/components/global/form';
+import { DoubleIconLink } from '../buttons';
 import SelectVisibility from '../models/SelectVisibility.vue';
 
 const props = defineProps<{
@@ -65,44 +66,23 @@ props.allScripts.forEach(_script => {
                 :error="errors.script"
             />
             <div class="script-links | flex flex-wrap gap-y-6 gap-x-5">
-                <template v-if="presentation.presentation_script">
-                    <a
-                        :href="admin_scripts(presentation.presentation_script.id).url"
-                        target="_blank"
-                        class="
-                            grow
-                            flex gap-3 justify-between items-center
-                            min-w-fit p-4
-                            border-2 rounded-md
-                            outline-offset-4
-                            text-center text-balance
-                            hover:bg-accent dark:hover:bg-accent/50
-                            transition-colors
-                            "
-                    >
-                        <span aria-hidden="true"> <Book class="size-4"/> </span>
-                        <span> Open: {{ presentation.presentation_script.title }} </span>
-                        <span aria-hidden="true"> <ExternalLink class="size-4"/> </span>
-                    </a>
-                </template>
-                <a
-                    :href="admin_script_index().url"
+                <DoubleIconLink
+                    v-if="presentation.presentation_script"
+                    :url="admin_scripts(presentation.presentation_script.id).url"
                     target="_blank"
-                    class="
-                        grow self-end
-                        flex gap-3 justify-between items-center
-                        min-w-fit p-4
-                        border-2 rounded-md
-                        outline-offset-4
-                        text-center text-balance
-                        hover:bg-accent dark:hover:bg-accent/50
-                        transition-colors
-                        "
-                >
-                    <span aria-hidden="true"> <CirclePlus class="size-4"/> </span>
-                    <span> Create a new script </span>
-                    <span aria-hidden="true"> <ExternalLink class="size-4"/> </span>
-                </a>
+                    :before-icon="Book"
+                    :after-icon="ExternalLink"
+                    :text="`Open: ${presentation.presentation_script.title}`"
+                    class="grow"
+                />
+                <DoubleIconLink
+                    :url="admin_script_index().url"
+                    target="_blank"
+                    :before-icon="CirclePlus"
+                    :after-icon="ExternalLink"
+                    text="Create a new script"
+                    class="grow self-end"
+                />
             </div>
         </fieldset>
     </Form>

@@ -52,7 +52,7 @@ class AdminPresentationController extends Controller
         )) {
             return $notAllowedRedirect;
         }
-        $presentation->load('slides');
+        $presentation->load('slides', 'presentationScript');
         $rules = PresentationVisibility::all(['id', 'name'])->all();
         $scripts = PresentationScript::all(['id', 'title'])->all();
 
