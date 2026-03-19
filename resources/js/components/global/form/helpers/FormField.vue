@@ -22,7 +22,9 @@ const fieldId = props.id ?? `${props.idPrefix}--${useId()}`;
                     ['flex', 'gap-2', 'flex-wrap'],
                     ['p-4'],
                     ['border-2', 'rounded-md'],
+                    ['hover:bg-accent', 'dark:hover:bg-accent/50'],
                     ['outline-offset-4', 'focus-within:outline-2'],
+                    'transition-colors',
                     props.class,
                 )
             "
