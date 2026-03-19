@@ -21,11 +21,11 @@ onMounted(() => {
             content: '',
             renderedContent: `
                 <p class="text-center mt-5 mx-auto">
-                    <span class="created_on | block">
-                        created on: ${props.presentation.created_at}
-                    </span>
                     <span class="creator | block">
-                        by: ${props.presentation.user.name}
+                        created by: ${props.presentation.user.name}
+                    </span>
+                    <span class="created_on | block">
+                        on: ${props.presentation.created_at}
                     </span>
                 </p>`,
             presentation_theme: {
