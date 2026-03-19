@@ -84,7 +84,8 @@
     - [x] Dashboard Slides overview outline wrong color
     - [x] User edit route, should temp become user show route
     - [x] Search no focus visible, no hover
-    - [x] formfield hover/ focus visible
+    - [x] Formfield hover/ focus visible
+    - [ ] App Nav not showing current page
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
