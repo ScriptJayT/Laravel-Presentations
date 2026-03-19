@@ -78,6 +78,7 @@
     - [x] Create user initial function can't handle emoji's
     - [x] App index columns breaking on smaller screens
     - [x] Dark mode does not set color-scheme (scrollbars don't switch with)
+    - [ ] Edit Script View: `Download as` button misses hover, see Edit Prsentation View `Create a` link
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
