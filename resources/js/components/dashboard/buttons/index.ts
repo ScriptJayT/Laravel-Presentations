@@ -1,4 +1,5 @@
 export {default as DoubleIconLink} from './DoubleIconLink.vue';
+export {default as ActionLink} from './ActionLink.vue';
 
 export const actionButtonClasses = () => [
     'block', 'w-fit',

@@ -8,6 +8,7 @@ import { plural } from '@/lib/utils';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SubSectionHeading } from '@/components/global/text';
 import { Form, TextField, FileField } from '@/components/global/form';
+import { ActionLink } from '@/components/dashboard/buttons';
 import UserAvatar from '@/components/global/model/UserAvatar.vue';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
@@ -62,23 +63,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                 >
                     <fieldset class="space-y-5">
                         <legend class="sr-only"> Credentials </legend>
-
-                        <template v-if="isLoggedInUser">
-                            <a
-                                :href="edit().url"
-                                class="
-                                    block w-fit
-                                    px-3 py-2
-                                    border rounded-md
-                                    outline-offset-8
-                                    transition-colors
-                                    hover:bg-accent dark:hover:bg-accent/50
-                                    "
-                            >
-                                Edit your profile
-                            </a>
-                        </template>
-
+                        <ActionLink
+                            v-if="isLoggedInUser"
+                            :url="edit().url"
+                            text="Edit your profile"
+                        />
                         <TextField
                             label="Name:" name="name"
                             :value="user.name" :disabled="!canEdit"
