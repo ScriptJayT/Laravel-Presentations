@@ -81,6 +81,7 @@
     - [x] Danger zone colors in dark mode too dark
     - [x] Sidezone buttons no hover, see close actionmodal
     - [x] Actionmodal close not rounded
+    - [ ] Dashboard Slides overview outline wrong color
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
