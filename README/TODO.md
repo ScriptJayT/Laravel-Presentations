@@ -85,7 +85,7 @@
     - [x] User edit route, should temp become user show route
     - [x] Search no focus visible, no hover
     - [x] Formfield hover/ focus visible
-    - [ ] App Nav not showing current page
+    - [x] App Nav not showing current page
     - [ ] Dashboard active page not showing
     - [ ] Dashboard active page not showing if sub-page
 - Extra's
