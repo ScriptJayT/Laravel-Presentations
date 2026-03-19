@@ -82,7 +82,7 @@
     - [x] Sidezone buttons no hover, see close actionmodal
     - [x] Actionmodal close not rounded
     - [x] Dashboard Slides overview outline wrong color
-    - [ ] User edit route, should temp become user show route
+    - [x] User edit route, should temp become user show route
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard

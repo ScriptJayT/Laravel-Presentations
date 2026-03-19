@@ -40,7 +40,14 @@ class AdminUserController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(string $id) {}
+    public function show(User $user)
+    {
+        $user->load('presentations', 'presentationScripts');
+
+        return Inertia::render('dashboard/model-user/Edit', [
+            'user' => $user,
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
