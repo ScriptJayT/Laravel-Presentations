@@ -86,6 +86,8 @@
     - [x] Search no focus visible, no hover
     - [x] Formfield hover/ focus visible
     - [ ] App Nav not showing current page
+    - [ ] Dashboard active page not showing
+    - [ ] Dashboard active page not showing if sub-page
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
