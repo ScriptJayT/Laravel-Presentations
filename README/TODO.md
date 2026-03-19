@@ -80,7 +80,7 @@
     - [x] Edit Script View: `Download as` button misses hover, see Edit Prsentation View `Create a` link
     - [x] Danger zone colors in dark mode too dark
     - [x] Sidezone buttons no hover, see close actionmodal
-    - [ ] Actionmodal close not rounded
+    - [x] Actionmodal close not rounded
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard

@@ -23,14 +23,14 @@
                 block w-fit
                 ml-auto
                 border-b border-b-transparent hover:border-b-current
-                outline-offset-4
+                outline-offset-6 focus-visible:rounded-md
                 transition-colors duration-300
                 "
             aria-label="Click or press the Escape-key to close this popup"
         >
             <span aria-hidden="true"> Close <kbd>ESC</kbd> </span>
         </button>
-        <slot/>
+        <slot />
     </dialog>
 </template>
 
