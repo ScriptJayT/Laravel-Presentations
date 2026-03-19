@@ -207,7 +207,7 @@ slide {
         border-color: var(--color-muted-foreground);
     }
 
-    & p code {
+    & *:not(pre) > code {
         padding-inline: 0.5ch;
         border-radius: 5px;
         background-color: hsl(from var(--color-background) h s l / 0.5);
