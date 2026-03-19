@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { Download } from 'lucide-vue-next';
 import { textToDownloaded, safeQuery } from '@/lib/utils';
+import { ActionButton } from '../buttons';
 import {
     FileField, ContentField, SelectField,
     type TextlikeFieldAttributes
@@ -139,38 +140,18 @@ function downloadAsMd() {
                 class="p-2"
             />
             <div>
-                <button
-                    v-on:click="insertFile"
+                <ActionButton
+                    :on-click="insertFile"
                     :disabled="!fileContent"
-                    type="button"
-                    class="
-                        cursor-pointer disabled:cursor-not-allowed
-                        select-none
-                        p-2
-                        border-2 rounded-md
-                        disabled:opacity-50
-                        outline-offset-4 focus-visible:outline-2
-                        "
-                >
-                    Paste File
-                </button>
+                    text="Paste File"
+                />
             </div>
             <div>
-                <button
-                    v-on:click="popHistory"
+                <ActionButton
+                    :on-click="popHistory"
                     :disabled="contentHistory.length < 1"
-                    type="button"
-                    class="
-                        cursor-pointer disabled:cursor-not-allowed
-                        select-none
-                        p-2
-                        border-2 rounded-md
-                        disabled:opacity-50
-                        outline-offset-4 focus-visible:outline-2
-                        "
-                >
-                    Undo Paste
-                </button>
+                    text="Undo Paste"
+                />
             </div>
         </div>
         <div class="flex justify-end">
@@ -213,23 +194,14 @@ function downloadAsMd() {
             :value="content"
         />
         <div class="flex justify-end mt-2">
-            <button
-                v-on:click="downloadAsMd"
+            <ActionButton
+                class="flex gap-2 items-center"
+                :on-click="downloadAsMd"
                 :disabled="!content"
-                type="button"
-                class="
-                    cursor-pointer disabled:cursor-not-allowed
-                    select-none
-                    flex gap-2 items-center
-                    p-2
-                    border-2 rounded-md
-                    disabled:opacity-50
-                    outline-offset-4 focus-visible:outline-2
-                    "
             >
                 <span> Download as Markdown File </span>
-                <Download class="size-4" />
-            </button>
+                <Download class="size-4 shrink-0" />
+            </ActionButton>
         </div>
     </fieldset>
 </template>
