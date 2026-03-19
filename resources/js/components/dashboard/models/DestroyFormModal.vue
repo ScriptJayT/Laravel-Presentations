@@ -3,6 +3,9 @@ import type { RouteFormDefinition } from '@/wayfinder';
 import { Trash } from 'lucide-vue-next';
 import { Form } from '@/components/global/form';
 import ActionModal from '@/components/dashboard/ActionModal.vue';
+import { metaButtonClasses, metaButtonSpanClasses } from '@/components/dashboard/sections';
+import { cn } from '@/lib/utils';
+
 const props = defineProps<{
     id: string|number;
     route: RouteFormDefinition<'post'>;
@@ -14,16 +17,9 @@ const props = defineProps<{
         type="button"
         command="show-modal"
         :commandfor="`destroy-dialog-for-${id}`"
-        class="
-            cursor-pointer select-none
-            flex items-center justify-between gap-1
-            w-full
-            rounded-sm
-            outline-sidebar-ring
-            outline-offset-8
-            "
+        :class="cn(metaButtonClasses(), 'w-full')"
     >
-        <span> Delete </span>
+        <span :class="cn(metaButtonSpanClasses())"> Delete </span>
         <Trash class="size-4"/>
     </button>
     <ActionModal :id="`destroy-dialog-for-${id}`">

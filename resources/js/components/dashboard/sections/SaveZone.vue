@@ -1,6 +1,8 @@
 <script setup lang="ts" >
 import { Save } from 'lucide-vue-next';
 import AsideZone from './AsideZone.vue';
+import { metaButtonClasses, metaButtonSpanClasses } from '@/components/dashboard/sections';
+import { cn } from '@/lib/utils';
 
 defineProps<{
     formId: string;
@@ -11,16 +13,9 @@ defineProps<{
     <AsideZone>
         <button
             :form="formId"
-            class="
-                cursor-pointer select-none
-                flex items-center justify-between gap-1
-                w-full
-                rounded-sm
-                outline-sidebar-ring
-                outline-offset-8
-                "
+            :class="cn(metaButtonClasses(), 'w-full')"
         >
-            <span> Save </span>
+            <span :class="cn(metaButtonSpanClasses())"> Save </span>
             <Save class="size-4"/>
         </button>
     </AsideZone>
