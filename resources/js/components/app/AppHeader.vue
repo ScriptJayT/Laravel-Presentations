@@ -3,12 +3,8 @@ import { safeQuery } from '@/lib/utils';
 import { AppLogo } from '../global/logo';
 import AppNavList from './AppNavList.vue';
 withDefaults(
-    defineProps<{
-        isLoggedIn?: boolean
-    }>(),
-    {
-        isLoggedIn: false,
-    }
+    defineProps<{ isLoggedIn?: boolean }>(),
+    { isLoggedIn: false }
 );
 async function skipToContent(_e: MouseEvent) {
     const content = safeQuery('#site-content');
