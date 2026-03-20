@@ -11,6 +11,7 @@ defineProps<{ class?: string }>()
         form-action="create"
         v-slot="{errors}"
         button-text="Create new User"
+        success-message="New User was created"
         :class
         class="space-y-5"
     >
