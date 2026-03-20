@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
 
         $exampleScript = PresentationScript::factory()->create([
             'title' => 'Welcome to Hell\'Press',
-            'content' => $renderTest,
+            'content' => "# What is Hell'Press? \n\nHell'Press is a web-app where you can build and showcase your presentations from scratch. \nYou build talks or scripts using the build-in sleak Markdown editor. \n\nUsing webtech means you can access your work everywhere, anytime as long as you have access to the interwebs. \n\n# What is Markdown? \n\nMarkdown(md) is a markup-language, very much like HTML is. It's very easy to lay out a simple document with plain text using it, with the options to indicate stress, importance, to mark certain words or phrases in your text; to make lists and todo's; to display tables of information. \nAll of that is possible with Markdown, that and more. And all of that is done using text-characters only. \n\n# Why Markdown? \n\nThe reasoning behind us choosing Markdown is to give full controll of content back to the user, you. Often a lot of richtext-editors like Word or G-Docs require their program to even be able to see *your* content. While to read/edit Markdown all you need is a simple plaintext-editor \nWe at Hell'Press were not a fan of this reliance on propriatery software. So we chose Markdown and provided the option in the editor to easily upload or download `.md`-files. \n\nWant to see how it works? \nCheck out the last section below the three lines for a list. \n\n---\n---\n---\n\n{$renderTest}",
             'user_id' => $botUser->id,
             'presentation_visibility_id' => $loginVisibilityRule->id,
         ]);
@@ -89,7 +89,7 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Markdown (MD)',
-            'content' => "You can use markdown to scaffold your script and slides, though it is only supported in the content slot. \n\nNeed a [cheat sheet](https://www.markdownguide.org/cheat-sheet/)? \nOr: go to the last slide.",
+            'content' => "You can use Markdown to scaffold your script and slides, though it is only supported in the content slot. \n\nWhat is [Markdown](/s/1)? \n\nNeed a [cheat sheet](https://www.markdownguide.org/cheat-sheet/)? \nOr: go to the last slide.",
         ]);
         PresentationSlide::factory()->create([
             'presentation_id' => $examplePresentation->id,
