@@ -1,10 +1,11 @@
 ## Today:
 
-- Script page md not styled
 - write script
 - make press bout project
 
 ### Done:
+
+- Script page md not styled
 
 ## Global:
 
@@ -88,7 +89,7 @@
     - [x] Formfield hover/ focus visible
     - [x] App Nav not showing current page
     - [ ] Dashboard active page not showing if sub-page
-    - [ ] Script page md not styled
+    - [x] Script page md not styled
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
