@@ -1,5 +1,6 @@
 ## Today:
 
+- Script page md not styled
 - write script
 - make press bout project
 
@@ -86,7 +87,6 @@
     - [x] Search no focus visible, no hover
     - [x] Formfield hover/ focus visible
     - [x] App Nav not showing current page
-    - [ ] Dashboard active page not showing
     - [ ] Dashboard active page not showing if sub-page
     - [ ] Script page md not styled
 - Extra's
