@@ -45,9 +45,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $defaultTheme = PresentationTheme::factory()->create(['title' => 'base']);
+        $renderTest = "# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\__text\__ => __underline__ \n\~text\~ => ~strikethrough~ or: \n\~\~text\~\~ => ~~strikethrough~~ \n\==text\== => ==highlight== \n\`text\` => `code` \n\n- unordered list \n- with `+` \n- or `-` \n- or `*` \n\n1. ordered list \n1. with `1.` \n\n- [ ] task list with `- [ ]` \n- [x] finished with `- [x]` \n\nterm \n: definition \n\nterm \n: definition \n\n> \> blockquote  \n\nSeperator with `---` \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```";
 
         $exampleScript = PresentationScript::factory()->create([
             'title' => 'Welcome to Hell\'Press',
+            'content' => $renderTest,
             'user_id' => $botUser->id,
             'presentation_visibility_id' => $loginVisibilityRule->id,
         ]);
@@ -99,7 +101,7 @@ class DatabaseSeeder extends Seeder
             'presentation_id' => $examplePresentation->id,
             'presentation_theme_id' => $defaultTheme->id,
             'title' => 'Render Test',
-            'content' => "# \# title h1 \n\n## \#\# title h2 \n\n### \#\#\# title h3 \n\n#### \#\#\#\# title h4 \n\n##### \#\#\#\#\# title h5 \n\n###### \#\#\#\#\#\# title h6 \n\n\*text\* => *italic* \n\*\*text\*\* => **strong** \n\*\*\*text\*\*\* => ***italic/strong*** \n\__text\__ => __underline__ \n\~text\~ => ~strikethrough~ or: \n\~\~text\~\~ => ~~strikethrough~~ \n\==text\== => ==highlight== \n\`text\` => `code` \n\n- unordered list \n- with `+` \n- or `-` \n- or `*` \n\n1. ordered list \n1. with `1.` \n\n- [ ] task list with `- [ ]` \n- [x] finished with `- [x]` \n\nterm \n: definition \n\nterm \n: definition \n\n> \> blockquote  \n\nSeperator with `---` \n\n--- \n\n```\ncodeblock: \n\```\ncode\n\```\n```",
+            'content' => $renderTest,
         ]);
 
         Presentation::factory()->create([
