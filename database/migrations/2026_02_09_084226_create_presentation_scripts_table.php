@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
-            $table->longText('content');
+            $table->longText('content')->nullable();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(PresentationVisibility::class)->constrained();
         });
