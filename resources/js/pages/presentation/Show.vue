@@ -120,7 +120,7 @@ onUnmounted(() => abortSignal.abort());
     </AppWrapper>
 </template>
 
-<style is="scoped">
+<style>
 slide-show {
     scroll-snap-type: y mandatory;
 
