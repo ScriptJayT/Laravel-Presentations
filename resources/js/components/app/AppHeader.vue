@@ -2,6 +2,14 @@
 import { safeQuery } from '@/lib/utils';
 import { AppLogo } from '../global/logo';
 import AppNavList from './AppNavList.vue';
+withDefaults(
+    defineProps<{
+        isLoggedIn?: boolean
+    }>(),
+    {
+        isLoggedIn: false,
+    }
+);
 async function skipToContent(_e: MouseEvent) {
     const content = safeQuery('#site-content');
     if (!content) return;
@@ -31,7 +39,7 @@ async function skipToContent(_e: MouseEvent) {
                 <AppLogo />
             </div>
             <nav class="block w-fit min-w-fit select-none">
-                <AppNavList />
+                <AppNavList :is-logged-in="isLoggedIn" />
             </nav>
         </div>
     </header>

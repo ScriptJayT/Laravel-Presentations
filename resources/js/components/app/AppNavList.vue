@@ -2,11 +2,10 @@
 import { Link } from '@inertiajs/vue3';
 import UserDropDown from '@/components/app/UserDropDown.vue';
 import { useCurrentUrl } from '@/composables/useCurrentUrl';
-import { getUser, cn } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { admin_presentation_index, login, home } from '@/routes';
 import { type RouteDefinition } from '@/wayfinder';
-
-const user = getUser(true);
+defineProps<{ isLoggedIn: boolean }>();
 const { isCurrentUrl } = useCurrentUrl();
 type NavItem = {
     title: string;
@@ -37,8 +36,8 @@ const links: NavItem[] = [
         <template v-for="_link in links">
             <li
                 v-if="
-                    (_link.show == 'guest' && !user) ||
-                    (_link.show == 'login' && user) ||
+                    (_link.show == 'guest' && !isLoggedIn) ||
+                    (_link.show == 'login' && isLoggedIn) ||
                     _link.show == 'always'
                 "
                 class="min-w-fit"
@@ -76,7 +75,7 @@ const links: NavItem[] = [
                 />
             </li>
         </template>
-        <li v-if="user" title="User menu">
+        <li v-if="isLoggedIn" title="User menu">
             <UserDropDown />
         </li>
     </ul>

@@ -7,12 +7,13 @@ import AppContent from '@/components/app/AppContent.vue';
 import AppFooter from '@/components/app/AppFooter.vue';
 defineProps<{
     script: Required<PresentationScript>;
+    isLoggedIn: boolean;
 }>();
 </script>
 
 <template>
     <AppWrapper :meta-title="`Script: ${script.title}`">
-        <AppHeader />
+        <AppHeader :is-logged-in="isLoggedIn" />
         <AppContent class="pt-15 pb-25">
             <Container>
                 <h1 class="mb-10 text-center text-5xl">

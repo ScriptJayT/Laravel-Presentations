@@ -17,7 +17,10 @@ class PresentationScriptController extends Controller
             _visibility: $script->presentationVisibility,
             _creator: $script->user
         )
-            ? Inertia::render('script/Show', ['script' => $script])
+            ? Inertia::render('script/Show', [
+                'script' => $script,
+                'isLoggedIn' => $this->isLoggedIn(),
+            ])
             : Redirect::route('home');
     }
 }
