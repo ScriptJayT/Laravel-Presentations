@@ -14,15 +14,21 @@ use Illuminate\Support\Facades\Route;
 // Features::enabled(Features::registration())
 
 Route::redirect('presentations', '/');
-Route::redirect('scripts', '/');
+Route::redirect('p', '/');
 Route::controller(PresentationController::class)->group(function () {
-    Route::get('/', 'index')->name('home');
-    Route::get('p/{presentation:slug}', 'show')->name('presentations');
-    Route::get('presentations/{presentation:slug}', 'show');
+    Route::get('/', 'index')
+        ->name('home');
+    Route::get('p/{presentation:slug}', 'show')
+        ->name('presentations')
+        ->missing(fn () => Redirect::route('home'));
+    Route::get('presentations/{presentation:slug}', 'show')
+        ->missing(fn () => Redirect::route('home'));
 });
-
+Route::redirect('scripts', '/');
+Route::redirect('s', '/');
 Route::controller(PresentationScriptController::class)->group(function () {
-    Route::get('/s/{script}', 'show')->name('scripts');
+    Route::get('/s/{script}', 'show')
+        ->name('scripts');
     Route::get('/scripts/{script}', 'show');
 });
 
