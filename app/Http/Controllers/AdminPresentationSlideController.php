@@ -60,10 +60,11 @@ class AdminPresentationSlideController extends Controller
      */
     public function update(Request $request, PresentationSlide $slide)
     {
-        $slide->load([
-            'presentation.user' => fn ($q) => $q->select('id'),
-            'presentation.presentationVisibility' => fn ($q) => $q->select('id', 'title'),
-        ]);
+        // $slide->load([
+        //     'presentation.user' => fn ($q) => $q->select('id'),
+        //     'presentation.presentationVisibility' => fn ($q) => $q->select('id', 'title'),
+        // ]);
+        $slide->load('presentation');
 
         $this->returnIfNotAllowed(
             _model: $slide->presentation,
@@ -89,10 +90,11 @@ class AdminPresentationSlideController extends Controller
      */
     public function destroy(PresentationSlide $slide)
     {
-        $slide->load([
-            'presentation.user' => fn ($q) => $q->select('id'),
-            'presentation.presentationVisibility' => fn ($q) => $q->select('id', 'title'),
-        ]);
+        // $slide->load([
+        //     'presentation.user' => fn ($q) => $q->select('id'),
+        //     'presentation.presentationVisibility' => fn ($q) => $q->select('id', 'title'),
+        // ]);
+        $slide->load('presentation');
 
         $this->returnIfNotAllowed(
             _model: $slide->presentation,

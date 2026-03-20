@@ -34,8 +34,8 @@ class PresentationSlide extends Model
 
     public function presentation(): BelongsTo
     {
-        return $this->belongsTo(Presentation::class)
-            ->select('id', 'title', 'presentation_visibility_id');
+        return $this->belongsTo(Presentation::class);
+        // ->select('id', 'presentation_id', 'title', 'presentation_visibility_id');
     }
 
     public function presentationTheme(): BelongsTo
