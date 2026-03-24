@@ -2,44 +2,55 @@
 
 namespace App\MdExtensions\Processors;
 
-use App\MdExtensions\Parsing\UnderlineDelimiter as Delimiter;
 use League\CommonMark\Delimiter\DelimiterInterface;
 use League\CommonMark\Delimiter\Processor\DelimiterProcessorInterface;
 use League\CommonMark\Node\Inline\AbstractStringContainer;
 
-class UnderlineDelimiterProcessor implements DelimiterProcessorInterface
+class SimpleDelimiterProcessor implements DelimiterProcessorInterface
 {
+    public function __construct(
+        private string $character,
+        private int $minLength,
+        private mixed $delimiter,
+    ) {}
+
     public function getOpeningCharacter(): string
     {
-        return '_';
+        return $this->character;
     }
 
     public function getClosingCharacter(): string
     {
-        return '_';
+        return $this->character;
     }
 
     public function getMinLength(): int
     {
-        return 2;
+        return $this->minLength;
     }
 
     public function getDelimiterUse(DelimiterInterface $opener, DelimiterInterface $closer): int
     {
-        if ($opener->getLength() > 2 && $closer->getLength() > 2) {
+        if (
+            $opener->getLength() > $this->minLength
+            && $closer->getLength() > $this->minLength
+        ) {
             return 0;
         }
         if ($opener->getLength() !== $closer->getLength()) {
             return 0;
         }
 
-        // $opener and $closer are the same length so we just return one of them
         return $opener->getLength();
     }
 
-    public function process(AbstractStringContainer $opener, AbstractStringContainer $closer, int $delimiterUse): void
-    {
-        $deli = new Delimiter(\str_repeat('_', $delimiterUse));
+    public function process(
+        AbstractStringContainer $opener,
+        AbstractStringContainer $closer,
+        int $delimiterUse,
+    ): void {
+        $deli = call_user_func($this->delimiter, str_repeat($this->character, $delimiterUse));
+
         $next = $opener->next();
         while ($next !== null && $next !== $closer) {
             $tmp = $next->next();
@@ -51,6 +62,6 @@ class UnderlineDelimiterProcessor implements DelimiterProcessorInterface
 
     public function getCacheKey(DelimiterInterface $closer): string
     {
-        return "_{$closer->getLength()}";
+        return "{$this->character}{$closer->getLength()}";
     }
 }

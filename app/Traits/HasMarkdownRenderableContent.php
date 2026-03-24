@@ -22,44 +22,57 @@ trait HasMarkdownRenderableContent
         return [];
     }
 
-    protected function getRenderedContentAttribute(): string
+    public function convertToMd(string $_str, array $_settings = [], array $_extensions = []): string
     {
-        return Str::of($this->content)->markdown(
-            [
-                'html_input' => 'strip',
-                'allow_unsafe_links' => false,
-                'max_nesting_level' => 10,
-                'renderer' => [
-                    'block_separator' => "\n",
-                    'inner_separator' => "\n",
-                    'soft_break' => '<br>',
+        return Str::of($_str)->markdown(
+            array_merge(
+                [
+                    'html_input' => 'strip',
+                    'allow_unsafe_links' => false,
+                    'max_nesting_level' => 10,
+                    'renderer' => [
+                        'block_separator' => "\n",
+                        'inner_separator' => "\n",
+                        'soft_break' => '<br>',
+                    ],
+                    'commonmark' => [
+                        'enable_em' => true,
+                        'enable_strong' => true,
+                        'use_asterisk' => true,
+                        'use_underscore' => false,
+                        'unordered_list_markers' => ['-', '*', '+'],
+                    ],
+                    'external_link' => [
+                        'internal_hosts' => config('app.url'),
+                        'open_in_new_window' => true,
+                        'html_class' => 'external-link',
+                        'nofollow' => 'external',
+                        'noopener' => 'external',
+                        'noreferrer' => 'external',
+                    ],
+                    'heading_shifter' => [
+                        'shift_by' => 0,
+                    ],
                 ],
-                'commonmark' => [
-                    'enable_em' => true,
-                    'enable_strong' => true,
-                    'use_asterisk' => true,
-                    'use_underscore' => false,
-                    'unordered_list_markers' => ['-', '*', '+'],
-                ],
-                'external_link' => [
-                    'internal_hosts' => config('app.url'),
-                    'open_in_new_window' => true,
-                    'html_class' => 'external-link',
-                    'nofollow' => 'external',
-                    'noopener' => 'external',
-                    'noreferrer' => 'external',
-                ],
-                ...$this->getMdSettings(),
-            ],
+                $_settings,
+            ),
             [
                 new HeadingShifterExtension,
                 new HighlightExtension,
                 new ExternalLinkExtension,
                 new DescriptionListExtension,
-                new UnderlineExtension,
-
-                ...$this->getMdExtensions(),
+                // new UnderlineExtension,
+                ...$_extensions,
             ]
         )->replace('\\', '');
+    }
+
+    protected function getRenderedContentAttribute(): string
+    {
+        return $this->convertToMd(
+            $this->content,
+            _settings: $this->getMdSettings(),
+            _extensions: $this->getMdExtensions(),
+        );
     }
 }

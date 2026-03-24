@@ -5,11 +5,10 @@ namespace App\MdExtensions\Parsing;
 use League\CommonMark\Node\Inline\AbstractInline;
 use League\CommonMark\Node\Inline\DelimitedInterface;
 
-final class UnderlineDelimiter extends AbstractInline implements DelimitedInterface
+class SimpleDelimiter extends AbstractInline implements DelimitedInterface
 {
-    public function __construct(
-        private string $delimiter = '__'
-    ) {
+    public function __construct(private string $delimiter)
+    {
         parent::__construct();
     }
 

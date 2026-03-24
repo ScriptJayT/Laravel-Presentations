@@ -71,9 +71,7 @@
         "test:c": [
             "@php artisan config:clear --ansi",
             "clear",
-            "@php artisan test tests/Feature/Presentations/PresentationCrudTest.php",
-            "@php artisan test tests/Feature/Presentations/SlideCrudTest.php",
-            "@php artisan test tests/Feature/Presentations/ScriptCrudTest.php"
+            "@php artisan test tests/Unit/MdExtensionsTest.php"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
