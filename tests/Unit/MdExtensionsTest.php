@@ -2,8 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\MdExtensions\Extensions\SpoilerExtension;
-use App\MdExtensions\Extensions\UnderlineExtension;
 use App\Traits\HasMarkdownRenderableContent;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Attributes\Test;
@@ -70,24 +68,16 @@ class MdExtensionsTest extends TestCase
     {
         $this->assertEquals(
             "<p><u>Text</u></p>\n",
-            $this->convertToMd(
-                '__Text__',
-                _extensions: [new UnderlineExtension],
-            ),
+            $this->convertToMd('__Text__'),
         );
         $this->assertEquals(
             "<p>Following <u>Text</u> should be <em>underlined</em>.</p>\n",
             $this->convertToMd(
-                'Following __Text__ should be *underlined*.',
-                _extensions: [new UnderlineExtension],
-            ),
+                'Following __Text__ should be *underlined*.'),
         );
         $this->assertEquals(
             "<p><u>Text is <em>underlined</em></u></p>\n",
-            $this->convertToMd(
-                '__Text is *underlined*__',
-                _extensions: [new UnderlineExtension],
-            ),
+            $this->convertToMd('__Text is *underlined*__'),
         );
     }
 
@@ -96,24 +86,15 @@ class MdExtensionsTest extends TestCase
     {
         $this->assertEquals(
             "<p><span data-el=\"spoiler\">Text</span></p>\n",
-            $this->convertToMd(
-                '||Text||',
-                _extensions: [new SpoilerExtension],
-            ),
+            $this->convertToMd('||Text||'),
         );
         $this->assertEquals(
             "<p>Following <span data-el=\"spoiler\">Text</span> should be <em>spoiled</em>.</p>\n",
-            $this->convertToMd(
-                'Following ||Text|| should be *spoiled*.',
-                _extensions: [new SpoilerExtension],
-            ),
+            $this->convertToMd('Following ||Text|| should be *spoiled*.'),
         );
         $this->assertEquals(
             "<p><span data-el=\"spoiler\">Text is <em>spoiled</em></span></p>\n",
-            $this->convertToMd(
-                '||Text is *spoiled*||',
-                _extensions: [new SpoilerExtension],
-            ),
+            $this->convertToMd('||Text is *spoiled*||'),
         );
     }
 
@@ -122,10 +103,7 @@ class MdExtensionsTest extends TestCase
     {
         $this->assertEquals(
             "<p><span data-el=\"spoiler\">Spoiler</span> <u>Underline</u></p>\n",
-            $this->convertToMd(
-                '||Spoiler|| __Underline__',
-                _extensions: [new UnderlineExtension, new SpoilerExtension],
-            ),
+            $this->convertToMd('||Spoiler|| __Underline__'),
         );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\MdExtensions\Extensions\SpoilerExtension;
 use App\MdExtensions\Extensions\UnderlineExtension;
 use Illuminate\Support\Str;
 use League\CommonMark\Extension\DescriptionList\DescriptionListExtension;
@@ -61,7 +62,8 @@ trait HasMarkdownRenderableContent
                 new HighlightExtension,
                 new ExternalLinkExtension,
                 new DescriptionListExtension,
-                // new UnderlineExtension,
+                new UnderlineExtension,
+                new SpoilerExtension,
                 ...$_extensions,
             ]
         )->replace('\\', '');
