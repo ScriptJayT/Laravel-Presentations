@@ -69,25 +69,25 @@ class MdExtensionsTest extends TestCase
     public function underline_extension_can_be_rendered()
     {
         $this->assertEquals(
+            "<p><u>Text</u></p>\n",
             $this->convertToMd(
                 '__Text__',
                 _extensions: [new UnderlineExtension],
             ),
-            "<p><u>Text</u></p>\n"
         );
         $this->assertEquals(
+            "<p>Following <u>Text</u> should be <em>underlined</em>.</p>\n",
             $this->convertToMd(
                 'Following __Text__ should be *underlined*.',
                 _extensions: [new UnderlineExtension],
             ),
-            "<p>Following <u>Text</u> should be <em>underlined</em>.</p>\n"
         );
         $this->assertEquals(
+            "<p><u>Text is <em>underlined</em></u></p>\n",
             $this->convertToMd(
                 '__Text is *underlined*__',
                 _extensions: [new UnderlineExtension],
             ),
-            "<p><u>Text is <em>underlined</em></u></p>\n"
         );
     }
 
@@ -95,25 +95,25 @@ class MdExtensionsTest extends TestCase
     public function spoiler_extension_can_be_rendered()
     {
         $this->assertEquals(
+            "<p><span data-el=\"spoiler\">Text</span></p>\n",
             $this->convertToMd(
                 '||Text||',
                 _extensions: [new SpoilerExtension],
             ),
-            "<p><span data-el=\"spoiler\">Text</span></p>\n"
         );
         $this->assertEquals(
+            "<p>Following <span data-el=\"spoiler\">Text</span> should be <em>spoiled</em>.</p>\n",
             $this->convertToMd(
                 'Following ||Text|| should be *spoiled*.',
                 _extensions: [new SpoilerExtension],
             ),
-            "<p>Following <span data-el=\"spoiler\">Text</span> should be <em>spoiled</em>.</p>\n"
         );
         $this->assertEquals(
+            "<p><span data-el=\"spoiler\">Text is <em>spoiled</em></span></p>\n",
             $this->convertToMd(
                 '||Text is *spoiled*||',
                 _extensions: [new SpoilerExtension],
             ),
-            "<p><span data-el=\"spoiler\">Text is <em>spoiled</em></span></p>\n"
         );
     }
 
