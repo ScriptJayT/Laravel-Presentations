@@ -2,6 +2,9 @@
 
 namespace App\MdExtensions\Extensions;
 
+use App\MdExtensions\Parsing\Underline;
+use App\MdExtensions\Processors\SimpleDelimiterProcessor;
+use App\MdExtensions\Renderers\SimpleRenderer;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\ExtensionInterface;
 
@@ -9,8 +12,7 @@ class UnderlineExtension implements ExtensionInterface
 {
     public function register(EnvironmentBuilderInterface $env): void
     {
-        $factory = new ExtensionFactory('_', 2, 'u');
-        $env->addDelimiterProcessor($factory->getDelimiterProcessor());
-        $env->addRenderer($factory->getDelimiter()::class, $factory->getRenderer());
+        $env->addDelimiterProcessor(new SimpleDelimiterProcessor('_', 2, Underline::class));
+        $env->addRenderer(Underline::class, new SimpleRenderer('u'));
     }
 }

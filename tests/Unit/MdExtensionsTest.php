@@ -2,17 +2,10 @@
 
 namespace Tests\Unit;
 
-use App\MdExtensions\Extensions\ExtensionFactory;
 use App\MdExtensions\Extensions\SpoilerExtension;
 use App\MdExtensions\Extensions\UnderlineExtension;
-use App\MdExtensions\Parsing\SimpleDelimiter;
-use App\MdExtensions\Processors\SimpleDelimiterProcessor;
-use App\MdExtensions\Renderers\SimpleRenderer;
 use App\Traits\HasMarkdownRenderableContent;
 use Illuminate\Support\Str;
-use League\CommonMark\Delimiter\Processor\DelimiterProcessorInterface;
-use League\CommonMark\Node\Inline\DelimitedInterface;
-use League\CommonMark\Xml\XmlNodeRendererInterface;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -73,42 +66,6 @@ class MdExtensionsTest extends TestCase
     }
 
     #[Test]
-    public function extension_factory_can_be_called()
-    {
-        $extension = new ExtensionFactory('~', 2, 'del');
-        $this->assertInstanceOf(XmlNodeRendererInterface::class, $extension->getRenderer());
-        $this->assertInstanceOf(SimpleRenderer::class, $extension->getRenderer());
-        $this->assertEquals(
-            $extension->getRenderer()->getTag(),
-            'del',
-        );
-        $this->assertInstanceOf(DelimiterProcessorInterface::class, $extension->getDelimiterProcessor());
-        $this->assertInstanceOf(SimpleDelimiterProcessor::class, $extension->getDelimiterProcessor());
-        $this->assertEquals(
-            $extension->getDelimiterProcessor()->getOpeningCharacter(),
-            '~'
-        );
-        $this->assertEquals(
-            $extension->getDelimiterProcessor()->getClosingCharacter(),
-            '~'
-        );
-        $this->assertEquals(
-            $extension->getDelimiterProcessor()->getMinLength(),
-            2
-        );
-        $this->assertInstanceOf(DelimitedInterface::class, $extension->getDelimiter());
-        $this->assertInstanceOf(SimpleDelimiter::class, $extension->getDelimiter());
-        $this->assertEquals(
-            $extension->getDelimiter()->getOpeningDelimiter(),
-            '~'
-        );
-        $this->assertEquals(
-            $extension->getDelimiter()->getClosingDelimiter(),
-            '~'
-        );
-    }
-
-    #[Test]
     public function underline_extension_can_be_rendered()
     {
         $this->assertEquals(
@@ -157,6 +114,18 @@ class MdExtensionsTest extends TestCase
                 _extensions: [new SpoilerExtension],
             ),
             "<p><span data-el=\"spoiler\">Text is <em>spoiled</em></span></p>\n"
+        );
+    }
+
+    #[Test]
+    public function multiple_extensions_can_be_used_together()
+    {
+        $this->assertEquals(
+            "<p><span data-el=\"spoiler\">Spoiler</span> <u>Underline</u></p>\n",
+            $this->convertToMd(
+                '||Spoiler|| __Underline__',
+                _extensions: [new UnderlineExtension, new SpoilerExtension],
+            ),
         );
     }
 }

@@ -20,7 +20,6 @@ class SimpleRenderer implements NodeRendererInterface, XmlNodeRendererInterface
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): Stringable
     {
         SimpleDelimiter::assertInstanceOf($node);
-
         $attrs = array_merge(
             $this->htmlAttributes,
             $node->data->get('attributes'),

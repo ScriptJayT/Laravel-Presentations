@@ -11,7 +11,7 @@ class SimpleDelimiterProcessor implements DelimiterProcessorInterface
     public function __construct(
         private string $character,
         private int $minLength,
-        private mixed $delimiter,
+        private string $delimitedClass,
     ) {}
 
     public function getOpeningCharacter(): string
@@ -40,6 +40,9 @@ class SimpleDelimiterProcessor implements DelimiterProcessorInterface
         if ($opener->getLength() !== $closer->getLength()) {
             return 0;
         }
+        if ($opener->getChar() !== $this->character) {
+            return 0;
+        }
 
         return $opener->getLength();
     }
@@ -49,8 +52,7 @@ class SimpleDelimiterProcessor implements DelimiterProcessorInterface
         AbstractStringContainer $closer,
         int $delimiterUse,
     ): void {
-        $deli = call_user_func($this->delimiter, str_repeat($this->character, $delimiterUse));
-
+        $deli = new $this->delimitedClass(str_repeat($this->character, $delimiterUse));
         $next = $opener->next();
         while ($next !== null && $next !== $closer) {
             $tmp = $next->next();
@@ -62,6 +64,6 @@ class SimpleDelimiterProcessor implements DelimiterProcessorInterface
 
     public function getCacheKey(DelimiterInterface $closer): string
     {
-        return "{$this->character}{$closer->getLength()}";
+        return "{$closer->getChar()}{$closer->getLength()}";
     }
 }

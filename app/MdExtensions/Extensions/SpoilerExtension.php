@@ -2,6 +2,9 @@
 
 namespace App\MdExtensions\Extensions;
 
+use App\MdExtensions\Parsing\Spoiler;
+use App\MdExtensions\Processors\SimpleDelimiterProcessor;
+use App\MdExtensions\Renderers\SimpleRenderer;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\ExtensionInterface;
 
@@ -9,8 +12,7 @@ class SpoilerExtension implements ExtensionInterface
 {
     public function register(EnvironmentBuilderInterface $env): void
     {
-        $factory = new ExtensionFactory('|', 2, 'span', ['data-el' => 'spoiler']);
-        $env->addDelimiterProcessor($factory->getDelimiterProcessor());
-        $env->addRenderer($factory->getDelimiter()::class, $factory->getRenderer());
+        $env->addDelimiterProcessor(new SimpleDelimiterProcessor('|', 2, Spoiler::class));
+        $env->addRenderer(Spoiler::class, new SimpleRenderer('span', ['data-el' => 'spoiler']));
     }
 }
