@@ -2,22 +2,18 @@
 
 namespace App\MdExtensions\Parsing;
 
+use App\MdExtensions\Nodes\SimpleBlock;
 use App\MdExtensions\Nodes\SmallBlock;
 use League\CommonMark\Parser\Block\AbstractBlockContinueParser;
 use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
 use League\CommonMark\Parser\Cursor;
 
-final class SmallBlockParser extends AbstractBlockContinueParser
+final class SimpleBlockParser extends AbstractBlockContinueParser
 {
-    private SmallBlock $block;
-
     private array $lines = [];
 
-    public function __construct()
-    {
-        $this->block = new SmallBlock;
-    }
+    public function __construct(private SimpleBlock $block) {}
 
     public function getBlock(): SmallBlock
     {

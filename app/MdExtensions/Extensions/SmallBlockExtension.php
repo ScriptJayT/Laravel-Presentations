@@ -3,8 +3,8 @@
 namespace App\MdExtensions\Extensions;
 
 use App\MdExtensions\Nodes\SmallBlock;
+use App\MdExtensions\Parsing\SimpleBlockParser;
 use App\MdExtensions\Parsing\SimpleBlockStartParcer;
-use App\MdExtensions\Parsing\SmallBlockParser;
 use App\MdExtensions\Renderers\SimpleBlockRenderer;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\ExtensionInterface;
@@ -16,7 +16,7 @@ final class SmallBlockExtension implements ExtensionInterface
         $environment
             ->addBlockStartParser(
                 new SimpleBlockStartParcer(
-                    new SmallBlockParser,
+                    new SimpleBlockParser(new SmallBlock),
                     '/^-#\s*/',
                 ),
                 80

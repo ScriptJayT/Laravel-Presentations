@@ -20,9 +20,9 @@ final class SimpleBlockRenderer implements NodeRendererInterface
         SimpleBlock::assertInstanceOf($node);
 
         return new HtmlElement(
-            $this->htmlTag,
-            $this->htmlAttributes,
-            $node->getContent(),
+            tagName: $this->htmlTag,
+            attributes: $this->htmlAttributes,
+            contents: $node->getContent(),
         );
     }
 }

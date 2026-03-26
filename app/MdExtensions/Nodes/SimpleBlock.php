@@ -4,7 +4,10 @@ namespace App\MdExtensions\Nodes;
 
 use League\CommonMark\Node\Block\AbstractBlock;
 
-class SimpleBlock extends AbstractBlock
+/**
+ * @method string getContent()
+ */
+abstract class SimpleBlock extends AbstractBlock
 {
     public function __construct(private string $content = '')
     {
