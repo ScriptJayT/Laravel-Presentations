@@ -18,7 +18,6 @@ final class SimpleInlineRenderer implements NodeRendererInterface
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): HtmlElement
     {
         SimpleInline::assertInstanceOf($node);
-
         /** @var SimpleInline */
         $content = $node->getContent();
 
