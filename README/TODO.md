@@ -96,8 +96,9 @@
     - [ ] ? Add password rotation in queue for bot users
     - [ ] ? MD support for:
         - [x] underline: ` __text__ `
-        - [x] small text: ` -# text `
+        - [x] small: ` --text-- `
         - [x] spoilers: `||text||`
+        - [x] small text: ` -# text `
         - supscript: `lorem^(text)`
         - subpscript: `lorem~(text)`
         - multiline quote: `>>> text \n text \n\n`
