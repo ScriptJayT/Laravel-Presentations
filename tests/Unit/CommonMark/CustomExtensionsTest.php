@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\MdExtensions\Extensions\MultilineQuoteExtension;
 use App\MdExtensions\Extensions\SpoilerExtension;
 use App\MdExtensions\Extensions\UnderlineExtension;
 use Illuminate\Support\Str;
@@ -17,7 +16,6 @@ class CustomExtensionsTest extends TestCase
             extensions: [
                 new UnderlineExtension,
                 new SpoilerExtension,
-                new MultilineQuoteExtension,
             ]
         )->toString();
     }
