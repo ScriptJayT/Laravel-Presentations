@@ -2,7 +2,7 @@
 
 namespace App\MdExtensions\Extensions;
 
-use App\MdExtensions\Parsing\Spoiler;
+use App\MdExtensions\Nodes\Spoiler;
 use App\MdExtensions\Processors\SimpleDelimiterProcessor;
 use App\MdExtensions\Renderers\SimpleRenderer;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;

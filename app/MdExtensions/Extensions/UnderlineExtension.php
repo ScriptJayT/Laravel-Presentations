@@ -2,7 +2,7 @@
 
 namespace App\MdExtensions\Extensions;
 
-use App\MdExtensions\Parsing\Underline;
+use App\MdExtensions\Nodes\Underline;
 use App\MdExtensions\Processors\SimpleDelimiterProcessor;
 use App\MdExtensions\Renderers\SimpleRenderer;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;

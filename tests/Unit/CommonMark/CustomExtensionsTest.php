@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\MdExtensions\Extensions\SmallBlockExtension;
 use App\MdExtensions\Extensions\SpoilerExtension;
 use App\MdExtensions\Extensions\UnderlineExtension;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ class CustomExtensionsTest extends TestCase
             extensions: [
                 new UnderlineExtension,
                 new SpoilerExtension,
+                new SmallBlockExtension,
             ]
         )->toString();
     }
@@ -55,6 +57,14 @@ class CustomExtensionsTest extends TestCase
     }
 
     #[Test]
+    public function smallblock_extension_can_be_rendered()
+    {
+        $this->assertEquals(
+            "<div data-el=\"small\">Text</div>\n",
+            $this->toMd('-# Text'),
+        );
+    }
+
     public function multiple_extensions_can_be_used_together()
     {
         $this->assertEquals(

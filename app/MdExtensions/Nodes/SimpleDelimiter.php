@@ -1,6 +1,6 @@
 <?php
 
-namespace App\MdExtensions\Parsing;
+namespace App\MdExtensions\Nodes;
 
 use League\CommonMark\Node\Inline\AbstractInline;
 use League\CommonMark\Node\Inline\DelimitedInterface;

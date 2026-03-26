@@ -1,5 +1,5 @@
 <?php
 
-namespace App\MdExtensions\Parsing;
+namespace App\MdExtensions\Nodes;
 
 final class Spoiler extends SimpleDelimiter {}

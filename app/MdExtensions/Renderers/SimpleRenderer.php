@@ -2,7 +2,7 @@
 
 namespace App\MdExtensions\Renderers;
 
-use App\MdExtensions\Parsing\SimpleDelimiter;
+use App\MdExtensions\Nodes\SimpleDelimiter;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
