@@ -71,9 +71,7 @@
         "test:c": [
             "@php artisan config:clear --ansi",
             "clear",
-            "@php artisan test tests/Unit/CommonMark/DefaultExtensionsTest.php",
-            "@php artisan test tests/Unit/CommonMark/CustomExtensionsTest.php",
-            "@php artisan test tests/Unit/CommonMark/RenderableContentTraitTest.php"
+            "@php artisan test tests/Unit/CommonMark/CustomExtensionsTest.php"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
