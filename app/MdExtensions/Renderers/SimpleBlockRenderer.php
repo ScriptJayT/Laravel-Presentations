@@ -24,7 +24,7 @@ final class SimpleBlockRenderer implements NodeRendererInterface
         return new HtmlElement(
             tagName: $this->htmlTag,
             attributes: $this->htmlAttributes,
-            contents: $children,
+            contents: "\n{$children}\n",
         );
     }
 }

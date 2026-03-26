@@ -60,27 +60,27 @@ class CustomExtensionsTest extends TestCase
     public function smallblock_extension_can_be_rendered()
     {
         $this->assertEquals(
-            "<div data-el=\"small\"><p>Text</p></div>\n",
+            "<div data-el=\"small\">\n<p>Text</p>\n</div>\n",
             $this->toMd('-# Text'),
         );
         $this->assertEquals(
-            "<div data-el=\"small\"><p>Text</p></div>\n",
+            "<div data-el=\"small\">\n<p>Text</p>\n</div>\n",
             $this->toMd('-#Text'),
         );
         $this->assertEquals(
-            "<div data-el=\"small\"><p>Text</p></div>\n",
+            "<div data-el=\"small\">\n<p>Text</p>\n</div>\n",
             $this->toMd("-#\nText"),
         );
         $this->assertEquals(
-            "<div data-el=\"small\"><p>Text\nTest</p></div>\n",
+            "<div data-el=\"small\">\n<p>Text\nTest</p>\n</div>\n",
             $this->toMd("-# Text\nTest"),
         );
         $this->assertEquals(
-            "<div data-el=\"small\"><p>Text\n<em>Test</em></p></div>\n",
+            "<div data-el=\"small\">\n<p>Text\n<em>Test</em></p>\n</div>\n",
             $this->toMd("-# Text\n*Test*"),
         );
         $this->assertEquals(
-            "<div data-el=\"small\"><ul>\n<li>Text</li>\n</ul></div>\n",
+            "<div data-el=\"small\">\n<ul>\n<li>Text</li>\n</ul>\n</div>\n",
             $this->toMd("-#\n- Text"),
         );
     }
