@@ -4,6 +4,7 @@ namespace App\MdExtensions\Parsing;
 
 use App\MdExtensions\Nodes\SimpleBlock;
 use App\MdExtensions\Nodes\SmallBlock;
+use League\CommonMark\Node\Block\AbstractBlock;
 use League\CommonMark\Parser\Block\AbstractBlockContinueParser;
 use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
@@ -29,6 +30,16 @@ final class SimpleBlockParser extends AbstractBlockContinueParser
         return BlockContinue::none();
     }
 
+    public function isContainer(): bool
+    {
+        return true; // Allow this block to contain other blocks
+    }
+
+    public function canContain(AbstractBlock $childBlock): bool
+    {
+        return true; // Allow any type of child block
+    }
+
     public function addLine(string $line): void
     {
         $this->lines[] = $line;
@@ -36,7 +47,7 @@ final class SimpleBlockParser extends AbstractBlockContinueParser
 
     public function closeBlock(): void
     {
-        $content = implode("\n", $this->lines);
-        $this->block->setContent(trim($content));
+        // $content = implode("\n", $this->lines);
+        // $this->block->setContent(trim($content));
     }
 }

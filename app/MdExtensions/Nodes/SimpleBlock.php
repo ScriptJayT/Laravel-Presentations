@@ -4,23 +4,20 @@ namespace App\MdExtensions\Nodes;
 
 use League\CommonMark\Node\Block\AbstractBlock;
 
-/**
- * @method string getContent()
- */
 abstract class SimpleBlock extends AbstractBlock
 {
-    public function __construct(private string $content = '')
+    public function __construct()
     {
         parent::__construct();
     }
 
-    public function getContent(): string
-    {
-        return $this->content;
-    }
+    // public function getContent(): string
+    // {
+    //     return $this->content;
+    // }
 
-    public function setContent(string $content): void
-    {
-        $this->content = $content;
-    }
+    // public function setContent(string $content): void
+    // {
+    //     $this->content = $content;
+    // }
 }

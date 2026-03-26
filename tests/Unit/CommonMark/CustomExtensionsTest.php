@@ -60,8 +60,16 @@ class CustomExtensionsTest extends TestCase
     public function smallblock_extension_can_be_rendered()
     {
         $this->assertEquals(
-            "<div data-el=\"small\">Text</div>\n",
+            "<div data-el=\"small\"><p>Text</p></div>\n",
             $this->toMd('-# Text'),
+        );
+        $this->assertEquals(
+            "<div data-el=\"small\"><p>Text\nTest</p></div>\n",
+            $this->toMd("-# Text\nTest"),
+        );
+        $this->assertEquals(
+            "<div data-el=\"small\"><p>Text\n<em>Test</em></p></div>\n",
+            $this->toMd("-# Text\n*Test*"),
         );
     }
 
