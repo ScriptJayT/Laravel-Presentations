@@ -45,9 +45,5 @@ final class SimpleBlockParser extends AbstractBlockContinueParser
         $this->lines[] = $line;
     }
 
-    public function closeBlock(): void
-    {
-        // $content = implode("\n", $this->lines);
-        // $this->block->setContent(trim($content));
-    }
+    public function closeBlock(): void {}
 }
