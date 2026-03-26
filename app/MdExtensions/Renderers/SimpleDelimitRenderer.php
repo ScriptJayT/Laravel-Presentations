@@ -10,7 +10,7 @@ use League\CommonMark\Util\HtmlElement;
 use League\CommonMark\Xml\XmlNodeRendererInterface;
 use Stringable;
 
-class SimpleRenderer implements NodeRendererInterface, XmlNodeRendererInterface
+class SimpleDelimitRenderer implements NodeRendererInterface, XmlNodeRendererInterface
 {
     public function __construct(
         private string $htmlTag,

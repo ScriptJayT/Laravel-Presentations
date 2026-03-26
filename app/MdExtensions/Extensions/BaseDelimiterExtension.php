@@ -3,7 +3,7 @@
 namespace App\MdExtensions\Extensions;
 
 use App\MdExtensions\Processors\SimpleDelimiterProcessor;
-use App\MdExtensions\Renderers\SimpleRenderer;
+use App\MdExtensions\Renderers\SimpleDelimitRenderer;
 use Exception;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\ExtensionInterface;
@@ -42,7 +42,7 @@ abstract class BaseDelimiterExtension implements ExtensionInterface
         ));
         $env->addRenderer(
             $this->delimitedClassName,
-            new SimpleRenderer(
+            new SimpleDelimitRenderer(
                 htmlTag: $this->htmlCharacter,
                 htmlAttributes: $this->htmlAttributes,
             )
