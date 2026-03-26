@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\MdExtensions\Extensions\SmallBlockExtension;
+use App\MdExtensions\Extensions\SmallExtension;
 use App\MdExtensions\Extensions\SpoilerExtension;
 use App\MdExtensions\Extensions\UnderlineExtension;
 use Illuminate\Support\Str;
@@ -17,6 +18,7 @@ class CustomExtensionsTest extends TestCase
             extensions: [
                 new UnderlineExtension,
                 new SpoilerExtension,
+                new SmallExtension,
                 new SmallBlockExtension,
             ]
         )->toString();
@@ -57,6 +59,24 @@ class CustomExtensionsTest extends TestCase
     }
 
     #[Test]
+    public function small_extension_can_be_rendered()
+    {
+        $this->assertEquals(
+            "<p><small>Text</small></p>\n",
+            $this->toMd('--Text--'),
+        );
+    }
+
+    #[Test]
+    public function multiple_delimiter_extensions_can_be_used_together()
+    {
+        $this->assertEquals(
+            "<p><span data-el=\"spoiler\">Spoiler</span> <u>Underline</u></p>\n",
+            $this->toMd('||Spoiler|| __Underline__'),
+        );
+    }
+
+    #[Test]
     public function smallblock_extension_can_be_rendered()
     {
         $this->assertEquals(
@@ -82,15 +102,6 @@ class CustomExtensionsTest extends TestCase
         $this->assertEquals(
             "<div data-el=\"small\">\n<ul>\n<li>Text</li>\n</ul>\n</div>\n",
             $this->toMd("-#\n- Text"),
-        );
-    }
-
-    #[Test]
-    public function multiple_delimiter_extensions_can_be_used_together()
-    {
-        $this->assertEquals(
-            "<p><span data-el=\"spoiler\">Spoiler</span> <u>Underline</u></p>\n",
-            $this->toMd('||Spoiler|| __Underline__'),
         );
     }
 }
