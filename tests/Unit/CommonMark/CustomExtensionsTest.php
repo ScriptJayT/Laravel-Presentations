@@ -65,7 +65,8 @@ class CustomExtensionsTest extends TestCase
         );
     }
 
-    public function multiple_extensions_can_be_used_together()
+    #[Test]
+    public function multiple_delimiter_extensions_can_be_used_together()
     {
         $this->assertEquals(
             "<p><span data-el=\"spoiler\">Spoiler</span> <u>Underline</u></p>\n",
