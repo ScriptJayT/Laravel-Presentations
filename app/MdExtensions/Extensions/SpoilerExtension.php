@@ -3,16 +3,16 @@
 namespace App\MdExtensions\Extensions;
 
 use App\MdExtensions\Nodes\Spoiler;
-use App\MdExtensions\Processors\SimpleDelimiterProcessor;
-use App\MdExtensions\Renderers\SimpleRenderer;
-use League\CommonMark\Environment\EnvironmentBuilderInterface;
-use League\CommonMark\Extension\ExtensionInterface;
 
-class SpoilerExtension implements ExtensionInterface
+final class SpoilerExtension extends BaseDelimiterExtension
 {
-    public function register(EnvironmentBuilderInterface $env): void
-    {
-        $env->addDelimiterProcessor(new SimpleDelimiterProcessor('|', 2, Spoiler::class));
-        $env->addRenderer(Spoiler::class, new SimpleRenderer('span', ['data-el' => 'spoiler']));
-    }
+    protected string $htmlCharacter = 'span';
+
+    protected array $htmlAttributes = ['data-el' => 'spoiler'];
+
+    protected string $delimitedClassName = Spoiler::class;
+
+    protected string $mdCharacter = '|';
+
+    protected int $mdCharacterCount = 2;
 }
