@@ -16,7 +16,8 @@
         - check mailbox
         - send reminder mail for updates
     - [x] 18/03: check on status
-    - [ ] 27/03: talk
+    - [x] 27/03: talk
+    - [ ] await response
 
 ## Project:
 
