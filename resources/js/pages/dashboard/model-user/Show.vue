@@ -71,42 +71,36 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </AsideZone>
             </template>
             <template v-slot:mainzone>
-                <fieldset class="space-y-5">
-                    <legend class="sr-only"> Credentials </legend>
-                    <div class="flex gap-3">
-                        <ActionLink
-                            v-if="isLoggedInUser"
-                            :url="edit().url"
-                            text="Edit your profile"
-                        />
-                        <ActionLink
-                            v-if="canEdit"
-                            :url="admin_edit(user.id).url"
-                            text="Edit this user"
-                        />
-                    </div>
-                    <TextField
-                        label="Name:" name="name"
-                        :value="user.name" :disabled="true"
+                <div class="flex gap-3">
+                    <ActionLink
+                        v-if="isLoggedInUser"
+                        :url="edit().url"
+                        text="Edit your profile"
                     />
-                    <TextField
-                        label="Email:" name="email"
-                        :value="user.email" :disabled="true"
+                    <ActionLink
+                        v-if="canEdit"
+                        :url="admin_edit(user.id).url"
+                        text="Edit this user"
                     />
-                    <TextField
-                        label="Email validated:" name=""
-                        :value="user.email_verified_at ? 'Yes' : 'No'" disabled
-                    />
-                </fieldset>
-                <fieldset class="space-y-5">
-                    <legend class="sr-only"> Visual Representation </legend>
-                    <UserAvatar
-                        :avatar="user.avatar"
-                        :user-name="user.name"
-                        :inline="false"
-                        class="ml-auto"
-                    />
-                </fieldset>
+                </div>
+                <TextField
+                    label="Name:" name="name"
+                    :value="user.name" :disabled="true"
+                />
+                <TextField
+                    label="Email:" name="email"
+                    :value="user.email" :disabled="true"
+                />
+                <TextField
+                    label="Email validated:" name=""
+                    :value="user.email_verified_at ? 'Yes' : 'No'" disabled
+                />
+                <UserAvatar
+                    :avatar="user.avatar"
+                    :user-name="user.name"
+                    :inline="false"
+                    class="ml-auto"
+                />
             </template>
         </SideZoneContainer>
         <Container title="Projects" class="grid grid-cols-2 pb-20">
