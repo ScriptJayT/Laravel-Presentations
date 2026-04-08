@@ -1,24 +1,3 @@
-## Today:
-
-- write script
-- make press bout project
-
-### Done:
-
-- Script page md not styled
-
-## Global:
-
-- [ ] make press bout project
-- [ ] finish project before 20/03
-- vacature "Functioneel Analyst"
-    - [x] 10/03: check on status
-        - check mailbox
-        - send reminder mail for updates
-    - [x] 18/03: check on status
-    - [x] 27/03: talk
-    - [ ] await response
-
 ## Project:
 
 - Init
