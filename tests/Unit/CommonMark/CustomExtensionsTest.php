@@ -125,5 +125,13 @@ class CustomExtensionsTest extends TestCase
             "<div data-el=\"spoiler\">\n<p>Text</p>\n</div>\n",
             $this->toMd('||| Text'),
         );
+        $this->assertEquals(
+            "<div data-el=\"spoiler\">\n<p>Text</p>\n</div>\n",
+            $this->toMd('|||Text'),
+        );
+        $this->assertEquals(
+            "<div data-el=\"spoiler\">\n<p>Text</p>\n</div>\n",
+            $this->toMd("|||\nText"),
+        );
     }
 }
