@@ -98,8 +98,9 @@
     - [ ] ? MD support for:
         - [x] underline: ` __text__ `
         - [x] small: ` --text-- `
+        - [x] small block: ` -# text `
         - [x] spoilers: `||text||`
-        - [x] small text: ` -# text `
+        - [x] spoiler block: `||| text`
         - supscript: `lorem^(text)`
         - subpscript: `lorem~(text)`
         - multiline quote: `>>> text \n text \n\n`
