@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { User, BreadcrumbItem } from '@/types';
-import { admin_user_index, admin_presentations, send_password } from '@/routes';
+import { admin_user_index, admin_presentations } from '@/routes';
 import { update, destroy, show } from '@/routes/admin_user';
 import { plural, getUser } from '@/lib/utils';
 import AppLayout from '@/layouts/AppLayout.vue';

@@ -6,7 +6,6 @@ import { edit } from '@/routes/profile';
 import { plural, getUser } from '@/lib/utils';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SubSectionHeading } from '@/components/global/text';
-import { TextField } from '@/components/global/form';
 import { ActionLink } from '@/components/dashboard/buttons';
 import UserAvatar from '@/components/global/model/UserAvatar.vue';
 import { AsideZone } from '@/components/dashboard/sections';
