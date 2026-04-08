@@ -23,8 +23,15 @@ trait HasMarkdownRenderableContent
         return [];
     }
 
-    public function convertToMd(string $_str, array $_settings = [], array $_extensions = []): string
-    {
+    public function convertToMd(
+        ?string $_str,
+        array $_settings = [],
+        array $_extensions = []
+    ): string {
+        if (! $_str) {
+            return '';
+        }
+
         return Str::of($_str)->markdown(
             array_merge(
                 [
