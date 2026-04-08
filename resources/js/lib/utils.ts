@@ -1,4 +1,4 @@
-import type { AppServiceShared, Auth } from '@/types';
+import type { AppServiceShared, Auth, User } from '@/types';
 import { computed } from "vue";
 import { type InertiaLinkProps, usePage } from '@inertiajs/vue3';
 import { type ClassValue, clsx } from 'clsx';
@@ -80,7 +80,7 @@ export function getAppName() {
 export function getUser(_reactive: boolean) {
     const auth = usePage().props.auth as Auth;
     if(!auth) return null;
-    if(_reactive) return computed(() => auth.user ?? null);
+    if(_reactive) return computed(() => auth.user ?? null) as unknown as User;
     return auth.user ?? null;
 }
 

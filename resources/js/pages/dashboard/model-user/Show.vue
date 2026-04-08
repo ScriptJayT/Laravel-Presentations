@@ -1,21 +1,20 @@
 <script setup lang="ts">
 import type { User, BreadcrumbItem } from '@/types';
-import { admin_user_index, admin_presentations, send_password } from '@/routes';
-import { update, destroy, show } from '@/routes/admin_user';
+import { admin_user_index, admin_presentations } from '@/routes';
+import { edit as admin_edit } from '@/routes/admin_user';
 import { edit } from '@/routes/profile';
 import { plural, getUser } from '@/lib/utils';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SubSectionHeading } from '@/components/global/text';
-import { Form, TextField, FileField } from '@/components/global/form';
+import { TextField } from '@/components/global/form';
 import { ActionLink } from '@/components/dashboard/buttons';
 import UserAvatar from '@/components/global/model/UserAvatar.vue';
-import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
+import { AsideZone } from '@/components/dashboard/sections';
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
-import { DestroyFormModal } from '@/components/dashboard/models';
 
 const props = defineProps<{
     user: User,
-    canDelete: boolean,
+    canEdit: boolean,
 }>();
 const isLoggedInUser = props.user.id === getUser(false)?.id;
 const breadcrumbs: BreadcrumbItem[] = [
@@ -25,20 +24,13 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
     {
         title: `User: #${props.user.id}`,
-        href: show(props.user.id).url,
-    },
-    {
-        title: 'Edit',
     }
 ];
 </script>
 
 <template>
-    <AppLayout
-        meta-title="Edit User"
-        :breadcrumbs
-    >
-        <h1 class="sr-only"> Edit User Profile </h1>
+    <AppLayout meta-title="User" :breadcrumbs>
+        <h1 class="sr-only"> User Profile </h1>
         <SideZoneContainer
             :title="isLoggedInUser
                 ? `${user.name} (You)`
@@ -47,16 +39,11 @@ const breadcrumbs: BreadcrumbItem[] = [
             main-class="space-y-15"
         >
             <template v-slot:sidezone>
-                <SaveZone form-id="update-form-edit" />
                 <AsideZone title="Info" :hidden-title="true">
-                    <CreatedMetaInfo :model="user" />
+                    <span class="block">
+                        Member since: {{ user.created_at }}
+                    </span>
                 </AsideZone>
-                <DangerZone v-if="canDelete">
-                    <DestroyFormModal
-                        :id="user.id"
-                        :route="destroy.form(user.id)"
-                    />
-                </DangerZone>
                 <AsideZone title="Permissions" :hidden-title="false">
                     <span
                         v-if="user.roles.length < 1"
@@ -84,58 +71,42 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </AsideZone>
             </template>
             <template v-slot:mainzone>
-                <Form
-                    id="update-form-edit"
-                    :send-to="update.form(user.id)"
-                    :show-button="false"
-                    class="grid grid-cols-2 gap-10"
-                >
-                    <fieldset class="space-y-5">
-                        <legend class="sr-only"> Credentials </legend>
+                <fieldset class="space-y-5">
+                    <legend class="sr-only"> Credentials </legend>
+                    <div class="flex gap-3">
                         <ActionLink
                             v-if="isLoggedInUser"
                             :url="edit().url"
                             text="Edit your profile"
                         />
-                        <TextField
-                            label="Name:" name="name"
-                            :value="user.name"
+                        <ActionLink
+                            v-if="canEdit"
+                            :url="admin_edit(user.id).url"
+                            text="Edit this user"
                         />
-                        <TextField
-                            label="Email:" name="email"
-                            :value="user.email"
-                        />
-                        <TextField
-                            label="Email validated:" name=""
-                            :value="user.email_verified_at ? 'Yes' : 'No'" disabled
-                        />
-                    </fieldset>
-                    <fieldset class="space-y-5">
-                        <legend class="sr-only"> Visual Representation </legend>
-                        <UserAvatar
-                            :avatar="user.avatar"
-                            :user-name="user.name"
-                            :inline="false"
-                            class="ml-auto"
-                        />
-                        <FileField
-                            label="Avatar:"
-                            name="avatar"
-                        />
-                    </fieldset>
-                </Form>
-                <Form
-                    v-if="!isLoggedInUser"
-                    :send-to="send_password.form()"
-                    button-text="Send password reset link"
-                    class="w-fit"
-                    v-slot="{ errors, wasSuccessful }"
-                >
-                    <div v-if="wasSuccessful"> Reset-link send </div>
-                    <div v-if="errors.email"> The users email is invalid? </div>
-                    <div v-if="errors.status"> Something went wrong </div>
-                    <input type="hidden" name="email" :value="user.email">
-                </Form>
+                    </div>
+                    <TextField
+                        label="Name:" name="name"
+                        :value="user.name" :disabled="true"
+                    />
+                    <TextField
+                        label="Email:" name="email"
+                        :value="user.email" :disabled="true"
+                    />
+                    <TextField
+                        label="Email validated:" name=""
+                        :value="user.email_verified_at ? 'Yes' : 'No'" disabled
+                    />
+                </fieldset>
+                <fieldset class="space-y-5">
+                    <legend class="sr-only"> Visual Representation </legend>
+                    <UserAvatar
+                        :avatar="user.avatar"
+                        :user-name="user.name"
+                        :inline="false"
+                        class="ml-auto"
+                    />
+                </fieldset>
             </template>
         </SideZoneContainer>
         <Container title="Projects" class="grid grid-cols-2 pb-20">

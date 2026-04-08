@@ -14,10 +14,12 @@ class AdminUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         return Inertia::render('dashboard/model-user/Index', [
             'allUsers' => User::all(['id', 'name']),
+            'canAdd' => $request->user()->can('add users'),
+            'canEdit' => $request->user()->can('edit users'),
         ]);
     }
 
@@ -40,7 +42,25 @@ class AdminUserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $user, Request $req)
+    {
+        $user->load([
+            'presentations',
+            'presentationScripts',
+            'roles' => fn ($_q) => $_q->select('id', 'name'),
+            'roles.permissions' => fn ($_q) => $_q->select('id', 'name'),
+        ]);
+
+        return Inertia::render('dashboard/model-user/Show', [
+            'user' => $user,
+            'canEdit' => $req->user()->can('delete users'),
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(User $user, Request $req)
     {
         $user->load([
             'presentations',
@@ -51,18 +71,7 @@ class AdminUserController extends Controller
 
         return Inertia::render('dashboard/model-user/Edit', [
             'user' => $user,
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        $user->load('presentations', 'presentationScripts');
-
-        return Inertia::render('dashboard/model-user/Edit', [
-            'user' => $user,
+            'canDelete' => $req->user()->can('delete users'),
         ]);
     }
 

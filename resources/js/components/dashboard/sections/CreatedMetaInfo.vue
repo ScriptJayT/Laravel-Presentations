@@ -2,7 +2,7 @@
 import type { Model, User } from '@/types';
 import { ExternalLink } from 'lucide-vue-next';
 import { RouteDefinition } from '@/wayfinder';
-import { admin_users } from "@/routes";
+import { show } from "@/routes/admin_user";
 import { cn } from '@/lib/utils';
 import { metaButtonClasses, metaButtonSpanClasses } from '.';
 const props = defineProps<{
@@ -25,7 +25,7 @@ const props = defineProps<{
     </template>
     <template v-if="model.user">
         <a
-            :href="admin_users(model.user.id).url"
+            :href="show(model.user.id).url"
             target="_blank"
             :class="cn(metaButtonClasses())"
         >

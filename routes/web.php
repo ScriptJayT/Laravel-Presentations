@@ -69,11 +69,11 @@ Route::prefix('dashboard')
             ->missing(fn () => Redirect::route('admin_script_index'));
 
         Route::resource('users', AdminUserController::class)
-            ->except([/* 'show', */ 'edit', 'create'])
+            ->except(['create'])
             ->names([
                 'index' => 'admin_user_index',
-                // 'edit' => 'admin_users',
-                'show' => 'admin_users',
+                'show' => 'admin_user.show',
+                'edit' => 'admin_user.edit',
                 'destroy' => 'admin_user.destroy',
                 'store' => 'admin_user.store',
                 'update' => 'admin_user.update',
