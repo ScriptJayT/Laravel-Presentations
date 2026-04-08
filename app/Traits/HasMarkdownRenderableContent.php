@@ -24,14 +24,10 @@ trait HasMarkdownRenderableContent
     }
 
     public function convertToMd(
-        ?string $_str,
+        string $_str,
         array $_settings = [],
         array $_extensions = []
     ): string {
-        if (! $_str) {
-            return '';
-        }
-
         return Str::of($_str)->markdown(
             array_merge(
                 [
@@ -79,7 +75,7 @@ trait HasMarkdownRenderableContent
     protected function getRenderedContentAttribute(): string
     {
         return $this->convertToMd(
-            $this->content,
+            $this->content ?? '',
             _settings: $this->getMdSettings(),
             _extensions: $this->getMdExtensions(),
         );
