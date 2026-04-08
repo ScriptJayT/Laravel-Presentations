@@ -14,6 +14,7 @@ Goal: build a backend interface to create a presentation using markdown
     - md parser: https://commonmark.thephpleague.com/2.x/basic-usage/
     - testing: https://docs.phpunit.de/en/
     - debugbar: https://laraveldebugbar.com/usage/
+    - user permissions: https://spatie.be/docs/laravel-permission/v7/installation-laravel
 - Cheat sheet: https://www.markdownguide.org/cheat-sheet/
 
 ### Help-out
