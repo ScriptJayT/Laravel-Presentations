@@ -7,23 +7,20 @@ import { IndexLink, NewLink } from '@/components/dashboard/models';
 import Search from '@/components/global/form/Search.vue';
 import NewUser from '@/components/dashboard/forms/NewUser.vue';
 
-const props = defineProps<{
-    allUsers: User[];
-}>();
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Users',
-    },
-];
+const props = defineProps<{allUsers: User[]}>();
+const breadcrumbs: BreadcrumbItem[] = [ { title: 'Users' } ];
 </script>
 
 <template>
-    <AppLayout meta-title="Users" :breadcrumbs="breadcrumbs">
+    <AppLayout
+        meta-title="Users"
+        :breadcrumbs
+    >
         <Container
             title="Users"
             class="space-y-10"
         >
-            <Search :updatable-list="allUsers"/>
+            <Search :updatable-list="allUsers" />
             <IndexGrid>
                 <NewLink title="User">
                     <NewUser class="mt-10" />
