@@ -55,6 +55,31 @@ console.log(props.user.roles);
                         :route="destroy.form(user.id)"
                     />
                 </DangerZone>
+                <AsideZone title="Permissions" :hidden-title="false">
+                    <span
+                        v-if="user.roles.length < 1"
+                        class="text-sm text-muted-foreground"
+                    >
+                        None granted
+                    </span>
+                    <ul
+                        v-else
+                        class="space-y-3"
+                    >
+                        <li v-for="_role in user.roles">
+                            <span class="block mb-1 capitalize">
+                                {{_role.name}}:
+                            </span>
+                            <ul class="list-disc pl-5">
+                                <li v-for="_perm in _role.permissions">
+                                    <span>
+                                        {{ _perm.name }}
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </AsideZone>
             </template>
             <template v-slot:mainzone>
                 <Form
@@ -84,7 +109,6 @@ console.log(props.user.roles);
                             :value="user.email_verified_at ? 'Yes' : 'No'" disabled
                         />
                     </fieldset>
-
                     <fieldset class="space-y-5">
                         <legend class="sr-only"> Visual Representation </legend>
                         <UserAvatar
@@ -101,7 +125,6 @@ console.log(props.user.roles);
                         </template>
                     </fieldset>
                 </Form>
-
                 <Form
                     v-if="!isLoggedInUser"
                     :send-to="send_password.form()"
