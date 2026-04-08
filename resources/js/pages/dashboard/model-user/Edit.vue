@@ -30,7 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     }
 ];
 
-console.log(props.user);
+console.log(props.user.roles);
 
 </script>
 
