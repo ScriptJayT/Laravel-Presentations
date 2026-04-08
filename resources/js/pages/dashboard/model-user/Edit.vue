@@ -2,12 +2,10 @@
 import type { User, BreadcrumbItem } from '@/types';
 import { admin_user_index, admin_presentations, send_password } from '@/routes';
 import { update, destroy, show } from '@/routes/admin_user';
-import { edit } from '@/routes/profile';
 import { plural, getUser } from '@/lib/utils';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SubSectionHeading } from '@/components/global/text';
 import { Form, TextField, FileField } from '@/components/global/form';
-import { ActionLink } from '@/components/dashboard/buttons';
 import UserAvatar from '@/components/global/model/UserAvatar.vue';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
@@ -51,12 +49,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <AsideZone title="Info" :hidden-title="true">
                     <CreatedMetaInfo :model="user" />
                 </AsideZone>
-                <DangerZone v-if="canDelete">
-                    <DestroyFormModal
-                        :id="user.id"
-                        :route="destroy.form(user.id)"
-                    />
-                </DangerZone>
                 <AsideZone title="Permissions" :hidden-title="false">
                     <span
                         v-if="user.roles.length < 1"
@@ -82,6 +74,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </li>
                     </ul>
                 </AsideZone>
+                <DangerZone v-if="canDelete">
+                    <DestroyFormModal
+                        :id="user.id"
+                        :route="destroy.form(user.id)"
+                    />
+                </DangerZone>
             </template>
             <template v-slot:mainzone>
                 <Form
@@ -92,11 +90,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                 >
                     <fieldset class="space-y-5">
                         <legend class="sr-only"> Credentials </legend>
-                        <ActionLink
-                            v-if="isLoggedInUser"
-                            :url="edit().url"
-                            text="Edit your profile"
-                        />
                         <TextField
                             label="Name:" name="name"
                             :value="user.name"
@@ -106,7 +99,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             :value="user.email"
                         />
                         <TextField
-                            label="Email validated:" name=""
+                            label="Email validated:" name="--"
                             :value="user.email_verified_at ? 'Yes' : 'No'" disabled
                         />
                     </fieldset>
@@ -123,18 +116,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                             name="avatar"
                         />
                     </fieldset>
-                </Form>
-                <Form
-                    v-if="!isLoggedInUser"
-                    :send-to="send_password.form()"
-                    button-text="Send password reset link"
-                    class="w-fit"
-                    v-slot="{ errors, wasSuccessful }"
-                >
-                    <div v-if="wasSuccessful"> Reset-link send </div>
-                    <div v-if="errors.email"> The users email is invalid? </div>
-                    <div v-if="errors.status"> Something went wrong </div>
-                    <input type="hidden" name="email" :value="user.email">
                 </Form>
             </template>
         </SideZoneContainer>

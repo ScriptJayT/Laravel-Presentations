@@ -12,6 +12,7 @@ import UserAvatar from '@/components/global/model/UserAvatar.vue';
 import { AsideZone } from '@/components/dashboard/sections';
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
 import PropList from '@/components/dashboard/models/PropList.vue';
+import SendPasswordReset from '@/components/dashboard/forms/SendPasswordReset.vue';
 
 const props = defineProps<{
     user: User,
@@ -45,7 +46,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         Member since: {{ user.created_at }}
                     </span>
                 </AsideZone>
-                <AsideZone title="Permissions" :hidden-title="false">
+                <AsideZone title="Permissions">
                     <span
                         v-if="user.roles.length < 1"
                         class="text-sm text-muted-foreground"
@@ -70,7 +71,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </li>
                     </ul>
                 </AsideZone>
-                <AsideZone class="empty:none">
+                <AsideZone title="Actions" class="empty:none">
+                    <SendPasswordReset
+                        v-if="!isLoggedInUser"
+                        :email="user.email"
+                    />
                     <ActionLink
                         v-if="isLoggedInUser"
                         :url="edit().url"
@@ -95,7 +100,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         'Email': user.email,
                         'Email validated': user.email_verified_at ? 'Yes' : 'No',
                     }"
-                    class="space-y-10"
+                    class="space-y-5"
                 />
             </template>
         </SideZoneContainer>
