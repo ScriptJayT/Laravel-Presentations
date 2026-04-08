@@ -3,7 +3,6 @@
 namespace App\MdExtensions\Parsing;
 
 use App\MdExtensions\Nodes\SimpleBlock;
-use App\MdExtensions\Nodes\SmallBlock;
 use League\CommonMark\Node\Block\AbstractBlock;
 use League\CommonMark\Parser\Block\AbstractBlockContinueParser;
 use League\CommonMark\Parser\Block\BlockContinue;
@@ -16,7 +15,7 @@ final class SimpleBlockParser extends AbstractBlockContinueParser
 
     public function __construct(private SimpleBlock $block) {}
 
-    public function getBlock(): SmallBlock
+    public function getBlock(): SimpleBlock
     {
         return $this->block;
     }

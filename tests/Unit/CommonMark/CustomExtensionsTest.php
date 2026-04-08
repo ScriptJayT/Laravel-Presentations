@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\MdExtensions\Extensions\SmallBlockExtension;
 use App\MdExtensions\Extensions\SmallExtension;
+use App\MdExtensions\Extensions\SpoilerBlockExtension;
 use App\MdExtensions\Extensions\SpoilerExtension;
 use App\MdExtensions\Extensions\SubscriptExtension;
 use App\MdExtensions\Extensions\UnderlineExtension;
@@ -21,12 +22,13 @@ class CustomExtensionsTest extends TestCase
                 new SpoilerExtension,
                 new SmallExtension,
                 new SmallBlockExtension,
+                new SpoilerBlockExtension,
                 new SubscriptExtension,
             ]
         )->toString();
     }
 
-    // #[Test]
+    #[Test]
     public function underline_extension_can_be_rendered()
     {
         $this->assertEquals(
@@ -43,7 +45,7 @@ class CustomExtensionsTest extends TestCase
         );
     }
 
-    // #[Test]
+    #[Test]
     public function spoiler_extension_can_be_rendered()
     {
         $this->assertEquals(
@@ -60,7 +62,7 @@ class CustomExtensionsTest extends TestCase
         );
     }
 
-    // #[Test]
+    #[Test]
     public function small_extension_can_be_rendered()
     {
         $this->assertEquals(
@@ -69,7 +71,7 @@ class CustomExtensionsTest extends TestCase
         );
     }
 
-    // #[Test]
+    #[Test]
     public function multiple_delimiter_extensions_can_be_used_together()
     {
         $this->assertEquals(
@@ -87,7 +89,7 @@ class CustomExtensionsTest extends TestCase
         );
     }
 
-    // #[Test]
+    #[Test]
     public function smallblock_extension_can_be_rendered()
     {
         $this->assertEquals(
@@ -113,6 +115,15 @@ class CustomExtensionsTest extends TestCase
         $this->assertEquals(
             "<div data-el=\"small\">\n<ul>\n<li>Text</li>\n</ul>\n</div>\n",
             $this->toMd("-#\n- Text"),
+        );
+    }
+
+    #[Test]
+    public function spoilerblock_extension_can_be_rendered()
+    {
+        $this->assertEquals(
+            "<div data-el=\"spoiler\">\n<p>Text</p>\n</div>\n",
+            $this->toMd('||| Text'),
         );
     }
 }
