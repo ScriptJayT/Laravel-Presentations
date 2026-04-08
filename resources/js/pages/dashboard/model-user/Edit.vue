@@ -29,6 +29,9 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: `User: #${props.user.id}`,
     }
 ];
+
+console.log(props.user);
+
 </script>
 
 <template>

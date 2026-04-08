@@ -42,8 +42,12 @@ class AdminUserController extends Controller
      */
     public function show(User $user)
     {
-        $user->load('presentations', 'presentationScripts', 'roles');
-        dd($user->roles);
+        $user->load([
+            'presentations',
+            'presentationScripts',
+            'roles' => fn ($_q) => $_q->select('id', 'name'),
+            'roles.permissions' => fn ($_q) => $_q->select('id', 'name'),
+        ]);
 
         return Inertia::render('dashboard/model-user/Edit', [
             'user' => $user,
