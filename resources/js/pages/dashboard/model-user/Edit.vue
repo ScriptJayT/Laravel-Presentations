@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import type { User, BreadcrumbItem } from '@/types';
 import { admin_user_index, admin_presentations } from '@/routes';
-import { update, destroy, show } from '@/routes/admin_user';
+import { destroy, show } from '@/routes/admin_user';
 import { plural, getUser } from '@/lib/utils';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SubSectionHeading } from '@/components/global/text';
-import { Form, TextField, FileField } from '@/components/global/form';
-import UserAvatar from '@/components/global/model/UserAvatar.vue';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
 import { DestroyFormModal } from '@/components/dashboard/models';
+import EditUser from '@/components/dashboard/forms/EditUser.vue';
 
 const props = defineProps<{
     user: User,
@@ -82,41 +81,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </DangerZone>
             </template>
             <template v-slot:mainzone>
-                <Form
-                    id="update-form-edit"
-                    :send-to="update.form(user.id)"
-                    :show-button="false"
-                    class="grid grid-cols-2 gap-10"
-                >
-                    <fieldset class="space-y-5">
-                        <legend class="sr-only"> Credentials </legend>
-                        <TextField
-                            label="Name:" name="name"
-                            :value="user.name"
-                        />
-                        <TextField
-                            label="Email:" name="email"
-                            :value="user.email"
-                        />
-                        <TextField
-                            label="Email validated:" name="--"
-                            :value="user.email_verified_at ? 'Yes' : 'No'" disabled
-                        />
-                    </fieldset>
-                    <fieldset class="space-y-5">
-                        <legend class="sr-only"> Visual Representation </legend>
-                        <UserAvatar
-                            :avatar="user.avatar"
-                            :user-name="user.name"
-                            :inline="false"
-                            class="ml-auto"
-                        />
-                        <FileField
-                            label="Avatar:"
-                            name="avatar"
-                        />
-                    </fieldset>
-                </Form>
+                <EditUser :user />
             </template>
         </SideZoneContainer>
         <Container title="Projects" class="grid grid-cols-2 pb-20">
