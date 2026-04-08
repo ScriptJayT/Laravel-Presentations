@@ -12,6 +12,9 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,11 +23,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+        Permission::create(['guard_name' => 'web', 'name' => 'add users']);
+        Permission::create(['guard_name' => 'web', 'name' => 'edit users']);
+        Permission::create(['guard_name' => 'web', 'name' => 'delete users']);
+
+        Role::create(['name' => 'goddess'])->givePermissionTo(Permission::all());
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
         User::factory()->create([
             'name' => 'Hestia',
             'email' => 'main@hellpress.dev',
             'password' => Hash::make('password'),
-        ]);
+        ])->each(fn (User $_user) => $_user->assignRole('goddess'));
+
         $botUser = User::factory()->create([
             'name' => 'Bot 🤖',
             'email' => 'bot@hellpress.dev',
