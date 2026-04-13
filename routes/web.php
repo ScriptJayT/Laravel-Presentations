@@ -39,6 +39,7 @@ Route::prefix('dashboard')
             ->name('dashboard');
 
         Route::resource('presentations', AdminPresentationController::class)
+            ->middleware('can:crud presentations')
             ->except(['show', 'create'])
             ->names([
                 'index' => 'admin_presentation_index',
@@ -49,6 +50,7 @@ Route::prefix('dashboard')
             ])
             ->missing(fn () => Redirect::route('admin_presentation_index'));
         Route::resource('slides', AdminPresentationSlideController::class)
+            ->middleware('can:crud presentations')
             ->only(['destroy', 'store', 'update'])
             ->names([
                 'destroy' => 'admin_slide.destroy',
@@ -58,6 +60,7 @@ Route::prefix('dashboard')
             ->missing(fn () => Redirect::route('admin_presentation_index'));
 
         Route::resource('scripts', AdminPresentationScriptController::class)
+            ->middleware('can:crud presentations')
             ->except(['show', 'create'])
             ->names([
                 'index' => 'admin_script_index',

@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         Permission::create(['guard_name' => 'web', 'name' => 'crud presentations']);
 
         Role::create(['name' => 'goddess'])->givePermissionTo('primordial');
-        Role::create(['name' => 'admin'])->givePermissionTo('create users', 'read users', 'update users', 'delete users');
+        Role::create(['name' => 'admin'])->givePermissionTo('create users', 'update users', 'delete users');
         Role::create(['name' => 'base'])->givePermissionTo('crud presentations', 'read users');
         Role::create(['name' => 'bot']);
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
