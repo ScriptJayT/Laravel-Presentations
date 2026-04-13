@@ -72,14 +72,17 @@ Route::prefix('dashboard')
             ->missing(fn () => Redirect::route('admin_script_index'));
 
         Route::resource('users', AdminUserController::class)
-            ->middleware('can:read users')
+            ->middlewareFor(['create', 'store'], 'can:create users')
+            ->middlewareFor(['index', 'show'], 'can:read users')
+            ->middlewareFor(['edit', 'update'], 'can:update users')
+            ->middlewareFor('destroy', 'can:delete users')
             ->except(['create'])
             ->names([
                 'index' => 'admin_user_index',
                 'show' => 'admin_user.show',
-                'edit' => 'admin_user.edit',
                 'destroy' => 'admin_user.destroy',
                 'store' => 'admin_user.store',
+                'edit' => 'admin_user.edit',
                 'update' => 'admin_user.update',
             ])
             ->missing(fn () => Redirect::route('admin_user_index'));

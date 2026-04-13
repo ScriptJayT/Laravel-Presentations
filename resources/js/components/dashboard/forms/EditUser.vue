@@ -12,6 +12,7 @@ defineProps<{ user: User }>();
         :send-to="update.form(user.id)"
         :show-button="false"
         class="space-y-5"
+        v-slot="{errors}"
     >
         <fieldset class="space-y-5">
             <legend class="sr-only">Visual Representation</legend>
@@ -24,8 +25,8 @@ defineProps<{ user: User }>();
         </fieldset>
         <fieldset class="space-y-5">
             <legend class="sr-only">Credentials</legend>
-            <TextField label="Name:" name="name" :value="user.name" />
-            <TextField label="Email:" name="email" :value="user.email" />
+            <TextField label="Name:" name="name" :value="user.name" :error="errors.name" />
+            <TextField label="Email:" name="email" :value="user.email" :error="errors.email" />
         </fieldset>
     </Form>
 </template>
