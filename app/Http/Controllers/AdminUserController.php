@@ -18,8 +18,8 @@ class AdminUserController extends Controller
     {
         return Inertia::render('dashboard/model-user/Index', [
             'allUsers' => User::all(['id', 'name']),
-            'canAdd' => $request->user()->can('add users'),
-            'canEdit' => $request->user()->can('edit users'),
+            'canAdd' => $request->user()->can('create users'),
+            'canEdit' => $request->user()->can('update users'),
         ]);
     }
 

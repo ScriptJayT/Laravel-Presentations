@@ -25,7 +25,7 @@
         - [x] Add scripts
         - [~] ? Add users
             - [ ] Add avatar option
-            - [ ] Add roles
+            - [x] Add roles
             - [x] Cleanup "unreachable" user actions
         - [ ] ? Add themes
         - [ ] ? Add a media manager

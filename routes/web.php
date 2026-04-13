@@ -69,6 +69,7 @@ Route::prefix('dashboard')
             ->missing(fn () => Redirect::route('admin_script_index'));
 
         Route::resource('users', AdminUserController::class)
+            ->middleware('can:read users')
             ->except(['create'])
             ->names([
                 'index' => 'admin_user_index',
