@@ -11,27 +11,32 @@ final class SubscriptParser implements InlineParserInterface
 {
     public function getMatchDefinition(): InlineParserMatch
     {
-        // \^\(([^)]+)\)
-        // \^\(([^()]+)\)
-        return InlineParserMatch::regex('\^\(([^()]+)\)');
+        // \^\((.+)\)|\^(\S+)
+        // => \^\((.+)\) matches ^(words in brackets)
+        // or
+        // => \^(\S+) matches ^non-whitespaces-words
+        return InlineParserMatch::regex("\^\((.+)\)|\^(\S+)");
     }
 
     public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();
 
-        // Check if this starts with ^(
-        if ($cursor->peek(-2) !== '^') {
+        // Check if this match does starts with ^
+        if ($cursor->peek(0) !== '^') {
             return false;
         }
 
-        // Advance past the ^(
-        $cursor->advanceBy(2);
+        $guessStartBracket = $cursor->peek(1);
+        $guessEndBracket = $cursor->peek($inlineContext->getFullMatchLength() - 1);
+        $isBracketed = $guessStartBracket === '(' && $guessEndBracket === ')';
 
-        // Get the captured content
-        [$content] = $inlineContext->getSubMatches();
+        $matches = $inlineContext->getSubMatches();
+        // if the match is not bracketed; the content is in the second capture group due to the order of the regex
+        $content = $isBracketed ? $matches[0] : $matches[1];
 
-        // Create and add the subscript node
+        $cursor->advanceBy($inlineContext->getFullMatchLength());
+
         $subscript = new Subscript($content);
         $inlineContext->getContainer()->appendChild($subscript);
 
