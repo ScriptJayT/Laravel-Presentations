@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { RouteFormDefinition } from '@/wayfinder';
+import { type RouteFormDefinition } from '@/wayfinder';
 import { Form } from '@inertiajs/vue3';
 import { Save, Trash, } from 'lucide-vue-next';
-
-import { UnsavedChanges, ProcessIndicator } from '@/components/global/form'
 import { type FunctionalComponent } from 'vue';
+import { UnsavedChanges, ProcessIndicator } from '.'
 
 const props = withDefaults(
     defineProps<{
@@ -36,7 +35,7 @@ function success(_response: unknown) {
     if(props.onSuccess) props.onSuccess(_response);
 }
 function fail(_response: unknown) {
-    console.log(_response);
+    console.log("[DEV]", _response);
     if(props.onError) props.onError(_response);
 }
 </script>
