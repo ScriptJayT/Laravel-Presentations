@@ -15,7 +15,7 @@
         pressy
 - App Functions
     - Dashboard:
-        - [ ] ? allow ctrl+s to quicksave
+        - [x] ? allow ctrl+s to quicksave
     - [~] CRUD operations:
         - [ ] ? Add an atom lock to all operations
         - [x] Add presentations
@@ -51,7 +51,7 @@
     - [x] Find better (temp) logo for app
     - [x] Cleanup app darkmode
     - [x] Add appname logo to app header
-    - [x] ? Add icons icons of User, Protected, Private to index
+    - [x] ? Add icons of {User, Protected, Private} to index
     - [ ] ? Add a visually interesting bg to index
     - [ ] ? Form submit button should be sticky bottom-0
 - Bugs:
