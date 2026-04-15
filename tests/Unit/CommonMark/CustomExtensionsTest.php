@@ -85,25 +85,25 @@ class CustomExtensionsTest extends TestCase
     {
         $this->assertEquals(
             "<p>H<sub>2</sub>O</p>\n",
-            $this->toMd('H^(2)O'),
+            $this->toMd('H~(2)O'),
         );
         $this->assertEquals(
             "<p>Text<sub>hyphened-text</sub></p>\n",
-            $this->toMd('Text^hyphened-text'),
+            $this->toMd('Text~hyphened-text'),
         );
         $this->assertEquals(
             "<p>Text<sub>text</sub> further</p>\n",
-            $this->toMd('Text^text further'),
+            $this->toMd('Text~text further'),
         );
 
         $this->assertEquals(
             "<p>Text<sub>text</sub></p>\n",
-            $this->toMd('Text^(text)'),
+            $this->toMd('Text~(text)'),
         );
 
         $this->assertEquals(
             "<p>Text<sub>longer text</sub></p>\n",
-            $this->toMd('Text^(longer text)'),
+            $this->toMd('Text~(longer text)'),
         );
     }
 

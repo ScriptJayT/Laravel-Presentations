@@ -13,7 +13,7 @@ final class SubscriptExtension implements ExtensionInterface
     public function register(EnvironmentBuilderInterface $environment): void
     {
         $environment
-            ->addInlineParser(new BracketedInlineParser('^', Subscript::class, true), 100)
+            ->addInlineParser(new BracketedInlineParser('~', Subscript::class, true), 100)
             ->addRenderer(Subscript::class, new SimpleInlineRenderer('sub'));
     }
 }
