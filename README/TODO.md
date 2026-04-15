@@ -15,44 +15,48 @@
         pressy
 - App Functions
     - Dashboard:
-        - [x] allow ctrl+s to quicksave
-        - [ ] allow ctrl+v to preview
-    - [~] CRUD operations:
-        - [ ] Add an atom lock to all operations
-        - [x] Add presentations
-        - [~] Add slides
-            - [ ] ? Add media/scripts injecting (custom elements, iframes)
-            - [ ] ? Add full bg options
-        - [x] Add scripts
-        - [~] Add users
-            - [ ] Add avatar option
-            - [~] Add roles
-                - [x] link roles to users
-                - [ ] change user role
-                - [ ] edit role
-            - [x] Cleanup "unreachable" user actions
-        - [ ] Add themes
-        - [ ] Add a media manager
-    - Guarding:
-        - [x] Throw error 403 w/ redirect if not allowed
-        - [x] Make private models also private from other users
-        - [x] ? Make scripts/presentations/slides private-able
-    - [~] Markdown:
-        - [~] Allow download of:
-            - [x] Content of scripts
-            - [ ] Whole presentation
-        - [~] Allow upload in:
-            - [x] Scripts
-            - [ ] Presentations
-            - [ ] Slides
+        - [ ] Add welcome screen
+        - Editor:
+            - [x] allow ctrl+s to quicksave
+            - [ ] allow ctrl+v to preview
+        - Markdown:
+            - [~] Allow download of:
+                - [x] Content of scripts
+                - [ ] Whole presentation
+            - [~] Allow upload in:
+                - [x] Scripts
+                - [ ] Presentations
+                - [ ] Slides
+        - CRUD operations:
+            - [ ] Add an atom lock to all operations
+            - [x] Add presentations
+            - [~] Add slides
+                - [ ] media/scripts injecting (custom elements, iframes)
+                - [ ] full bg options
+            - [x] Add scripts
+            - [~] Add users
+                - [ ] Add avatar option
+                - [~] Add roles
+                    - [x] link roles to users
+                    - [ ] change user role
+            - [ ] Add themes
+            - [ ] Add roles
+            - [ ] Add a media manager
+        - Guarding:
+            - [x] Throw error 403 w/ redirect if not allowed
+            - [x] Make private models also private from other users
+            - [x] Make scripts/presentations/slides private-able
     - Slideshow:
         - [x] Add fullscreen mode
-    - [ ] Add a read-only API
+        - [ ] Add cleaner slide navigation
+        - [ ] Add theme switcher (accessibility)
+        - [ ] Add font size slider (accessibility)
+    - API:
         - Type: json
         - [ ] Allow content rendering of md/html
         - [ ] Allow selection of script/slides/both
     - Bot:
-        - [ ] Add password rotation in queue for bot users
+        - [ ] Add password rotation in queue
 - App Look
     - [x] Find better (temp) logo for app
     - [x] Cleanup app darkmode
@@ -60,26 +64,29 @@
     - [x] Add icons of {User, Protected, Private} to index
     - [ ] Add a visually interesting bg to index
     - [x] Form submit button should be sticky bottom-0
-- Bugs:
+    - [ ] Better login form (fe missing navigation)
+    - [ ] Better error-screens (403, 404, 500)
+- App Performance
+    - [x] Improve db-queries for app index, app slideshow
+- Bugs
     - [x] Dashboard app icon squishes when closing sidebar
     - [x] Create user initial function can't handle emoji's
     - [x] App index columns breaking on smaller screens
     - [x] Dark mode does not set color-scheme (scrollbars don't switch with)
     - [x] Edit Script View: `Download as` button misses hover, see Edit Prsentation View `Create a` link
     - [x] Danger zone colors in dark mode too dark
-    - [x] Sidezone buttons no hover, see close actionmodal
-    - [x] Actionmodal close not rounded
+    - [x] Sidezone buttons no hover, see `Close` button in ActionModal
+    - [x] ActionModal `Close` button not rounded
     - [x] Dashboard Slides overview outline wrong color
     - [x] User edit route, should temp become user show route
-    - [x] Search no focus visible, no hover
-    - [x] Formfield hover/ focus visible
+    - [x] Search has no focus visible nor hover styles
+    - [x] Formfield has no focus visible nor hover styles
     - [x] App Nav not showing current page
     - [x] Dashboard active page not showing if sub-page
     - [x] Script page md not styled
 - Extra's
-    - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
-    - [ ] MD support for:
+    - [ ] Add MD support for:
         - [x] underline: ` __text__ `
         - [x] small: ` --text-- `
         - [x] small block: ` -# text `
@@ -88,11 +95,10 @@
         - [x] superscript: ` lorem^(text) `
         - [x] subscript: ` lorem~(text) `
         - [ ] multiline quote: ` >>> text \n text \n\n `
-    - [ ] MD rendering:
-        - syntax highlighting in code blocks: ` ```lang `
-- Test:
-    - [x] Add extra temp user to seeder to manually test private scripts/presentations
-    - [~] Md Extension Test
+    - [ ] Add MD rendering support for:
+        - [ ] syntax highlighting in code blocks: ` ```lang `
+- Testing
+    - [~] Md Extensions
     - Presentation CRUD:
         - [x] can store a new entry
         - [x] can read when public public/protected & random user
