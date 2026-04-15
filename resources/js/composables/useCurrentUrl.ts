@@ -29,15 +29,15 @@ export function useCurrentUrl(): UseCurrentUrlReturn {
     ) {
         const urlToCompare = currentUrl ?? currentUrlReactive.value;
         const urlString = toUrl(urlToCheck);
-
+        // internal links
         if (!urlString.startsWith('http')) {
-            return urlString === urlToCompare;
+            console.log(urlString, "vs", urlToCompare);
+            return urlString === urlToCompare
+                || (urlString.startsWith('/dashboard') && urlToCompare.startsWith(urlString));
         }
-
+        // external links
         try {
-            const absoluteUrl = new URL(urlString);
-
-            return absoluteUrl.pathname === urlToCompare;
+            return new URL(urlString).pathname === urlToCompare;
         } catch {
             return false;
         }

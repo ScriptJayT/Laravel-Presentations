@@ -74,7 +74,7 @@
     - [x] Search no focus visible, no hover
     - [x] Formfield hover/ focus visible
     - [x] App Nav not showing current page
-    - [ ] Dashboard active page not showing if sub-page
+    - [x] Dashboard active page not showing if sub-page
     - [x] Script page md not styled
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
