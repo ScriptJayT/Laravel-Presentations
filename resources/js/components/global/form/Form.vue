@@ -11,7 +11,7 @@ const props = withDefaults(
         sendTo: RouteFormDefinition<'post'>;
         id?: string;
         class?: string;
-        formAction?: "edit" | "create" | "delete";
+        formAction?: "neutral" | "edit" | "create" | "delete";
         successMessage?: string;
         showButton?: boolean;
         buttonText?: string;
@@ -20,6 +20,7 @@ const props = withDefaults(
         onSuccess?: (..._arg: unknown[]) => void;
     }>(),
     {
+        formAction: 'neutral',
         showButton: true,
         buttonText: "Submit",
     }
@@ -31,6 +32,12 @@ const icon = props.buttonIcon ?? (
         ? Trash
         : null
 );
+const btnColors: Record<typeof props.formAction, string> = {
+    'create': 'green-700',
+    'edit': 'cyan-700',
+    'delete': 'red-700',
+    'neutral': 'neutral-700',
+};
 
 function success(_response: unknown) {
     if(props.onSuccess) props.onSuccess(_response);
@@ -63,7 +70,11 @@ function fail(_response: unknown) {
             </div>
         </template>
 
-        <slot :hasErrors :errors :wasSuccessful />
+        <slot
+            :hasErrors
+            :errors
+            :wasSuccessful
+        />
 
         <template v-if="showButton">
             <button
@@ -74,13 +85,11 @@ function fail(_response: unknown) {
                     ['flex', 'items-center', 'gap-3'],
                     ['w-fit', 'px-3', 'py-2', 'mx-auto'],
                     ['border rounded-md', 'outline-offset-8'],
-                    formAction === 'create' ? 'border-green-700' : '' +
-                    formAction === 'edit' ? 'border-cyan-700' : '' +
-                    formAction === 'delete' ? 'border-red-700' : '',
+                    `border-${btnColors[formAction]}`,
                     ['hover:bg-accent', 'dark:hover:bg-accent/50'],
                 )"
             >
-                <ProcessIndicator :is-in-process="processing"/>
+                <ProcessIndicator :is-in-process="processing" />
                 <template v-if="formAction=='edit'">
                     <span
                         v-show="isDirty && !processing"
@@ -106,15 +115,21 @@ function fail(_response: unknown) {
                 </template>
                 <span> {{ buttonText }} </span>
                 <span class="form-submit--icon" aria-hidden="true">
-                    <component v-if="icon" :is="icon" class="size-4" />
+                    <component
+                        v-if="icon"
+                        :is="icon"
+                        class="size-4"
+                    />
                 </span>
             </button>
         </template>
 
-        <template v-if="successMessage">
-            <div v-show="wasSuccessful" aria-live="polite">
-                {{ successMessage }}
-            </div>
-        </template>
+        <div
+            v-if="successMessage"
+            v-show="wasSuccessful"
+            aria-live="polite"
+        >
+            {{ successMessage }}
+        </div>
     </Form>
 </template>
