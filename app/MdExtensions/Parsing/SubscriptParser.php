@@ -15,7 +15,9 @@ final class SubscriptParser implements InlineParserInterface
         // => \^\((.+)\) matches ^(words in brackets)
         // or
         // => \^(\S+) matches ^non-whitespaces-words
-        return InlineParserMatch::regex("\^\((.+)\)|\^(\S+)");
+        $startSymbol = "\^";
+
+        return InlineParserMatch::regex("{$startSymbol}\((.+)\)|{$startSymbol}(\S+)");
     }
 
     public function parse(InlineParserContext $inlineContext): bool
