@@ -97,12 +97,10 @@ class CustomExtensionsTest extends TestCase
             "<p>Text<sub>text</sub> further</p>\n",
             $this->toMd('Text~text further'),
         );
-
         $this->assertEquals(
             "<p>Text<sub>text</sub></p>\n",
             $this->toMd('Text~(text)'),
         );
-
         $this->assertEquals(
             "<p>Text<sub>longer text</sub></p>\n",
             $this->toMd('Text~(longer text)'),
@@ -120,12 +118,10 @@ class CustomExtensionsTest extends TestCase
             "<p>Text<sup>text</sup> further</p>\n",
             $this->toMd('Text^text further'),
         );
-
         $this->assertEquals(
             "<p>Text<sup>text</sup></p>\n",
             $this->toMd('Text^(text)'),
         );
-
         $this->assertEquals(
             "<p>Text<sup>longer text</sup></p>\n",
             $this->toMd('Text^(longer text)'),
