@@ -2,20 +2,30 @@
 
 namespace App\MdExtensions\Parsing;
 
-use App\MdExtensions\Nodes\Subscript;
+use App\MdExtensions\Nodes\SimpleInline;
 use League\CommonMark\Parser\Inline\InlineParserInterface;
 use League\CommonMark\Parser\Inline\InlineParserMatch;
 use League\CommonMark\Parser\InlineParserContext;
 
-final class SubscriptParser implements InlineParserInterface
+final class BracketedInlineParser implements InlineParserInterface
 {
+    /**
+     * @param  string  $nodeClass  the name of the class to use to render the inline element, needs to extend the SimpleInline node
+     * @param  string  $shouldEscapeSymbol  if the $symbol needs to be escaped before using it in regex
+     */
+    public function __construct(
+        private string $symbol,
+        private string $nodeClass,
+        private bool $shouldEscapeSymbol = true,
+    ) {}
+
     public function getMatchDefinition(): InlineParserMatch
     {
-        // \^\((.+)\)|\^(\S+)
-        // => \^\((.+)\) matches ^(words in brackets)
+        // {symbol}\((.+)\)|{symbol}(\S+)
+        // => \((.+)\) matches (words in brackets)
         // or
-        // => \^(\S+) matches ^non-whitespaces-words
-        $startSymbol = "\^";
+        // => (\S+) matches non-whitespaces-words
+        $startSymbol = $this->shouldEscapeSymbol ? "\\{$this->symbol}" : $this->symbol;
 
         return InlineParserMatch::regex("{$startSymbol}\((.+)\)|{$startSymbol}(\S+)");
     }
@@ -23,9 +33,8 @@ final class SubscriptParser implements InlineParserInterface
     public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();
-
-        // Check if this match does starts with ^
-        if ($cursor->peek(0) !== '^') {
+        // Check if this match does starts with the startsymbol
+        if ($cursor->peek(0) !== $this->symbol) {
             return false;
         }
 
@@ -39,7 +48,11 @@ final class SubscriptParser implements InlineParserInterface
 
         $cursor->advanceBy($inlineContext->getFullMatchLength());
 
-        $subscript = new Subscript($content);
+        $subscript = new $this->nodeClass($content);
+        if (! $subscript instanceof SimpleInline) {
+            return false;
+        }
+
         $inlineContext->getContainer()->appendChild($subscript);
 
         return true;
