@@ -53,7 +53,7 @@
     - [x] Add appname logo to app header
     - [x] ? Add icons of {User, Protected, Private} to index
     - [ ] ? Add a visually interesting bg to index
-    - [ ] ? Form submit button should be sticky bottom-0
+    - [x] ? Form submit button should be sticky bottom-0
 - Bugs:
     - [x] Dashboard app icon squishes when closing sidebar
     - [x] Create user initial function can't handle emoji's
