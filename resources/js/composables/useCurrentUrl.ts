@@ -31,7 +31,6 @@ export function useCurrentUrl(): UseCurrentUrlReturn {
         const urlString = toUrl(urlToCheck);
         // internal links
         if (!urlString.startsWith('http')) {
-            console.log(urlString, "vs", urlToCompare);
             return urlString === urlToCompare
                 || (urlString.startsWith('/dashboard') && urlToCompare.startsWith(urlString));
         }
