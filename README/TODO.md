@@ -15,20 +15,24 @@
         pressy
 - App Functions
     - Dashboard:
-        - [x] ? allow ctrl+s to quicksave
+        - [x] allow ctrl+s to quicksave
+        - [ ] allow ctrl+v to preview
     - [~] CRUD operations:
-        - [ ] ? Add an atom lock to all operations
+        - [ ] Add an atom lock to all operations
         - [x] Add presentations
         - [~] Add slides
             - [ ] ? Add media/scripts injecting (custom elements, iframes)
             - [ ] ? Add full bg options
         - [x] Add scripts
-        - [~] ? Add users
+        - [~] Add users
             - [ ] Add avatar option
-            - [x] Add roles
+            - [~] Add roles
+                - [x] link roles to users
+                - [ ] change user role
+                - [ ] edit role
             - [x] Cleanup "unreachable" user actions
-        - [ ] ? Add themes
-        - [ ] ? Add a media manager
+        - [ ] Add themes
+        - [ ] Add a media manager
     - Guarding:
         - [x] Throw error 403 w/ redirect if not allowed
         - [x] Make private models also private from other users
@@ -36,24 +40,26 @@
     - [~] Markdown:
         - [~] Allow download of:
             - [x] Content of scripts
-            - [ ] ? Whole presentation
+            - [ ] Whole presentation
         - [~] Allow upload in:
             - [x] Scripts
-            - [ ] ? Presentations
-            - [ ] ? Slides
+            - [ ] Presentations
+            - [ ] Slides
     - Slideshow:
         - [x] Add fullscreen mode
-    - [ ] ? Add a read-only API
+    - [ ] Add a read-only API
         - Type: json
         - [ ] Allow content rendering of md/html
         - [ ] Allow selection of script/slides/both
+    - Bot:
+        - [ ] Add password rotation in queue for bot users
 - App Look
     - [x] Find better (temp) logo for app
     - [x] Cleanup app darkmode
     - [x] Add appname logo to app header
-    - [x] ? Add icons of {User, Protected, Private} to index
-    - [ ] ? Add a visually interesting bg to index
-    - [x] ? Form submit button should be sticky bottom-0
+    - [x] Add icons of {User, Protected, Private} to index
+    - [ ] Add a visually interesting bg to index
+    - [x] Form submit button should be sticky bottom-0
 - Bugs:
     - [x] Dashboard app icon squishes when closing sidebar
     - [x] Create user initial function can't handle emoji's
@@ -73,8 +79,7 @@
 - Extra's
     - [x] Improve db-queries for app index, app slideshow
     - [x] Add a check health route to dashboard
-    - [ ] ? Add password rotation in queue for bot users
-    - [ ] ? MD support for:
+    - [ ] MD support for:
         - [x] underline: ` __text__ `
         - [x] small: ` --text-- `
         - [x] small block: ` -# text `
@@ -82,8 +87,8 @@
         - [x] spoiler block: `||| text `
         - [x] superscript: ` lorem^(text) `
         - [x] subscript: ` lorem~(text) `
-        - multiline quote: ` >>> text \n text \n\n `
-    - [ ] ? MD rendering:
+        - [ ] multiline quote: ` >>> text \n text \n\n `
+    - [ ] MD rendering:
         - syntax highlighting in code blocks: ` ```lang `
 - Test:
     - [x] Add extra temp user to seeder to manually test private scripts/presentations
