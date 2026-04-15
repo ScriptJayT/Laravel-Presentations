@@ -7,6 +7,7 @@ use App\MdExtensions\Extensions\SmallExtension;
 use App\MdExtensions\Extensions\SpoilerBlockExtension;
 use App\MdExtensions\Extensions\SpoilerExtension;
 use App\MdExtensions\Extensions\SubscriptExtension;
+use App\MdExtensions\Extensions\SuperscriptExtension;
 use App\MdExtensions\Extensions\UnderlineExtension;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Attributes\Test;
@@ -24,6 +25,7 @@ class CustomExtensionsTest extends TestCase
                 new SmallBlockExtension,
                 new SpoilerBlockExtension,
                 new SubscriptExtension,
+                new SuperscriptExtension,
             ]
         )->toString();
     }
@@ -104,6 +106,29 @@ class CustomExtensionsTest extends TestCase
         $this->assertEquals(
             "<p>Text<sub>longer text</sub></p>\n",
             $this->toMd('Text~(longer text)'),
+        );
+    }
+
+    #[Test]
+    public function superscript_extension_can_be_rendered()
+    {
+        $this->assertEquals(
+            "<p>Text<sup>hyphened-text</sup></p>\n",
+            $this->toMd('Text^hyphened-text'),
+        );
+        $this->assertEquals(
+            "<p>Text<sup>text</sup> further</p>\n",
+            $this->toMd('Text^text further'),
+        );
+
+        $this->assertEquals(
+            "<p>Text<sup>text</sup></p>\n",
+            $this->toMd('Text^(text)'),
+        );
+
+        $this->assertEquals(
+            "<p>Text<sup>longer text</sup></p>\n",
+            $this->toMd('Text^(longer text)'),
         );
     }
 
