@@ -3,6 +3,7 @@ import { type RouteFormDefinition } from '@/wayfinder';
 import { Form } from '@inertiajs/vue3';
 import { Save, Trash, } from 'lucide-vue-next';
 import { type FunctionalComponent } from 'vue';
+import { cn } from '@/lib/utils';
 import { UnsavedChanges, ProcessIndicator } from '.'
 
 const props = withDefaults(
@@ -67,21 +68,17 @@ function fail(_response: unknown) {
         <template v-if="showButton">
             <button
                 type="submit"
-                :class="
+                :class="cn(
+                    'form-submit--button',
+                    ['cursor-pointer', 'select-none'],
+                    ['flex', 'items-center', 'gap-3'],
+                    ['w-fit', 'px-3', 'py-2', 'mx-auto'],
+                    ['border rounded-md', 'outline-offset-8'],
                     formAction === 'create' ? 'border-green-700' : '' +
                     formAction === 'edit' ? 'border-cyan-700' : '' +
-                    formAction === 'delete' ? 'border-red-700' : ''
-                    "
-                class="
-                    form-submit--button |
-                    cursor-pointer select-none
-                    flex items-center gap-3
-                    w-fit px-3 py-2
-                    border rounded-md mx-auto
-                    outline-offset-8
-                    transition-colors
-                    hover:bg-accent dark:hover:bg-accent/50
-                    "
+                    formAction === 'delete' ? 'border-red-700' : '',
+                    ['hover:bg-accent', 'dark:hover:bg-accent/50'],
+                )"
             >
                 <ProcessIndicator :is-in-process="processing"/>
                 <template v-if="formAction=='edit'">
