@@ -78,15 +78,16 @@
         - [x] underline: ` __text__ `
         - [x] small: ` --text-- `
         - [x] small block: ` -# text `
-        - [x] spoilers: `||text||`
-        - [x] spoiler block: `||| text`
-        - supscript: `lorem^(text)`
-        - subpscript: `lorem~(text)`
-        - multiline quote: `>>> text \n text \n\n`
+        - [x] spoilers: ` ||text|| `
+        - [x] spoiler block: `||| text `
+        - [x] superscript: ` lorem^(text) `
+        - [x] subscript: ` lorem~(text) `
+        - multiline quote: ` >>> text \n text \n\n `
     - [ ] ? MD rendering:
         - syntax highlighting in code blocks: ` ```lang `
 - Test:
     - [x] Add extra temp user to seeder to manually test private scripts/presentations
+    - [~] Md Extension Test
     - Presentation CRUD:
         - [x] can store a new entry
         - [x] can read when public public/protected & random user
