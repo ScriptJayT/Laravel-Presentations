@@ -42,6 +42,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    protected $with = ['roles'];
+
     // ## Casting
 
     /**
