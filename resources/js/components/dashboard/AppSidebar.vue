@@ -15,7 +15,8 @@ import {
 import {
     home,
     admin_user_index,
-    admin_presentation_index, admin_script_index
+    admin_presentation_index, admin_script_index,
+    dashboard
 } from '@/routes';
 import { AppLogo } from '@/components/global/logo';
 
@@ -65,7 +66,7 @@ const footerNavItems: NavItem[] = [
             <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
-                        <Link :href="admin_presentation_index()">
+                        <Link :href="dashboard()">
                             <AppLogo />
                         </Link>
                     </SidebarMenuButton>

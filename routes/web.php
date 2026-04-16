@@ -9,6 +9,7 @@ use App\Http\Controllers\PresentationScriptController;
 use App\Http\Controllers\Settings\AdminPasswordResetController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 // use Laravel\Fortify\Features;
 // Features::enabled(Features::registration())
@@ -35,7 +36,7 @@ Route::controller(PresentationScriptController::class)->group(function () {
 Route::prefix('dashboard')
     ->middleware(['auth', 'verified'])
     ->group(function () {
-        Route::get('/', fn () => Redirect::route('admin_presentation_index'))
+        Route::get('/', fn () => Inertia::render('dashboard/Welcome'))
             ->name('dashboard');
 
         Route::resource('presentations', AdminPresentationController::class)

@@ -15,7 +15,7 @@
         pressy
 - App Functions
     - Dashboard:
-        - [ ] Add welcome screen
+        - [x] Add welcome screen
         - Editor:
             - [x] allow ctrl+s to quicksave
             - [ ] allow ctrl+v to preview
@@ -58,6 +58,7 @@
     - Bot:
         - [ ] Add password rotation in queue
 - App Look
+    - [ ] Better welcome screen
     - [x] Find better (temp) logo for app
     - [x] Cleanup app darkmode
     - [x] Add appname logo to app header
