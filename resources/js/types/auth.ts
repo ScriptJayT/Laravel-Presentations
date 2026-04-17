@@ -5,7 +5,7 @@ type Permission = {
     name: string;
     description: string;
 };
-type Role = {
+export type Role = {
     id: number;
     name: string;
     permissions: Array<Permission>;

@@ -1,4 +1,4 @@
-import type { AppServiceShared, Auth, User } from '@/types';
+import type { AppServiceShared, Auth, User, Role } from '@/types';
 import { computed } from "vue";
 import { type InertiaLinkProps, usePage } from '@inertiajs/vue3';
 import { type ClassValue, clsx } from 'clsx';
@@ -82,6 +82,21 @@ export function getUser(_reactive: boolean) {
     if(!auth) return null;
     if(_reactive) return computed(() => auth.user ?? null) as unknown as User;
     return auth.user ?? null;
+}
+export function handleRoles(_user?: User) {
+    const roles = _user?.roles;
+
+    function hasAny() {
+        return (roles?.length ?? 0) > 0;
+    };
+    function getMain() {
+        return roles![0];
+    }
+
+    return {
+        hasAny,
+        getMain,
+    }
 }
 
 type FileExtension = "md" | "txt";

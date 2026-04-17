@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { User } from '@/types';
-import { getUser } from '@/lib/utils';
+import { getUser, handleRoles } from '@/lib/utils';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Container } from '@/components/dashboard/containers';
 const user = getUser(false) as User; //we are in dashboard; only accessible if user is logged in
+const roles = handleRoles(user);
 </script>
 
 <template>
@@ -14,10 +15,10 @@ const user = getUser(false) as User; //we are in dashboard; only accessible if u
                 <span> {{ user.name }} </span>
             </h1>
             <p class="mt-15 text-center text-xl">
-                <template v-if="user.roles.length > 0">
+                <template v-if="roles.hasAny()">
                     You are a:
-                    {{ user.roles[0].name }}
-                    meaning you have {{ user.roles[0].description }}
+                    {{ roles.getMain().name }}
+                    meaning you have {{ roles.getMain().description }}
                 </template>
                 <template v-else>
                     You have no assigned roles, meaning you have nothing to do here;
