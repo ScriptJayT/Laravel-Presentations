@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ReadonlyField from '@/components/global/form/fields/ReadonlyField.vue';
-import { cn } from '@/lib/utils';
 defineProps<{
     list: Record<string, string>;
     class?: string;
