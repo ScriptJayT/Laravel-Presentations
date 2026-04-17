@@ -26,8 +26,10 @@ return new class extends Migration
             $table->string('name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
             $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
             $table->timestamps();
-
             $table->unique(['name', 'guard_name']);
+
+            // custom added columns
+            $table->text('description')->nullable();
         });
 
         Schema::create($tableNames['roles'], static function (Blueprint $table) use ($teams, $columnNames) {
@@ -45,6 +47,9 @@ return new class extends Migration
             } else {
                 $table->unique(['name', 'guard_name']);
             }
+
+            // custom added columns
+            $table->text('description')->nullable();
         });
 
         Schema::create($tableNames['model_has_permissions'], static function (Blueprint $table) use ($tableNames, $columnNames, $pivotPermission, $teams) {
