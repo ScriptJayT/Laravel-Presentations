@@ -17,12 +17,21 @@ const roles = handleRoles(user);
             <p class="mt-15 text-center text-xl">
                 <template v-if="roles.hasAny()">
                     You are a:
-                    {{ roles.getMain().name }}
+                    <span class="
+                            inline-block
+                            px-2
+                            rounded-sm
+                            capitalize
+                            bg-neutral-600/30
+                            "
+                    >
+                        {{ roles.getMain().name }}
+                    </span>
                     meaning you have {{ roles.getMain().description }}
                 </template>
                 <template v-else>
                     You have no assigned roles, meaning you have nothing to do here;
-                    <br> check with an admin if this is correct.
+                    <br> check with an admin to see if this is correct.
                 </template>
             </p>
         </Container>

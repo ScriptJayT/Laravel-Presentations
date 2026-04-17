@@ -1,12 +1,10 @@
-import type { AppServiceShared, Auth, User, Role } from '@/types';
+import type { AppServiceShared, Auth, User } from '@/types';
 import { computed } from "vue";
 import { type InertiaLinkProps, usePage } from '@inertiajs/vue3';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
-}
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
 export function toUrl(href: NonNullable<InertiaLinkProps['href']>) {
     return typeof href === 'string' ? href : href?.url;
@@ -62,8 +60,8 @@ export function plural(countable: Countable, word: string, plural_addition: stri
         : typeof countable === "object" && !Array.isArray(countable)
             ? Object.keys(countable).length
             : countable.length;
-    if(count === 0) return `no ${word}${plural_addition}`;
     if(count === 1) return `${count} ${word}`;
+    if(count === 0) return `no ${word}${plural_addition}`;
     return `${count} ${word}${plural_addition}`;
 }
 
@@ -71,32 +69,19 @@ function getAppProp(_prop: keyof AppServiceShared) {
     const props = usePage().props;
     return props[_prop];
 }
-export function getAppEnums() {
-    return getAppProp('enums') as AppServiceShared['enums'];
-}
-export function getAppName() {
-    return getAppProp("appName") as AppServiceShared['appName'];
-}
+export const getAppEnums = () => getAppProp('enums') as AppServiceShared['enums'];
+export const getAppName = () => getAppProp("appName") as AppServiceShared['appName'];
 export function getUser(_reactive: boolean) {
     const auth = usePage().props.auth as Auth;
     if(!auth) return null;
-    if(_reactive) return computed(() => auth.user ?? null) as unknown as User;
+    if(_reactive) return computed(() => auth.user ?? null);
     return auth.user ?? null;
 }
 export function handleRoles(_user?: User) {
-    const roles = _user?.roles;
-
-    function hasAny() {
-        return (roles?.length ?? 0) > 0;
-    };
-    function getMain() {
-        return roles![0];
-    }
-
-    return {
-        hasAny,
-        getMain,
-    }
+    const roles = _user?.roles ?? [];
+    const hasAny = () => roles.length > 0;
+    const getMain = () => roles[0];
+    return { hasAny, getMain };
 }
 
 type FileExtension = "md" | "txt";
@@ -106,9 +91,9 @@ export function textToDownloaded(
     _extension: FileExtension,
 ) {
     if(!document) return;
-    const mdBlob = new Blob([_content], { type: 'text/md' });
+    const fileBlob = new Blob([_content], { type: 'text/md' });
     const tempLink = document.createElement('a');
-    tempLink.href = URL.createObjectURL(mdBlob);
+    tempLink.href = URL.createObjectURL(fileBlob);
     tempLink.download = `${_filename}.${_extension}`;
     tempLink.style.display = 'none';
     document.body.appendChild(tempLink);
