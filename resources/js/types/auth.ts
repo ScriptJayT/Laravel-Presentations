@@ -3,11 +3,13 @@ import type { Model, Presentation, PresentationScript } from "@/types";
 type Permission = {
     id: number;
     name: string;
+    description: string;
 };
 type Role = {
     id: number;
     name: string;
     permissions: Array<Permission>;
+    description: string;
 };
 
 export type User = {
