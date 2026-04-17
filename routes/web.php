@@ -90,6 +90,7 @@ Route::prefix('dashboard')
             ->missing(fn () => Redirect::route('admin_user_index'));
         Route::resource('roles', AdminRolesController::class)
             ->middleware('can:primordial')
+            ->withoutMiddlewareFor('index', 'can:primordial')
             ->only(['index', 'edit', 'update'])
             ->names([
                 'index' => 'admin_role_index',

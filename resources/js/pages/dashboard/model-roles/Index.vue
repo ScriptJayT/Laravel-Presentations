@@ -8,6 +8,7 @@ import { Container } from '@/components/dashboard/containers';
 const props = defineProps<{
     allRoles: Role[];
     allPermissions: Permission[];
+    canEdit: boolean;
 }>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -22,34 +23,40 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
     <AppLayout meta-title="Roles & Permissions" :breadcrumbs="breadcrumbs">
-        <Container title="Roles">
-            <dl>
-                <template v-for="_role in allRoles">
-                    <dt class="capitalize"> {{ _role.name }} </dt>
-                    <dd class="pl-2"> {{ _role.description ?? "[no description]" }} </dd>
-                    <a :href="editRole(_role.id).url"> Edit </a>
-                </template>
-            </dl>
-        </Container>
-        <Container title="Permissions">
-            <dl>
-                <template v-for="_perm in allPermissions">
-                    <dt class="capitalize"> {{ _perm.name }} </dt>
-                    <dd class="pl-2"> {{ _perm.description ?? "[no description]" }} </dd>
-                </template>
-            </dl>
-        </Container>
+        <div class="grid grid-cols-2">
+            <Container title="Roles">
+                <dl>
+                    <template v-for="_role in allRoles">
+                        <dt class="capitalize">{{ _role.name }}</dt>
+                        <dd class="pl-2">
+                            {{ _role.description ?? '[no description]' }}
+                        </dd>
+                        <a v-if="canEdit" :href="editRole(_role.id).url"> Edit </a>
+                    </template>
+                </dl>
+            </Container>
+            <Container title="Permissions">
+                <dl>
+                    <template v-for="_perm in allPermissions">
+                        <dt class="capitalize">{{ _perm.name }}</dt>
+                        <dd class="pl-2">
+                            {{ _perm.description ?? '[no description]' }}
+                        </dd>
+                    </template>
+                </dl>
+            </Container>
+        </div>
     </AppLayout>
 </template>
 
 <style scoped>
-    dt {
-        &:not(:first-child) {
-            margin-top: 1lh;
-        }
-
-        &::after {
-            content: ":";
-        }
+dt {
+    &:not(:first-child) {
+        margin-top: 1lh;
     }
+
+    &::after {
+        content: ':';
+    }
+}
 </style>

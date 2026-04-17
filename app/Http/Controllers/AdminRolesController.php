@@ -15,6 +15,7 @@ class AdminRolesController extends Controller
         return Inertia::render('dashboard/model-roles/Index', [
             'allRoles' => Role::all('id', 'name', 'description'),
             'allPermissions' => Permission::all('id', 'name', 'description'),
+            'canEdit' => $request->user()->can('primordial'),
         ]);
     }
 
