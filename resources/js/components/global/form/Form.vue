@@ -64,59 +64,60 @@ function fail(_response: unknown) {
         disable-while-processing
         v-slot="{ errors, processing, isDirty, wasSuccessful, hasErrors }"
     >
-        <template v-if="formAction === 'edit' && !showButton">
-            <div class="form--meta | absolute right-0 bottom-full m-0">
-                <ProcessIndicator :is-in-process="processing" />
-                <UnsavedChanges :has-unsaved-changes="isDirty && !processing" />
-            </div>
-        </template>
-
+        <div
+            v-if="formAction === 'edit' && !showButton"
+            class="form--meta | absolute right-0 bottom-full m-0"
+        >
+            <ProcessIndicator :is-in-process="processing" />
+            <UnsavedChanges :has-unsaved-changes="isDirty && !processing" />
+        </div>
         <slot :hasErrors :errors :wasSuccessful />
-
-        <template v-if="showButton">
-            <button
-                type="submit"
-                :class="
-                    cn(
-                        'form-submit--button',
-                        ['cursor-pointer', 'select-none'],
-                        ['sticky', 'bottom-0'],
-                        ['flex', 'items-center', 'gap-3'],
-                        ['w-fit', 'px-3', 'py-2', 'mx-auto'],
-                        ['rounded-md', 'border', borderColor, 'outline-offset-8'],
-                        [
-                            'bg-neutral-800',
-                            'hover:bg-accent',
-                            'dark:hover:bg-accent/50',
-                        ],
-                    )
-                "
+        <button
+            v-if="showButton"
+            type="submit"
+            :class="
+                cn(
+                    'form-submit--button',
+                    ['cursor-pointer', 'select-none'],
+                    ['sticky', 'bottom-0'],
+                    ['flex', 'items-center', 'gap-3'],
+                    ['w-fit', 'px-3', 'py-2', 'mx-auto'],
+                    [
+                        'rounded-md',
+                        'border',
+                        borderColor,
+                        'outline-offset-8',
+                    ],
+                    [
+                        'bg-neutral-800',
+                        'hover:bg-accent',
+                        'dark:hover:bg-accent/50',
+                    ],
+                )
+            "
+        >
+            <ProcessIndicator :is-in-process="processing" />
+            <span
+                v-if="formAction == 'edit'"
+                v-show="isDirty && !processing"
+                aria-live="polite"
+                class="relative"
             >
-                <ProcessIndicator :is-in-process="processing" />
-                <template v-if="formAction == 'edit'">
-                    <span
-                        v-show="isDirty && !processing"
-                        aria-live="polite"
-                        class="relative"
-                    >
-                        <span class="sr-only"> There are unsaved changes </span>
-                        <span
-                            aria-hidden="true"
-                            class="block size-3 rounded-full bg-orange-700"
-                        />
-                        <span
-                            aria-hidden="true"
-                            class="absolute inset-0 block h-full w-full animate-ping rounded-full bg-orange-400 opacity-75"
-                        />
-                    </span>
-                </template>
-                <span> {{ buttonText }} </span>
-                <span class="form-submit--icon" aria-hidden="true">
-                    <component v-if="icon" :is="icon" class="size-4" />
-                </span>
-            </button>
-        </template>
-
+                <span class="sr-only"> There are unsaved changes </span>
+                <span
+                    aria-hidden="true"
+                    class="block size-3 rounded-full bg-orange-700"
+                />
+                <span
+                    aria-hidden="true"
+                    class="absolute inset-0 block h-full w-full animate-ping rounded-full bg-orange-400 opacity-75"
+                />
+            </span>
+            <span> {{ buttonText }} </span>
+            <span v-if="icon" class="form-submit--icon" aria-hidden="true">
+                <component :is="icon" class="size-4" />
+            </span>
+        </button>
         <div v-if="successMessage" v-show="wasSuccessful" aria-live="polite">
             {{ successMessage }}
         </div>
