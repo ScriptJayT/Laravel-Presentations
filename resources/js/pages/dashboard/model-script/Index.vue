@@ -3,7 +3,6 @@ import { type PresentationScript, type BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_scripts } from '@/routes';
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import { SubSectionHeading } from '@/components/global/text';
 import { Container, IndexGrid } from '@/components/dashboard/containers';
 import { IndexLink, NewLink } from '@/components/dashboard/models';
 import NewScript from '@/components/dashboard/forms/NewScript.vue';
