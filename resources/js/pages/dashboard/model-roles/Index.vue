@@ -23,15 +23,21 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
     <AppLayout meta-title="Roles & Permissions" :breadcrumbs="breadcrumbs">
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 gap-x-10">
             <Container title="Roles">
                 <dl>
                     <template v-for="_role in allRoles">
-                        <dt class="capitalize">{{ _role.name }}</dt>
+                        <dt class="capitalize"> {{ _role.name }} </dt>
                         <dd class="pl-2">
                             {{ _role.description ?? '[no description]' }}
                         </dd>
-                        <a v-if="canEdit" :href="editRole(_role.id).url"> Edit </a>
+                        <a
+                            v-if="canEdit"
+                            :href="editRole(_role.id).url"
+                            class="block w-fit ml-auto"
+                        >
+                            Edit
+                        </a>
                     </template>
                 </dl>
             </Container>
@@ -40,8 +46,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <template v-for="_perm in allPermissions">
                         <dt class="capitalize">{{ _perm.name }}</dt>
                         <dd class="pl-2">
-                            {{ _perm.description ?? '[no description]' }}
+                            {{ _perm.description ?? '[no description; the name speaks for itself]' }}
                         </dd>
+                        <a
+                            v-if="canEdit"
+                            class="block w-fit ml-auto"
+                        >
+                            Edit
+                        </a>
                     </template>
                 </dl>
             </Container>
