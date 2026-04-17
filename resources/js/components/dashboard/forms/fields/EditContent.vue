@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { Download } from 'lucide-vue-next';
 import { textToDownloaded, safeQuery } from '@/lib/utils';
-import { ActionButton } from '../buttons';
+import { ActionButton } from '@/components/dashboard/buttons';
 import {
     FileField, ContentField, SelectField,
     type TextlikeFieldAttributes
@@ -12,9 +12,7 @@ type Props = Omit<TextlikeFieldAttributes, 'name'> & {
 };
 const props = withDefaults(
     defineProps<Props>(),
-    {
-        value: '',
-    }
+    { value: '' }
 );
 
 const contentHistory: Array<string> = [];
@@ -122,7 +120,7 @@ function downloadAsMd() {
 </script>
 
 <template>
-    <fieldset data-component="dashboard/models/EditContent">
+    <fieldset data-component="dashboard/forms/fields/EditContent">
         <div class="flex gap-x-3 justify-end flex-wrap">
             <FileField
                 name="--"

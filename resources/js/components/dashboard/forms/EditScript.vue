@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PresentationScript, PresentationVisibility } from '@/types';
 import { Form, FormField } from '@/components/global/form';
-import { SelectVisibility, EditContent } from '../models';
+import { SelectVisibility, EditContent } from './fields';
 import { update } from '@/routes/admin_script';
 defineProps<{
     script: PresentationScript;

@@ -5,7 +5,7 @@ import { update } from '@/routes/admin_presentation';
 import { ExternalLink, Book, CirclePlus } from 'lucide-vue-next';
 import { Form, FormField, SelectField, TextField } from '@/components/global/form';
 import { DoubleIconLink } from '../buttons';
-import SelectVisibility from '../models/SelectVisibility.vue';
+import { SelectVisibility } from './fields';
 
 const props = defineProps<{
     presentation: Presentation;
