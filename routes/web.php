@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminPresentationController;
 use App\Http\Controllers\AdminPresentationScriptController;
 use App\Http\Controllers\AdminPresentationSlideController;
+use App\Http\Controllers\AdminRolesController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\PresentationScriptController;
@@ -87,6 +88,14 @@ Route::prefix('dashboard')
                 'update' => 'admin_user.update',
             ])
             ->missing(fn () => Redirect::route('admin_user_index'));
+        Route::resource('roles', AdminRolesController::class)
+            ->middleware('can:primordial')
+            ->only(['index', 'edit', 'update'])
+            ->names([
+                'index' => 'admin_role_index',
+                'edit' => 'admin_role.edit',
+                'update' => 'admin_role.update',
+            ]);
         Route::post('password-reset', [AdminPasswordResetController::class, 'store'])
             ->name('send_password');
     });

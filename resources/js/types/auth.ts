@@ -1,6 +1,6 @@
 import type { Model, Presentation, PresentationScript } from "@/types";
 
-type Permission = {
+export type Permission = {
     id: number;
     name: string;
     description: string;

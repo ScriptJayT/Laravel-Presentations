@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/sidebar';
 import {
     home,
-    admin_user_index,
+    admin_user_index, admin_role_index,
     admin_presentation_index, admin_script_index,
     dashboard
 } from '@/routes';
@@ -50,6 +50,11 @@ const dashboardNavItems: NavItem[] = [
         href: admin_user_index(),
         icon: Users,
     },
+    {
+        title: 'Roles',
+        href: admin_role_index(),
+        icon: Users,
+    },
 ];
 const footerNavItems: NavItem[] = [
     {
@@ -76,7 +81,7 @@ const footerNavItems: NavItem[] = [
 
         <SidebarContent>
             <NavMain :items="mainNavItems" label="Platform" />
-            <NavMain :items="dashboardNavItems" label="Dashboard"/>
+            <NavMain :items="dashboardNavItems" label="Dashboard" />
         </SidebarContent>
 
         <SidebarFooter>

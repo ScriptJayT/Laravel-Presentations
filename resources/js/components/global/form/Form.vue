@@ -33,11 +33,12 @@ const icon =
           ? Trash
           : null);
 const btnColors: Record<typeof props.formAction, string> = {
-    create: 'green-700',
-    edit: 'cyan-700',
-    delete: 'red-700',
-    neutral: 'neutral-700',
+    create: 'border-green-700',
+    edit: 'border-cyan-700',
+    delete: 'border-red-700',
+    neutral: 'border-neutral-700',
 };
+const borderColor = btnColors[props.formAction];
 
 function success(_response: unknown) {
     if (props.onSuccess) props.onSuccess(_response);
@@ -82,8 +83,7 @@ function fail(_response: unknown) {
                         ['sticky', 'bottom-0'],
                         ['flex', 'items-center', 'gap-3'],
                         ['w-fit', 'px-3', 'py-2', 'mx-auto'],
-                        ['rounded-md border', 'outline-offset-8'],
-                        `border-${btnColors[formAction]}`,
+                        ['rounded-md', 'border', borderColor, 'outline-offset-8'],
                         [
                             'bg-neutral-800',
                             'hover:bg-accent',
