@@ -13,11 +13,17 @@ const user = getUser(false) as User; //we are in dashboard; only accessible if u
                 Welcome to your Hell'press dashboard,
                 <span> {{ user.name }} </span>
             </h1>
-            <div v-if="user.roles.length > 0">
-                You are a:
-                {{ user.roles[0].name }}
-                meaning you have
-            </div>
+            <p>
+                <template v-if="user.roles.length > 0">
+                    You are a:
+                    {{ user.roles[0].name }}
+                    meaning you have
+                </template>
+                <template v-else>
+                    You have no assigned roles, meaning you have nothing to do here;
+                    <br> check with an admin if this is correct.
+                </template>
+            </p>
         </Container>
     </AppLayout>
 </template>
