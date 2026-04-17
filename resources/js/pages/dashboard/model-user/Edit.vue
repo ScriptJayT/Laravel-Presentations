@@ -49,7 +49,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <AsideZone title="Info" :hidden-title="true">
                     <CreatedMetaInfo :model="user" />
                 </AsideZone>
-                <AsideZone title="Permissions" :hidden-title="false">
+                <AsideZone title="Permissions">
                     <ShowRoles :roles="user.roles"/>
                 </AsideZone>
                 <DangerZone v-if="canDelete">
