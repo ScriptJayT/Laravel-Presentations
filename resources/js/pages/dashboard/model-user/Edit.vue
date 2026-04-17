@@ -7,7 +7,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { SubSectionHeading } from '@/components/global/text';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
-import { DestroyFormModal } from '@/components/dashboard/models';
+import DeleteModelModal from '@/components/dashboard/forms/DeleteModelModal.vue';
 import EditUser from '@/components/dashboard/forms/EditUser.vue';
 import ShowRoles from '@/components/dashboard/models/ShowRoles.vue';
 
@@ -53,7 +53,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <ShowRoles :roles="user.roles"/>
                 </AsideZone>
                 <DangerZone v-if="canDelete">
-                    <DestroyFormModal
+                    <DeleteModelModal
                         :id="user.id"
                         :route="destroy.form(user.id)"
                     />

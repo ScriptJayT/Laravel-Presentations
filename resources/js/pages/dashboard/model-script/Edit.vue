@@ -8,7 +8,7 @@ import { plural } from '@/lib/utils';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
 import { SideZoneContainer } from '@/components/dashboard/containers';
 import AppLayout from '@/layouts/AppLayout.vue';
-import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
+import DeleteModelModal from '@/components/dashboard/forms/DeleteModelModal.vue';
 import EditScript from '@/components/dashboard/forms/EditScript.vue';
 
 const props = defineProps<{
@@ -76,7 +76,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </template>
                 </AsideZone>
                 <DangerZone>
-                    <DestroyFormModal
+                    <DeleteModelModal
                         id="presentation-script"
                         :route="destroy.form(script.id)"
                     />

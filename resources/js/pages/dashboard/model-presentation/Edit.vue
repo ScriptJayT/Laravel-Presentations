@@ -12,10 +12,9 @@ import NewLink from '@/components/dashboard/models/NewLink.vue';
 import Slide from '@/components/dashboard/models/Slide.vue';
 
 import AppLayout from '@/layouts/AppLayout.vue';
-import { SubSectionHeading } from '@/components/global/text';
 import { SideZoneContainer } from '@/components/dashboard/containers';
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
-import DestroyFormModal from '@/components/dashboard/models/DestroyFormModal.vue';
+import DeleteModelModal from '@/components/dashboard/forms/DeleteModelModal.vue';
 
 const props = defineProps<{
     presentation: Presentation;
@@ -48,7 +47,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     />
                 </AsideZone>
                 <DangerZone>
-                    <DestroyFormModal id="presentation" :route="destroy.form(presentation.id)" />
+                    <DeleteModelModal id="presentation" :route="destroy.form(presentation.id)" />
                 </DangerZone>
             </template>
             <template v-slot:mainzone>
