@@ -3,6 +3,7 @@ import type { Role, BreadcrumbItem } from '@/types';
 import { admin_user_index, admin_role_index } from '@/routes';
 import { update } from '@/routes/admin_role';
 import AppLayout from '@/layouts/AppLayout.vue';
+import { SubSectionHeading } from '@/components/global/text';
 import { Container } from '@/components/dashboard/containers';
 import { Form, ContentField } from '@/components/global/form';
 
@@ -24,10 +25,11 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
     <AppLayout meta-title="Role" :breadcrumbs="breadcrumbs">
-        <Container :title="role.name">
+        <Container :title="role.name" id="edit-role--container" class="grid">
             <Form
                 :send-to="update.form(role.id)"
                 form-action="edit"
+                class="space-y-10 max-w-3xl"
             >
                 <ContentField
                     name="description"
@@ -35,6 +37,23 @@ const breadcrumbs: BreadcrumbItem[] = [
                     :value="role.description ?? ''"
                 />
             </Form>
+            <div class="space-y-10 max-w-[40ch]">
+                <SubSectionHeading
+                    title="Specific Permissions"
+                    description="Roles also inherit permissions from lower levels, these aren't shown here"
+                />
+                <ul>
+                    <li v-for="_perm in role.permissions">
+                        {{ _perm.name }}
+                    </li>
+                </ul>
+            </div>
         </Container>
     </AppLayout>
 </template>
+
+<style>
+    [data-id="edit-role--container"] .grid {
+        grid-template-columns: 1fr auto;
+    }
+</style>

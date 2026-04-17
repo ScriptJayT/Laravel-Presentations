@@ -20,6 +20,8 @@ class AdminRolesController extends Controller
 
     public function edit(Role $role)
     {
+        $role->load('permissions');
+
         return Inertia::render('dashboard/model-roles/Edit', ['role' => $role]);
     }
 
