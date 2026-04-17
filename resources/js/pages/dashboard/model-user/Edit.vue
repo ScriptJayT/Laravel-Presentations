@@ -9,12 +9,13 @@ import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/d
 import { SideZoneContainer, Container } from '@/components/dashboard/containers';
 import { DestroyFormModal } from '@/components/dashboard/models';
 import EditUser from '@/components/dashboard/forms/EditUser.vue';
+import ShowRoles from '@/components/dashboard/models/ShowRoles.vue';
 
 const props = defineProps<{
     user: User,
     canDelete: boolean,
 }>();
-const isLoggedInUser = props.user.id === getUser(false)?.id;
+const isLoggedInUser = props.user.id === (getUser(false) as User)?.id;
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Users',
@@ -49,29 +50,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <CreatedMetaInfo :model="user" />
                 </AsideZone>
                 <AsideZone title="Permissions" :hidden-title="false">
-                    <span
-                        v-if="user.roles.length < 1"
-                        class="text-sm text-muted-foreground"
-                    >
-                        None granted
-                    </span>
-                    <ul
-                        v-else
-                        class="space-y-3"
-                    >
-                        <li v-for="_role in user.roles">
-                            <span class="block mb-1 capitalize">
-                                {{_role.name}}:
-                            </span>
-                            <ul class="list-disc pl-5">
-                                <li v-for="_perm in _role.permissions">
-                                    <span>
-                                        {{ _perm.name }}
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <ShowRoles :roles="user.roles"/>
                 </AsideZone>
                 <DangerZone v-if="canDelete">
                     <DestroyFormModal
