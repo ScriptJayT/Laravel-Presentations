@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPermissionController;
 use App\Http\Controllers\AdminPresentationController;
 use App\Http\Controllers\AdminPresentationScriptController;
 use App\Http\Controllers\AdminPresentationSlideController;
@@ -97,6 +98,14 @@ Route::prefix('dashboard')
                 'edit' => 'admin_role.edit',
                 'update' => 'admin_role.update',
             ]);
+        Route::resource('permissions', AdminPermissionController::class)
+            ->middleware('can:primordial')
+            ->only(['edit', 'update'])
+            ->names([
+                'edit' => 'admin_permission.edit',
+                'update' => 'admin_permission.update',
+            ]);
+
         Route::post('password-reset', [AdminPasswordResetController::class, 'store'])
             ->name('send_password');
     });

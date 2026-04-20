@@ -2,6 +2,7 @@
 import type { Role, Permission, BreadcrumbItem } from '@/types';
 import { admin_user_index } from '@/routes';
 import { edit as editRole } from '@/routes/admin_role';
+import { edit as editPerm } from '@/routes/admin_permission';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Container } from '@/components/dashboard/containers';
 
@@ -29,7 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <template v-for="_role in allRoles">
                         <dt class="capitalize"> {{ _role.name }} </dt>
                         <dd class="pl-2">
-                            {{ _role.description ?? '[no description]' }}
+                            {{ _role.description || '[no description]' }}
                         </dd>
                         <a
                             v-if="canEdit"
@@ -46,10 +47,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <template v-for="_perm in allPermissions">
                         <dt class="capitalize">{{ _perm.name }}</dt>
                         <dd class="pl-2">
-                            {{ _perm.description ?? '[no description; the name speaks for itself]' }}
+                            {{ _perm.description || '[no description; the name speaks for itself]' }}
                         </dd>
                         <a
                             v-if="canEdit"
+                            :href="editPerm(_perm.id).url"
                             class="block w-fit ml-auto"
                         >
                             Edit
