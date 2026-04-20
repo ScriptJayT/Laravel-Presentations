@@ -5,7 +5,6 @@ import { update } from '@/routes/admin_role';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SubSectionHeading } from '@/components/global/text';
 import { Container } from '@/components/dashboard/containers';
-import { Form, ContentField } from '@/components/global/form';
 import SingleEditDescription from '@/components/dashboard/forms/SingleEditDescription.vue';
 const props = defineProps<{ role: Role }>();
 const breadcrumbs: BreadcrumbItem[] = [
