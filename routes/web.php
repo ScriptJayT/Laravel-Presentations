@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminPermissionController;
 use App\Http\Controllers\AdminPresentationController;
 use App\Http\Controllers\AdminPresentationScriptController;
 use App\Http\Controllers\AdminPresentationSlideController;
-use App\Http\Controllers\AdminRolesController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\PresentationScriptController;
+use App\Http\Controllers\Roles\AdminPermissionController;
+use App\Http\Controllers\Roles\AdminRolesController;
 use App\Http\Controllers\Settings\AdminPasswordResetController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
