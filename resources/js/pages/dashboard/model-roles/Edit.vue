@@ -6,7 +6,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { SubSectionHeading } from '@/components/global/text';
 import { Container } from '@/components/dashboard/containers';
 import { Form, ContentField } from '@/components/global/form';
-
+import SingleEditDescription from '@/components/dashboard/forms/SingleEditDescription.vue';
 const props = defineProps<{ role: Role }>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -26,17 +26,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 <template>
     <AppLayout meta-title="Role" :breadcrumbs="breadcrumbs">
         <Container :title="role.name" id="edit-role--container" class="grid">
-            <Form
-                :send-to="update.form(role.id)"
-                form-action="edit"
-                class="space-y-10 max-w-3xl"
-            >
-                <ContentField
-                    name="description"
-                    label="Description"
-                    :value="role.description ?? ''"
-                />
-            </Form>
+            <SingleEditDescription
+                :to="update.form(role.id)"
+                :descr="role.description"
+            />
             <div class="space-y-10 max-w-[40ch]">
                 <SubSectionHeading
                     title="Specific Permissions"

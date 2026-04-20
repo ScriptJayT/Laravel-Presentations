@@ -4,8 +4,7 @@ import { admin_user_index, admin_role_index } from '@/routes';
 import { update } from '@/routes/admin_permission';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Container } from '@/components/dashboard/containers';
-import { Form, ContentField } from '@/components/global/form';
-
+import SingleEditDescription from '@/components/dashboard/forms/SingleEditDescription.vue';
 const props = defineProps<{ permission: Permission }>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -29,17 +28,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 <template>
     <AppLayout meta-title="Permission" :breadcrumbs>
         <Container :title="permission.name">
-            <Form
-                :send-to="update.form(permission.id)"
-                form-action="edit"
-                class="space-y-10 max-w-3xl"
-            >
-                <ContentField
-                    name="description"
-                    label="Description"
-                    :value="permission.description ?? ''"
-                />
-            </Form>
+            <SingleEditDescription
+                :to="update.form(permission.id)"
+                :descr="permission.description"
+            />
         </Container>
     </AppLayout>
 </template>
