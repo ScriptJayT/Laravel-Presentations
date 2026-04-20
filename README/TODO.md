@@ -67,6 +67,7 @@
     - [x] Form submit button should be sticky bottom-0
     - [ ] Better login form (fe missing navigation)
     - [ ] Better error-screens (403, 404, 500)
+    - [ ] Better overview for Roles in dashboard
 - App Performance
     - [x] Improve db-queries for app index, app slideshow
 - Bugs
