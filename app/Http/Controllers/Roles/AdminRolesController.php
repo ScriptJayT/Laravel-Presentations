@@ -32,9 +32,9 @@ class AdminRolesController extends Controller
         $descr = e($request->all('description')['description']);
         $role->description = trim($descr);
         if ($role->save()) {
-            session()->flash('Role description edited successfully');
+            session()->flash('info', 'Role description edited successfully');
         } else {
-            session()->flash('Something went wrong editing a role description');
+            session()->flash('info', 'Something went wrong editing a role description');
         }
 
         return Redirect::route('admin_role_index');

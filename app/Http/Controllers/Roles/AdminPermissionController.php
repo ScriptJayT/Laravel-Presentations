@@ -20,9 +20,9 @@ class AdminPermissionController extends Controller
         $descr = e($request->all('description')['description']);
         $permission->description = trim($descr);
         if ($permission->save()) {
-            session()->flash('Permission description edited successfully');
+            session()->flash('info', 'Permission description edited successfully');
         } else {
-            session()->flash('Something went wrong editing a permission description');
+            session()->flash('info', 'Something went wrong editing a permission description');
         }
 
         return Redirect::route('admin_role_index');
