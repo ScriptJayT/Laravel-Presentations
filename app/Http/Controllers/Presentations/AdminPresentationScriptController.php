@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Presentations;
 
 use App\Enums\Visibility;
+use App\Http\Controllers\Controller;
 use App\Models\PresentationScript;
 use App\Models\PresentationVisibility;
 use App\Traits\HasVisibilityRule;

@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminPresentationController;
-use App\Http\Controllers\AdminPresentationScriptController;
-use App\Http\Controllers\AdminPresentationSlideController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\Presentations\AdminPresentationController;
+use App\Http\Controllers\Presentations\AdminPresentationScriptController;
+use App\Http\Controllers\Presentations\AdminPresentationSlideController;
 use App\Http\Controllers\Presentations\PresentationController;
 use App\Http\Controllers\Presentations\PresentationScriptController;
 use App\Http\Controllers\Roles\AdminPermissionController;
