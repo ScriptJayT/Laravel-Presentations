@@ -26,8 +26,8 @@ const roles = handleRoles(user);
                             "
                     >
                         {{ roles.getMain().name }}
-                    </span>
-                    meaning you have {{ roles.getMain().description }}
+                    </span>;
+                    {{ roles.getMain().description }}
                 </template>
                 <template v-else>
                     You have no assigned roles, meaning you have nothing to do here;

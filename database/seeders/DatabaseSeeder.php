@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
     private function seedRoles(): void
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
-        Permission::create(['guard_name' => 'web', 'name' => 'primordial']);
+        Permission::create(['guard_name' => 'web', 'name' => 'primordial', 'description' => 'a wildcard permission used for Goddesses to access certain functionality']);
 
         Permission::create(['guard_name' => 'web', 'name' => 'create users']);
         Permission::create(['guard_name' => 'web', 'name' => 'read users']);
@@ -44,10 +44,10 @@ class DatabaseSeeder extends Seeder
 
         Permission::create(['guard_name' => 'web', 'name' => 'crud presentations']);
 
-        Role::create(['name' => 'Goddess'])->givePermissionTo('primordial');
-        Role::create(['name' => 'Admin'])->givePermissionTo('create users', 'update users', 'delete users');
-        Role::create(['name' => 'Base'])->givePermissionTo('crud presentations', 'read users');
-        Role::create(['name' => 'Bot']);
+        Role::create(['name' => 'Goddess', 'description' => 'the allmighty you has no limits on this platform!'])->givePermissionTo('primordial');
+        Role::create(['name' => 'Admin', 'description' => 'you, as a guardian, keep the dashboard in working order'])->givePermissionTo('create users', 'update users', 'delete users');
+        Role::create(['name' => 'Base', 'description' => 'you are a creator, go forth!'])->givePermissionTo('crud presentations', 'read users');
+        Role::create(['name' => 'Bot', 'description' => 'you are a bot, to help with automation.']);
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
     }
 
