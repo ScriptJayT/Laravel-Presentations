@@ -29,9 +29,7 @@ class AdminRolesController extends Controller
     public function update(Request $request, Role $role)
     {
         $descr = e($request->all('description')['description']);
-
-        $role->description = $descr;
-
+        $role->description = trim($descr);
         if ($role->save()) {
             session()->flash('Role description edited successfully');
         } else {
