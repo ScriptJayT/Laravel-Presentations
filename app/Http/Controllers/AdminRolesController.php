@@ -28,8 +28,16 @@ class AdminRolesController extends Controller
 
     public function update(Request $request, Role $role)
     {
-        dd($request->all());
+        $descr = e($request->all('description')['description']);
 
-        return Redirect::back();
+        $role->description = $descr;
+
+        if ($role->save()) {
+            session()->flash('Role description edited successfully');
+        } else {
+            session()->flash('Something went wrong editing a role description');
+        }
+
+        return Redirect::route('admin_role_index');
     }
 }
