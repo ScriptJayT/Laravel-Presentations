@@ -13,6 +13,9 @@
         hellpress - empress - hell'press
         hellshow - hellow
         pressy
+- Updates
+    - [ ] Upgrade Lucide/Vue-Next to Lucide/Vue
+    - [ ] Upgrade to Laravel 13
 - App Functions
     - Dashboard:
         - [x] Add welcome screen
