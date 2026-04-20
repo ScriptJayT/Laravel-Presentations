@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Presentations;
 
+use App\Http\Controllers\Controller;
 use App\Models\PresentationScript;
 use App\Traits\HasVisibilityRule;
 use Illuminate\Support\Facades\Redirect;
