@@ -2,7 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import {
     LayoutGrid, Presentation, Scroll,
-    Users, HeartPulse, Folder, UserCheck,
+    Users, HeartPulse, Folder, UserKey
 } from '@lucide/vue';
 import NavFooter from '@/components/dashboard/NavFooter.vue';
 import NavMain from '@/components/dashboard/NavMain.vue';
@@ -19,8 +19,7 @@ import {
     dashboard
 } from '@/routes';
 import { AppLogo } from '@/components/global/logo';
-
-import { type NavItem } from '@/types';
+import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
     {
@@ -53,7 +52,7 @@ const dashboardNavItems: NavItem[] = [
     {
         title: 'Roles',
         href: admin_role_index(),
-        icon: UserCheck,
+        icon: UserKey,
     },
 ];
 const footerNavItems: NavItem[] = [

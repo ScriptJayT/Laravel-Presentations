@@ -14,7 +14,7 @@
         hellshow - hellow
         pressy
 - Updates
-    - [ ] Upgrade Lucide/Vue-Next to Lucide/Vue
+    - [x] Upgrade Lucide/Vue-Next to Lucide/Vue
     - [x] Upgrade to Laravel 13
 - App Functions
     - Dashboard:
