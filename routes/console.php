@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 
 Schedule::call(new RefreshBotUsers)
-    ->everyFifteenSeconds()
-    ->withoutOverlapping();
+    ->name('refresh bot user params')
+    ->withoutOverlapping()
+    ->everyOddHour();
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());

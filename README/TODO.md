@@ -59,7 +59,7 @@
         - [ ] Allow content rendering of md/html
         - [ ] Allow selection of script/slides/both
     - Bot:
-        - [ ] Add password rotation in queue
+        - [x] Add password rotation in schedule
 - App Look
     - [ ] Better welcome screen
     - [x] Find better (temp) logo for app
