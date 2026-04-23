@@ -30,6 +30,8 @@ Goal: build a backend interface to create a presentation using markdown
         - https://reniki.com/blog/redirect-back-previous-page-after-login-laravel-fortify
         - https://laracasts.com/discuss/channels/laravel/fortify-redirect
     - test full crud model: https://medium.com/@zabiremu/laravel-unit-testing-for-crud-operations-complete-guide-example-ae55360330dc
+    - continues background tasks: https://laravel.com/docs/13.x/scheduling
+
 - "new" HTML / CSS:
     - anchor position:
         - https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning

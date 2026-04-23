@@ -42,3 +42,9 @@ or without Inertia HMR
 ```bash
 composer run dev:ssr
 ```
+
+## Running the background tasks:
+
+```bash
+php artisan schedule:work
+```
