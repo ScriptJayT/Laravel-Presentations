@@ -60,6 +60,7 @@
         - [ ] Allow selection of script/slides/both
     - Bot:
         - [x] Add password rotation in schedule
+        - [ ] Remove remember email/password
 - App Look
     - [ ] Better welcome screen
     - [x] Find better (temp) logo for app
