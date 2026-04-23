@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RouteFormDefinition } from '@/wayfinder';
-import { Trash } from 'lucide-vue-next';
+import { Trash } from '@lucide/vue';
 import { Form } from '@/components/global/form';
 import ActionModal from '@/components/dashboard/ActionModal.vue';
 import { metaButtonClasses, metaButtonSpanClasses } from '@/components/dashboard/sections';

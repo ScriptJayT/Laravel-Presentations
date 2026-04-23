@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Model, User } from '@/types';
-import { ExternalLink } from 'lucide-vue-next';
+import { ExternalLink } from '@lucide/vue';
 import { RouteDefinition } from '@/wayfinder';
 import { show } from "@/routes/admin_user";
 import { cn } from '@/lib/utils';

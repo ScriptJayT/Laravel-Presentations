@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import IndexLink from '@/components/dashboard/models/IndexLink.vue';
-import { Plus } from 'lucide-vue-next';
+import { Plus } from '@lucide/vue';
 import { cn } from '@/lib/utils';
 import { FalseHeading } from '@/components/global/text';
 import ActionModal from '../ActionModal.vue';

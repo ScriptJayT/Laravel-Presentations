@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { Search, X } from 'lucide-vue-next';
+import { Search, X } from '@lucide/vue';
 import { type QueryAllResult, safeQueryAll, cn } from '@/lib/utils';
 type SearchFilterResult = [QueryAllResult, QueryAllResult];
 const props = withDefaults(

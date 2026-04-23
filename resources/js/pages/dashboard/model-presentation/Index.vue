@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type Presentation, type BreadcrumbItem } from '@/types';
 import { admin_presentations } from '@/routes';
-import { Scroll } from "lucide-vue-next";
+import { Scroll } from '@lucide/vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SubSectionHeading } from '@/components/global/text';
 import { Container, IndexGrid } from '@/components/dashboard/containers';

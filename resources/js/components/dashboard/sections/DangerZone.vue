@@ -1,5 +1,5 @@
 <script setup>
-import { OctagonAlert } from 'lucide-vue-next';
+import { OctagonAlert } from '@lucide/vue';
 import { SubSectionHeading } from '@/components/global/text';
 import AsideZone from './AsideZone.vue';
 </script>

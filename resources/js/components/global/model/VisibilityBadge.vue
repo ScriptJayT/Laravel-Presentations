@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PresentationVisibility } from '@/types';
 import { getAppEnums } from '@/lib/utils';
-import { Shield, Lock, LockOpen } from "lucide-vue-next";
+import { Shield, Lock, LockOpen } from '@lucide/vue';
 const visibilityTitles = getAppEnums().visibility;
 defineProps<{
     visibility: PresentationVisibility;

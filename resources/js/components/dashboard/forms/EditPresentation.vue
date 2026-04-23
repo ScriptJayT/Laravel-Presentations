@@ -2,7 +2,7 @@
 import type { Presentation, PresentationVisibility, PresentationScript, } from '@/types';
 import { admin_script_index, admin_scripts } from '@/routes';
 import { update } from '@/routes/admin_presentation';
-import { ExternalLink, Book, CirclePlus } from 'lucide-vue-next';
+import { ExternalLink, Book, CirclePlus } from '@lucide/vue';
 import { Form, FormField, SelectField, TextField } from '@/components/global/form';
 import { DoubleIconLink } from '../buttons';
 import { SelectVisibility } from './fields';

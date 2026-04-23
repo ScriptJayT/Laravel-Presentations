@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Upload } from 'lucide-vue-next';
+import { Upload } from '@lucide/vue';
 import { cn } from '@/lib/utils';
 import { FormField, inputClasses, type TextlikeFieldAttributes } from '@/components/global/form';
 const props = defineProps<TextlikeFieldAttributes & {

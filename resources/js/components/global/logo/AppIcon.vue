@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Flame } from 'lucide-vue-next';
+import { Flame } from '@lucide/vue';
 import type { HTMLAttributes } from 'vue';
 defineOptions({ inheritAttrs: false });
 defineProps<{ className?: HTMLAttributes['class'] }>();

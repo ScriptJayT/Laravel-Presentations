@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type RouteFormDefinition } from '@/wayfinder';
 import { Form } from '@inertiajs/vue3';
-import { Save, Trash } from 'lucide-vue-next';
+import { Save, Trash } from '@lucide/vue';
 import { type FunctionalComponent } from 'vue';
 import { cn } from '@/lib/utils';
 import { UnsavedChanges, ProcessIndicator } from '.';

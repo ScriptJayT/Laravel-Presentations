@@ -2,7 +2,7 @@
 import type { AppServiceShared } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
-import { AlertCircle } from 'lucide-vue-next';
+import { AlertCircle } from '@lucide/vue';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 const flash = computed(() => usePage().props.flash).value as AppServiceShared['flash'];
 const anyMessage = !!(flash.info || flash.error || flash.success);

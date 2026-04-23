@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Download } from 'lucide-vue-next';
+import { Download } from '@lucide/vue';
 import { textToDownloaded, safeQuery } from '@/lib/utils';
 import { ActionButton } from '@/components/dashboard/buttons';
 import {

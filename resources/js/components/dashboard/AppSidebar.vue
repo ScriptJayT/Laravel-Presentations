@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/vue3';
 import {
     LayoutGrid, Presentation, Scroll,
     Users, HeartPulse, Folder, UserCheck,
-} from 'lucide-vue-next';
+} from '@lucide/vue';
 import NavFooter from '@/components/dashboard/NavFooter.vue';
 import NavMain from '@/components/dashboard/NavMain.vue';
 import NavUser from '@/components/dashboard/NavUser.vue';

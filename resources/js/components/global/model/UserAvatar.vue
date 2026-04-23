@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { User } from '@/types';
 import { computed } from 'vue';
-import { Users } from 'lucide-vue-next';
+import { Users } from '@lucide/vue';
 import { useInitials } from '@/composables/useInitials';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const props = withDefaults(

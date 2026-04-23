@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Presentation } from '@/types';
-import { User, Shield, LockOpen } from "lucide-vue-next";
+import { User, Shield, LockOpen } from '@lucide/vue';
 import AppWrapper from '@/components/app/AppWrapper.vue';
 import AppHeader from '@/components/app/AppHeader.vue';
 import AppContent from '@/components/app/AppContent.vue';

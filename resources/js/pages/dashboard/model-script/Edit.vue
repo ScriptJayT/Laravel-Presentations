@@ -2,7 +2,7 @@
 import type { PresentationScript, PresentationVisibility, BreadcrumbItem } from '@/types';
 import { admin_presentation_index, admin_presentations, admin_script_index, scripts } from '@/routes';
 import { destroy } from '@/routes/admin_script';
-import { ExternalLink } from "lucide-vue-next";
+import { ExternalLink } from '@lucide/vue';
 import { plural } from '@/lib/utils';
 
 import { AsideZone, SaveZone, DangerZone, CreatedMetaInfo } from '@/components/dashboard/sections';
